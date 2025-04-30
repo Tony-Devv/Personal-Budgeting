@@ -1,0 +1,90 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
+             x:Class="Personal_Budgeting.Views.Pages.ProfilePage">
+
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <TextBlock Text="Profile Settings" Classes="h1"/>
+
+            <!-- User Info -->
+            <Border Classes="card">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Border Width="100" 
+                            Height="100" 
+                            CornerRadius="50" 
+                            Background="{DynamicResource SystemAccentColor}"
+                            Margin="0,0,20,0">
+                        <!-- Fixed Symbol implementation -->
+                        <ui:FontIcon Glyph="&#xE77B;"
+                                   FontSize="48"
+                                   Foreground="White"/>
+                    </Border>
+                    
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="John Doe" 
+                                 FontSize="24" 
+                                 FontWeight="SemiBold"/>
+                        <TextBlock Text="john.doe@example.com" 
+                                 Opacity="0.7"/>
+                        <Button Content="Edit Profile" 
+                                Classes="accent" 
+                                Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Financial Goals -->
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Text="Financial Goals" Classes="h2"/>
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <TextBlock Text="Monthly Savings Target" 
+                                 VerticalAlignment="Center"/>
+                        <NumericUpDown Grid.Column="1" 
+                                     Value="1000" 
+                                     FormatString="C2" 
+                                     Width="200"/>
+                        
+                        <TextBlock Text="Budget Alert Threshold" 
+                                 Grid.Row="1" 
+                                 VerticalAlignment="Center"/>
+                        <NumericUpDown Grid.Row="1" 
+                                     Grid.Column="1" 
+                                     Value="80" 
+                                     Minimum="0" 
+                                     Maximum="100" 
+                                     FormatString="P0" 
+                                     Width="200"/>
+                        
+                        <TextBlock Text="Default Currency" 
+                                 Grid.Row="2" 
+                                 VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="2" 
+                                Grid.Column="1" 
+                                SelectedIndex="0" 
+                                Width="200">
+                            <ComboBoxItem>USD ($)</ComboBoxItem>
+                            <ComboBoxItem>EUR (€)</ComboBoxItem>
+                            <ComboBoxItem>GBP (£)</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Notifications -->
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Text="Notification Preferences" Classes="h2"/>
+                    <StackPanel Spacing="10">
+                        <CheckBox Content="Bill Payment Reminders"/>
+                        <CheckBox Content="Budget Alerts"/>
+                        <CheckBox Content="Large Transaction Alerts"/>
+                        <CheckBox Content="Monthly Reports"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

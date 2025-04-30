@@ -1,0 +1,87 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             x:Class="Personal_Budgeting.Views.Pages.BudgetPage">
+
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <TextBlock Text="Budget Planning" Classes="h1"/>
+
+            <!-- Monthly Overview -->
+            <Border Classes="card">
+                <Grid ColumnDefinitions="3*,2*">
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Monthly Overview" Classes="h2"/>
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
+                            <TextBlock Text="Total Budget:" Grid.Row="0" Grid.Column="0"/>
+                            <TextBlock Text="$5,000.00" Grid.Row="0" Grid.Column="1" 
+                                     FontWeight="SemiBold"/>
+                            <TextBlock Text="Spent:" Grid.Row="1" Grid.Column="0"/>
+                            <TextBlock Text="$3,500.00" Grid.Row="1" Grid.Column="1" 
+                                     Foreground="Red"/>
+                            <TextBlock Text="Remaining:" Grid.Row="2" Grid.Column="0"/>
+                            <TextBlock Text="$1,500.00" Grid.Row="2" Grid.Column="1" 
+                                     Foreground="Green"/>
+                        </Grid>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                        <TextBlock Text="Progress" Classes="h2"/>
+                        <ProgressBar Value="70" Maximum="100" Height="20" 
+                                   Margin="0,10"/>
+                        <TextBlock Text="70% used" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Category Management -->
+            <Border Classes="card">
+                <StackPanel>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <TextBlock Text="Budget Categories" Classes="h2"/>
+                        <Button Grid.Column="1" Content="Add Category" 
+                               Classes="accent"/>
+                    </Grid>
+
+                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" 
+                             Height="300">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Category" Width="*"/>
+                            <DataGridTextColumn Header="Allocated" Width="120"/>
+                            <DataGridTextColumn Header="Spent" Width="120"/>
+                            <DataGridTextColumn Header="Remaining" Width="120"/>
+                            <DataGridTemplateColumn Header="Progress" Width="200">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ProgressBar Value="65" Maximum="100" 
+                                                   Height="20" Margin="5"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Edit"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+
+            <!-- Analytics -->
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Text="Spending Analytics" Classes="h2"/>
+                    <ComboBox SelectedIndex="0" Margin="0,10">
+                        <ComboBoxItem>Last 30 Days</ComboBoxItem>
+                        <ComboBoxItem>Last 3 Months</ComboBoxItem>
+                        <ComboBoxItem>Last 6 Months</ComboBoxItem>
+                        <ComboBoxItem>This Year</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
