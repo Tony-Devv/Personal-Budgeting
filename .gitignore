@@ -1,4 +1,41 @@
+<<<<<<< Updated upstream
 .idea/
 bin/
 obj/
 *.vsidx
+=======
+.vs/Personal-Budgeting/FileContentIndex/3dc592c4-7342-46ee-b589-b19e8456e2ae.vsidx
+.vs/Personal-Budgeting/FileContentIndex/5c943684-64b0-4787-b0cb-e8be354b2a1e.vsidx
+.vs/Personal-Budgeting/FileContentIndex/c149081a-a140-4e1b-a999-449bbdc2c1e5.vsidx
+.vs/Personal-Budgeting/FileContentIndex/c81f0789-650b-483e-add9-2557f10e6e0c.vsidx
+.vs/Personal-Budgeting/FileContentIndex/fb1381e6-06ed-4e29-ade1-030f5d89b496.vsidx
+.vs/slnx.sqlite
+Controller/obj/Release/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+Controller/obj/Release/net9.0/Controller.AssemblyInfo.cs
+Controller/obj/Release/net9.0/Controller.AssemblyInfoInputs.cache
+Controller/obj/Release/net9.0/Controller.GeneratedMSBuildEditorConfig.editorconfig
+Controller/obj/Release/net9.0/Controller.GlobalUsings.g.cs
+Model/obj/Release/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+Model/obj/Release/net9.0/Model.AssemblyInfo.cs
+Model/obj/Release/net9.0/Model.AssemblyInfoInputs.cache
+Model/obj/Release/net9.0/Model.GeneratedMSBuildEditorConfig.editorconfig
+Model/obj/Release/net9.0/Model.GlobalUsings.g.cs
+obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+obj/Debug/net9.0/Personal Budgeting.AssemblyInfo.cs
+obj/Debug/net9.0/Personal Budgeting.AssemblyInfoInputs.cache
+obj/Debug/net9.0/Personal Budgeting.GeneratedMSBuildEditorConfig.editorconfig
+obj/Release/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+obj/Release/net9.0/Personal Budgeting.AssemblyInfo.cs
+obj/Release/net9.0/Personal Budgeting.AssemblyInfoInputs.cache
+obj/Release/net9.0/Personal Budgeting.GeneratedMSBuildEditorConfig.editorconfig
+PersonalBudgeting/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+PersonalBudgeting/obj/Debug/net9.0/PersonalBudgeting.AssemblyInfo.cs
+PersonalBudgeting/obj/Debug/net9.0/PersonalBudgeting.AssemblyInfoInputs.cache
+PersonalBudgeting/obj/Debug/net9.0/PersonalBudgeting.GeneratedMSBuildEditorConfig.editorconfig
+PersonalBudgeting/obj/Release/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+PersonalBudgeting/obj/Release/net9.0/PersonalBudgeting.AssemblyInfo.cs
+PersonalBudgeting/obj/Release/net9.0/PersonalBudgeting.AssemblyInfoInputs.cache
+PersonalBudgeting/obj/Release/net9.0/PersonalBudgeting.GeneratedMSBuildEditorConfig.editorconfig
+.vs/Personal-Budgeting/FileContentIndex/e958236d-f9bb-4301-962c-8837209f58fc.vsidx
+.vs/Personal-Budgeting/FileContentIndex/f0b7bcd0-27b5-4048-9632-f993e2def303.vsidx
+>>>>>>> Stashed changes
