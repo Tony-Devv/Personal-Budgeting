@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BuR5DGQQ/jE=",
+  "dgSpecHash": "q6U0m4pSYdI=",
   "success": true,
-  "projectFilePath": "D:\\GitHub_Repos\\PersonalBudgeting_Application\\Controller\\Controller.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\toose\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.200\\microsoft.net.sdk.compilers.toolset.9.0.200.nupkg.sha512"
-  ],
+  "projectFilePath": "D:\\GitHub_Repos\\Personal-Budgeting\\Controller\\Controller.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
