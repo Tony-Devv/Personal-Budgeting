@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NDV4f8jLuKM=",
+  "success": true,
+  "projectFilePath": "D:\\GitHub_Repos\\PersonalBudgeting_Application\\Model\\Model.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\toose\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.200\\microsoft.net.sdk.compilers.toolset.9.0.200.nupkg.sha512"
+  ],
+  "logs": []
+}
