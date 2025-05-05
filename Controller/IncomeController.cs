@@ -1,3 +1,5 @@
+using Model.Entities;
+
 public class IncomeController
 {
 	public bool TryAddIncome(Income income) { return true; }

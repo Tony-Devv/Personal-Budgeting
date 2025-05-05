@@ -1,3 +1,5 @@
+using Model.Entities;
+
 public class ExpenseController
 {
 	public bool TryAddNewExpense(Expense expense) { return true; }

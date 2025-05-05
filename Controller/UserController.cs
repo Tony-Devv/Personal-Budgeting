@@ -1,3 +1,5 @@
+using Model.Entities;
+
 public class UserController
 {
     public bool TryRegisterUser(User user) { return true; }
