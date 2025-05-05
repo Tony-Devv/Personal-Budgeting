@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             x:Class="PersonalBudgeting.Views.Pages.RemindersPage">
+
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <TextBlock Text="Bill Reminders" Classes="h1"/>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <TextBlock Text="Add New Reminder" Classes="h2"/>
+                    <Grid ColumnDefinitions="*, *, Auto" Margin="0,0,0,10">
+                        <TextBox Grid.Column="0" 
+                                Watermark="Bill Name" 
+                                Margin="0,0,10,0"/>
+                        <NumericUpDown Grid.Column="1" 
+                                     Watermark="Amount" 
+                                     FormatString="C2" 
+                                     Margin="0,0,10,0"/>
+                        <DatePicker Grid.Column="2"/>
+                    </Grid>
+                    <Button Content="Add Reminder" 
+                            Classes="accent" 
+                            HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <TextBlock Text="Upcoming Bills" Classes="h2"/>
+                        <ToggleSwitch Grid.Column="1" 
+                                    Content="Show Past Due"/>
+                    </Grid>
+
+                    <DataGrid AutoGenerateColumns="False" 
+                             IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Due Date" 
+                                              Width="120"/>
+                            <DataGridTextColumn Header="Bill" 
+                                              Width="*"/>
+                            <DataGridTextColumn Header="Amount" 
+                                              Width="120"/>
+                            <DataGridTextColumn Header="Status" 
+                                              Width="100"/>
+                            <DataGridTemplateColumn Header="Actions" Width="160">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Spacing="5">
+                                            <Button Classes="accent" 
+                                                    Content="Pay"/>
+                                            <Button Content="Edit"/>
+                                            <Button Content="Delete"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

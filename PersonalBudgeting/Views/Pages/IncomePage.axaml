@@ -1,0 +1,70 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             x:Class="PersonalBudgeting.Views.Pages.IncomePage">
+
+    <ScrollViewer>
+        <StackPanel Margin="20" Classes="form">
+            <TextBlock Text="Income Management" Classes="h1"/>
+
+            <Border Classes="card">
+                <StackPanel Classes="form">
+                    <TextBlock Text="Add New Income" Classes="h2"/>
+                    <Grid ColumnDefinitions="*, *, Auto">
+                        <TextBox Grid.Column="0" Margin="0,0,10,0"
+                                Watermark="Source (e.g., Salary)"/>
+                        <NumericUpDown Grid.Column="1" Margin="0,0,10,0"
+                                     Minimum="0" Maximum="999999"
+                                     FormatString="C2"
+                                     Watermark="Amount"/>
+                        <Button Grid.Column="2" Content="Add Income" 
+                                Classes="accent"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <StackPanel Classes="form">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <TextBlock Text="Income History" Classes="h2"/>
+                        <Button Grid.Column="1" Content="Export" 
+                                Classes="accent"/>
+                    </Grid>
+
+                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date" Width="120"/>
+                            <DataGridTextColumn Header="Source" Width="*"/>
+                            <DataGridTextColumn Header="Amount" Width="120"/>
+                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Spacing="5">
+                                            <Button Content="Edit" Classes="accent"/>
+                                            <Button Content="Delete"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+
+            <Border Classes="card">
+                <Grid ColumnDefinitions="*, *" Margin="0">
+                    <StackPanel Classes="form" Grid.Column="0">
+                        <TextBlock Text="Monthly Summary" Classes="h2"/>
+                        <TextBlock Text="Total Income: $3,500.00"/>
+                        <TextBlock Text="Average Income: $3,450.00"/>
+                    </StackPanel>
+                    <StackPanel Classes="form" Grid.Column="1">
+                        <TextBlock Text="Year-to-Date" Classes="h2"/>
+                        <TextBlock Text="Total Income: $14,000.00"/>
+                        <TextBlock Text="Monthly Average: $3,500.00"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
