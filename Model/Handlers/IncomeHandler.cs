@@ -1,5 +1,6 @@
 using Model.Entities;
 using Model.Interfaces;
+using Model.Utilities;
 
 namespace Model.Handlers;
 
@@ -7,6 +8,10 @@ public class IncomeHandler
 {
     private readonly IIncomeRepository _incomeRepository;
 
+    public IncomeHandler()
+    {
+        _incomeRepository = ServicesContainer.Instance.GetService<IIncomeRepository>();
+    }
 
     public async Task<int> AddNewIncome(Income income)
     {

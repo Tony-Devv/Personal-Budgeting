@@ -4,7 +4,7 @@ namespace Model.Interfaces;
 
 public interface IExpenseRepository : IRepository<Expense>
 {
-    void SetReminderTime(Expense expense, DateTime time);
-    Task<Expense> GetExpenseByName(int userId, string expenseName);
+    Task SetReminderTime(Expense expense, DateTime time);
+    Task<Expense?> GetExpenseByName(int userId, string expenseName);
     Task<List<Expense>> GetAllThatHasReminder(int userId);
 }

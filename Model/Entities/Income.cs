@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Entities;
 
+[Table("Income")]
 public class Income
 {
     [Key]
@@ -11,6 +12,8 @@ public class Income
     public int UserId { get; set; }
     
     public decimal Amount { get; set; }
+
+    public string SourceName { get; set; }
     
     public DateTime IncomeDate { get; set; }
     

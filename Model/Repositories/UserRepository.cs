@@ -1,32 +1,41 @@
+using Microsoft.EntityFrameworkCore;
 using Model.Entities;
 using Model.Interfaces;
+using Model.Utilities;
 
 namespace Model.Repositories;
 
 public class UserRepository : GenericRepository<User>, IUserRepository
 {
-    public Task<User> RetrieveUserByEmail(string email)
+    
+    public async Task<User?> RetrieveUserByEmail(string email)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
 
-    public Task<bool> CheckUserExistsByEmail(string email)
+    public async Task<bool> CheckUserExistsByEmail(string email)
     {
-        throw new NotImplementedException();
+        return await this.RetrieveUserByEmail(email) != null;
     }
 
-    public Task<ICollection<Income>> GetUserIncomes(User user)
+    public async Task<ICollection<Income>> GetUserIncomes(User user)
     {
-        throw new NotImplementedException();
+        await _dbContext.Entry(user).Collection(u => u.Incomes).LoadAsync();
+
+        return user.Incomes.ToList();
     }
 
-    public Task<ICollection<Budget>> GetUserBudgets(User user)
+    public async Task<ICollection<Budget>> GetUserBudgets(User user)
     {
-        throw new NotImplementedException();
+        await _dbContext.Entry(user).Collection(u => u.Budgets).LoadAsync();
+
+        return user.Budgets.ToList();
     }
 
-    public Task<ICollection<Expense>> GetUserExpenses(User user)
+    public async Task<ICollection<Expense>> GetUserExpenses(User user)
     {
-        throw new NotImplementedException();
+        await _dbContext.Entry(user).Collection(u => u.Expenses).LoadAsync();
+
+        return user.Expenses.ToList();
     }
 }

@@ -1,5 +1,6 @@
 using Model.Entities;
 using Model.Interfaces;
+using Model.Utilities;
 
 namespace Model.Handlers;
 
@@ -7,6 +8,11 @@ public class ExpenseHandler
 {
     private readonly IExpenseRepository _expenseRepository;
 
+    public ExpenseHandler()
+    {
+        _expenseRepository = ServicesContainer.Instance.GetService<IExpenseRepository>();
+    }
+    
     public async Task<int> AddNewExpense(Expense expense)
     {
         return -1;

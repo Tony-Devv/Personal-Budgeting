@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Model.Entities;
 using Model.Interfaces;
 
@@ -5,18 +6,33 @@ namespace Model.Repositories;
 
 public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
 {
-    public void SetReminderTime(Expense expense, DateTime time)
+    public async Task SetReminderTime(Expense expense, DateTime time)
     {
-        throw new NotImplementedException();
+        if (! await base.CheckExist(expense.Id))
+        {
+            return;
+        }
+        
+        var e = await _dbContext.Expenses.FindAsync(expense);
+        if (e != null)
+        {
+            e.ReminderTime = time; 
+            _dbContext.Entry(expense).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+        } 
     }
 
-    public Task<Expense> GetExpenseByName(int userId, string expenseName)
+    public async Task<Expense?> GetExpenseByName(int userId, string expenseName)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Expenses
+            .Where(e => e.UserId == userId && e.ExpenseName == expenseName)
+            .FirstOrDefaultAsync();
     }
 
-    public Task<List<Expense>> GetAllThatHasReminder(int userId)
+    public async Task<List<Expense>> GetAllThatHasReminder(int userId)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Expenses
+            .Where(e => e.UserId == userId && e.ReminderTime != null)
+            .ToListAsync();
     }
 }

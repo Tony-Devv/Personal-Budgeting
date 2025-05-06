@@ -5,7 +5,7 @@ namespace Model;
 
 public class ApplicationDbContext : DbContext
 {
-    private readonly string _connectionString = "Server=.;Database=PersonalBudgeting;Integrated Security=True;";
+    private readonly string _connectionString = "Server=.;Database=PersonalBudgeting;Integrated Security=True;TrustServerCertificate=True;";
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

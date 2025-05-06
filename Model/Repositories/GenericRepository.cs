@@ -1,36 +1,54 @@
+using Microsoft.EntityFrameworkCore;
 using Model.Interfaces;
+using Model.Utilities;
 
 namespace Model.Repositories;
 
-public class GenericRepository<TObject> : IRepository<TObject> where TObject : class 
+public class GenericRepository<TObject> : IRepository<TObject> where TObject : class
 {
-    public Task<int> Add(TObject obj)
+    protected readonly ApplicationDbContext _dbContext;
+
+    public GenericRepository()
     {
-        throw new NotImplementedException();
+        _dbContext = new ApplicationDbContext();
+    }
+    
+    
+    public async Task<int> Add(TObject obj)
+    {
+        await _dbContext.Set<TObject>().AddAsync(obj);
+        
+        Console.WriteLine(typeof(TObject).Name);
+        
+        return await _dbContext.SaveChangesAsync();
     }
 
-    public Task<int> Update(TObject obj)
+    public async Task<int> Update(TObject obj)
     {
-        throw new NotImplementedException();
+        _dbContext.Set<TObject>().Update(obj);
+        return await _dbContext.SaveChangesAsync();
     }
 
-    public Task<int> Delete(TObject obj)
+    public async Task<int> Delete(TObject obj)
     {
-        throw new NotImplementedException();
+        _dbContext.Set<TObject>().Remove(obj);
+        return await _dbContext.SaveChangesAsync();
     }
 
-    public Task<TObject>? GetById(int id)
+    public async Task<TObject?> GetById(int id)
     {
-        throw new NotImplementedException();
+        var result = await _dbContext.Set<TObject>().FindAsync(id);
+        return result;
     }
 
-    public Task<IEnumerable<TObject>>? GetAll()
+    public async Task<IEnumerable<TObject>>? GetAll()
     {
-        throw new NotImplementedException();
+        return await _dbContext.Set<TObject>().ToListAsync();
     }
 
-    public Task<bool> CheckExist(int id)
+    public async Task<bool> CheckExist(int id)
     {
-        throw new NotImplementedException();
+        var result = await this.GetById(id);
+        return result != null;
     }
 }

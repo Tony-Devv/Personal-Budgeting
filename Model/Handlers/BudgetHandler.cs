@@ -1,5 +1,6 @@
 using Model.Entities;
 using Model.Interfaces;
+using Model.Utilities;
 
 namespace Model.Handlers;
 
@@ -7,6 +8,12 @@ public class BudgetHandler
 {
     private readonly IBudgetRepository _budgetRepository;
 
+
+    public BudgetHandler()
+    {
+        _budgetRepository = ServicesContainer.Instance.GetService<IBudgetRepository>();
+    }
+    
     public async Task<int> AddNewBudget(Budget budget)
     {
 
