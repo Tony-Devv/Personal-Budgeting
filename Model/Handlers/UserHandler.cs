@@ -9,49 +9,134 @@ public class UserHandler
     private readonly IPasswordHasher _passwordHasher;
     private readonly IUserRepository _userRepository;
 
-
     public UserHandler()
     {
         _passwordHasher = ServicesContainer.Instance.GetService<IPasswordHasher>();
         _userRepository = ServicesContainer.Instance.GetService<IUserRepository>();
     }
-    
+
     public async Task<int> RegisterNewUser(User user)
     {
+        try
+        {
+            if (await _userRepository.CheckUserExistsByEmail(user.Email))
+                return -1;
 
+            user.Password = await _passwordHasher.Hash(user.Password);
+            await _userRepository.Add(user);
+        }
+        catch (Exception e)
+        {
+            LogError("RegisterNewUser", e);
+        }
 
-        return -1;
+        return user.Id;
     }
 
-    public async Task<bool> LoginUser(User user)
+    public async Task<int> LoginUser(User user)
     {
+        int result = -1;
 
-        return false;
+        try
+        {
+            User? u = await _userRepository.RetrieveUserByEmail(user.Email);
+            if (u != null && await _passwordHasher.Verify(u.Password, user.Password))
+            {
+                result = u.Id;
+            }
+        }
+        catch (Exception e)
+        {
+            LogError("LoginUser", e);
+        }
+
+        return result;
     }
 
     public async Task<int> EditUserDetails(User user)
     {
-        
-        return -1;
+        int result = -1;
+        try
+        {
+            if (!await _userRepository.CheckExist(user.Id))
+                return result;
+
+            result = await _userRepository.Update(user);
+            result = user.Id;
+        }
+        catch (Exception e)
+        {
+            LogError("EditUserDetails", e);
+        }
+
+        return result;
     }
 
     public async Task<List<Income>> GetUserIncomes(User user)
     {
+        List<Income> result = new();
 
-        return new List<Income>();
+        try
+        {
+            if (!await _userRepository.CheckExist(user.Id))
+                return result;
+
+            result = (List<Income>)await _userRepository.GetUserIncomes(user);
+        }
+        catch (Exception e)
+        {
+            LogError("GetUserIncomes", e);
+        }
+
+        return result;
     }
 
     public async Task<List<Budget>> GetUserBudgets(User user)
     {
+        List<Budget> result = new();
 
-        return new List<Budget>();
+        try
+        {
+            if (!await _userRepository.CheckExist(user.Id))
+                return result;
+
+            result = (List<Budget>)await _userRepository.GetUserBudgets(user);
+        }
+        catch (Exception e)
+        {
+            LogError("GetUserBudgets", e);
+        }
+
+        return result;
     }
 
     public async Task<List<Expense>> GetUserExpenses(User user)
     {
+        List<Expense> result = new();
 
-        return new List<Expense>();
+        try
+        {
+            if (!await _userRepository.CheckExist(user.Id))
+                return result;
+
+            result = (List<Expense>)await _userRepository.GetUserExpenses(user);
+        }
+        catch (Exception e)
+        {
+            LogError("GetUserExpenses", e);
+        }
+
+        return result;
     }
-    
-    
+
+    private void LogError(string context, Exception e)
+    {
+        var originalColor = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"Error occurred at {context}");
+        Console.ForegroundColor = originalColor;
+
+        Console.WriteLine($"Error: {e.Message}");
+        Console.WriteLine($"Stack: {e.StackTrace}");
+    }
 }
