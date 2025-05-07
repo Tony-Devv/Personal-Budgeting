@@ -8,6 +8,9 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        UserController u = new UserController();
+
+        IUserRepository userRepository = new UserRepository();
+        
+         
     }
 }
