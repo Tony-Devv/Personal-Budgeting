@@ -6,7 +6,6 @@ obj/
 .vs/Personal-Budgeting/v17/.wsuo
 .vs/VSWorkspaceState.json
 .vs/Personal-Budgeting/v17/DocumentLayout.json
-=======
 
 Controller/obj/
 Controller/bin/
@@ -16,4 +15,7 @@ Model/obj/
 Model/bin/
 
 
+<<<<<<< HEAD
+>>>>>>> 1929f429c609a9989aaf7da06d5848415fd4f0e5
+=======
 >>>>>>> 1929f429c609a9989aaf7da06d5848415fd4f0e5
