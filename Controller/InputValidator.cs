@@ -1,3 +1,5 @@
+using Model.Entities;
+
 public class InputValidator
 {
     public bool CheckUser(User user) { return true; }

@@ -4,7 +4,7 @@ namespace Model.Interfaces;
 
 public interface IUserRepository : IRepository<User>
 {
-    Task<User> RetrieveUserByEmail(string email);
+    Task<User?> RetrieveUserByEmail(string email);
 
     Task<bool> CheckUserExistsByEmail(string email);
 
