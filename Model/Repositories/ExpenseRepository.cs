@@ -13,12 +13,14 @@ public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
             return;
         }
         
-        var e = await _dbContext.Expenses.FindAsync(expense);
-        if (e != null)
+        var E = await _dbContext.Expenses.FirstOrDefaultAsync(e => e.Id == expense.Id 
+                                                                   && e.UserId == expense.UserId);
+        if (E != null)
         {
-            e.ReminderTime = time; 
-            _dbContext.Entry(expense).State = EntityState.Modified;
+            E.ReminderTime = time;
+            _dbContext.Expenses.Update(E);
             await _dbContext.SaveChangesAsync();
+            await _dbContext.Expenses.Entry(E).ReloadAsync(); // refresh the entity in the memory
         } 
     }
 

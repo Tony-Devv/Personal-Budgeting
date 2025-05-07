@@ -26,7 +26,7 @@ public class UserHandler
     public async Task<bool> LoginUser(User user)
     {
 
-        return true;
+        return false;
     }
 
     public async Task<int> EditUserDetails(User user)

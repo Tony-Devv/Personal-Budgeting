@@ -20,22 +20,29 @@ public class UserRepository : GenericRepository<User>, IUserRepository
 
     public async Task<ICollection<Income>> GetUserIncomes(User user)
     {
-        await _dbContext.Entry(user).Collection(u => u.Incomes).LoadAsync();
-
-        return user.Incomes.ToList();
+        var incomes = await _dbContext.Incomes.AsNoTracking().
+            Where(i => i.UserId == user.Id).ToListAsync();
+        user.Incomes = incomes;
+        return incomes;
     }
 
     public async Task<ICollection<Budget>> GetUserBudgets(User user)
     {
-        await _dbContext.Entry(user).Collection(u => u.Budgets).LoadAsync();
+        var budgets = await _dbContext.Budgets.AsNoTracking().
+            Where(b => b.UserId == user.Id).ToListAsync();
 
-        return user.Budgets.ToList();
+        user.Budgets = budgets;
+        return budgets;
     }
 
     public async Task<ICollection<Expense>> GetUserExpenses(User user)
     {
-        await _dbContext.Entry(user).Collection(u => u.Expenses).LoadAsync();
+        var expenses = await _dbContext.Expenses
+            .AsNoTracking()
+            .Where(e => e.UserId == user.Id)
+            .ToListAsync();
 
-        return user.Expenses.ToList();
+        user.Expenses = expenses;
+        return expenses;
     }
 }

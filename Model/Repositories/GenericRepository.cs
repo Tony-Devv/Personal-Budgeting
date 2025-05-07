@@ -18,7 +18,6 @@ public class GenericRepository<TObject> : IRepository<TObject> where TObject : c
     {
         await _dbContext.Set<TObject>().AddAsync(obj);
         
-        Console.WriteLine(typeof(TObject).Name);
         
         return await _dbContext.SaveChangesAsync();
     }

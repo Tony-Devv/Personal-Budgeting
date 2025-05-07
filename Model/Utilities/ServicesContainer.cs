@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using Model.Handlers;
 using Model.Interfaces;
 using Model.Repositories;
 
@@ -20,6 +21,10 @@ public class ServicesContainer
         _services.Add(typeof(IIncomeRepository),() => new IncomeRepository());    
         _services.Add(typeof(IExpenseRepository),() => new ExpenseRepository());    
         _services.Add(typeof(IBudgetRepository),() => new BudgetRepository());    
+        _services.Add(typeof(UserHandler),() => new UserHandler());
+        _services.Add(typeof(IncomeHandler), () => new IncomeHandler());
+        _services.Add(typeof(BudgetHandler), () => new BudgetHandler());
+        _services.Add(typeof(ExpenseHandler), () => new ExpenseHandler());
     }
 
     public TService GetService<TService>() where TService : class

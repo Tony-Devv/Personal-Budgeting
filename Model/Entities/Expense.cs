@@ -29,4 +29,9 @@ public class Expense
     
     [ForeignKey(nameof(BudgetId))]
     public Budget Budget { get; set; }
+    
+    public override string ToString()
+    {
+        return $"Expense [Id={Id}, UserId={UserId}, BudgetId={BudgetId}, ExpenseName={ExpenseName}, RequiredAmount={RequiredAmount}, SpentAmount={SpentAmount}, DateCycle={DateCycle}, ReminderTime={ReminderTime}]";
+    }
 }

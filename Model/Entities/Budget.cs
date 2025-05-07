@@ -16,6 +16,12 @@ public class Budget
     public decimal TotalAmountRequired { get; set; }
     
     
-    [ForeignKey(nameof(Id))]
+    [ForeignKey(nameof(UserId))]
     public User ? User { get; set; }
+    
+    public override string ToString()
+    {
+        return $"Budget [Id={Id}, UserId={UserId}, BudgetName={BudgetName}, TotalAmountRequired={TotalAmountRequired}]";
+    }
+
 }
