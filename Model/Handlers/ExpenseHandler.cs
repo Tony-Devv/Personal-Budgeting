@@ -73,7 +73,7 @@ public class ExpenseHandler
     {
         try
         {
-            var oldExpense = await _expenseRepository.GetById(newValues.Id);
+            var oldExpense = await _expenseRepository.GetById(newValues.Id)!;
             if (oldExpense == null)
                 return null;
 
@@ -93,7 +93,7 @@ public class ExpenseHandler
         }
     }
 
-    public async void SetExpensesWithReminder(List<Expense> expenses, DateTime time)
+    public async Task<bool> SetExpensesWithReminder(List<Expense> expenses, DateTime time)
     {
         try
         {
@@ -104,10 +104,13 @@ public class ExpenseHandler
                     await _expenseRepository.SetReminderTime(expense, time);
                 }
             }
+
+            return true;
         }
         catch (Exception e)
         {
             LogError("SetExpensesWithReminder", e);
+            return false;
         }
     }
 

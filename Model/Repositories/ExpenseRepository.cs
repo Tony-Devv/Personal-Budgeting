@@ -6,11 +6,11 @@ namespace Model.Repositories;
 
 public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
 {
-    public async Task SetReminderTime(Expense expense, DateTime time)
+    public async Task<bool> SetReminderTime(Expense expense, DateTime time)
     {
         if (! await base.CheckExist(expense.Id))
         {
-            return;
+            return false;
         }
         
         var E = await _dbContext.Expenses.FirstOrDefaultAsync(e => e.Id == expense.Id 
@@ -21,7 +21,10 @@ public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
             _dbContext.Expenses.Update(E);
             await _dbContext.SaveChangesAsync();
             await _dbContext.Expenses.Entry(E).ReloadAsync(); // refresh the entity in the memory
-        } 
+            return true;
+        }
+
+        return false;
     }
 
     public async Task<Expense?> GetExpenseByName(int userId, string expenseName)
