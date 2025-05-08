@@ -70,6 +70,30 @@ public class UserHandler
         }
     }
 
+
+    public async Task<User?> ChangeUserPassword(string newPassword, User user)
+    {
+        try
+        {
+            if (!await _userRepository.CheckUserExistsByEmail(user.Email))
+                return null;
+
+            var retrievedUser = await _userRepository.RetrieveUserByEmail(user.Email);
+            if (!await _passwordHasher.Verify(retrievedUser!.Password, user.Password))
+                return null;
+
+            user.Password = await _passwordHasher.Hash(newPassword);
+            
+            await _userRepository.Update(user);
+            return user;
+        }
+        catch (Exception e)
+        {
+            LogError("ChangeUserPassword", e);
+            return null;
+        }
+    }
+
     public async Task<List<Income>> GetUserIncomes(User user)
     {
         List<Income> result = new();

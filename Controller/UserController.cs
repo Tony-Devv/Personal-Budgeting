@@ -18,6 +18,11 @@ public class UserController
         return (updatedUser != null, updatedUser);
     }
 
+    public async Task<(bool Success, User? UpdatedUser)> TryChangeUserPassword(string newPassword, User user)
+    {
+        var result = await _userHandler.ChangeUserPassword(newPassword, user);
+        return (result != null, result);
+    }
     public async Task<(bool Success, int UserId)> TryLoginUser(User user)
     {
         var result = await _userHandler.LoginUser(user);
