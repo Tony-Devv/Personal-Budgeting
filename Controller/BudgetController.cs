@@ -4,7 +4,8 @@ using Model.Utilities;
 
 public class BudgetController
 {
-    private readonly BudgetHandler _budgetHandler = ServicesContainer.Instance.GetService<BudgetHandler>();
+    private readonly BudgetHandler _budgetHandler = 
+        ServicesContainer.Instance.GetService<BudgetHandler>();
 
     public async Task<(bool Success, int BudgetId)> TryAddBudget(Budget budget)
     {
@@ -12,7 +13,7 @@ public class BudgetController
         return (result != -1, result);
     }
 
-    public async Task<(bool Success, int BudgetId)> TryUpdateBudget(Budget newValues)
+    public async Task<(bool Success, Budget? BudgetId)> TryUpdateBudget(Budget newValues)
     {
         var updatedBudget = await _budgetHandler.UpdateBudget(newValues);
         return (updatedBudget != null, updatedBudget);

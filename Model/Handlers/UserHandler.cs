@@ -53,23 +53,21 @@ public class UserHandler
         return result;
     }
 
-    public async Task<int> EditUserDetails(User user)
+    public async Task<User?> EditUserDetails(User user)
     {
-        int result = -1;
         try
         {
             if (!await _userRepository.CheckExist(user.Id))
-                return result;
+                return null;
 
-            result = await _userRepository.Update(user);
-            result = user.Id;
+            await _userRepository.Update(user);
+            return user;
         }
         catch (Exception e)
         {
             LogError("EditUserDetails", e);
+            return null;
         }
-
-        return result;
     }
 
     public async Task<List<Income>> GetUserIncomes(User user)

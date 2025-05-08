@@ -12,9 +12,10 @@ public class ExpenseController
         return (result != -1, result);
     }
 
-    public async Task<(bool Success, int ExpenseId)> TryUpdateExpense(int expenseId, Expense newValues)
+    public async Task<(bool Success, Expense? newExpense)> TryUpdateExpense
+        (Expense newValues)
     {
-        var updatedExpense = await _expenseHandler.UpdateExpense(expenseId, newValues);
+        var updatedExpense = await _expenseHandler.UpdateExpense(newValues);
         return (updatedExpense != null, updatedExpense);
     }
 
@@ -24,17 +25,23 @@ public class ExpenseController
         return result != -1;
     }
 
-    public async Task<bool> TrySearchExpense(string expenseName, int userId)
+    public async Task<(bool Success,Expense? expense)> TrySearchExpense(string expenseName, int userId)
     {
         var expense = await _expenseHandler.SearchExpenseByName(userId, expenseName);
-        return expense != null;
+        return (expense != null, expense);
     }
 
 
-    public async Task<bool> TrySetExpenseReminder(int expenseId, DateTime reminderTime)
+    public async Task<bool> TrySetExpensesReminders(List<Expense> expenses,DateTime reminderTime)
     {
-        var Reminder = await _expenseHandler.GetExpensesThatHasReminders(expenseId);
-        return Reminder!=null;   
+        bool result = await _expenseHandler.SetExpensesWithReminder(expenses,reminderTime);
+        return result;
+    }
+
+    public async Task<(bool Success, List<Expense> expenses)> TryGetExpensesWithReminder(int userId)
+    {
+        var expenses = await _expenseHandler.GetExpensesThatHasReminders(userId);
+        return (expenses.Count != 0, expenses);
     }
 }
 
