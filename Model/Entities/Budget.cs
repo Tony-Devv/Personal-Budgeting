@@ -9,11 +9,11 @@ public class Budget
     [Key]
     public int Id { get; set; }
    
-    public int UserId { get; set; }
+    public int UserId { get; set; } // must not be empty
     
-    public string BudgetName { get; set; }
+    public string BudgetName { get; set; } // maximum 100 chars
     
-    public decimal TotalAmountRequired { get; set; }
+    public decimal TotalAmountRequired { get; set; } // 10 digits
     
     
     [ForeignKey(nameof(UserId))]
