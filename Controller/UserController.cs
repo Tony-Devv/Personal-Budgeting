@@ -2,37 +2,28 @@ using Model.Entities;
 using Model.Handlers;
 using Model.Utilities;
 
-public class IncomeController
+public class UserController
 {
-    private readonly IncomeHandler _incomeHandler = ServicesContainer.Instance.GetService<IncomeHandler>();
+    private readonly UserHandler _userHandler = ServicesContainer.Instance.GetService<UserHandler>();
 
-    public async Task<(bool Success, int IncomeId)> TryAddIncome(Income income)
+    public async Task<(bool Success, int UserId)> TryAddUser(User user)
     {
-        int result = await _incomeHandler.AddNewIncome(income);
+        int result = await _userHandler.RegisterNewUser(user);
         return (result != -1, result);
     }
 
-    public async Task<(bool Success, int IncomeId)> TryUpdateIncome(int incomeId, Income newValues)
+    public async Task<(bool Success, int UserId)> TryUpdateUser(int userId, User newValues)
     {
-        var updatedIncome = await _incomeHandler.UpdateIncome(incomeId, newValues);
-        return (updatedIncome != null, updatedIncome);
+        var updatedUser = await _userHandler.EditUserDetails(userId, newValues);
+        return (updatedUser != null, updatedUser);
     }
 
-    public async Task<bool> TryDeleteIncome(Income income)
+
+
+    public async Task<bool> TrySearchUserByEmail(string email)
     {
-        int result = await _incomeHandler.DeleteIncome(income);
-        return (result != -1,result);
+        var user = await _userHandler.RetrieveUserByEmail(email);
+        return user != null;
     }
 
-    public async Task<bool> TrySearchIncome(string sourceName, int userId)
-    {
-        var income = await _incomeHandler.SearchIncomeBySourceName(userId, sourceName);
-        return (income != null,income);
-    }
-
-    public async Task<bool> TryGetIncomeById(int id)
-    {
-        var income = await _incomeHandler.GetIncomeById(id);
-        return (income != null,income);
-    }
 }
