@@ -6,42 +6,45 @@ namespace Model.Repositories;
 
 public class GenericRepository<TObject> : IRepository<TObject> where TObject : class
 {
-    protected readonly ApplicationDbContext _dbContext;
+    protected readonly DbContextFactory _dbContextFactory;
 
     public GenericRepository()
     {
-        _dbContext = new ApplicationDbContext();
+        _dbContextFactory = new DbContextFactory();
     }
     
     
     public async Task<int> Add(TObject obj)
     {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
         await _dbContext.Set<TObject>().AddAsync(obj);
-        
-        
         return await _dbContext.SaveChangesAsync();
     }
 
     public async Task<int> Update(TObject obj)
     {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
         _dbContext.Set<TObject>().Update(obj);
         return await _dbContext.SaveChangesAsync();
     }
 
     public async Task<int> Delete(TObject obj)
     {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
         _dbContext.Set<TObject>().Remove(obj);
         return await _dbContext.SaveChangesAsync();
     }
 
     public async Task<TObject?> GetById(int id)
     {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
         var result = await _dbContext.Set<TObject>().FindAsync(id);
         return result;
     }
 
     public async Task<IEnumerable<TObject>>? GetAll()
     {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
         return await _dbContext.Set<TObject>().ToListAsync();
     }
 
