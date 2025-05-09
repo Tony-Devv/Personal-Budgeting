@@ -15,12 +15,12 @@ public class UserHandler
         _userRepository = ServicesContainer.Instance.GetService<IUserRepository>();
     }
 
-    public async Task<int> RegisterNewUser(User user)
+    public async Task<User?> RegisterNewUser(User user)
     {
         try
         {
             if (await _userRepository.CheckUserExistsByEmail(user.Email))
-                return -1;
+                return null;
 
             user.Password = await _passwordHasher.Hash(user.Password);
             await _userRepository.Add(user);
@@ -30,19 +30,19 @@ public class UserHandler
             LogError("RegisterNewUser", e);
         }
 
-        return user.Id;
+        return await _userRepository.GetById(user.Id)!;
     }
 
-    public async Task<int> LoginUser(User user)
+    public async Task<User?> LoginUser(User user)
     {
-        int result = -1;
+        User? result = null;
 
         try
         {
             User? u = await _userRepository.RetrieveUserByEmail(user.Email);
             if (u != null && await _passwordHasher.Verify(u.Password, user.Password))
             {
-                result = u.Id;
+                result = await _userRepository.GetById(u.Id)!;
             }
         }
         catch (Exception e)

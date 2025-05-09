@@ -21,7 +21,7 @@ public class UserController
     private readonly UserInputValidator _userInputValidator = new UserInputValidator();
 
     
-    public async Task<(bool Success, int UserId,List<string> errorMessages)> TryAddUser(User user) // valid (UserName,Email,Password,PhoneNumber)
+    public async Task<(bool Success, User ?User,List<string> errorMessages)> TryAddUser(User user) // valid (UserName,Email,Password,PhoneNumber)
     {
         var context = CreateContext(user, UserValidationsRules.Register);
         
@@ -30,11 +30,11 @@ public class UserController
         if (!validationResult.IsValid)
         {
             var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
-            return (false, -1, errors);
+            return (false, null, errors);
         }
         
-        int result = await _userHandler.RegisterNewUser(user);
-        return (result != -1, result,new List<string>());
+        User? result = await _userHandler.RegisterNewUser(user);
+        return (result != null, result,new List<string>());
     }
 
     public async Task<(bool Success, User? UpdatedUser,List<string> errors)> TryUpdateUser(User newValues)
@@ -74,7 +74,7 @@ public class UserController
         var result = await _userHandler.ChangeUserPassword(newPassword, user);
         return (result != null, result, new List<string>());
     }
-    public async Task<(bool Success, int UserId,List<string> errors)> TryLoginUser(User user)
+    public async Task<(bool Success, User ? User,List<string> errors)> TryLoginUser(User user)
     {
 
         var context = CreateContext(user, UserValidationsRules.Login);
@@ -84,11 +84,11 @@ public class UserController
         if (!validationResult.IsValid)
         {
             var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
-            return (false, -1, errors);
+            return (false, null, errors);
         }
         
         var result = await _userHandler.LoginUser(user);
-        return (result != -1, result,new List<string>());  
+        return (result != null, result,new List<string>());  
     }
 
     public async Task<(bool Success, List<Income> Incomes,List<string> errors)> TryGetUserIncomes(User user)
