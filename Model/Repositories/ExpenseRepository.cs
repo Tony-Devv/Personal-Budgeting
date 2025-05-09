@@ -8,6 +8,7 @@ public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
 {
     public async Task<bool> SetReminderTime(Expense expense, DateTime time)
     {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
         if (! await base.CheckExist(expense.Id))
         {
             return false;
@@ -29,6 +30,7 @@ public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
 
     public async Task<Expense?> GetExpenseByName(int userId, string expenseName)
     {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
         return await _dbContext.Expenses
             .Where(e => e.UserId == userId && e.ExpenseName == expenseName)
             .FirstOrDefaultAsync();
@@ -36,6 +38,7 @@ public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
 
     public async Task<List<Expense>> GetAllThatHasReminder(int userId)
     {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
         return await _dbContext.Expenses
             .Where(e => e.UserId == userId && e.ReminderTime != null)
             .ToListAsync();
