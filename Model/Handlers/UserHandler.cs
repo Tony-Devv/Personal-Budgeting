@@ -151,6 +151,25 @@ public class UserHandler
         return result;
     }
 
+    public async Task<User?> GetUserById(int userId)
+    {
+        User? result = null;
+
+        try
+        {
+            if (await _userRepository.CheckExist(userId))
+            {
+                result = await _userRepository.GetById(userId);
+            }
+        }
+        catch (Exception e)
+        {
+            LogError("GetUserById", e);
+        }
+
+        return result;
+    }
+
     private void LogError(string context, Exception e)
     {
         var originalColor = Console.ForegroundColor;

@@ -74,55 +74,31 @@ public partial class MainWindow : Window
             // Set the current user ID
             _currentUserId = userId;
             
-            // Create a temporary user with only the ID for fetching data
-            var tempUser = new User { Id = _currentUserId };
+            // Create a temporary user with only the ID
+            _currentUser = new User { Id = _currentUserId };
             
-            // Fetch the user's data by calling TryGetUserIncomes which will validate the user ID
-            var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(tempUser);
+            // Make sure sidebar is visible
+            _sidebarMenu.IsVisible = true;
             
-            if (incomesSuccess)
+            // Fetch the user's detailed info
+            var (success, userDetails, errors) = await _userController.TryGetUserById(_currentUserId);
+            
+            if (success && userDetails != null)
             {
-                // User exists and has data in the database
-                _currentUser = tempUser;
+                // Update the current user with the detailed information
+                _currentUser.UserName = userDetails.UserName ?? "User";
+                _currentUser.Email = userDetails.Email;
+                _currentUser.PhoneNumber = userDetails.PhoneNumber;
                 
-                // Make sure the sidebar is visible
-                _sidebarMenu.IsVisible = true;
-                
-                // Load all user data and show the home page
-                LoadHomePage();
+                Console.WriteLine($"Logged in as user: {_currentUser.UserName} (ID: {_currentUserId})");
             }
             else
             {
-                // If no incomes found, try expenses as fallback
-                var (expensesSuccess, userExpenses, expenseErrors) = await _userController.TryGetUserExpenses(tempUser);
-                
-                if (expensesSuccess)
-                {
-                    // User exists and has expense data
-                    _currentUser = tempUser;
-                    _sidebarMenu.IsVisible = true;
-                    LoadHomePage();
-                }
-                else
-                {
-                    // If no expenses, try budgets as final fallback
-                    var (budgetsSuccess, userBudgets, budgetErrors) = await _userController.TryGetUserBudgets(tempUser);
-                    
-                    if (budgetsSuccess)
-                    {
-                        // User exists and has budget data
-                        _currentUser = tempUser;
-                        _sidebarMenu.IsVisible = true;
-                        LoadHomePage();
-                    }
-                    else
-                    {
-                        // No data found for this user
-                        Console.WriteLine("No data found for user ID: " + userId);
-                        ShowWelcomePage();
-                    }
-                }
+                Console.WriteLine($"Logged in with minimal user info (ID: {_currentUserId})");
             }
+            
+            // Always proceed to load the home page for valid users
+            LoadHomePage();
         }
         catch (Exception ex)
         {
@@ -205,54 +181,26 @@ public partial class MainWindow : Window
         {
             Console.WriteLine($"Loading database data for user ID: {_currentUser.Id}");
             
-            // Try to load incomes to fetch user data
+            // Fetch user data from database
             var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(_currentUser);
-            
-            // If we have incomes, we should have valid user data from the database
-            if (incomesSuccess && userIncomes.Count > 0 && userIncomes[0].User != null)
-            {
-                // Update the user object with data from the income's user
-                _currentUser.UserName = userIncomes[0].User.UserName;
-                _currentUser.Email = userIncomes[0].User.Email;
-                _currentUser.PhoneNumber = userIncomes[0].User.PhoneNumber;
-                
-                Console.WriteLine($"Updated user details from income data: {_currentUser.UserName}");
-            }
-            
-            // Now fetch the other user data
             var (expensesSuccess, userExpenses, expenseErrors) = await _userController.TryGetUserExpenses(_currentUser);
             var (budgetsSuccess, userBudgets, budgetErrors) = await _userController.TryGetUserBudgets(_currentUser);
-            
-            // Update the UI with user information
-            if (_userNameText != null)
-                _userNameText.Text = _currentUser.UserName ?? "User";
-            
-            if (_userInitials != null)
-                _userInitials.Text = GetInitials(_currentUser.UserName ?? "User");
             
             // Log results for debugging
             Console.WriteLine($"Incomes loaded: {incomesSuccess}, Count: {userIncomes?.Count ?? 0}");
             Console.WriteLine($"Expenses loaded: {expensesSuccess}, Count: {userExpenses?.Count ?? 0}");
             Console.WriteLine($"Budgets loaded: {budgetsSuccess}, Count: {userBudgets?.Count ?? 0}");
             
-            // Verify we have at least one data type loaded successfully
-            if (!incomesSuccess && !expensesSuccess && !budgetsSuccess)
-            {
-                Console.WriteLine("Failed to load any user data from database");
-                ShowWelcomePage();
-                return;
-            }
-            
-            // Create homepage with real user data from database
+            // Create homepage with user data (or empty lists if no data found)
             _pageContent.Content = new HomePage(
                 _budgetController,
                 _expenseController,
                 _incomeController,
                 _userController,
                 _currentUser,
-                incomesSuccess ? userIncomes : new List<Income>(),
-                expensesSuccess ? userExpenses : new List<Expense>(),
-                budgetsSuccess ? userBudgets : new List<Budget>()
+                incomesSuccess ? userIncomes ?? new List<Income>() : new List<Income>(),
+                expensesSuccess ? userExpenses ?? new List<Expense>() : new List<Expense>(),
+                budgetsSuccess ? userBudgets ?? new List<Budget>() : new List<Budget>()
             );
         }
         catch (Exception ex)
@@ -375,18 +323,15 @@ public partial class MainWindow : Window
     {
         if (_currentUser == null) return;
 
-        var userNameText = this.FindControl<TextBlock>("UserNameText");
-        var userEmailText = this.FindControl<TextBlock>("UserEmailText");
-        var userPhoneText = this.FindControl<TextBlock>("UserPhoneText");
+        // Note: We removed the user profile card as requested,
+        // so we only need to update the title on pages
         
-        if (userNameText != null)
-            userNameText.Text = _currentUser.UserName;
-        
-        if (userEmailText != null)
-            userEmailText.Text = _currentUser.Email ?? "Not set";
-        
-        if (userPhoneText != null)
-            userPhoneText.Text = "Not set";
+        var currentPageTitle = this.FindControl<TextBlock>("CurrentPageTitle");
+        if (currentPageTitle != null)
+        {
+            // Update the page title if needed
+            // This keeps the title updated based on navigation
+        }
     }
     
     // User edit event handlers

@@ -129,27 +129,6 @@
                                 </Button>
                             </StackPanel>
                         </ScrollViewer>
-                        
-                        <!-- User profile section -->
-                        <Border Grid.Row="2" Padding="15" Margin="10,10" Background="#1F2937" CornerRadius="8">
-                            <Grid ColumnDefinitions="Auto,*">
-                                <!-- User avatar -->
-                                <Border Grid.Column="0" CornerRadius="25" Width="40" Height="40" ClipToBounds="True" Background="#2A3544">
-                                    <TextBlock x:Name="UserInitials" 
-                                              Text="U" 
-                                              HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center"
-                                              FontWeight="SemiBold"
-                                              FontSize="18"/>
-                                </Border>
-                                
-                                <!-- User info -->
-                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
-                                    <TextBlock x:Name="UsernameText" Text="User" FontSize="14" FontWeight="Medium"/>
-                                    <TextBlock Text="Standard User" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
                     </Grid>
                 </Border>
                 

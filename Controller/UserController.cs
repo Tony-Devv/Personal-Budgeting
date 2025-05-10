@@ -139,7 +139,23 @@ public class UserController
         return (expenses.Count > 0, expenses,new List<string>());
     }
 
-
+    public async Task<(bool Success, User? User, List<string> errors)> TryGetUserById(int userId)
+    {
+        if (userId <= 0)
+        {
+            return (false, null, new List<string> { "Invalid user ID" });
+        }
+        
+        try
+        {
+            var user = await _userHandler.GetUserById(userId);
+            return (user != null, user, new List<string>());
+        }
+        catch (Exception ex)
+        {
+            return (false, null, new List<string> { $"Error retrieving user: {ex.Message}" });
+        }
+    }
 
     private ValidationContext<User> CreateContext(User user, UserValidationsRules validationsRules)
     {

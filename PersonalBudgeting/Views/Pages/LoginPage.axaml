@@ -6,6 +6,16 @@
              x:Class="PersonalBudgeting.Views.Pages.LoginPage">
     
     <Grid Background="#151C29">
+        <!-- Back Arrow -->
+        <Button x:Name="BackButton"
+                Click="OnBackClick"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="20,20,0,0"
+                Background="Transparent"
+                BorderThickness="0">
+            <PathIcon Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
+        </Button>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -40,7 +50,7 @@
                     
                     <StackPanel Spacing="5">
                         <TextBlock Text="Email"/>
-                        <TextBox x:Name="UsernameInput" Watermark="Enter your email"/>
+                        <TextBox x:Name="UsernameInput" Watermark="Enter your email address"/>
                     </StackPanel>
                     
                     <StackPanel Spacing="5">
@@ -101,18 +111,13 @@
                     </StackPanel>
                     
                     <StackPanel Spacing="5">
-                        <TextBlock Text="Phone (Optional)"/>
+                        <TextBlock Text="Phone"/>
                         <TextBox x:Name="PhoneInput" Watermark="Enter your phone number"/>
                     </StackPanel>
                     
                     <StackPanel Spacing="5">
                         <TextBlock Text="Password"/>
                         <TextBox x:Name="RegPasswordInput" PasswordChar="•" Watermark="Enter password"/>
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="5">
-                        <TextBlock Text="Confirm Password"/>
-                        <TextBox x:Name="ConfirmPasswordInput" PasswordChar="•" Watermark="Confirm your password"/>
                     </StackPanel>
                     
                     <TextBlock x:Name="RegisterErrorText" 

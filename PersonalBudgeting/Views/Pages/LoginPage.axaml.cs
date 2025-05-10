@@ -157,18 +157,16 @@ public partial class LoginPage : UserControl
             var emailInput = this.FindControl<TextBox>("EmailInput");
             var phoneInput = this.FindControl<TextBox>("PhoneInput");
             var regPasswordInput = this.FindControl<TextBox>("RegPasswordInput");
-            var confirmPasswordInput = this.FindControl<TextBox>("ConfirmPasswordInput");
             var errorText = this.FindControl<TextBlock>("RegisterErrorText");
             
-            if (nameInput == null || emailInput == null || phoneInput == null || 
-                regPasswordInput == null || confirmPasswordInput == null || errorText == null)
+            if (nameInput == null || emailInput == null || 
+                regPasswordInput == null || errorText == null)
                 return;
             
             var name = nameInput.Text?.Trim();
             var email = emailInput.Text?.Trim();
-            var phone = phoneInput.Text?.Trim();
+            var phone = phoneInput?.Text?.Trim();
             var password = regPasswordInput.Text;
-            var confirmPassword = confirmPasswordInput.Text;
             
             // Validate input
             if (string.IsNullOrWhiteSpace(name))
@@ -188,13 +186,6 @@ public partial class LoginPage : UserControl
             if (string.IsNullOrWhiteSpace(password))
             {
                 errorText.Text = "Password is required";
-                errorText.IsVisible = true;
-                return;
-            }
-            
-            if (password != confirmPassword)
-            {
-                errorText.Text = "Passwords do not match";
                 errorText.IsVisible = true;
                 return;
             }
@@ -264,6 +255,14 @@ public partial class LoginPage : UserControl
         {
             _errorText.Text = message;
             _errorText.IsVisible = true;
+        }
+    }
+
+    private void OnBackClick(object? sender, RoutedEventArgs e)
+    {
+        if (_contentFrame != null)
+        {
+            _contentFrame.Content = new WelcomePage(_userController, _contentFrame, _onLoginSuccess ?? (id => { }));
         }
     }
 }
