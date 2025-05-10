@@ -37,6 +37,19 @@ public class UserController
         return (result != null, result,new List<string>());
     }
 
+    public async Task<(bool Success, User? user, List<string> errorMessages)> TryGetUserById(int id)
+    {
+        User? result = await _userHandler.GetUserById(id);
+        return (result != null, result, new List<string>());
+    }
+    
+    
+    public async Task<(bool Success, User? user, List<string> errorMessages)> TryGetUserByEmail(string email)
+    {
+        User? result = await _userHandler.GetUserByEmail(email);
+        return (result != null, result, new List<string>());
+    }
+
     public async Task<(bool Success, User? UpdatedUser,List<string> errors)> TryUpdateUser(User newValues)
     {
         var context = CreateContext(newValues, UserValidationsRules.Edit);

@@ -6,6 +6,8 @@ public interface IUserRepository : IRepository<User>
 {
     Task<User?> RetrieveUserByEmail(string email);
 
+    Task<User?> GetUserById(int id);
+    
     Task<bool> CheckUserExistsByEmail(string email);
 
     Task<ICollection<Income>> GetUserIncomes(User user);

@@ -71,6 +71,42 @@ public class UserHandler
     }
 
 
+    public async Task<User?> GetUserById(int id)
+    {
+        try
+        {
+            if (!await _userRepository.CheckExist(id))
+                return null;
+
+            User ? user = await _userRepository.GetUserById(id);
+            return user;
+        }
+        catch (Exception e)
+        {
+            LogError("GetUserById", e);
+            return null;
+        }
+    }
+    
+    
+    public async Task<User?> GetUserByEmail(string email)
+    {
+        try
+        {
+            if (!await _userRepository.CheckUserExistsByEmail(email))
+                return null;
+
+            User ? user = await _userRepository.RetrieveUserByEmail(email);
+            return user;
+        }
+        catch (Exception e)
+        {
+            LogError("GetUserByEmail", e);
+            return null;
+        }
+    }
+    
+
     public async Task<User?> ChangeUserPassword(string newPassword, User user)
     {
         try

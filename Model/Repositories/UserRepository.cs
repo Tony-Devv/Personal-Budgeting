@@ -14,6 +14,12 @@ public class UserRepository : GenericRepository<User>, IUserRepository
         return await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
 
+    public async Task<User?> GetUserById(int id)
+    {
+        User? user = await base.GetById(id);
+        return user;
+    }
+
     public async Task<bool> CheckUserExistsByEmail(string email)
     {
         await using var _dbContext = _dbContextFactory.CreateDbContext();
