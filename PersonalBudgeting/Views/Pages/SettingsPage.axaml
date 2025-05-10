@@ -60,16 +60,6 @@
                             <TextBox Name="PhoneTextBox" Watermark="Your Phone Number"/>
                         </StackPanel>
                         
-                        <StackPanel Spacing="5">
-                            <TextBlock Text="Currency" FontSize="12" Opacity="0.7"/>
-                            <ComboBox Name="CurrencyComboBox" Width="200" HorizontalAlignment="Left">
-                                <ComboBoxItem Content="USD ($)"/>
-                                <ComboBoxItem Content="EUR (€)"/>
-                                <ComboBoxItem Content="GBP (£)"/>
-                                <ComboBoxItem Content="JPY (¥)"/>
-                                <ComboBoxItem Content="CAD ($)"/>
-                            </ComboBox>
-                        </StackPanel>
                         
                         <Button Content="Save Profile" 
                                 Classes="accent"
@@ -117,37 +107,6 @@
             </Border>
             
             <!-- Notification Settings -->
-            <Border Classes="card">
-                <StackPanel Margin="15" Spacing="15">
-                    <TextBlock Text="Notifications"
-                               FontSize="18"
-                               FontWeight="SemiBold"/>
-                    
-                    <StackPanel Spacing="10">
-                        <CheckBox Content="Budget Alerts" 
-                                  Name="BudgetAlertsCheckBox"/>
-                        <TextBlock Text="Get notified when your spending approaches budget limits"
-                                   Opacity="0.7"
-                                   Margin="25,0,0,0"/>
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="10">
-                        <CheckBox Content="Payment Reminders" 
-                                  Name="PaymentRemindersCheckBox"/>
-                        <TextBlock Text="Receive reminders for upcoming bill payments"
-                                   Opacity="0.7"
-                                   Margin="25,0,0,0"/>
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="10">
-                        <CheckBox Content="Monthly Summary" 
-                                  Name="MonthlySummaryCheckBox"/>
-                        <TextBlock Text="Get a summary of your finances at the end of each month"
-                                   Opacity="0.7"
-                                   Margin="25,0,0,0"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
             
             <!-- About Section -->
             <Border Classes="card">

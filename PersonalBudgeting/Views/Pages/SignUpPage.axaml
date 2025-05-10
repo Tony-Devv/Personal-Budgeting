@@ -27,17 +27,18 @@
                         <TextBlock Text="Email"/>
                         <TextBox x:Name="EmailInput" Watermark="Enter your email"/>
                     </StackPanel>
+                     <StackPanel Spacing="5">
+                        <TextBlock Text="Password"/>
+                        <TextBox x:Name="PasswordInput" PasswordChar="•" Watermark="Enter password"/>
+                    </StackPanel>
                     <StackPanel Spacing="5">
                         <TextBlock Text="Phone"/>
                         <TextBox x:Name="PhoneInput" Watermark="Enter your phone number"/>
                     </StackPanel>
-                    <StackPanel Spacing="5">
-                        <TextBlock Text="Password"/>
-                        <TextBox x:Name="PasswordInput" PasswordChar="•" Watermark="Enter password"/>
-                    </StackPanel>
+                   
                     <TextBlock x:Name="RegisterErrorText" Text="Error message" Foreground="#E57373" IsVisible="False" TextWrapping="Wrap"/>
                     <Button Content="Register" Click="OnRegisterClick" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Height="40" Background="#4CAF50" Foreground="White"/>
-                    <StackPanel Orientation="Horizontal" Spacing="5" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center" Margin="0,0,0,0">
                      
                     </StackPanel>
                 </StackPanel>

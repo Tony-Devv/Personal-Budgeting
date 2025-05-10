@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Model.Interfaces;
-using Model.Entities;
 using Model.Utilities;
 
 namespace Model.Repositories;
@@ -25,7 +24,25 @@ public class GenericRepository<TObject> : IRepository<TObject> where TObject : c
     public async Task<int> Update(TObject obj)
     {
         await using var _dbContext = _dbContextFactory.CreateDbContext();
-        _dbContext.Set<TObject>().Update(obj);
+        
+        var keyProperty = _dbContext.Model.FindEntityType(typeof(TObject))!
+            .FindPrimaryKey()!
+            .Properties
+            .First();
+        
+        var keyValue = typeof(TObject).GetProperty(keyProperty.Name)?.GetValue(obj);
+
+        var actualEntity = await _dbContext.Set<TObject>().FindAsync(keyValue);
+        
+        foreach (var prop in typeof(TObject).GetProperties())
+        {
+            var newValue = prop.GetValue(obj);
+            if (newValue != null && prop.CanWrite)
+            {
+                prop.SetValue(actualEntity, newValue);
+            }
+        }
+        
         return await _dbContext.SaveChangesAsync();
     }
 

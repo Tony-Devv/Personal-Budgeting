@@ -37,6 +37,19 @@ public class UserController
         return (result != null, result,new List<string>());
     }
 
+    public async Task<(bool Success, User? user, List<string> errorMessages)> TryGetUserById(int id)
+    {
+        User? result = await _userHandler.GetUserById(id);
+        return (result != null, result, new List<string>());
+    }
+    
+    
+    public async Task<(bool Success, User? user, List<string> errorMessages)> TryGetUserByEmail(string email)
+    {
+        User? result = await _userHandler.GetUserByEmail(email);
+        return (result != null, result, new List<string>());
+    }
+
     public async Task<(bool Success, User? UpdatedUser,List<string> errors)> TryUpdateUser(User newValues)
     {
         var context = CreateContext(newValues, UserValidationsRules.Edit);
@@ -139,23 +152,28 @@ public class UserController
         return (expenses.Count > 0, expenses,new List<string>());
     }
 
-    public async Task<(bool Success, User? User, List<string> errors)> TryGetUserById(int userId)
+
+    public async Task<(bool Success, decimal Total, List<string> Errors)> TryGetTotalUserIncomes(int userId)
     {
-        if (userId <= 0)
-        {
-            return (false, null, new List<string> { "Invalid user ID" });
-        }
-        
-        try
-        {
-            var user = await _userHandler.GetUserById(userId);
-            return (user != null, user, new List<string>());
-        }
-        catch (Exception ex)
-        {
-            return (false, null, new List<string> { $"Error retrieving user: {ex.Message}" });
-        }
+        decimal total = await _userHandler.GetTotalUserIncomes(userId);
+        return (total >= 0, total, new List<string>());
     }
+    
+    public async Task<(bool Success, decimal Total, List<string> Errors)> TryGetTotalUserSpentExpenses(int userId)
+    {
+        decimal total = await _userHandler.GetTotalUserSpentExpenses(userId);
+        return (total >= 0, total, new List<string>());
+    }
+    
+    public async Task<(bool Success, decimal Total, List<string> Errors)> TryGetTotalAmountSpentOnBudget(int userId, int budgetId)
+    {
+        decimal total = await _userHandler.GetTotalAmountSpentOnBudget(userId, budgetId);
+        return (total >= 0, total, new List<string>());
+    }
+
+
+
+    
 
     private ValidationContext<User> CreateContext(User user, UserValidationsRules validationsRules)
     {
