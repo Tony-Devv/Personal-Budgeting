@@ -79,58 +79,33 @@
             </Grid>
 
             <!-- Main Content -->
-            <Grid Grid.Row="2" ColumnDefinitions="*" Margin="0,0,0,20">
-                <!-- Income List Panel -->
-                <Border Background="#232323" 
-                        CornerRadius="8"
-                        Padding="15">
-                    <Grid RowDefinitions="Auto,*,Auto">
-                        <Grid Grid.Row="0" 
-                            ColumnDefinitions="*,Auto" 
-                            Margin="0,0,0,15">
-                            <TextBlock Text="Income History" 
-                                    FontSize="18" 
-                                    FontWeight="Bold"/>
-                            
-                            <TextBox Grid.Column="1" 
-                                x:Name="SearchBox" 
-                                Width="200" 
-                                Watermark="Search income..."
-                                TextChanged="OnSearchTextChanged"/>
-                        </Grid>
-                        
-                        <!-- Income List -->
-                        <ScrollViewer Grid.Row="1" MaxHeight="400">
-                            <StackPanel x:Name="IncomeListPanel" Spacing="10">
-                                <!-- Income items will be added here programmatically -->
-                            </StackPanel>
-                        </ScrollViewer>
-                        
-                        <!-- Pagination -->
-                        <StackPanel Grid.Row="2" 
-                                Orientation="Horizontal" 
-                                HorizontalAlignment="Center" 
-                                Spacing="10"
-                                Margin="0,15,0,0">
-                            <Button x:Name="PrevPageButton" 
-                                Content="Previous" 
-                                Click="OnPrevPageClick"/>
-                            <TextBlock x:Name="PageInfoText" 
-                                    VerticalAlignment="Center"
-                                    Text="Page 1 of 1"/>
-                            <Button x:Name="NextPageButton"
-                                Content="Next" 
-                                Click="OnNextPageClick"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
+            <Grid Grid.Row="2" Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Income History header -->
+                <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,15">
+                    <TextBlock Grid.Column="0" Text="Income History" FontSize="20" FontWeight="Bold"/>
+                    <TextBox Grid.Column="1" x:Name="SearchBox" Width="250" Watermark="Search income..." 
+                             TextChanged="OnSearchTextChanged" Margin="0,0,0,0"/>
+                </Grid>
+                
+                <!-- Column Headers -->
+                <Grid Grid.Row="1" ColumnDefinitions="2*,1*,1*,1*" Margin="0,0,0,10">
+                    <TextBlock Grid.Column="0" Text="Income Source" FontWeight="SemiBold"/>
+                    <TextBlock Grid.Column="1" Text="Amount" FontWeight="SemiBold"/>
+                    <TextBlock Grid.Column="2" Text="Date" FontWeight="SemiBold"/>
+                    <TextBlock Grid.Column="3" Text="Actions" FontWeight="SemiBold"/>
+                </Grid>
+                
+                <!-- Income List -->
+                <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="IncomeListPanel" Spacing="10"/>
+                </ScrollViewer>
             </Grid>
-            
-            <!-- Footer -->
-            <Button Grid.Row="3"
-                Content="Back to Dashboard"
-                HorizontalAlignment="Center" 
-                Click="OnBackClick"/>
         </Grid>
         
         <!-- Add Income Popup -->
@@ -139,9 +114,11 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
             <StackPanel Spacing="15">
-                <TextBlock Text="Add New Income" 
-                        FontSize="18" 
+                <TextBlock x:Name="AddIncomeTitle" 
+                        Text="Add New Income"
+                        FontSize="20"
                         FontWeight="Bold"
+                        HorizontalAlignment="Center"
                         Margin="0,0,0,10"/>
                 
                 <TextBox x:Name="IncomeSourceInput"
@@ -161,7 +138,8 @@
                         Margin="0,10,0,0">
                     <Button Content="Cancel" 
                         Click="OnCancelAddIncomeClick"/>
-                    <Button Content="Save" 
+                    <Button x:Name="SaveIncomeButton" 
+                        Content="Save" 
                         Background="#007BFF"
                         Foreground="White"
                         Click="OnSaveIncomeClick"/>

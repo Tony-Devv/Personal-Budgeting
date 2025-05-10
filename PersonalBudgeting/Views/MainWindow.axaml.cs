@@ -164,50 +164,19 @@ public partial class MainWindow : Window
     }
     
     // Method to load the home page
-    private async void LoadHomePage()
+    private void LoadHomePage()
     {
-        // Ensure user is loaded and valid
-        if (_currentUser == null || _currentUser.Id <= 0) 
-        {
-            Console.WriteLine("No valid user found, showing welcome page");
-            ShowWelcomePage();
-            return;
-        }
-        
-        // Make sure sidebar is visible when loading home page
-        _sidebarMenu.IsVisible = true;
-        
         try
         {
-            Console.WriteLine($"Loading database data for user ID: {_currentUser.Id}");
-            
-            // Fetch user data from database
-            var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(_currentUser);
-            var (expensesSuccess, userExpenses, expenseErrors) = await _userController.TryGetUserExpenses(_currentUser);
-            var (budgetsSuccess, userBudgets, budgetErrors) = await _userController.TryGetUserBudgets(_currentUser);
-            
-            // Log results for debugging
-            Console.WriteLine($"Incomes loaded: {incomesSuccess}, Count: {userIncomes?.Count ?? 0}");
-            Console.WriteLine($"Expenses loaded: {expensesSuccess}, Count: {userExpenses?.Count ?? 0}");
-            Console.WriteLine($"Budgets loaded: {budgetsSuccess}, Count: {userBudgets?.Count ?? 0}");
-            
-            // Create homepage with user data (or empty lists if no data found)
             _pageContent.Content = new HomePage(
-                _budgetController,
-                _expenseController,
-                _incomeController,
                 _userController,
                 _currentUser,
-                incomesSuccess ? userIncomes ?? new List<Income>() : new List<Income>(),
-                expensesSuccess ? userExpenses ?? new List<Expense>() : new List<Expense>(),
-                budgetsSuccess ? userBudgets ?? new List<Budget>() : new List<Budget>()
+                _pageContent
             );
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading home page: {ex.Message}");
-            // On error, return to welcome page
-            ShowWelcomePage();
+            Console.WriteLine($"Error loading HomePage: {ex.Message}");
         }
     }
     
@@ -234,7 +203,11 @@ public partial class MainWindow : Window
             switch (pageName?.ToLower())
             {
                 case "home":
-                    LoadHomePage();
+                    _pageContent.Content = new HomePage(
+                        _userController,
+                        _currentUser,
+                        _pageContent
+                    );
                     break;
                     
                 case "income":
@@ -245,16 +218,32 @@ public partial class MainWindow : Window
                     
                 case "expenses":
                     var (expensesSuccess, userExpenses, expenseErrors) = await _userController.TryGetUserExpenses(_currentUser);
-                    _pageContent.Content = new ExpensesPage(_expenseController, _userController, _currentUser,
-                        expensesSuccess ? userExpenses : new List<Expense>());
+                    _pageContent.Content = new ExpensesPage(_expenseController, _userController, _currentUser);
                     break;
                     
                 case "budget":
                     var (budgetsSuccess, userBudgets, budgetErrors) = await _userController.TryGetUserBudgets(_currentUser);
                     var (expSuccess, expensesForBudget, expErrors) = await _userController.TryGetUserExpenses(_currentUser);
-                    _pageContent.Content = new BudgetPage(_budgetController, _userController, _currentUser, 
-                        budgetsSuccess ? userBudgets : new List<Budget>(),
-                        expSuccess ? expensesForBudget : new List<Expense>());
+                    
+                    try
+                    {
+                        Console.WriteLine("Creating BudgetPage...");
+                        var budgetPage = new BudgetPage(
+                            _budgetController,
+                            _userController,
+                            _currentUser);
+                        
+                        Console.WriteLine("BudgetPage created successfully, setting as content");
+                        _pageContent.Content = budgetPage;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error creating BudgetPage: {ex.Message}");
+                        Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                        
+                        // Fallback to home page if budget page fails to load
+                        LoadHomePage();
+                    }
                     break;
                     
                 case "settings":
@@ -269,7 +258,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error navigating to page: {ex.Message}");
+            Console.WriteLine($"Error navigating to {pageName}: {ex.Message}");
         }
     }
     

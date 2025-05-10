@@ -84,6 +84,53 @@
         <Style Selector="TextBox.clearButton:pointerover /template/ TextBlock#PART_Watermark">
             <Setter Property="Opacity" Value="0.7"/>
         </Style>
+
+        <!-- Global Styles -->
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BoxShadow" Value="0 2 4 0 #40000000"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        
+        <Style Selector="Button.actionButton">
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
+        <Style Selector="Button.deleteButton">
+            <Setter Property="Background" Value="#F44336"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="#007BFF"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        
+        <Style Selector="Border.popup > StackPanel">
+            <Setter Property="Background" Value="#282828"/>
+            <Setter Property="Width" Value="350"/>
+        </Style>
+        
+        <Style Selector="Border.popup">
+            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="ZIndex" Value="1000"/>
+            <Setter Property="Background" Value="#33333399"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BoxShadow" Value="0 4 12 0 #80000000"/>
+        </Style>
+        
+        <Style Selector="Border.popup > Panel">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
     </Application.Styles>
 
 </Application>

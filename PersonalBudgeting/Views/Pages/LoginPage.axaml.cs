@@ -20,6 +20,11 @@ public partial class LoginPage : UserControl
     private readonly ContentControl? _contentFrame;
     private readonly Action<int>? _onLoginSuccess;
     private readonly TextBlock? _errorText;
+    
+    // UI elements
+    private TextBox? _usernameInput;
+    private TextBox? _passwordInput;
+    private TextBlock? _loginErrorText;
 
     public LoginPage()
     {
@@ -28,6 +33,7 @@ public partial class LoginPage : UserControl
         _contentFrame = null;
         _onLoginSuccess = null;
         _errorText = null;
+        GetControlReferences();
     }
 
     public LoginPage(UserController userController, ContentControl contentFrame, Action<int> onLoginSuccess)
@@ -37,6 +43,14 @@ public partial class LoginPage : UserControl
         _contentFrame = contentFrame;
         _onLoginSuccess = onLoginSuccess;
         _errorText = this.FindControl<TextBlock>("LoginErrorText");
+        GetControlReferences();
+    }
+    
+    private void GetControlReferences()
+    {
+        _usernameInput = this.FindControl<TextBox>("UsernameInput");
+        _passwordInput = this.FindControl<TextBox>("PasswordInput");
+        _loginErrorText = this.FindControl<TextBlock>("LoginErrorText");
     }
 
     private void InitializeComponent()
@@ -46,65 +60,66 @@ public partial class LoginPage : UserControl
 
     private async void OnLoginClick(object? sender, RoutedEventArgs e)
     {
+        // Get input values
+        var usernameOrEmail = _usernameInput?.Text?.Trim() ?? string.Empty;
+        var password = _passwordInput?.Text?.Trim() ?? string.Empty;
+        
+        // Validate input
+        if (string.IsNullOrWhiteSpace(usernameOrEmail) || string.IsNullOrWhiteSpace(password))
+        {
+            if (_loginErrorText != null)
+            {
+                _loginErrorText.Text = "Email and password are required";
+                _loginErrorText.IsVisible = true;
+            }
+            return;
+        }
+        
         try
         {
-            // Get login inputs
-            var usernameInput = this.FindControl<TextBox>("UsernameInput");
-            var passwordInput = this.FindControl<TextBox>("PasswordInput");
-            var errorText = this.FindControl<TextBlock>("LoginErrorText");
-            
-            if (usernameInput == null || passwordInput == null || errorText == null)
-                return;
-            
-            var usernameOrEmail = usernameInput.Text?.Trim();
-            var password = passwordInput.Text;
-            
-            // Validate input
-            if (string.IsNullOrWhiteSpace(usernameOrEmail) || string.IsNullOrWhiteSpace(password))
-            {
-                errorText.Text = "Email and password are required";
-                errorText.IsVisible = true;
-                return;
-            }
-            
-            // Authenticate using the UserController
-            // Note: The validator requires Email, not UserName for login
+            // Create login user
             var loginUser = new Model.Entities.User { 
-                Email = usernameOrEmail, // Use the input as Email since that's what the validator checks
+                Email = usernameOrEmail,
                 Password = password
             };
             
-            // Attempt login with database
-            var (success, user, errors) = await _userController.TryLoginUser(loginUser);
-            
-            if (success && user != null)
+            // Attempt login
+            if (_userController != null)
             {
-                // Database login successful
-                Console.WriteLine($"Login successful for user: {user.UserName} (ID: {user.Id})");
+                var result = await _userController.TryLoginUser(loginUser);
                 
-                // Call the onLoginSuccess callback
-                if (_onLoginSuccess != null)
+                if (result.Success && result.User != null)
                 {
-                    _onLoginSuccess(user.Id);
+                    // Login successful
+                    // Use a null-safe callback to prevent null reference exceptions
+                    var safeLoginSuccess = _onLoginSuccess ?? (id => {});
+                    
+                    if (_contentFrame != null)
+                    {
+                        _contentFrame.Content = null; // Clear content before callback
+                        safeLoginSuccess(result.User.Id);
+                    }
                 }
-            }
-            else 
-            {
-                // Login failed - show error
-                errorText.Text = errors.Count > 0 ? string.Join(", ", errors) : "Invalid email or password";
-                errorText.IsVisible = true;
-                Console.WriteLine("Login failed: " + (errors.Count > 0 ? string.Join(", ", errors) : "Unknown error"));
+                else
+                {
+                    // Login failed
+                    if (_loginErrorText != null)
+                    {
+                        _loginErrorText.Text = "Invalid email or password";
+                        _loginErrorText.IsVisible = true;
+                    }
+                }
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error during login: {ex.Message}");
-            var errorText = this.FindControl<TextBlock>("LoginErrorText");
-            if (errorText != null)
+            if (_loginErrorText != null)
             {
-                errorText.Text = "An error occurred during login";
-                errorText.IsVisible = true;
+                _loginErrorText.Text = $"Login error: {ex.Message}";
+                _loginErrorText.IsVisible = true;
             }
+            
+            Console.WriteLine($"Login error: {ex.Message}");
         }
     }
 
@@ -162,7 +177,7 @@ public partial class LoginPage : UserControl
             if (nameInput == null || emailInput == null || 
                 regPasswordInput == null || errorText == null)
                 return;
-            
+
             var name = nameInput.Text?.Trim();
             var email = emailInput.Text?.Trim();
             var phone = phoneInput?.Text?.Trim();
@@ -207,25 +222,25 @@ public partial class LoginPage : UserControl
             };
             
             // Use the controller to register the user
-            var (success, registeredUser, errors) = await _userController.TryAddUser(newUser);
+            var result = await _userController.TryAddUser(newUser);
             
-            if (success && registeredUser != null)
+            if (result.Success && result.User != null)
             {
                 // Registration successful, proceed to login
-                Console.WriteLine($"User registered successfully: {registeredUser.UserName} (ID: {registeredUser.Id})");
+                Console.WriteLine($"User registered successfully: {result.User.UserName} (ID: {result.User.Id})");
                 
                 // Call onLoginSuccess to navigate to main window
                 if (_onLoginSuccess != null)
                 {
-                    _onLoginSuccess(registeredUser.Id);
+                    _onLoginSuccess(result.User.Id);
                 }
             }
             else
             {
                 // Registration failed
-                errorText.Text = errors.Count > 0 ? string.Join(", ", errors) : "Failed to register user";
+                errorText.Text = result.errorMessages.Count > 0 ? string.Join(", ", result.errorMessages) : "Failed to register user";
                 errorText.IsVisible = true;
-                Console.WriteLine("Registration failed: " + (errors.Count > 0 ? string.Join(", ", errors) : "Unknown error"));
+                Console.WriteLine("Registration failed: " + (result.errorMessages.Count > 0 ? string.Join(", ", result.errorMessages) : "Unknown error"));
             }
         }
         catch (Exception ex)
@@ -260,9 +275,25 @@ public partial class LoginPage : UserControl
 
     private void OnBackClick(object? sender, RoutedEventArgs e)
     {
-        if (_contentFrame != null)
+        // Check if _contentFrame and _userController are not null before using them
+        if (_contentFrame == null || _userController == null) 
         {
-            _contentFrame.Content = new WelcomePage(_userController, _contentFrame, _onLoginSuccess ?? (id => { }));
+            // Log the issue and return early to avoid null reference errors
+            Console.WriteLine("Cannot navigate back: _contentFrame or _userController is null");
+            return;
+        }
+        
+        // Use a null-safe callback for _onLoginSuccess
+        var safeLoginSuccess = _onLoginSuccess ?? (id => { });
+        
+        // Navigate to the welcome page with all required parameters
+        try
+        {
+            _contentFrame.Content = new WelcomePage(_userController!, _contentFrame!, safeLoginSuccess);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error creating WelcomePage: {ex.Message}");
         }
     }
 }

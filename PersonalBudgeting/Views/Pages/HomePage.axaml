@@ -1,148 +1,125 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="PersonalBudgeting.Views.Pages.HomePage">
-    
-    <Grid RowDefinitions="Auto,Auto,*" Margin="20">
-        <!-- Welcome Section -->
-        <TextBlock Grid.Row="0"
-                  Name="WelcomeMessage"
-                  Text="Welcome"
-                  FontSize="24"
-                  FontWeight="Bold"
-                  Margin="0,0,0,20"/>
-
-        <!-- Quick Stats -->
-        <Grid Grid.Row="1" 
-              ColumnDefinitions="*,*,*"
-              Margin="0,0,0,20"
-              HorizontalAlignment="Stretch">
+    <ScrollViewer>
+        <StackPanel Spacing="20" Margin="20">
+            <!-- Header with Welcome -->
+            <StackPanel Spacing="5" Margin="0,0,0,10">
+                <TextBlock x:Name="WelcomeMessage" 
+                           Text="Welcome" 
+                           FontSize="24" 
+                           FontWeight="Bold"/>
+                
+                <TextBlock Text="Dashboard Overview" 
+                           Opacity="0.7"
+                           FontSize="16"/>
+            </StackPanel>
             
-            <!-- Total Income Card -->
-            <Border Grid.Column="0"
-                    Margin="0,0,10,0"
-                    Classes="StatCard">
-                <StackPanel>
-                    <TextBlock Text="Total Income"
-                             Classes="StatLabel"/>
-                    <TextBlock Name="TotalIncomeText"
-                             Text="$0.00"
-                             Classes="StatValue"/>
-                    <Button Content="View Income" 
-                            Margin="0,10,0,0"
-                            Padding="10,5"
-                            Click="OnViewIncomeClick"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Total Expenses Card -->
-            <Border Grid.Column="1"
-                    Margin="5,0,5,0"
-                    Classes="StatCard">
-                <StackPanel>
-                    <TextBlock Text="Total Expenses"
-                             Classes="StatLabel"/>
-                    <TextBlock Name="TotalExpensesText"
-                             Text="$0.00"
-                             Classes="StatValue"/>
-                    <Button Content="View Expenses" 
-                            Margin="0,10,0,0"
-                            Padding="10,5"
-                            Click="OnViewExpensesClick"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Budget Status Card -->
-            <Border Grid.Column="2"
-                    Margin="10,0,0,0"
-                    Classes="StatCard">
-                <StackPanel>
-                    <TextBlock Text="Budget Status"
-                             Classes="StatLabel"/>
-                    <TextBlock Name="BudgetStatusText"
-                             Text="On Track"
-                             Classes="StatValue"/>
-                    <TextBlock Name="BudgetRemainingText"
-                             Text="Remaining: $0.00"
-                             FontSize="14"
-                             Margin="0,5,0,5"/>
-                    <Button Content="View Budget" 
-                            Margin="0,5,0,0"
-                            Padding="10,5"
-                            Click="OnViewBudgetClick"/>
-                </StackPanel>
-            </Border>
-        </Grid>
-
-        <!-- Main Content -->
-        <Grid Grid.Row="2" 
-              ColumnDefinitions="2*,*"
-              RowDefinitions="*,*">
-            
-            <!-- Main Chart -->
-            <Border Grid.Column="0"
-                    Grid.RowSpan="2"
-                    Classes="ChartCard"
-                    Margin="0,0,10,0">
-                <Grid RowDefinitions="Auto,*">
-                    <Grid ColumnDefinitions="*,Auto">
-                        <TextBlock Text="Monthly Overview"
-                                 Classes="CardTitle"/>
-                        <ComboBox Grid.Column="1"
-                                 Name="TimeRangeComboBox"
-                                 SelectedIndex="0">
-                            <ComboBoxItem>Last 30 Days</ComboBoxItem>
-                            <ComboBoxItem>Last 90 Days</ComboBoxItem>
-                            <ComboBoxItem>This Year</ComboBoxItem>
-                        </ComboBox>
+            <!-- Summary Cards -->
+            <Grid ColumnDefinitions="*,*,*" Margin="0,0,0,20" RowDefinitions="Auto">
+                <!-- Income Card -->
+                <Border Grid.Column="0" Classes="card" Margin="0,0,10,0">
+                    <Grid RowDefinitions="Auto,*">
+                        <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,10">
+                            <PathIcon Data="{StaticResource ArrowUpIcon}" Foreground="#4CAF50" Width="16" Height="16"/>
+                            <TextBlock Text="Total Income" FontWeight="SemiBold"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock x:Name="TotalIncomeText" 
+                                    Text="$0.00" 
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Foreground="#4CAF50"/>
+                        </StackPanel>
                     </Grid>
-                    <!-- Chart will be added programmatically -->
-                    <Panel Grid.Row="1"
-                           Name="ChartContainer"/>
-                </Grid>
-            </Border>
-
-            <!-- Recent Transactions -->
-            <Border Grid.Column="1"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Classes="ChartCard">
-                <Grid RowDefinitions="Auto,*">
-                    <TextBlock Text="Recent Transactions"
-                             Classes="CardTitle"/>
-                    <ScrollViewer Grid.Row="1">
-                        <ItemsControl Name="RecentTransactionsList"/>
-                    </ScrollViewer>
-                </Grid>
-            </Border>
-        </Grid>
-    </Grid>
-
-    <UserControl.Styles>
-        <Style Selector="Border.StatCard">
-            <Setter Property="Background" Value="#232323"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="16"/>
-            <Setter Property="BoxShadow" Value="0 2 8 0 #20000000"/>
-        </Style>
-        <Style Selector="Border.ChartCard">
-            <Setter Property="Background" Value="#232323"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="16"/>
-            <Setter Property="BoxShadow" Value="0 2 8 0 #20000000"/>
-        </Style>
-        <Style Selector="TextBlock.StatLabel">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Opacity" Value="0.7"/>
-        </Style>
-        <Style Selector="TextBlock.StatValue">
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="0,8,0,0"/>
-        </Style>
-        <Style Selector="TextBlock.CardTitle">
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Margin" Value="0,0,0,16"/>
-        </Style>
-    </UserControl.Styles>
+                </Border>
+                
+                <!-- Expense Card -->
+                <Border Grid.Column="1" Classes="card" Margin="5,0,5,0">
+                    <Grid RowDefinitions="Auto,*">
+                        <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,10">
+                            <PathIcon Data="{StaticResource ArrowDownIcon}" Foreground="#F44336" Width="16" Height="16"/>
+                            <TextBlock Text="Total Expenses" FontWeight="SemiBold"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock x:Name="TotalExpensesText" 
+                                    Text="$0.00" 
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Foreground="#F44336"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                
+                <!-- Budget Card -->
+                <Border Grid.Column="2" Classes="card" Margin="10,0,0,0">
+                    <Grid RowDefinitions="Auto,*">
+                        <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,0,0,10">
+                            <PathIcon Data="{StaticResource WalletIcon}" Foreground="#2196F3" Width="16" Height="16"/>
+                            <TextBlock Text="Budget" FontWeight="SemiBold"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock x:Name="TotalBudgetText" 
+                                    Text="$0.00" 
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Foreground="#2196F3"/>
+                            <TextBlock x:Name="BudgetInfoText"
+                                    Text="Available Balance"
+                                    FontSize="14"
+                                    Opacity="0.7"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            
+            <!-- Navigation Buttons -->
+            <Grid ColumnDefinitions="*,*,*" Margin="0,20,0,0" RowDefinitions="Auto">
+                <!-- Income Button -->
+                <Button Grid.Column="0" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        Margin="0,0,10,0"
+                        Classes="nav income"
+                        Click="OnIncomeNavigationClick">
+                    <StackPanel>
+                        <PathIcon Data="{StaticResource ArrowUpIcon}" Width="24" Height="24" Margin="0,0,0,5"/>
+                        <TextBlock Text="Income" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <!-- Expenses Button -->
+                <Button Grid.Column="1" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        Margin="5,0,5,0"
+                        Classes="nav expense"
+                        Click="OnExpensesNavigationClick">
+                    <StackPanel>
+                        <PathIcon Data="{StaticResource ArrowDownIcon}" Width="24" Height="24" Margin="0,0,0,5"/>
+                        <TextBlock Text="Expenses" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <!-- Budget Button -->
+                <Button Grid.Column="2" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        Margin="10,0,0,0"
+                        Classes="nav budget"
+                        Click="OnBudgetNavigationClick">
+                    <StackPanel>
+                        <PathIcon Data="{StaticResource WalletIcon}" Width="24" Height="24" Margin="0,0,0,5"/>
+                        <TextBlock Text="Budget" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

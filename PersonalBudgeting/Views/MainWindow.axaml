@@ -131,7 +131,7 @@
                         </ScrollViewer>
                     </Grid>
                 </Border>
-                
+
                 <!-- Main content area -->
                 <Grid Grid.Column="1" RowDefinitions="Auto,*">
                     <!-- Top bar with header and actions -->
@@ -162,7 +162,7 @@
                     <TextBlock Grid.Row="0" x:Name="UserEditPopupTitle" 
                                Text="Edit User Information" 
                                FontSize="18" FontWeight="Bold" 
-                               HorizontalAlignment="Center" 
+                            HorizontalAlignment="Center"
                                Margin="0,0,0,15" />
                     
                     <StackPanel Grid.Row="1" Spacing="10">
@@ -178,7 +178,7 @@
                     
                     <StackPanel Grid.Row="2" 
                                 Orientation="Horizontal" 
-                                HorizontalAlignment="Center" 
+                            HorizontalAlignment="Center"
                                 Margin="0,15,0,0" 
                                 Spacing="10">
                         <Button Content="Cancel" Click="OnCancelUserEditClick" Width="100" />
@@ -199,7 +199,7 @@
                     <TextBlock Grid.Row="0" 
                                Text="Change Password" 
                                FontSize="18" FontWeight="Bold" 
-                                HorizontalAlignment="Center"
+                            HorizontalAlignment="Center"
                                Margin="0,0,0,15" />
                     
                     <StackPanel Grid.Row="1" Spacing="10">
@@ -227,9 +227,9 @@
                         <Button Content="Cancel" Click="OnCancelPasswordChangeClick" Width="100" />
                         <Button Content="Save" Click="OnSavePasswordClick" Width="100" 
                                 Background="#28a745" Foreground="White" />
-                    </StackPanel>
-                </Grid>
-            </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
         </Border>
     </Panel>
     
