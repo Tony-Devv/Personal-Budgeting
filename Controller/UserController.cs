@@ -153,6 +153,27 @@ public class UserController
     }
 
 
+    public async Task<(bool Success, decimal Total, List<string> Errors)> TryGetTotalUserIncomes(int userId)
+    {
+        decimal total = await _userHandler.GetTotalUserIncomes(userId);
+        return (total >= 0, total, new List<string>());
+    }
+    
+    public async Task<(bool Success, decimal Total, List<string> Errors)> TryGetTotalUserSpentExpenses(int userId)
+    {
+        decimal total = await _userHandler.GetTotalUserSpentExpenses(userId);
+        return (total >= 0, total, new List<string>());
+    }
+    
+    public async Task<(bool Success, decimal Total, List<string> Errors)> TryGetTotalAmountSpentOnBudget(int userId, int budgetId)
+    {
+        decimal total = await _userHandler.GetTotalAmountSpentOnBudget(userId, budgetId);
+        return (total >= 0, total, new List<string>());
+    }
+
+
+
+    
 
     private ValidationContext<User> CreateContext(User user, UserValidationsRules validationsRules)
     {

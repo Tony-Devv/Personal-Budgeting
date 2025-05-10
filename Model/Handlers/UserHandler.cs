@@ -187,6 +187,60 @@ public class UserHandler
         return result;
     }
 
+
+    public async Task<decimal> GetTotalUserIncomes(int id)
+    {
+        try
+        {
+            if (!await _userRepository.CheckExist(id))
+                return -1;
+
+            decimal  total = await _userRepository.GetTotalUserIncomes(id);
+            return total;
+        }
+        catch (Exception e)
+        {
+            LogError("GetTotalUserIncomes", e);
+            return -1;
+        }
+    }
+    
+    public async Task<decimal> GetTotalUserSpentExpenses(int id)
+    {
+        try
+        {
+            if (!await _userRepository.CheckExist(id))
+                return -1;
+
+            decimal  total = await _userRepository.GetTotalUserExpenses(id);
+            return total;
+        }
+        catch (Exception e)
+        {
+            LogError("GetTotalUserSpentExpenses", e);
+            return -1;
+        }
+    }
+
+    
+    public async Task<decimal> GetTotalAmountSpentOnBudget(int id,int budgetId)
+    {
+        try
+        {
+            if (!await _userRepository.CheckExist(id))
+                return -1;
+
+            decimal  total = await _userRepository.GetTotalBudgetSpentAmount(id,budgetId);
+            return total;
+        }
+        catch (Exception e)
+        {
+            LogError("GetTotalAmountSpentOnBudget", e);
+            return -1;
+        }
+    }
+
+
     private void LogError(string context, Exception e)
     {
         var originalColor = Console.ForegroundColor;

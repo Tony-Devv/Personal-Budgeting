@@ -15,4 +15,10 @@ public interface IUserRepository : IRepository<User>
     Task<ICollection<Budget>> GetUserBudgets(User user);
     
     Task<ICollection<Expense>> GetUserExpenses(User user);
+
+    Task<decimal> GetTotalUserIncomes(int userId);
+
+    Task<decimal> GetTotalUserExpenses(int userId);
+
+    Task<decimal> GetTotalBudgetSpentAmount(int userId, int budgetId);
 }
