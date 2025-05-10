@@ -50,7 +50,6 @@ public class UserInputValidator : AbstractValidator<User>
         {
             RuleFor(u => u.Id).NotEmpty().WithMessage("Id Can't Be Empty if your trying to Edit");
             
-            /*
             RuleFor(u => u.UserName).NotEmpty().WithMessage("UserName can't Be Empty")
                 .MinimumLength(4).WithMessage("UserName have to be at least 4")
                 .MaximumLength(100).WithMessage("UserName Maximum can be 100 character");
@@ -61,7 +60,6 @@ public class UserInputValidator : AbstractValidator<User>
 
             RuleFor(u => u.PhoneNumber).NotEmpty().WithMessage("Phone Number can't be Empty")
                 .Matches("^01[0125]\\d{8}$").WithMessage("Not a valid Egypt PhoneNumber, try again");
-                */
 
             RuleFor(u => u.Password).Empty()
                 .WithMessage("Don't Include Password in the input if your editing details only");
