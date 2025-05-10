@@ -1,70 +1,191 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PersonalBudgeting.Views.Pages.IncomePage">
-
-    <ScrollViewer>
-        <StackPanel Margin="20" Classes="form">
-            <TextBlock Text="Income Management" Classes="h1"/>
-
-            <Border Classes="card">
-                <StackPanel Classes="form">
-                    <TextBlock Text="Add New Income" Classes="h2"/>
-                    <Grid ColumnDefinitions="*, *, Auto">
-                        <TextBox Grid.Column="0" Margin="0,0,10,0"
-                                Watermark="Source (e.g., Salary)"/>
-                        <NumericUpDown Grid.Column="1" Margin="0,0,10,0"
-                                     Minimum="0" Maximum="999999"
-                                     FormatString="C2"
-                                     Watermark="Amount"/>
-                        <Button Grid.Column="2" Content="Add Income" 
-                                Classes="accent"/>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <Border Classes="card">
-                <StackPanel Classes="form">
-                    <Grid ColumnDefinitions="*, Auto">
-                        <TextBlock Text="Income History" Classes="h2"/>
-                        <Button Grid.Column="1" Content="Export" 
-                                Classes="accent"/>
-                    </Grid>
-
-                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Date" Width="120"/>
-                            <DataGridTextColumn Header="Source" Width="*"/>
-                            <DataGridTextColumn Header="Amount" Width="120"/>
-                            <DataGridTemplateColumn Header="Actions" Width="100">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Spacing="5">
-                                            <Button Content="Edit" Classes="accent"/>
-                                            <Button Content="Delete"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            </Border>
-
-            <Border Classes="card">
-                <Grid ColumnDefinitions="*, *" Margin="0">
-                    <StackPanel Classes="form" Grid.Column="0">
-                        <TextBlock Text="Monthly Summary" Classes="h2"/>
-                        <TextBlock Text="Total Income: $3,500.00"/>
-                        <TextBlock Text="Average Income: $3,450.00"/>
+    <Panel>
+        <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="20">
+            <!-- Header -->
+            <TextBlock Grid.Row="0" 
+                    Text="Income Management" 
+                    FontSize="24" 
+                    FontWeight="Bold"
+                    Margin="0,0,0,15"/>
+          
+            <!-- Summary Statistics -->
+            <Grid Grid.Row="1" 
+                ColumnDefinitions="*,*,*" 
+                Margin="0,0,0,20">
+                
+                <!-- Total Income Card -->
+                <Border Grid.Column="0" 
+                        Background="#232323" 
+                        CornerRadius="8"
+                        Padding="15"
+                        Margin="0,0,10,0">
+                    <StackPanel>
+                        <TextBlock Text="Total Income" 
+                                FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TotalIncomeText" 
+                                Text="$0.00" 
+                                FontSize="20" 
+                                FontWeight="Bold"
+                                Margin="0,5,0,0"/>
+                        <TextBlock Text="All Time"
+                                Margin="0,5,0,0"
+                                Opacity="0.7"/>
                     </StackPanel>
-                    <StackPanel Classes="form" Grid.Column="1">
-                        <TextBlock Text="Year-to-Date" Classes="h2"/>
-                        <TextBlock Text="Total Income: $14,000.00"/>
-                        <TextBlock Text="Monthly Average: $3,500.00"/>
+                </Border>
+                
+                <!-- Income Sources Card -->
+                <Border Grid.Column="1" 
+                        Background="#232323" 
+                        CornerRadius="8"
+                        Padding="15"
+                        Margin="5,0,5,0">
+                    <StackPanel>
+                        <TextBlock Text="Income Sources" 
+                                FontWeight="SemiBold"/>
+                        <TextBlock x:Name="IncomeSourcesText" 
+                                Text="0" 
+                                FontSize="20" 
+                                FontWeight="Bold"
+                                Margin="0,5,0,0"/>
+                        <TextBlock Text="Active Sources" 
+                                Margin="0,5,0,0"
+                                Opacity="0.7"/>
                     </StackPanel>
-                </Grid>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
+                </Border>
+                
+                <!-- Add Income Card -->
+                <Border Grid.Column="2" 
+                        Background="#232323" 
+                        CornerRadius="8"
+                        Padding="15"
+                        Margin="10,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="New Income" 
+                                FontWeight="SemiBold"/>
+                        <Button x:Name="AddIncomeButton"
+                            Content="+ Add Income" 
+                            Margin="0,5,0,0"
+                            Padding="10,5"
+                            Background="#007BFF"
+                            Foreground="White"
+                            Click="OnAddIncomeClick"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Main Content -->
+            <Grid Grid.Row="2" ColumnDefinitions="*" Margin="0,0,0,20">
+                <!-- Income List Panel -->
+                <Border Background="#232323" 
+                        CornerRadius="8"
+                        Padding="15">
+                    <Grid RowDefinitions="Auto,*,Auto">
+                        <Grid Grid.Row="0" 
+                            ColumnDefinitions="*,Auto" 
+                            Margin="0,0,0,15">
+                            <TextBlock Text="Income History" 
+                                    FontSize="18" 
+                                    FontWeight="Bold"/>
+                            
+                            <TextBox Grid.Column="1" 
+                                x:Name="SearchBox" 
+                                Width="200" 
+                                Watermark="Search income..."
+                                TextChanged="OnSearchTextChanged"/>
+                        </Grid>
+                        
+                        <!-- Income List -->
+                        <ScrollViewer Grid.Row="1" MaxHeight="400">
+                            <StackPanel x:Name="IncomeListPanel" Spacing="10">
+                                <!-- Income items will be added here programmatically -->
+                            </StackPanel>
+                        </ScrollViewer>
+                        
+                        <!-- Pagination -->
+                        <StackPanel Grid.Row="2" 
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Center" 
+                                Spacing="10"
+                                Margin="0,15,0,0">
+                            <Button x:Name="PrevPageButton" 
+                                Content="Previous" 
+                                Click="OnPrevPageClick"/>
+                            <TextBlock x:Name="PageInfoText" 
+                                    VerticalAlignment="Center"
+                                    Text="Page 1 of 1"/>
+                            <Button x:Name="NextPageButton"
+                                Content="Next" 
+                                Click="OnNextPageClick"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            
+            <!-- Footer -->
+            <Button Grid.Row="3"
+                Content="Back to Dashboard"
+                HorizontalAlignment="Center" 
+                Click="OnBackClick"/>
+        </Grid>
+        
+        <!-- Add Income Popup -->
+        <Border x:Name="AddIncomePopup"
+                Classes="AddIncomePopup"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <StackPanel Spacing="15">
+                <TextBlock Text="Add New Income" 
+                        FontSize="18" 
+                        FontWeight="Bold"
+                        Margin="0,0,0,10"/>
+                
+                <TextBox x:Name="IncomeSourceInput"
+                    Watermark="Income Source Name"
+                    Margin="0,5"/>
+                
+                <TextBox x:Name="IncomeAmountInput"
+                    Watermark="Amount ($)"
+                    Margin="0,5"/>
+                
+                <DatePicker x:Name="IncomeDatePicker"
+                        Margin="0,5"/>
+                
+                <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        Spacing="10"
+                        Margin="0,10,0,0">
+                    <Button Content="Cancel" 
+                        Click="OnCancelAddIncomeClick"/>
+                    <Button Content="Save" 
+                        Background="#007BFF"
+                        Foreground="White"
+                        Click="OnSaveIncomeClick"/>
+                </StackPanel>
+                
+                <TextBlock x:Name="AddIncomeErrorText"
+                        Foreground="Red"
+                        HorizontalAlignment="Center"
+                        IsVisible="False"/>
+            </StackPanel>
+        </Border>
+    </Panel>
+    
+    <UserControl.Styles>
+        <Style Selector="Border.AddIncomePopup">
+            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="ZIndex" Value="1000"/>
+            <Setter Property="Background" Value="#333333"/>
+            <Setter Property="BorderBrush" Value="#444444"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BoxShadow" Value="0 4 12 0 #80000000"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Width" Value="350"/>
+        </Style>
+    </UserControl.Styles>
 </UserControl>

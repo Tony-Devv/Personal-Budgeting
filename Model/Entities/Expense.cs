@@ -14,7 +14,7 @@ public class Expense
     
     public int BudgetId { get; set; }
     
-    public string ExpenseName { get; set; } // length of 100 maximum
+    public string ExpenseName { get; set; }
     
     public decimal RequiredAmount { get; set; }
     

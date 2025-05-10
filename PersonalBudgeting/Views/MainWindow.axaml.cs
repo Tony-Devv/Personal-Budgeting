@@ -1,60 +1,595 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
-using FluentAvalonia.UI.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
+using Avalonia.Media;
+using Controller;
+using Model.Entities;
 using PersonalBudgeting.Views.Pages;
+using Avalonia.VisualTree;
 
 namespace PersonalBudgeting.Views;
 
 public partial class MainWindow : Window
 {
-    private readonly Frame _contentFrame;
+    // Controllers
+    private readonly UserController _userController;
+    private readonly IncomeController _incomeController;
+    private readonly ExpenseController _expenseController;
+    private readonly BudgetController _budgetController;
+    
+    // Fields
+    private User? _currentUser;
+    private int _currentUserId = 0;
+    private readonly ContentControl _pageContent;
+    private readonly ScrollViewer _sidebarMenu;
+    private readonly TextBlock? _userInitials;
+    private readonly TextBlock? _userNameText;
+    private string _currentEditField = string.Empty;
 
     public MainWindow()
     {
         InitializeComponent();
         
-        _contentFrame = this.FindControl<Frame>("ContentFrame");
-        var navView = this.FindControl<NavigationView>("NavView");
+        // Initialize controllers
+        _incomeController = new IncomeController();
+        _expenseController = new ExpenseController();
+        _budgetController = new BudgetController();
+        _userController = new UserController();
         
-        if (navView != null)
+        // Remove the test user initialization - we'll get real users from the database
+        _currentUser = null;
+        
+        // Find controls
+        _pageContent = this.FindControl<ContentControl>("PageContent") ?? 
+            throw new InvalidOperationException("PageContent not found");
+        _sidebarMenu = this.FindControl<ScrollViewer>("SidebarMenu") ?? 
+            throw new InvalidOperationException("SidebarMenu not found");
+        _userInitials = this.FindControl<TextBlock>("UserInitials");
+        _userNameText = this.FindControl<TextBlock>("UsernameText");
+        
+        // Set username to indicate login is required
+        if (_userNameText != null)
         {
-            navView.SelectionChanged += NavView_SelectionChanged;
+            _userNameText.Text = "Login First";
         }
-
-        // Navigate to home page by default
-        if (_contentFrame != null)
+        
+        // Set user initials
+        if (_userInitials != null)
         {
-            _contentFrame.Navigate(typeof(HomePage));
+            _userInitials.Text = "?";
+        }
+        
+        // Start with welcome page instead of home page
+        ShowWelcomePage();
+    }
+    
+    // Method to handle successful login
+    private async void OnLoginSuccess(int userId)
+    {
+        try {
+            // Set the current user ID
+            _currentUserId = userId;
+            
+            // Create a temporary user with only the ID for fetching data
+            var tempUser = new User { Id = _currentUserId };
+            
+            // Fetch the user's data by calling TryGetUserIncomes which will validate the user ID
+            var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(tempUser);
+            
+            if (incomesSuccess)
+            {
+                // User exists and has data in the database
+                _currentUser = tempUser;
+                
+                // Make sure the sidebar is visible
+                _sidebarMenu.IsVisible = true;
+                
+                // Load all user data and show the home page
+                LoadHomePage();
+            }
+            else
+            {
+                // If no incomes found, try expenses as fallback
+                var (expensesSuccess, userExpenses, expenseErrors) = await _userController.TryGetUserExpenses(tempUser);
+                
+                if (expensesSuccess)
+                {
+                    // User exists and has expense data
+                    _currentUser = tempUser;
+                    _sidebarMenu.IsVisible = true;
+                    LoadHomePage();
+                }
+                else
+                {
+                    // If no expenses, try budgets as final fallback
+                    var (budgetsSuccess, userBudgets, budgetErrors) = await _userController.TryGetUserBudgets(tempUser);
+                    
+                    if (budgetsSuccess)
+                    {
+                        // User exists and has budget data
+                        _currentUser = tempUser;
+                        _sidebarMenu.IsVisible = true;
+                        LoadHomePage();
+                    }
+                    else
+                    {
+                        // No data found for this user
+                        Console.WriteLine("No data found for user ID: " + userId);
+                        ShowWelcomePage();
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in OnLoginSuccess: {ex.Message}");
+            ShowWelcomePage();
         }
     }
-
-    private void NavView_SelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
+    
+    // Method to load user data from the database
+    private async Task LoadUserData()
     {
-        if (e.SelectedItem is NavigationViewItem item && _contentFrame != null)
+        try
         {
-            switch (item.Tag?.ToString()?.ToLower())
+            // Get the user by ID
+            var user = new User { Id = _currentUserId };
+            var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(user);
+            
+            if (incomesSuccess && userIncomes != null && userIncomes.Count > 0)
+            {
+                // We have user data from the database
+                _currentUser = user;
+                
+                // Update UI with user details
+                if (_userInitials != null)
+                    _userInitials.Text = GetInitials(_currentUser.UserName);
+                if (_userNameText != null)
+                    _userNameText.Text = _currentUser.UserName;
+                
+                // Show the navigation menu
+                _sidebarMenu.IsVisible = true;
+            }
+            else
+            {
+                // No user found, show welcome page
+                ShowWelcomePage();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading user data: {ex.Message}");
+            ShowWelcomePage();
+        }
+    }
+    
+    // Helper to get user initials from name
+    private string GetInitials(string fullName)
+    {
+        if (string.IsNullOrWhiteSpace(fullName))
+            return "?";
+            
+        var parts = fullName.Split(' ');
+        if (parts.Length == 1)
+            return parts[0].Length > 0 ? parts[0][0].ToString().ToUpper() : "?";
+            
+        return $"{parts[0][0]}{parts[^1][0]}".ToUpper();
+    }
+    
+    // Method to show the welcome page
+    private void ShowWelcomePage()
+    {
+        _sidebarMenu.IsVisible = false;
+        _pageContent.Content = new WelcomePage(_userController, _pageContent, OnLoginSuccess);
+    }
+    
+    // Method to load the home page
+    private async void LoadHomePage()
+    {
+        // Ensure user is loaded and valid
+        if (_currentUser == null || _currentUser.Id <= 0) 
+        {
+            Console.WriteLine("No valid user found, showing welcome page");
+            ShowWelcomePage();
+            return;
+        }
+        
+        // Make sure sidebar is visible when loading home page
+        _sidebarMenu.IsVisible = true;
+        
+        try
+        {
+            Console.WriteLine($"Loading database data for user ID: {_currentUser.Id}");
+            
+            // Try to load incomes to fetch user data
+            var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(_currentUser);
+            
+            // If we have incomes, we should have valid user data from the database
+            if (incomesSuccess && userIncomes.Count > 0 && userIncomes[0].User != null)
+            {
+                // Update the user object with data from the income's user
+                _currentUser.UserName = userIncomes[0].User.UserName;
+                _currentUser.Email = userIncomes[0].User.Email;
+                _currentUser.PhoneNumber = userIncomes[0].User.PhoneNumber;
+                
+                Console.WriteLine($"Updated user details from income data: {_currentUser.UserName}");
+            }
+            
+            // Now fetch the other user data
+            var (expensesSuccess, userExpenses, expenseErrors) = await _userController.TryGetUserExpenses(_currentUser);
+            var (budgetsSuccess, userBudgets, budgetErrors) = await _userController.TryGetUserBudgets(_currentUser);
+            
+            // Update the UI with user information
+            if (_userNameText != null)
+                _userNameText.Text = _currentUser.UserName ?? "User";
+            
+            if (_userInitials != null)
+                _userInitials.Text = GetInitials(_currentUser.UserName ?? "User");
+            
+            // Log results for debugging
+            Console.WriteLine($"Incomes loaded: {incomesSuccess}, Count: {userIncomes?.Count ?? 0}");
+            Console.WriteLine($"Expenses loaded: {expensesSuccess}, Count: {userExpenses?.Count ?? 0}");
+            Console.WriteLine($"Budgets loaded: {budgetsSuccess}, Count: {userBudgets?.Count ?? 0}");
+            
+            // Verify we have at least one data type loaded successfully
+            if (!incomesSuccess && !expensesSuccess && !budgetsSuccess)
+            {
+                Console.WriteLine("Failed to load any user data from database");
+                ShowWelcomePage();
+                return;
+            }
+            
+            // Create homepage with real user data from database
+            _pageContent.Content = new HomePage(
+                _budgetController,
+                _expenseController,
+                _incomeController,
+                _userController,
+                _currentUser,
+                incomesSuccess ? userIncomes : new List<Income>(),
+                expensesSuccess ? userExpenses : new List<Expense>(),
+                budgetsSuccess ? userBudgets : new List<Budget>()
+            );
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading home page: {ex.Message}");
+            // On error, return to welcome page
+            ShowWelcomePage();
+        }
+    }
+    
+    // Method to navigate between pages
+    public async void NavigateToPage(string? pageName)
+    {
+        // Check if user is loaded
+        if (_currentUser == null && pageName != "welcome")
+        {
+            ShowWelcomePage();
+            return;
+        }
+        
+        try
+        {
+            // Use the current user
+            if (_currentUser == null)
+            {
+                ShowWelcomePage();
+                return;
+            }
+            
+            // Navigate based on page name
+            switch (pageName?.ToLower())
             {
                 case "home":
-                    _contentFrame.Navigate(typeof(HomePage));
+                    LoadHomePage();
                     break;
-                case "profile":
-                    _contentFrame.Navigate(typeof(ProfilePage));
-                    break;
+                    
                 case "income":
-                    _contentFrame.Navigate(typeof(IncomePage));
+                    var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(_currentUser);
+                    _pageContent.Content = new IncomePage(_incomeController, _userController, _currentUser, 
+                        incomesSuccess ? userIncomes : new List<Income>());
                     break;
+                    
                 case "expenses":
-                    _contentFrame.Navigate(typeof(ExpensesPage));
+                    var (expensesSuccess, userExpenses, expenseErrors) = await _userController.TryGetUserExpenses(_currentUser);
+                    _pageContent.Content = new ExpensesPage(_expenseController, _userController, _currentUser,
+                        expensesSuccess ? userExpenses : new List<Expense>());
                     break;
+                    
                 case "budget":
-                    _contentFrame.Navigate(typeof(BudgetPage));
+                    var (budgetsSuccess, userBudgets, budgetErrors) = await _userController.TryGetUserBudgets(_currentUser);
+                    var (expSuccess, expensesForBudget, expErrors) = await _userController.TryGetUserExpenses(_currentUser);
+                    _pageContent.Content = new BudgetPage(_budgetController, _userController, _currentUser, 
+                        budgetsSuccess ? userBudgets : new List<Budget>(),
+                        expSuccess ? expensesForBudget : new List<Expense>());
                     break;
-                case "reminders":
-                    _contentFrame.Navigate(typeof(RemindersPage));
-                    break;
+                    
                 case "settings":
-                    _contentFrame.Navigate(typeof(SettingsPage));
+                    _pageContent.Content = new SettingsPage(_userController, _currentUser);
+                    break;
+                    
+                case "welcome":
+                default:
+                    ShowWelcomePage();
                     break;
             }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error navigating to page: {ex.Message}");
+        }
+    }
+    
+    // Event handler for navigation button clicks
+    private void OnNavButtonClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button button)
+        {
+            // Navigate to the selected page
+            switch (button.Name)
+            {
+                case "HomeButton":
+                    NavigateToPage("home");
+                    break;
+                    
+                case "IncomeButton":
+                    NavigateToPage("income");
+                    break;
+                    
+                case "ExpensesButton":
+                    NavigateToPage("expenses");
+                    break;
+                    
+                case "BudgetButton":
+                    NavigateToPage("budget");
+                    break;
+                    
+                case "SettingsButton":
+                    NavigateToPage("settings");
+                    break;
+            }
+        }
+    }
+    
+    // Event handler for profile button click
+    private void OnProfileClick(object sender, RoutedEventArgs e)
+    {
+        NavigateToPage("settings");
+    }
+    
+    // Event handler for logout button click  
+    public void OnLogoutClick(object sender, RoutedEventArgs e)
+    {
+        _currentUser = null;
+        _currentUserId = 0;
+        ShowWelcomePage();
+    }
+    
+    // Add method to update user profile display
+    private void UpdateUserProfileDisplay()
+    {
+        if (_currentUser == null) return;
+
+        var userNameText = this.FindControl<TextBlock>("UserNameText");
+        var userEmailText = this.FindControl<TextBlock>("UserEmailText");
+        var userPhoneText = this.FindControl<TextBlock>("UserPhoneText");
+        
+        if (userNameText != null)
+            userNameText.Text = _currentUser.UserName;
+        
+        if (userEmailText != null)
+            userEmailText.Text = _currentUser.Email ?? "Not set";
+        
+        if (userPhoneText != null)
+            userPhoneText.Text = "Not set";
+    }
+    
+    // User edit event handlers
+    private void OnEditUserNameClick(object? sender, RoutedEventArgs e)
+    {
+        _currentEditField = "UserName";
+        ShowUserEditPopup("Edit Username", _currentUser?.UserName ?? string.Empty);
+    }
+    
+    private void OnEditUserEmailClick(object? sender, RoutedEventArgs e)
+    {
+        _currentEditField = "Email";
+        ShowUserEditPopup("Edit Email", _currentUser?.Email ?? string.Empty);
+    }
+    
+    private void OnEditUserPhoneClick(object? sender, RoutedEventArgs e)
+    {
+        _currentEditField = "Phone";
+        ShowUserEditPopup("Edit Phone Number", "Not set");
+    }
+    
+    private void ShowUserEditPopup(string title, string currentValue)
+    {
+        var popup = this.FindControl<Border>("UserEditPopup");
+        var titleText = this.FindControl<TextBlock>("UserEditPopupTitle");
+        var textBox = this.FindControl<TextBox>("UserEditTextBox");
+        var errorText = this.FindControl<TextBlock>("UserEditErrorText");
+        
+        if (popup == null || titleText == null || textBox == null || errorText == null)
+            return;
+        
+        titleText.Text = title;
+        textBox.Text = currentValue;
+        errorText.IsVisible = false;
+        
+        popup.IsVisible = true;
+    }
+    
+    private void OnCancelUserEditClick(object? sender, RoutedEventArgs e)
+    {
+        var popup = this.FindControl<Border>("UserEditPopup");
+        if (popup != null)
+            popup.IsVisible = false;
+    }
+    
+    private void OnSaveUserEditClick(object? sender, RoutedEventArgs e)
+    {
+        var popup = this.FindControl<Border>("UserEditPopup");
+        var textBox = this.FindControl<TextBox>("UserEditTextBox");
+        var errorText = this.FindControl<TextBlock>("UserEditErrorText");
+        
+        if (popup == null || textBox == null || errorText == null || _currentUser == null)
+            return;
+        
+        var value = textBox.Text?.Trim();
+        
+        // Validate input
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            errorText.Text = "Value cannot be empty";
+            errorText.IsVisible = true;
+            return;
+        }
+        
+        bool isValid = true;
+        
+        // Field-specific validation
+        switch (_currentEditField)
+        {
+            case "Email":
+                // Simple email validation
+                if (!value.Contains("@") || !value.Contains("."))
+                {
+                    errorText.Text = "Please enter a valid email address";
+                    errorText.IsVisible = true;
+                    isValid = false;
+                }
+                break;
+            case "Phone":
+                // Simple phone validation - allow numbers, +, -, and spaces
+                if (!System.Text.RegularExpressions.Regex.IsMatch(value, @"^[0-9\+\-\s]+$"))
+                {
+                    errorText.Text = "Please enter a valid phone number";
+                    errorText.IsVisible = true;
+                    isValid = false;
+                }
+                break;
+        }
+        
+        if (!isValid) return;
+        
+        // Update user object
+        switch (_currentEditField)
+        {
+            case "UserName":
+                _currentUser.UserName = value;
+                break;
+            case "Email":
+                _currentUser.Email = value;
+                break;
+            case "Phone":
+                // Phone property not available in User class
+                break;
+        }
+        
+        // In a real app, we would save changes to database using controller
+        // For now, just update the display
+        UpdateUserProfileDisplay();
+        popup.IsVisible = false;
+    }
+    
+    // Password change handlers
+    private void OnChangePasswordClick(object? sender, RoutedEventArgs e)
+    {
+        var popup = this.FindControl<Border>("ChangePasswordPopup");
+        var currentPasswordBox = this.FindControl<TextBox>("CurrentPasswordBox");
+        var newPasswordBox = this.FindControl<TextBox>("NewPasswordBox");
+        var confirmPasswordBox = this.FindControl<TextBox>("ConfirmPasswordBox");
+        var errorText = this.FindControl<TextBlock>("PasswordChangeErrorText");
+        
+        if (popup == null || currentPasswordBox == null || newPasswordBox == null || 
+            confirmPasswordBox == null || errorText == null)
+            return;
+        
+        // Reset fields
+        currentPasswordBox.Text = string.Empty;
+        newPasswordBox.Text = string.Empty;
+        confirmPasswordBox.Text = string.Empty;
+        errorText.IsVisible = false;
+        
+        popup.IsVisible = true;
+    }
+    
+    private void OnCancelPasswordChangeClick(object? sender, RoutedEventArgs e)
+    {
+        var popup = this.FindControl<Border>("ChangePasswordPopup");
+        if (popup != null)
+            popup.IsVisible = false;
+    }
+    
+    private void OnSavePasswordClick(object? sender, RoutedEventArgs e)
+    {
+        var popup = this.FindControl<Border>("ChangePasswordPopup");
+        var currentPasswordBox = this.FindControl<TextBox>("CurrentPasswordBox");
+        var newPasswordBox = this.FindControl<TextBox>("NewPasswordBox");
+        var confirmPasswordBox = this.FindControl<TextBox>("ConfirmPasswordBox");
+        var errorText = this.FindControl<TextBlock>("PasswordChangeErrorText");
+        
+        if (popup == null || currentPasswordBox == null || newPasswordBox == null || 
+            confirmPasswordBox == null || errorText == null || _currentUser == null)
+            return;
+        
+        var currentPassword = currentPasswordBox.Text;
+        var newPassword = newPasswordBox.Text;
+        var confirmPassword = confirmPasswordBox.Text;
+        
+        // Validate input
+        if (string.IsNullOrWhiteSpace(currentPassword))
+        {
+            errorText.Text = "Current password is required";
+            errorText.IsVisible = true;
+            return;
+        }
+        
+        if (string.IsNullOrWhiteSpace(newPassword))
+        {
+            errorText.Text = "New password is required";
+            errorText.IsVisible = true;
+            return;
+        }
+        
+        if (newPassword != confirmPassword)
+        {
+            errorText.Text = "New password and confirmation do not match";
+            errorText.IsVisible = true;
+            return;
+        }
+        
+        if (newPassword.Length < 6)
+        {
+            errorText.Text = "Password must be at least 6 characters";
+            errorText.IsVisible = true;
+            return;
+        }
+        
+        // In a real app, we would verify current password and update password
+        // For now, just hide the popup
+        popup.IsVisible = false;
+    }
+    
+    // Change from public to protected
+    protected override void OnOpened(EventArgs e)
+    {
+        base.OnOpened(e);
+        
+        // Hide the sidebar menu by default and show welcome page first
+        if (_sidebarMenu != null)
+            _sidebarMenu.IsVisible = false;
+        
+        // Show welcome page on startup
+        ShowWelcomePage();
+        
+        // Update the user profile display on window opening
+        UpdateUserProfileDisplay();
     }
 }

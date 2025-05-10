@@ -19,9 +19,7 @@ public class UserInputValidator : AbstractValidator<User>
                 .EmailAddress().WithMessage("This is not a valid Email")
                 .MaximumLength(100).WithMessage("Maximum Length is 100");
 
-            RuleFor(u => u.PhoneNumber).NotEmpty().WithMessage("Phone Number can't be Empty")
-                .Matches("^01[0125]\\d{8}$\n").WithMessage("Not a valid Egypt PhoneNumber, try again");
-
+        
             RuleFor(u => u.Password).NotEmpty().WithMessage("Password Can't Be Empty")
                 .MinimumLength(6).WithMessage("Minimum Password Length is 6")
                 .MaximumLength(255).WithMessage("Maximum Password Length is 255");
@@ -32,8 +30,6 @@ public class UserInputValidator : AbstractValidator<User>
         
         RuleSet(UserController.UserValidationsRules.Login.ToString(), () =>
         {
-            RuleFor(u => u.Id).Empty().WithMessage("Don't Include Id in login,(developer Error)");
-            
             RuleFor(u => u.Email).NotEmpty().WithMessage("Email Can't Be Empty")
                 .EmailAddress().WithMessage("This is not a valid Email")
                 .MaximumLength(100).WithMessage("Maximum Length is 100");

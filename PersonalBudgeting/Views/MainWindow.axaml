@@ -1,48 +1,293 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:PersonalBudgeting.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="using:FluentAvalonia.UI.Controls"
-        xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
-        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+        xmlns:pages="clr-namespace:PersonalBudgeting.Views.Pages"
+        xmlns:fa="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="700"
         x:Class="PersonalBudgeting.Views.MainWindow"
-        Title="PersonalBudgeting"
+        Title="Personal Budget Manager"
+        MinWidth="900" MinHeight="600"
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="Default"
-        WindowStartupLocation="CenterScreen"
-        Width="1280" Height="720">
-
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <!-- Navigation Icons -->
+        <PathGeometry x:Key="HomeIcon">M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm9-8.586 6 6V20H6v-9.586l6-6z</PathGeometry>
+        
+        <PathGeometry x:Key="IncomeIcon">M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z</PathGeometry>
+        
+        <PathGeometry x:Key="ExpenseIcon">M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z M7 11h10v2H7z</PathGeometry>
+        
+        <PathGeometry x:Key="BudgetIcon">M21 4H3c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h18c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM3 18V6h18l.002 12H3z M12 7v10 M8 11h8</PathGeometry>
+        
+        <PathGeometry x:Key="SettingsIcon">M9.43 10.57h5.14v2.86H9.43v-2.86zM19.43 12c0-2.17-.86-4.14-2.26-5.59L15.6 7.98c.97 1.03 1.57 2.42 1.57 3.96 0 1.54-.6 2.93-1.57 3.96l1.57 1.57c1.4-1.45 2.26-3.42 2.26-5.59M4.57 12c0-2.17.86-4.14 2.26-5.59L8.4 7.98c-.97 1.03-1.57 2.42-1.57 3.96 0 1.54.6 2.93 1.57 3.96l-1.57 1.57C5.43 16.14 4.57 14.17 4.57 12z</PathGeometry>
+        
+        <!-- Action Icons -->
+        <PathGeometry x:Key="NotificationIcon">M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z</PathGeometry>
+        
+        <PathGeometry x:Key="ProfileIcon">M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z</PathGeometry>
+    </Window.Resources>
+    
     <Panel>
-        <ExperimentalAcrylicBorder IsHitTestVisible="False">
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial
-                    BackgroundSource="Digger"
-                    TintColor="#1A2526"
-                    TintOpacity="1"
-                    MaterialOpacity="0.65" />
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder>
+        <!-- Main UI -->
+        <Panel>
+            <!-- Main background -->
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        TintColor="{StaticResource DarkBackgroundColor}"
+                        TintOpacity="1"
+                        MaterialOpacity="0.75" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+            
+            <!-- Main layout -->
+            <Grid ColumnDefinitions="Auto,*">
+                <!-- Sidebar -->
+                <Border Grid.Column="0" Width="250" Background="#151C29" BoxShadow="5 0 10 0 #20000000">
+                    <Grid RowDefinitions="Auto,*,Auto" Margin="0,40,0,20">
+                        <!-- App logo and title -->
+                        <StackPanel Grid.Row="0" Spacing="15" Margin="20,10,20,30">
+                            <Border Width="60" Height="60" Background="#2A3544" CornerRadius="30">
+                                <Path Data="{StaticResource BudgetIcon}" 
+                                      Fill="White" 
+                                      Width="36" 
+                                      Height="36"
+                                      Stretch="Uniform"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel>
+                                <TextBlock Text="Budget Manager" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="Personal Finance" FontSize="14" Foreground="{StaticResource TextSecondaryBrush}"/>
+                            </StackPanel>
+                            <Separator Background="{StaticResource BorderBrush}" Height="1" Margin="0,10,0,10"/>
+                        </StackPanel>
+                        
+                        <!-- Navigation menu -->
+                        <ScrollViewer Grid.Row="1" Padding="10,0" x:Name="SidebarMenu">
+                            <StackPanel x:Name="NavPanel" Spacing="5">
+                                <Button x:Name="HomeButton" Classes="navButton" Tag="home" Click="OnNavButtonClick">
+                                    <StackPanel Orientation="Horizontal" Spacing="15">
+                                        <Path Data="{StaticResource HomeIcon}" 
+                                              Fill="White" 
+                                              Width="20" 
+                                              Height="20"
+                                              Stretch="Uniform"
+                                              VerticalAlignment="Center"/>
+                                        <TextBlock Text="Dashboard" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="IncomeButton" Classes="navButton" Tag="income" Click="OnNavButtonClick">
+                                    <StackPanel Orientation="Horizontal" Spacing="15">
+                                        <Path Data="{StaticResource IncomeIcon}" 
+                                              Fill="White" 
+                                              Width="20" 
+                                              Height="20"
+                                              Stretch="Uniform"
+                                              VerticalAlignment="Center"/>
+                                        <TextBlock Text="Income" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="ExpensesButton" Classes="navButton" Tag="expenses" Click="OnNavButtonClick">
+                                    <StackPanel Orientation="Horizontal" Spacing="15">
+                                        <Path Data="{StaticResource ExpenseIcon}" 
+                                              Fill="White" 
+                                              Width="20" 
+                                              Height="20"
+                                              Stretch="Uniform"
+                                              VerticalAlignment="Center"/>
+                                        <TextBlock Text="Expenses" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="BudgetButton" Classes="navButton" Tag="budget" Click="OnNavButtonClick">
+                                    <StackPanel Orientation="Horizontal" Spacing="15">
+                                        <Path Data="{StaticResource BudgetIcon}" 
+                                              Fill="White" 
+                                              Width="20" 
+                                              Height="20"
+                                              Stretch="Uniform"
+                                              VerticalAlignment="Center"/>
+                                        <TextBlock Text="Budget" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                                <Separator Background="{StaticResource BorderBrush}" Height="1" Margin="0,10"/>
+                                <Button x:Name="SettingsButton" Classes="navButton" Tag="settings" Click="OnNavButtonClick">
+                                    <StackPanel Orientation="Horizontal" Spacing="15">
+                                        <Path Data="{StaticResource SettingsIcon}" 
+                                              Fill="White" 
+                                              Width="20" 
+                                              Height="20"
+                                              Stretch="Uniform"
+                                              VerticalAlignment="Center"/>
+                                        <TextBlock Text="Settings" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </ScrollViewer>
+                        
+                        <!-- User profile section -->
+                        <Border Grid.Row="2" Padding="15" Margin="10,10" Background="#1F2937" CornerRadius="8">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <!-- User avatar -->
+                                <Border Grid.Column="0" CornerRadius="25" Width="40" Height="40" ClipToBounds="True" Background="#2A3544">
+                                    <TextBlock x:Name="UserInitials" 
+                                              Text="U" 
+                                              HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"
+                                              FontWeight="SemiBold"
+                                              FontSize="18"/>
+                                </Border>
+                                
+                                <!-- User info -->
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                                    <TextBlock x:Name="UsernameText" Text="User" FontSize="14" FontWeight="Medium"/>
+                                    <TextBlock Text="Standard User" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+                
+                <!-- Main content area -->
+                <Grid Grid.Column="1" RowDefinitions="Auto,*">
+                    <!-- Top bar with header and actions -->
+                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="30,50,30,10">
+                        <!-- Page title and subtitle -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock x:Name="CurrentPageTitle" Text="Dashboard" Classes="title"/>
+                        </StackPanel>
+                        
+                        <!-- Action buttons -->
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Top">
+                        </StackPanel>
+                    </Grid>
+                    
+                    <!-- Page content -->
+                    <ContentControl Grid.Row="1" x:Name="PageContent" Margin="20,0,20,20"></ContentControl>
+                </Grid>
+            </Grid>
+        </Panel>
+        
+        <!-- User Edit Popup -->
+        <Border x:Name="UserEditPopup" IsVisible="False" 
+                Background="#80000000" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch">
+            <Border Width="350" Background="#282828" CornerRadius="5" BoxShadow="0 4 20 0 #40000000" Padding="20">
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <TextBlock Grid.Row="0" x:Name="UserEditPopupTitle" 
+                               Text="Edit User Information" 
+                               FontSize="18" FontWeight="Bold" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,0,0,15" />
+                    
+                    <StackPanel Grid.Row="1" Spacing="10">
+                        <TextBlock Text="Value"/>
+                        <TextBox x:Name="UserEditTextBox" Watermark="Enter value"/>
+                        
+                        <TextBlock x:Name="UserEditErrorText" 
+                                   Text="Error message" 
+                                   Foreground="#dc3545" 
+                                   IsVisible="False" 
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="2" 
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Center" 
+                                Margin="0,15,0,0" 
+                                Spacing="10">
+                        <Button Content="Cancel" Click="OnCancelUserEditClick" Width="100" />
+                        <Button Content="Save" Click="OnSaveUserEditClick" Width="100" 
+                                Background="#28a745" Foreground="White" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Border>
+        
+        <!-- Change Password Popup -->
+        <Border x:Name="ChangePasswordPopup" IsVisible="False" 
+                Background="#80000000" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch">
+            <Border Width="350" Background="#282828" CornerRadius="5" BoxShadow="0 4 20 0 #40000000" Padding="20">
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <TextBlock Grid.Row="0" 
+                               Text="Change Password" 
+                               FontSize="18" FontWeight="Bold" 
+                                HorizontalAlignment="Center"
+                               Margin="0,0,0,15" />
+                    
+                    <StackPanel Grid.Row="1" Spacing="10">
+                        <TextBlock Text="Current Password"/>
+                        <TextBox x:Name="CurrentPasswordBox" PasswordChar="•" Watermark="Enter current password"/>
+                        
+                        <TextBlock Text="New Password"/>
+                        <TextBox x:Name="NewPasswordBox" PasswordChar="•" Watermark="Enter new password"/>
+                        
+                        <TextBlock Text="Confirm New Password"/>
+                        <TextBox x:Name="ConfirmPasswordBox" PasswordChar="•" Watermark="Confirm new password"/>
+                        
+                        <TextBlock x:Name="PasswordChangeErrorText" 
+                                   Text="Error message" 
+                                   Foreground="#dc3545" 
+                                   IsVisible="False" 
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
 
-        <ui:NavigationView x:Name="NavView"
-                          PaneDisplayMode="Left"
-                          IsSettingsVisible="True"
-                          IsPaneOpen="True"
-                          OpenPaneLength="240">
-
-            <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="Home" Tag="home" IconSource="Home" />
-                <ui:NavigationViewItem Content="Profile" Tag="profile" IconSource="Contact" />
-                <ui:NavigationViewItemHeader Content="Financial Management" />
-                <ui:NavigationViewItem Content="Income" Tag="income" IconSource="Add" />
-                <ui:NavigationViewItem Content="Expenses" Tag="expenses" IconSource="Remove" />
-                <ui:NavigationViewItem Content="Budget" Tag="budget" IconSource="Calculator" />
-                <ui:NavigationViewItem Content="Reminders" Tag="reminders" IconSource="Calendar" />
-            </ui:NavigationView.MenuItems>
-
-            <ui:Frame x:Name="ContentFrame" Padding="20" />
-        </ui:NavigationView>
+                    <StackPanel Grid.Row="2" 
+                                Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                                Margin="0,15,0,0" 
+                                Spacing="10">
+                        <Button Content="Cancel" Click="OnCancelPasswordChangeClick" Width="100" />
+                        <Button Content="Save" Click="OnSavePasswordClick" Width="100" 
+                                Background="#28a745" Foreground="White" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Border>
     </Panel>
+    
+    <Window.Styles>
+        <!-- Navigation button style -->
+        <Style Selector="Button.navButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="CornerRadius" Value="8"/>
+        </Style>
+        
+        <Style Selector="Button.navButton:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#2A3544"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="TextBlock.Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        </Style>
+        
+        <Style Selector="Button.navButton:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+        </Style>
+        
+        <Style Selector="Button.navButton[IsEnabled=false] /template/ ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+        </Style>
+        
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        
+        <Style Selector="TextBlock.subtitle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+            <Setter Property="Margin" Value="0,5,0,0"/>
+        </Style>
+    </Window.Styles>
 </Window>

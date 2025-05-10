@@ -2,31 +2,88 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:PersonalBudgeting"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
-             xmlns:styling="using:FluentAvalonia.Styling"
+             xmlns:sty="using:FluentAvalonia.Styling"
              x:Class="PersonalBudgeting.App"
              RequestedThemeVariant="Dark">
 
-    <Application.DataTemplates>
-        <local:ViewLocator/>
-    </Application.DataTemplates>
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://PersonalBudgeting/Styles/Colors.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 
     <Application.Styles>
-        <styling:FluentAvaloniaTheme PreferSystemTheme="False" />
+        <sty:FluentAvaloniaTheme PreferSystemTheme="False" />
+        <StyleInclude Source="avares://PersonalBudgeting/Styles/GlobalStyles.axaml"/>
+        <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+        
+        <!-- Common Button Styles -->
+        <Style Selector="Button.accent">
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style Selector="Button.accent:pointerover">
+            <Setter Property="Background" Value="#1976D2"/>
+        </Style>
+
+        <Style Selector="Button.accent:pressed">
+            <Setter Property="Background" Value="#0D47A1"/>
+        </Style>
+
+        <Style Selector="Button.success">
+            <Setter Property="Background" Value="#43A047"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style Selector="Button.success:pointerover">
+            <Setter Property="Background" Value="#388E3C"/>
+        </Style>
+
+        <Style Selector="Button.icon">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+
+        <Style Selector="Button.icon:pointerover">
+            <Setter Property="Background" Value="#20000000"/>
+        </Style>
+
+        <Style Selector="TextBox.clearButton">
+            <Setter Property="UseFloatingWatermark" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+
+        <Style Selector="TextBox.clearButton:focus /template/ TextBlock#PART_Watermark">
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
+
+        <Style Selector="TextBox.clearButton:focus">
+            <Setter Property="Watermark" Value=""/>
+        </Style>
+
+        <Style Selector="TextBox.clearButton:not(:empty)">
+            <Setter Property="Watermark" Value=""/>
+        </Style>
+
+        <Style Selector="TextBox.clearButton:pointerover /template/ TextBlock#PART_Watermark">
+            <Setter Property="Opacity" Value="0.7"/>
+        </Style>
     </Application.Styles>
 
-    <Application.Resources>
-        <Color x:Key="SystemAccentColor">#007BFF</Color>
-        <Color x:Key="SystemAccentColorDark1">#0056b3</Color>
-        <Color x:Key="SystemAccentColorDark2">#003d80</Color>
-        <Color x:Key="SystemAccentColorDark3">#00264d</Color>
-        <Color x:Key="SystemAccentColorLight1">#3395ff</Color>
-        <Color x:Key="SystemAccentColorLight2">#66afff</Color>
-        <Color x:Key="SystemAccentColorLight3">#99c9ff</Color>
-        
-        <!-- Dark theme colors -->
-        <Color x:Key="ApplicationBackgroundColor">#1A2526</Color>
-        <Color x:Key="CardBackgroundColor">#22303D</Color>
-        <Color x:Key="TextPrimaryColor">#FFFFFF</Color>
-        <Color x:Key="TextSecondaryColor">#B0B0B0</Color>
-    </Application.Resources>
 </Application>

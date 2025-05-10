@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Model.Interfaces;
+using Model.Entities;
 using Model.Utilities;
 
 namespace Model.Repositories;

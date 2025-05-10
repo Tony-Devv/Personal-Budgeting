@@ -83,6 +83,7 @@ public class BudgetHandler
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"Error occurred at {context}");
         Console.ForegroundColor = originalColor;
+
         Console.WriteLine($"Error: {e.Message}");
         Console.WriteLine($"Stack: {e.StackTrace}");
     }

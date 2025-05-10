@@ -1,0 +1,76 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PersonalBudgeting.Views.Pages.SignUpPage">
+    <Grid RowDefinitions="Auto,*,Auto" Margin="20">
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Spacing="10" HorizontalAlignment="Center" Margin="0,20">
+            <TextBlock Text="Create Account" 
+                     FontSize="32" 
+                     HorizontalAlignment="Center"
+                     Classes="Title"/>
+            <TextBlock Text="Join us to start managing your finances" 
+                     FontSize="18" 
+                     HorizontalAlignment="Center"
+                     Classes="Subtitle"/>
+        </StackPanel>
+
+        <!-- Sign Up Form -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="20" 
+                       Width="400" 
+                       HorizontalAlignment="Center">
+                <TextBox x:Name="UsernameInput"
+                        Watermark="Username"
+                        Classes="FormInput"/>
+                
+                <TextBox x:Name="EmailInput"
+                        Watermark="Email"
+                        Classes="FormInput"/>
+                
+                <TextBox x:Name="PhoneInput"
+                        Watermark="Phone Number"
+                        Classes="FormInput"/>
+                
+                <TextBox x:Name="PasswordInput"
+                        Watermark="Password"
+                        PasswordChar="●"
+                        Classes="FormInput"/>
+                
+                <TextBox x:Name="ConfirmPasswordInput"
+                        Watermark="Confirm Password"
+                        PasswordChar="●"
+                        Classes="FormInput"/>
+                
+                <Button Content="Create Account" 
+                        Classes="PrimaryButton"
+                        Click="OnSignUpClick"/>
+                
+                <Button Content="Back to Welcome" 
+                        Classes="SecondaryButton"
+                        Click="OnBackClick"/>
+                
+                <TextBlock x:Name="ErrorText"
+                          Foreground="Red"
+                          HorizontalAlignment="Center"
+                          IsVisible="False"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <StackPanel Grid.Row="2" 
+                    HorizontalAlignment="Center" 
+                    Margin="0,20">
+            <TextBlock Text="Already have an account? " 
+                     HorizontalAlignment="Center">
+                <InlineUIContainer>
+                    <Button Content="Login" 
+                            Classes="LinkButton"
+                            Click="OnLoginClick"/>
+                </InlineUIContainer>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>
