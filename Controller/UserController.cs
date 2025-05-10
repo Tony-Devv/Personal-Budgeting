@@ -75,7 +75,7 @@ public class UserController
 
         var newPasswordValidationResult = _userInputValidator.ValidateSingleString_ForPassword(newPassword);
         
-        if (!validationResult.IsValid || newPasswordValidationResult.Success)
+        if (!validationResult.IsValid || !newPasswordValidationResult.Success)
         {
             var model_errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
             
@@ -117,7 +117,7 @@ public class UserController
         }
         
         var incomes = await _userHandler.GetUserIncomes(user);
-        return (incomes.Count > 0, incomes, new List<string>());
+        return (incomes.Count >= 0, incomes, new List<string>());
     }
 
     public async Task<(bool Success, List<Budget> Budgets,List<string> errors)> TryGetUserBudgets(User user)
@@ -133,7 +133,7 @@ public class UserController
         }
         
         var budgets = await _userHandler.GetUserBudgets(user);
-        return (budgets.Count > 0, budgets,new List<string>());
+        return (budgets.Count >= 0, budgets,new List<string>());
     }
 
     public async Task<(bool Success, List<Expense> Expenses,List<string> errors)> TryGetUserExpenses(User user)
@@ -149,7 +149,7 @@ public class UserController
         }
         
         var expenses = await _userHandler.GetUserExpenses(user);
-        return (expenses.Count > 0, expenses,new List<string>());
+        return (expenses.Count >= 0, expenses,new List<string>());
     }
 
 
@@ -170,11 +170,7 @@ public class UserController
         decimal total = await _userHandler.GetTotalAmountSpentOnBudget(userId, budgetId);
         return (total >= 0, total, new List<string>());
     }
-
-
-
     
-
     private ValidationContext<User> CreateContext(User user, UserValidationsRules validationsRules)
     {
         var context = new ValidationContext<User>(user,new PropertyChain(),

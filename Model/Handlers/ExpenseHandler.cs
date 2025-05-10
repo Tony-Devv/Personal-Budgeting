@@ -93,17 +93,11 @@ public class ExpenseHandler
         }
     }
 
-    public async Task<bool> SetExpensesWithReminder(List<Expense> expenses, DateTime time)
+    public async Task<bool> SetExpenseWithReminder(Expense expense, DateTime time)
     {
         try
         {
-            foreach (var expense in expenses)
-            {
-                if (expense.ReminderTime == null)
-                {
-                    await _expenseRepository.SetReminderTime(expense, time);
-                }
-            }
+            await _expenseRepository.SetReminderTime(expense, time);
 
             return true;
         }
