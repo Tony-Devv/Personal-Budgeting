@@ -725,14 +725,24 @@ public partial class BudgetPage : UserControl
         }
     }
 
-    private void OnDeleteBudgetClick(object? sender, RoutedEventArgs e)
+    private async void OnDeleteBudgetClick(object? sender, RoutedEventArgs e)
     {
         if (sender is Button button && button.Tag is int budgetId && _userBudgets != null)
         {
             var budget = _userBudgets.FirstOrDefault(b => b.Id == budgetId);
             if (budget != null)
-            {                
-                // For now, just log the action
+            {
+                var result = await _budgetController!.TryDeleteBudget(budget);
+
+                if (result.Success)
+                {
+                    await LoadDataAsync();
+                }
+                else
+                {
+                    Console.WriteLine("Something Wrong happen");
+                    Console.WriteLine(string.Join(',',result.errors));
+                }
             }
         }
     }

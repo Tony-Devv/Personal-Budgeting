@@ -98,7 +98,7 @@ public class IncomeView : IView
         income.Amount = amount;
         income.IncomeDate = DateTime.Now;
 
-        var (success, id, errors) = await _incomeController.TryAddIncome(income);
+        var (success, id, errors) = await _incomeController.TryAddIncome(income,true);
         if (!success)
         {
             Console.WriteLine("Failed to add income:");
@@ -137,7 +137,7 @@ public class IncomeView : IView
         if (!string.IsNullOrWhiteSpace(amountInput) && decimal.TryParse(amountInput, out var newAmount))
             target.Amount = newAmount;
 
-        var (success, updated, errors) = await _incomeController.TryUpdateIncome(target);
+        var (success, updated, errors) = await _incomeController.TryUpdateIncome(target,true);
         if (!success)
         {
             Console.WriteLine("Failed to update income:");
@@ -165,7 +165,7 @@ public class IncomeView : IView
             return;
         }
 
-        var (success, errors) = await _incomeController.TryDeleteIncome(target);
+        var (success, errors) = await _incomeController.TryDeleteIncome(target,true);
         if (!success)
         {
             Console.WriteLine("Failed to delete income:");
