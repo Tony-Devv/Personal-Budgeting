@@ -143,7 +143,7 @@ namespace View.Views
 
             newExpense.DateCycle = DateTime.Now;
 
-            var (success, id, errors) = await _expenseController.TryAddExpense(newExpense);
+            var (success, id, errors) = await _expenseController.TryAddExpense(newExpense,true);
             if (!success)
             {
                 Console.WriteLine("Failed to add expense:");
@@ -163,7 +163,7 @@ namespace View.Views
             Console.Write("Enter expense name to manage: ");
             string expenseName = Console.ReadLine();
 
-            var (success, expense, errors) = await _expenseController.TrySearchExpense(expenseName, _currentUser.Id);
+            var (success, expense, errors) = await _expenseController.TrySearchExpense(expenseName, _currentUser.Id,true);
             if (!success || expense == null)
             {
                 Console.WriteLine("Expense not found:");
@@ -215,7 +215,7 @@ namespace View.Views
                     Console.Write("Enter reminder date/time (MM/dd/yyyy HH:mm): ");
                     if (DateTime.TryParse(Console.ReadLine(), out var reminderTime))
                     {
-                        var result = await _expenseController.TrySetExpenseReminder(expense,reminderTime);
+                        var result = await _expenseController.TrySetExpenseReminder(expense,reminderTime,true);
                         if (result.Success)
                             Console.WriteLine("Reminder set successfully.");
                         else
@@ -249,7 +249,7 @@ namespace View.Views
                 Console.Write("Enter the name of the expense to update: ");
                 var name = Console.ReadLine();
 
-                var found = await _expenseController.TrySearchExpense(name, _currentUser.Id);
+                var found = await _expenseController.TrySearchExpense(name, _currentUser.Id,true);
                 if (!found.Success || found.expense == null)
                 {
                     Console.WriteLine("Expense not found.");
@@ -281,7 +281,7 @@ namespace View.Views
                     expenseToUpdate.SpentAmount = newSpentAmount;
             }
 
-            var (success, updatedExpense, updateErrors) = await _expenseController.TryUpdateExpense(expenseToUpdate);
+            var (success, updatedExpense, updateErrors) = await _expenseController.TryUpdateExpense(expenseToUpdate,true);
             if (!success)
             {
                 Console.WriteLine("Failed to update:");
@@ -305,7 +305,7 @@ namespace View.Views
             Console.Write("Enter the name of the expense to delete: ");
             var name = Console.ReadLine();
 
-            var (success, expense, errors) = await _expenseController.TrySearchExpense(name, _currentUser.Id);
+            var (success, expense, errors) = await _expenseController.TrySearchExpense(name, _currentUser.Id,true);
             if (!success || expense == null)
             {
                 Console.WriteLine("Expense not found:");
@@ -315,7 +315,7 @@ namespace View.Views
                 return;
             }
 
-            var (deleteSuccess, deleteErrors) = await _expenseController.TryDeleteExpense(expense);
+            var (deleteSuccess, deleteErrors) = await _expenseController.TryDeleteExpense(expense,true);
             if (!deleteSuccess)
             {
                 Console.WriteLine("Failed to delete:");

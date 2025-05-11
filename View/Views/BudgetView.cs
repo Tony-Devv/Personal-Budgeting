@@ -108,7 +108,7 @@ public class BudgetView : IView
         newBudget.TotalAmountRequired = amount;
 
         
-        var (success, id, errors) = await _budgetController.TryAddBudget(newBudget);
+        var (success, id, errors) = await _budgetController.TryAddBudget(newBudget,true);
         if (!success)
         {
             Console.WriteLine("Failed to add budget:");
@@ -130,7 +130,7 @@ public class BudgetView : IView
         Console.Write("Enter the name of the budget to edit: ");
         var name = Console.ReadLine();
 
-        var found = await _budgetController.TryGetBudgetByName(_currentUser.Id, name);
+        var found = await _budgetController.TryGetBudgetByName(_currentUser.Id, name,true);
         if (!found.Success)
         {
             Console.WriteLine("Budget not found.");
@@ -158,7 +158,7 @@ public class BudgetView : IView
         if (!string.IsNullOrWhiteSpace(amtInput) && decimal.TryParse(amtInput, out var newAmount))
             budgetToEdit.TotalAmountRequired = newAmount;
 
-        var (success, updatedBudget, updateErrors) = await _budgetController.TryUpdateBudget(budgetToEdit);
+        var (success, updatedBudget, updateErrors) = await _budgetController.TryUpdateBudget(budgetToEdit,true);
         if (!success)
         {
             Console.WriteLine("Failed to update:");
@@ -186,7 +186,7 @@ public class BudgetView : IView
             return;
         }
 
-        var (success, errors) = await _budgetController.TryDeleteBudget(budgetToDelete);
+        var (success, errors) = await _budgetController.TryDeleteBudget(budgetToDelete,true);
         if (!success)
         {
             Console.WriteLine("Failed to delete:");

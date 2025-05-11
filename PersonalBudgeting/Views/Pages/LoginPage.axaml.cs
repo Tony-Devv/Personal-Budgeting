@@ -1,16 +1,7 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.VisualTree;
-using Controller;
-using Model.Entities;
-using PersonalBudgeting.Views.Pages;
-using PersonalBudgeting.Controllers;
-using PersonalBudgeting.Models;
-using User = PersonalBudgeting.Models.User;
+
 
 namespace PersonalBudgeting.Views.Pages;
 

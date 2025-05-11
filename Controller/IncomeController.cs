@@ -28,17 +28,20 @@ public class IncomeController
     /// </summary>
     /// <param name="income">The income object to be added.</param>
     /// <returns>A tuple containing success flag, the added income ID, and a list of error messages if any.</returns>
-    public async Task<(bool Success, int IncomeId, List<string> errors)> TryAddIncome(Income income)
-    {/*
-        var context = CreateContext(income, IncomeInputValidationRules.AddNew);
-        var validationResult = await _incomeValidator.ValidateAsync(context);
-
-        if (!validationResult.IsValid)
+    public async Task<(bool Success, int IncomeId, List<string> errors)> TryAddIncome(Income income,
+        bool validate = false)
+    {
+        if (validate)
         {
-            var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
-            return (false, -1, errors);
+            var context = CreateContext(income, IncomeInputValidationRules.AddNew);
+            var validationResult = await _incomeValidator.ValidateAsync(context);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return (false, -1, errors);
+            }   
         }
-        */
 
         int result = await _incomeHandler.AddNewIncome(income);
         return (result != -1, result, new List<string>());
@@ -49,17 +52,19 @@ public class IncomeController
     /// </summary>
     /// <param name="newValues">The new values to update the income with.</param>
     /// <returns>A tuple containing success flag, the updated income object, and a list of error messages if any.</returns>
-    public async Task<(bool Success, Income? updatedIncome, List<string> errors)> TryUpdateIncome(Income newValues)
-    {/*
-        var context = CreateContext(newValues, IncomeInputValidationRules.Update);
-        var validationResult = await _incomeValidator.ValidateAsync(context);
-
-        if (!validationResult.IsValid)
+    public async Task<(bool Success, Income? updatedIncome, List<string> errors)> TryUpdateIncome(Income newValues, bool validate = false)
+    {
+        if (validate)
         {
-            var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
-            return (false, null, errors);
+            var context = CreateContext(newValues, IncomeInputValidationRules.Update);
+            var validationResult = await _incomeValidator.ValidateAsync(context);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return (false, null, errors);
+            }   
         }
-        */
 
         var updatedIncome = await _incomeHandler.UpdateIncome(newValues);
         return (updatedIncome != null, updatedIncome, new List<string>());
@@ -70,17 +75,19 @@ public class IncomeController
     /// </summary>
     /// <param name="income">The income object to be deleted.</param>
     /// <returns>A tuple containing success flag and a list of error messages if any.</returns>
-    public async Task<(bool Success, List<string> errors)> TryDeleteIncome(Income income)
-    {/*
-        var context = CreateContext(income, IncomeInputValidationRules.Delete);
-        var validationResult = await _incomeValidator.ValidateAsync(context);
-
-        if (!validationResult.IsValid)
+    public async Task<(bool Success, List<string> errors)> TryDeleteIncome(Income income, bool validate = false)
+    {
+        if (validate)
         {
-            var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
-            return (false, errors);
+            var context = CreateContext(income, IncomeInputValidationRules.Delete);
+            var validationResult = await _incomeValidator.ValidateAsync(context);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return (false, errors);
+            }   
         }
-        */
 
         int result = await _incomeHandler.DeleteIncome(income);
         return (result != -1, new List<string>());
@@ -92,15 +99,17 @@ public class IncomeController
     /// <param name="userId">The user's unique identifier.</param>
     /// <param name="incomeSourceName">The income source name to search for.</param>
     /// <returns>A tuple containing success flag and a list of error messages if any.</returns>
-    public async Task<(bool Success, List<string> errors)> TrySearchIncome(int userId, string incomeSourceName)
-    {/*
-        var validationResult = _incomeValidator.ValidateForSearch(userId, incomeSourceName);
-
-        if (!validationResult.Success)
+    public async Task<(bool Success, List<string> errors)> TrySearchIncome(int userId, string incomeSourceName,bool validate = false)
+    {
+        if (validate)
         {
-            return (false, validationResult.Errors);
+            var validationResult = _incomeValidator.ValidateForSearch(userId, incomeSourceName);
+
+            if (!validationResult.Success)
+            {
+                return (false, validationResult.Errors);
+            }   
         }
-        */
 
         var income = await _incomeHandler.SearchIncomeBySourceName(userId, incomeSourceName);
         return (income != null, new List<string>());
