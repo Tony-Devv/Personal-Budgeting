@@ -14,6 +14,12 @@ public class UserRepository : GenericRepository<User>, IUserRepository
         return await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
 
+    public async Task<User?> GetUserById(int id)
+    {
+        User? user = await base.GetById(id);
+        return user;
+    }
+
     public async Task<bool> CheckUserExistsByEmail(string email)
     {
         await using var _dbContext = _dbContextFactory.CreateDbContext();
@@ -49,5 +55,32 @@ public class UserRepository : GenericRepository<User>, IUserRepository
 
         user.Expenses = expenses;
         return expenses;
+    }
+
+    public async Task<decimal> GetTotalUserIncomes(int userId)
+    {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
+
+        decimal incomes =  _dbContext.Incomes.Where(i => i.UserId == userId).Sum(i => i.Amount);
+        
+        return incomes;
+    }
+
+    public async Task<decimal> GetTotalUserExpenses(int userId)
+    {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
+
+        decimal expenses =  _dbContext.Expenses.Where(e => e.UserId == userId).Sum(e => e.SpentAmount);
+        
+        return expenses;
+    }
+
+    public async Task<decimal> GetTotalBudgetSpentAmount(int userId, int budgetId)
+    {
+        await using var _dbContext = _dbContextFactory.CreateDbContext();
+
+        decimal total = _dbContext.Expenses.Where(e => e.UserId == userId && e.BudgetId == budgetId).Sum(e => e.SpentAmount);
+
+        return total;
     }
 }

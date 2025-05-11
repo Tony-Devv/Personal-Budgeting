@@ -71,6 +71,42 @@ public class UserHandler
     }
 
 
+    public async Task<User?> GetUserById(int id)
+    {
+        try
+        {
+            if (!await _userRepository.CheckExist(id))
+                return null;
+
+            User ? user = await _userRepository.GetUserById(id);
+            return user;
+        }
+        catch (Exception e)
+        {
+            LogError("GetUserById", e);
+            return null;
+        }
+    }
+    
+    
+    public async Task<User?> GetUserByEmail(string email)
+    {
+        try
+        {
+            if (!await _userRepository.CheckUserExistsByEmail(email))
+                return null;
+
+            User ? user = await _userRepository.RetrieveUserByEmail(email);
+            return user;
+        }
+        catch (Exception e)
+        {
+            LogError("GetUserByEmail", e);
+            return null;
+        }
+    }
+    
+
     public async Task<User?> ChangeUserPassword(string newPassword, User user)
     {
         try
@@ -150,6 +186,60 @@ public class UserHandler
 
         return result;
     }
+
+
+    public async Task<decimal> GetTotalUserIncomes(int id)
+    {
+        try
+        {
+            if (!await _userRepository.CheckExist(id))
+                return -1;
+
+            decimal  total = await _userRepository.GetTotalUserIncomes(id);
+            return total;
+        }
+        catch (Exception e)
+        {
+            LogError("GetTotalUserIncomes", e);
+            return -1;
+        }
+    }
+    
+    public async Task<decimal> GetTotalUserSpentExpenses(int id)
+    {
+        try
+        {
+            if (!await _userRepository.CheckExist(id))
+                return -1;
+
+            decimal  total = await _userRepository.GetTotalUserExpenses(id);
+            return total;
+        }
+        catch (Exception e)
+        {
+            LogError("GetTotalUserSpentExpenses", e);
+            return -1;
+        }
+    }
+
+    
+    public async Task<decimal> GetTotalAmountSpentOnBudget(int id,int budgetId)
+    {
+        try
+        {
+            if (!await _userRepository.CheckExist(id))
+                return -1;
+
+            decimal  total = await _userRepository.GetTotalBudgetSpentAmount(id,budgetId);
+            return total;
+        }
+        catch (Exception e)
+        {
+            LogError("GetTotalAmountSpentOnBudget", e);
+            return -1;
+        }
+    }
+
 
     private void LogError(string context, Exception e)
     {
