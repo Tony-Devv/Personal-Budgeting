@@ -1,0 +1,623 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Entities.Budget
+  commentId: T:Model.Entities.Budget
+  id: Budget
+  parent: Model.Entities
+  children:
+  - Model.Entities.Budget.BudgetName
+  - Model.Entities.Budget.Id
+  - Model.Entities.Budget.ToString
+  - Model.Entities.Budget.TotalAmountRequired
+  - Model.Entities.Budget.User
+  - Model.Entities.Budget.UserId
+  langs:
+  - csharp
+  - vb
+  name: Budget
+  nameWithType: Budget
+  fullName: Model.Entities.Budget
+  type: Class
+  source:
+    remote:
+      path: Model/Entities/Budget.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Budget
+    path: ../Model/Entities/Budget.cs
+    startLine: 13
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: >-
+    Represents a budget entity in the system.
+
+    it's being used by the entityFramework to represent the budgets records
+  remarks: >-
+    This class maps to the "Budget" table in the database and maintains
+
+    relationship with the User entity through a foreign key.
+  example: []
+  syntax:
+    content: >-
+      [Table("Budget")]
+
+      public class Budget
+    content.vb: >-
+      <Table("Budget")>
+
+      Public Class Budget
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.Schema.TableAttribute
+    ctor: System.ComponentModel.DataAnnotations.Schema.TableAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Budget
+- uid: Model.Entities.Budget.Id
+  commentId: P:Model.Entities.Budget.Id
+  id: Id
+  parent: Model.Entities.Budget
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: Budget.Id
+  fullName: Model.Entities.Budget.Id
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Budget.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Id
+    path: ../Model/Entities/Budget.cs
+    startLine: 23
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the unique identifier for the budget.
+  remarks: Can't Be 0 or Negative if your performing update,delete,read operations
+  example: []
+  syntax:
+    content: >-
+      [Key]
+
+      public int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: An integer that uniquely identifies the budget.
+    content.vb: >-
+      <Key>
+
+      Public Property Id As Integer
+  overload: Model.Entities.Budget.Id*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.KeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.KeyAttribute.#ctor
+    arguments: []
+- uid: Model.Entities.Budget.UserId
+  commentId: P:Model.Entities.Budget.UserId
+  id: UserId
+  parent: Model.Entities.Budget
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: Budget.UserId
+  fullName: Model.Entities.Budget.UserId
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Budget.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: UserId
+    path: ../Model/Entities/Budget.cs
+    startLine: 33
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the identifier of the user who owns this budget.
+  remarks: Can't Be 0 or Negative if your performing update,delete,read operations
+  example: []
+  syntax:
+    content: public int UserId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The user ID. This field is required and cannot be empty.
+    content.vb: Public Property UserId As Integer
+  overload: Model.Entities.Budget.UserId*
+- uid: Model.Entities.Budget.BudgetName
+  commentId: P:Model.Entities.Budget.BudgetName
+  id: BudgetName
+  parent: Model.Entities.Budget
+  langs:
+  - csharp
+  - vb
+  name: BudgetName
+  nameWithType: Budget.BudgetName
+  fullName: Model.Entities.Budget.BudgetName
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Budget.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: BudgetName
+    path: ../Model/Entities/Budget.cs
+    startLine: 42
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the name of the budget.
+  remarks: Maximum Length is 100 chars, more than this will make an overflow
+  example: []
+  syntax:
+    content: public string BudgetName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The budget name. Maximum length is 100 characters.
+    content.vb: Public Property BudgetName As String
+  overload: Model.Entities.Budget.BudgetName*
+- uid: Model.Entities.Budget.TotalAmountRequired
+  commentId: P:Model.Entities.Budget.TotalAmountRequired
+  id: TotalAmountRequired
+  parent: Model.Entities.Budget
+  langs:
+  - csharp
+  - vb
+  name: TotalAmountRequired
+  nameWithType: Budget.TotalAmountRequired
+  fullName: Model.Entities.Budget.TotalAmountRequired
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Budget.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: TotalAmountRequired
+    path: ../Model/Entities/Budget.cs
+    startLine: 51
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the total amount required for this budget.
+  remarks: Maximum digits allowed is 6
+  example: []
+  syntax:
+    content: public decimal TotalAmountRequired { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+      description: The total amount required. Can have up to 10 digits.
+    content.vb: Public Property TotalAmountRequired As Decimal
+  overload: Model.Entities.Budget.TotalAmountRequired*
+- uid: Model.Entities.Budget.User
+  commentId: P:Model.Entities.Budget.User
+  id: User
+  parent: Model.Entities.Budget
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: Budget.User
+  fullName: Model.Entities.Budget.User
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Budget.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: User
+    path: ../Model/Entities/Budget.cs
+    startLine: 61
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the associated user entity.
+  remarks: >-
+    Navigation Property that acts as many-to-one relationship in the database,
+
+    facilitate the operations, not loaded for all times
+  example: []
+  syntax:
+    content: >-
+      [ForeignKey("UserId")]
+
+      public User? User { get; set; }
+    parameters: []
+    return:
+      type: Model.Entities.User
+      description: The user who owns this budget. Can be null.
+    content.vb: >-
+      <ForeignKey("UserId")>
+
+      Public Property User As User
+  overload: Model.Entities.Budget.User*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: UserId
+- uid: Model.Entities.Budget.ToString
+  commentId: M:Model.Entities.Budget.ToString
+  id: ToString
+  parent: Model.Entities.Budget
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Budget.ToString()
+  fullName: Model.Entities.Budget.ToString()
+  type: Method
+  source:
+    remote:
+      path: Model/Entities/Budget.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: ToString
+    path: ../Model/Entities/Budget.cs
+    startLine: 68
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Returns a string representation of the Budget object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string containing the Budget's properties and their values.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: Model.Entities.Budget.ToString*
+references:
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Model.Entities.Budget.Id*
+  commentId: Overload:Model.Entities.Budget.Id
+  href: Model.Entities.Budget.html#Model_Entities_Budget_Id
+  name: Id
+  nameWithType: Budget.Id
+  fullName: Model.Entities.Budget.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Model.Entities.Budget.UserId*
+  commentId: Overload:Model.Entities.Budget.UserId
+  href: Model.Entities.Budget.html#Model_Entities_Budget_UserId
+  name: UserId
+  nameWithType: Budget.UserId
+  fullName: Model.Entities.Budget.UserId
+- uid: Model.Entities.Budget.BudgetName*
+  commentId: Overload:Model.Entities.Budget.BudgetName
+  href: Model.Entities.Budget.html#Model_Entities_Budget_BudgetName
+  name: BudgetName
+  nameWithType: Budget.BudgetName
+  fullName: Model.Entities.Budget.BudgetName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Model.Entities.Budget.TotalAmountRequired*
+  commentId: Overload:Model.Entities.Budget.TotalAmountRequired
+  href: Model.Entities.Budget.html#Model_Entities_Budget_TotalAmountRequired
+  name: TotalAmountRequired
+  nameWithType: Budget.TotalAmountRequired
+  fullName: Model.Entities.Budget.TotalAmountRequired
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: Model.Entities.Budget.User*
+  commentId: Overload:Model.Entities.Budget.User
+  href: Model.Entities.Budget.html#Model_Entities_Budget_User
+  name: User
+  nameWithType: Budget.User
+  fullName: Model.Entities.Budget.User
+- uid: Model.Entities.User
+  commentId: T:Model.Entities.User
+  parent: Model.Entities
+  href: Model.Entities.User.html
+  name: User
+  nameWithType: User
+  fullName: Model.Entities.User
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Model.Entities.Budget.ToString*
+  commentId: Overload:Model.Entities.Budget.ToString
+  href: Model.Entities.Budget.html#Model_Entities_Budget_ToString
+  name: ToString
+  nameWithType: Budget.ToString
+  fullName: Model.Entities.Budget.ToString
+shouldSkipMarkup: true

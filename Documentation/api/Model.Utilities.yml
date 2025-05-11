@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Utilities
+  commentId: N:Model.Utilities
+  id: Model.Utilities
+  children:
+  - Model.Utilities.ServicesContainer
+  - Model.Utilities.Sha512PasswordHasher
+  langs:
+  - csharp
+  - vb
+  name: Model.Utilities
+  nameWithType: Model.Utilities
+  fullName: Model.Utilities
+  type: Namespace
+  assemblies:
+  - Model
+references:
+- uid: Model.Utilities.ServicesContainer
+  commentId: T:Model.Utilities.ServicesContainer
+  parent: Model.Utilities
+  href: Model.Utilities.ServicesContainer.html
+  name: ServicesContainer
+  nameWithType: ServicesContainer
+  fullName: Model.Utilities.ServicesContainer
+- uid: Model.Utilities.Sha512PasswordHasher
+  commentId: T:Model.Utilities.Sha512PasswordHasher
+  href: Model.Utilities.Sha512PasswordHasher.html
+  name: Sha512PasswordHasher
+  nameWithType: Sha512PasswordHasher
+  fullName: Model.Utilities.Sha512PasswordHasher
+- uid: Model.Utilities
+  commentId: N:Model.Utilities
+  href: Model.html
+  name: Model.Utilities
+  nameWithType: Model.Utilities
+  fullName: Model.Utilities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Utilities
+    name: Utilities
+    href: Model.Utilities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Utilities
+    name: Utilities
+    href: Model.Utilities.html
+shouldSkipMarkup: true

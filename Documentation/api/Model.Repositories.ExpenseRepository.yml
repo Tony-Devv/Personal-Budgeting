@@ -1,0 +1,1284 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Repositories.ExpenseRepository
+  commentId: T:Model.Repositories.ExpenseRepository
+  id: ExpenseRepository
+  parent: Model.Repositories
+  children:
+  - Model.Repositories.ExpenseRepository.GetAllThatHasReminder(System.Int32)
+  - Model.Repositories.ExpenseRepository.GetExpenseByName(System.Int32,System.String)
+  - Model.Repositories.ExpenseRepository.SetReminderTime(Model.Entities.Expense,System.DateTime)
+  langs:
+  - csharp
+  - vb
+  name: ExpenseRepository
+  nameWithType: ExpenseRepository
+  fullName: Model.Repositories.ExpenseRepository
+  type: Class
+  source:
+    remote:
+      path: Model/Repositories/ExpenseRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: ExpenseRepository
+    path: ../Model/Repositories/ExpenseRepository.cs
+    startLine: 10
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: >-
+    Repository class responsible for performing CRUD operations on <xref href="Model.Entities.Expense" data-throw-if-not-resolved="false"></xref> entities.
+
+    Inherits from <xref href="Model.Repositories.GenericRepository%601" data-throw-if-not-resolved="false"></xref> and implements <xref href="Model.Interfaces.IExpenseRepository" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository, IRepository<Expense>'
+    content.vb: Public Class ExpenseRepository Inherits GenericRepository(Of Expense) Implements IExpenseRepository, IRepository(Of Expense)
+  inheritance:
+  - System.Object
+  - Model.Repositories.GenericRepository{Model.Entities.Expense}
+  implements:
+  - Model.Interfaces.IExpenseRepository
+  - Model.Interfaces.IRepository{Model.Entities.Expense}
+  inheritedMembers:
+  - Model.Repositories.GenericRepository{Model.Entities.Expense}._dbContextFactory
+  - Model.Repositories.GenericRepository{Model.Entities.Expense}.Add(Model.Entities.Expense)
+  - Model.Repositories.GenericRepository{Model.Entities.Expense}.Update(Model.Entities.Expense)
+  - Model.Repositories.GenericRepository{Model.Entities.Expense}.Delete(Model.Entities.Expense)
+  - Model.Repositories.GenericRepository{Model.Entities.Expense}.GetById(System.Int32)
+  - Model.Repositories.GenericRepository{Model.Entities.Expense}.GetAll
+  - Model.Repositories.GenericRepository{Model.Entities.Expense}.CheckExist(System.Int32)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Model.Repositories.ExpenseRepository.SetReminderTime(Model.Entities.Expense,System.DateTime)
+  commentId: M:Model.Repositories.ExpenseRepository.SetReminderTime(Model.Entities.Expense,System.DateTime)
+  id: SetReminderTime(Model.Entities.Expense,System.DateTime)
+  parent: Model.Repositories.ExpenseRepository
+  langs:
+  - csharp
+  - vb
+  name: SetReminderTime(Expense, DateTime)
+  nameWithType: ExpenseRepository.SetReminderTime(Expense, DateTime)
+  fullName: Model.Repositories.ExpenseRepository.SetReminderTime(Model.Entities.Expense, System.DateTime)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/ExpenseRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: SetReminderTime
+    path: ../Model/Repositories/ExpenseRepository.cs
+    startLine: 13
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Provides data access methods specific to expenses, extending the generic repository for <xref href="Model.Entities.Expense" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Task<bool> SetReminderTime(Expense expense, DateTime time)
+    parameters:
+    - id: expense
+      type: Model.Entities.Expense
+    - id: time
+      type: System.DateTime
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+    content.vb: Public Function SetReminderTime(expense As Expense, time As Date) As Task(Of Boolean)
+  overload: Model.Repositories.ExpenseRepository.SetReminderTime*
+  implements:
+  - Model.Interfaces.IExpenseRepository.SetReminderTime(Model.Entities.Expense,System.DateTime)
+  nameWithType.vb: ExpenseRepository.SetReminderTime(Expense, Date)
+  fullName.vb: Model.Repositories.ExpenseRepository.SetReminderTime(Model.Entities.Expense, Date)
+  name.vb: SetReminderTime(Expense, Date)
+- uid: Model.Repositories.ExpenseRepository.GetExpenseByName(System.Int32,System.String)
+  commentId: M:Model.Repositories.ExpenseRepository.GetExpenseByName(System.Int32,System.String)
+  id: GetExpenseByName(System.Int32,System.String)
+  parent: Model.Repositories.ExpenseRepository
+  langs:
+  - csharp
+  - vb
+  name: GetExpenseByName(int, string)
+  nameWithType: ExpenseRepository.GetExpenseByName(int, string)
+  fullName: Model.Repositories.ExpenseRepository.GetExpenseByName(int, string)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/ExpenseRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetExpenseByName
+    path: ../Model/Repositories/ExpenseRepository.cs
+    startLine: 36
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Provides data access methods specific to expenses, extending the generic repository for <xref href="Model.Entities.Expense" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Task<Expense?> GetExpenseByName(int userId, string expenseName)
+    parameters:
+    - id: userId
+      type: System.Int32
+    - id: expenseName
+      type: System.String
+    return:
+      type: System.Threading.Tasks.Task{Model.Entities.Expense}
+    content.vb: Public Function GetExpenseByName(userId As Integer, expenseName As String) As Task(Of Expense)
+  overload: Model.Repositories.ExpenseRepository.GetExpenseByName*
+  implements:
+  - Model.Interfaces.IExpenseRepository.GetExpenseByName(System.Int32,System.String)
+  nameWithType.vb: ExpenseRepository.GetExpenseByName(Integer, String)
+  fullName.vb: Model.Repositories.ExpenseRepository.GetExpenseByName(Integer, String)
+  name.vb: GetExpenseByName(Integer, String)
+- uid: Model.Repositories.ExpenseRepository.GetAllThatHasReminder(System.Int32)
+  commentId: M:Model.Repositories.ExpenseRepository.GetAllThatHasReminder(System.Int32)
+  id: GetAllThatHasReminder(System.Int32)
+  parent: Model.Repositories.ExpenseRepository
+  langs:
+  - csharp
+  - vb
+  name: GetAllThatHasReminder(int)
+  nameWithType: ExpenseRepository.GetAllThatHasReminder(int)
+  fullName: Model.Repositories.ExpenseRepository.GetAllThatHasReminder(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/ExpenseRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetAllThatHasReminder
+    path: ../Model/Repositories/ExpenseRepository.cs
+    startLine: 45
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Provides data access methods specific to expenses, extending the generic repository for <xref href="Model.Entities.Expense" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Task<List<Expense>> GetAllThatHasReminder(int userId)
+    parameters:
+    - id: userId
+      type: System.Int32
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{Model.Entities.Expense}}
+    content.vb: Public Function GetAllThatHasReminder(userId As Integer) As Task(Of List(Of Expense))
+  overload: Model.Repositories.ExpenseRepository.GetAllThatHasReminder*
+  implements:
+  - Model.Interfaces.IExpenseRepository.GetAllThatHasReminder(System.Int32)
+  nameWithType.vb: ExpenseRepository.GetAllThatHasReminder(Integer)
+  fullName.vb: Model.Repositories.ExpenseRepository.GetAllThatHasReminder(Integer)
+  name.vb: GetAllThatHasReminder(Integer)
+references:
+- uid: Model.Entities.Expense
+  commentId: T:Model.Entities.Expense
+  parent: Model.Entities
+  href: Model.Entities.Expense.html
+  name: Expense
+  nameWithType: Expense
+  fullName: Model.Entities.Expense
+- uid: Model.Repositories.GenericRepository`1
+  commentId: T:Model.Repositories.GenericRepository`1
+  href: Model.Repositories.GenericRepository-1.html
+  name: GenericRepository<TObject>
+  nameWithType: GenericRepository<TObject>
+  fullName: Model.Repositories.GenericRepository<TObject>
+  nameWithType.vb: GenericRepository(Of TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject)
+  name.vb: GenericRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IExpenseRepository
+  commentId: T:Model.Interfaces.IExpenseRepository
+  parent: Model.Interfaces
+  href: Model.Interfaces.IExpenseRepository.html
+  name: IExpenseRepository
+  nameWithType: IExpenseRepository
+  fullName: Model.Interfaces.IExpenseRepository
+- uid: Model.Repositories
+  commentId: N:Model.Repositories
+  href: Model.html
+  name: Model.Repositories
+  nameWithType: Model.Repositories
+  fullName: Model.Repositories
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Repositories
+    name: Repositories
+    href: Model.Repositories.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Repositories
+    name: Repositories
+    href: Model.Repositories.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Model.Repositories.GenericRepository{Model.Entities.Expense}
+  commentId: T:Model.Repositories.GenericRepository{Model.Entities.Expense}
+  parent: Model.Repositories
+  definition: Model.Repositories.GenericRepository`1
+  href: Model.Repositories.GenericRepository-1.html
+  name: GenericRepository<Expense>
+  nameWithType: GenericRepository<Expense>
+  fullName: Model.Repositories.GenericRepository<Model.Entities.Expense>
+  nameWithType.vb: GenericRepository(Of Expense)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.Expense)
+  name.vb: GenericRepository(Of Expense)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: <
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: '>'
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+- uid: Model.Interfaces.IRepository{Model.Entities.Expense}
+  commentId: T:Model.Interfaces.IRepository{Model.Entities.Expense}
+  parent: Model.Interfaces
+  definition: Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<Expense>
+  nameWithType: IRepository<Expense>
+  fullName: Model.Interfaces.IRepository<Model.Entities.Expense>
+  nameWithType.vb: IRepository(Of Expense)
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.Expense)
+  name.vb: IRepository(Of Expense)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.Expense}._dbContextFactory
+  commentId: F:Model.Repositories.GenericRepository{Model.Entities.Expense}._dbContextFactory
+  parent: Model.Repositories.GenericRepository{Model.Entities.Expense}
+  definition: Model.Repositories.GenericRepository`1._dbContextFactory
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1__dbContextFactory
+  name: _dbContextFactory
+  nameWithType: GenericRepository<Expense>._dbContextFactory
+  fullName: Model.Repositories.GenericRepository<Model.Entities.Expense>._dbContextFactory
+  nameWithType.vb: GenericRepository(Of Expense)._dbContextFactory
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.Expense)._dbContextFactory
+- uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Add(Model.Entities.Expense)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.Expense}.Add(Model.Entities.Expense)
+  parent: Model.Repositories.GenericRepository{Model.Entities.Expense}
+  definition: Model.Repositories.GenericRepository`1.Add(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  name: Add(Expense)
+  nameWithType: GenericRepository<Expense>.Add(Expense)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.Expense>.Add(Model.Entities.Expense)
+  nameWithType.vb: GenericRepository(Of Expense).Add(Expense)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.Expense).Add(Model.Entities.Expense)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Add(Model.Entities.Expense)
+    name: Add
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  - name: (
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Add(Model.Entities.Expense)
+    name: Add
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  - name: (
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Update(Model.Entities.Expense)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.Expense}.Update(Model.Entities.Expense)
+  parent: Model.Repositories.GenericRepository{Model.Entities.Expense}
+  definition: Model.Repositories.GenericRepository`1.Update(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  name: Update(Expense)
+  nameWithType: GenericRepository<Expense>.Update(Expense)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.Expense>.Update(Model.Entities.Expense)
+  nameWithType.vb: GenericRepository(Of Expense).Update(Expense)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.Expense).Update(Model.Entities.Expense)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Update(Model.Entities.Expense)
+    name: Update
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  - name: (
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Update(Model.Entities.Expense)
+    name: Update
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  - name: (
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Delete(Model.Entities.Expense)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.Expense}.Delete(Model.Entities.Expense)
+  parent: Model.Repositories.GenericRepository{Model.Entities.Expense}
+  definition: Model.Repositories.GenericRepository`1.Delete(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  name: Delete(Expense)
+  nameWithType: GenericRepository<Expense>.Delete(Expense)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.Expense>.Delete(Model.Entities.Expense)
+  nameWithType.vb: GenericRepository(Of Expense).Delete(Expense)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.Expense).Delete(Model.Entities.Expense)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Delete(Model.Entities.Expense)
+    name: Delete
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  - name: (
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.Delete(Model.Entities.Expense)
+    name: Delete
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  - name: (
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.GetById(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.Expense}.GetById(System.Int32)
+  parent: Model.Repositories.GenericRepository{Model.Entities.Expense}
+  definition: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: GenericRepository<Expense>.GetById(int)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.Expense>.GetById(int)
+  nameWithType.vb: GenericRepository(Of Expense).GetById(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.Expense).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.GetById(System.Int32)
+    name: GetById
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.GetById(System.Int32)
+    name: GetById
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.GetAll
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.Expense}.GetAll
+  parent: Model.Repositories.GenericRepository{Model.Entities.Expense}
+  definition: Model.Repositories.GenericRepository`1.GetAll
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  name: GetAll()
+  nameWithType: GenericRepository<Expense>.GetAll()
+  fullName: Model.Repositories.GenericRepository<Model.Entities.Expense>.GetAll()
+  nameWithType.vb: GenericRepository(Of Expense).GetAll()
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.Expense).GetAll()
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.GetAll
+    name: GetAll
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.GetAll
+    name: GetAll
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.CheckExist(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.Expense}.CheckExist(System.Int32)
+  parent: Model.Repositories.GenericRepository{Model.Entities.Expense}
+  definition: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  name: CheckExist(int)
+  nameWithType: GenericRepository<Expense>.CheckExist(int)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.Expense>.CheckExist(int)
+  nameWithType.vb: GenericRepository(Of Expense).CheckExist(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.Expense).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.Expense}.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+- uid: Model.Interfaces
+  commentId: N:Model.Interfaces
+  href: Model.html
+  name: Model.Interfaces
+  nameWithType: Model.Interfaces
+  fullName: Model.Interfaces
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Model.Interfaces.IRepository`1
+  commentId: T:Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<TObject>
+  nameWithType: IRepository<TObject>
+  fullName: Model.Interfaces.IRepository<TObject>
+  nameWithType.vb: IRepository(Of TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject)
+  name.vb: IRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1._dbContextFactory
+  commentId: F:Model.Repositories.GenericRepository`1._dbContextFactory
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1__dbContextFactory
+  name: _dbContextFactory
+  nameWithType: GenericRepository<TObject>._dbContextFactory
+  fullName: Model.Repositories.GenericRepository<TObject>._dbContextFactory
+  nameWithType.vb: GenericRepository(Of TObject)._dbContextFactory
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject)._dbContextFactory
+- uid: Model.Repositories.GenericRepository`1.Add(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Add(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  name: Add(TObject)
+  nameWithType: GenericRepository<TObject>.Add(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Add(TObject)
+  nameWithType.vb: GenericRepository(Of TObject).Add(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Add(TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.Add(`0)
+    name: Add
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.Add(`0)
+    name: Add
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.Update(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Update(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  name: Update(TObject)
+  nameWithType: GenericRepository<TObject>.Update(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Update(TObject)
+  nameWithType.vb: GenericRepository(Of TObject).Update(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Update(TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.Update(`0)
+    name: Update
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.Update(`0)
+    name: Update
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.Delete(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Delete(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  name: Delete(TObject)
+  nameWithType: GenericRepository<TObject>.Delete(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Delete(TObject)
+  nameWithType.vb: GenericRepository(Of TObject).Delete(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Delete(TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.Delete(`0)
+    name: Delete
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.Delete(`0)
+    name: Delete
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  isExternal: true
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: GenericRepository<TObject>.GetById(int)
+  fullName: Model.Repositories.GenericRepository<TObject>.GetById(int)
+  nameWithType.vb: GenericRepository(Of TObject).GetById(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+    name: GetById
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+    name: GetById
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.GetAll
+  commentId: M:Model.Repositories.GenericRepository`1.GetAll
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  name: GetAll()
+  nameWithType: GenericRepository<TObject>.GetAll()
+  fullName: Model.Repositories.GenericRepository<TObject>.GetAll()
+  nameWithType.vb: GenericRepository(Of TObject).GetAll()
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).GetAll()
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.GetAll
+    name: GetAll
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.GetAll
+    name: GetAll
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  isExternal: true
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  name: CheckExist(int)
+  nameWithType: GenericRepository<TObject>.CheckExist(int)
+  fullName: Model.Repositories.GenericRepository<TObject>.CheckExist(int)
+  nameWithType.vb: GenericRepository(Of TObject).CheckExist(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Repositories.ExpenseRepository.SetReminderTime*
+  commentId: Overload:Model.Repositories.ExpenseRepository.SetReminderTime
+  href: Model.Repositories.ExpenseRepository.html#Model_Repositories_ExpenseRepository_SetReminderTime_Model_Entities_Expense_System_DateTime_
+  name: SetReminderTime
+  nameWithType: ExpenseRepository.SetReminderTime
+  fullName: Model.Repositories.ExpenseRepository.SetReminderTime
+- uid: Model.Interfaces.IExpenseRepository.SetReminderTime(Model.Entities.Expense,System.DateTime)
+  commentId: M:Model.Interfaces.IExpenseRepository.SetReminderTime(Model.Entities.Expense,System.DateTime)
+  parent: Model.Interfaces.IExpenseRepository
+  isExternal: true
+  href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_SetReminderTime_Model_Entities_Expense_System_DateTime_
+  name: SetReminderTime(Expense, DateTime)
+  nameWithType: IExpenseRepository.SetReminderTime(Expense, DateTime)
+  fullName: Model.Interfaces.IExpenseRepository.SetReminderTime(Model.Entities.Expense, System.DateTime)
+  nameWithType.vb: IExpenseRepository.SetReminderTime(Expense, Date)
+  fullName.vb: Model.Interfaces.IExpenseRepository.SetReminderTime(Model.Entities.Expense, Date)
+  name.vb: SetReminderTime(Expense, Date)
+  spec.csharp:
+  - uid: Model.Interfaces.IExpenseRepository.SetReminderTime(Model.Entities.Expense,System.DateTime)
+    name: SetReminderTime
+    href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_SetReminderTime_Model_Entities_Expense_System_DateTime_
+  - name: (
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IExpenseRepository.SetReminderTime(Model.Entities.Expense,System.DateTime)
+    name: SetReminderTime
+    href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_SetReminderTime_Model_Entities_Expense_System_DateTime_
+  - name: (
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: ','
+  - name: " "
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: )
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Model.Repositories.ExpenseRepository.GetExpenseByName*
+  commentId: Overload:Model.Repositories.ExpenseRepository.GetExpenseByName
+  href: Model.Repositories.ExpenseRepository.html#Model_Repositories_ExpenseRepository_GetExpenseByName_System_Int32_System_String_
+  name: GetExpenseByName
+  nameWithType: ExpenseRepository.GetExpenseByName
+  fullName: Model.Repositories.ExpenseRepository.GetExpenseByName
+- uid: Model.Interfaces.IExpenseRepository.GetExpenseByName(System.Int32,System.String)
+  commentId: M:Model.Interfaces.IExpenseRepository.GetExpenseByName(System.Int32,System.String)
+  parent: Model.Interfaces.IExpenseRepository
+  isExternal: true
+  href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_GetExpenseByName_System_Int32_System_String_
+  name: GetExpenseByName(int, string)
+  nameWithType: IExpenseRepository.GetExpenseByName(int, string)
+  fullName: Model.Interfaces.IExpenseRepository.GetExpenseByName(int, string)
+  nameWithType.vb: IExpenseRepository.GetExpenseByName(Integer, String)
+  fullName.vb: Model.Interfaces.IExpenseRepository.GetExpenseByName(Integer, String)
+  name.vb: GetExpenseByName(Integer, String)
+  spec.csharp:
+  - uid: Model.Interfaces.IExpenseRepository.GetExpenseByName(System.Int32,System.String)
+    name: GetExpenseByName
+    href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_GetExpenseByName_System_Int32_System_String_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IExpenseRepository.GetExpenseByName(System.Int32,System.String)
+    name: GetExpenseByName
+    href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_GetExpenseByName_System_Int32_System_String_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task{Model.Entities.Expense}
+  commentId: T:System.Threading.Tasks.Task{Model.Entities.Expense}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Expense>
+  nameWithType: Task<Expense>
+  fullName: System.Threading.Tasks.Task<Model.Entities.Expense>
+  nameWithType.vb: Task(Of Expense)
+  fullName.vb: System.Threading.Tasks.Task(Of Model.Entities.Expense)
+  name.vb: Task(Of Expense)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+- uid: Model.Repositories.ExpenseRepository.GetAllThatHasReminder*
+  commentId: Overload:Model.Repositories.ExpenseRepository.GetAllThatHasReminder
+  href: Model.Repositories.ExpenseRepository.html#Model_Repositories_ExpenseRepository_GetAllThatHasReminder_System_Int32_
+  name: GetAllThatHasReminder
+  nameWithType: ExpenseRepository.GetAllThatHasReminder
+  fullName: Model.Repositories.ExpenseRepository.GetAllThatHasReminder
+- uid: Model.Interfaces.IExpenseRepository.GetAllThatHasReminder(System.Int32)
+  commentId: M:Model.Interfaces.IExpenseRepository.GetAllThatHasReminder(System.Int32)
+  parent: Model.Interfaces.IExpenseRepository
+  isExternal: true
+  href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_GetAllThatHasReminder_System_Int32_
+  name: GetAllThatHasReminder(int)
+  nameWithType: IExpenseRepository.GetAllThatHasReminder(int)
+  fullName: Model.Interfaces.IExpenseRepository.GetAllThatHasReminder(int)
+  nameWithType.vb: IExpenseRepository.GetAllThatHasReminder(Integer)
+  fullName.vb: Model.Interfaces.IExpenseRepository.GetAllThatHasReminder(Integer)
+  name.vb: GetAllThatHasReminder(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IExpenseRepository.GetAllThatHasReminder(System.Int32)
+    name: GetAllThatHasReminder
+    href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_GetAllThatHasReminder_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IExpenseRepository.GetAllThatHasReminder(System.Int32)
+    name: GetAllThatHasReminder
+    href: Model.Interfaces.IExpenseRepository.html#Model_Interfaces_IExpenseRepository_GetAllThatHasReminder_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{Model.Entities.Expense}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{Model.Entities.Expense}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<Expense>>
+  nameWithType: Task<List<Expense>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<Model.Entities.Expense>>
+  nameWithType.vb: Task(Of List(Of Expense))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of Model.Entities.Expense))
+  name.vb: Task(Of List(Of Expense))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+  - name: )
+shouldSkipMarkup: true

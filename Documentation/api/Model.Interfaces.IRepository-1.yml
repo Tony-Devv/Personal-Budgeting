@@ -1,0 +1,569 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Interfaces.IRepository`1
+  commentId: T:Model.Interfaces.IRepository`1
+  id: IRepository`1
+  parent: Model.Interfaces
+  children:
+  - Model.Interfaces.IRepository`1.Add(`0)
+  - Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  - Model.Interfaces.IRepository`1.Delete(`0)
+  - Model.Interfaces.IRepository`1.GetAll
+  - Model.Interfaces.IRepository`1.GetById(System.Int32)
+  - Model.Interfaces.IRepository`1.Update(`0)
+  langs:
+  - csharp
+  - vb
+  name: IRepository<TObject>
+  nameWithType: IRepository<TObject>
+  fullName: Model.Interfaces.IRepository<TObject>
+  type: Interface
+  source:
+    remote:
+      path: Model/Interfaces/IRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: IRepository
+    path: ../Model/Interfaces/IRepository.cs
+    startLine: 6
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Defines a generic repository interface that provides basic Create, Read, Update, and Delete (CRUD) operations.
+  example: []
+  syntax:
+    content: 'public interface IRepository<TObject> where TObject : class'
+    typeParameters:
+    - id: TObject
+      description: The type of the entity the repository will manage. Must be a reference type.
+    content.vb: Public Interface IRepository(Of TObject As Class)
+  nameWithType.vb: IRepository(Of TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject)
+  name.vb: IRepository(Of TObject)
+- uid: Model.Interfaces.IRepository`1.Add(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Add(`0)
+  id: Add(`0)
+  parent: Model.Interfaces.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Add(TObject)
+  nameWithType: IRepository<TObject>.Add(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Add(TObject)
+  type: Method
+  source:
+    remote:
+      path: Model/Interfaces/IRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Add
+    path: ../Model/Interfaces/IRepository.cs
+    startLine: 13
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Adds a new object to the underlying data store.
+  example: []
+  syntax:
+    content: Task<int> Add(TObject obj)
+    parameters:
+    - id: obj
+      type: '{TObject}'
+      description: The object to add.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: A task that represents the asynchronous operation. The task result contains the number of records affected.
+    content.vb: Function Add(obj As TObject) As Task(Of Integer)
+  overload: Model.Interfaces.IRepository`1.Add*
+  nameWithType.vb: IRepository(Of TObject).Add(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Add(TObject)
+- uid: Model.Interfaces.IRepository`1.Update(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Update(`0)
+  id: Update(`0)
+  parent: Model.Interfaces.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Update(TObject)
+  nameWithType: IRepository<TObject>.Update(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Update(TObject)
+  type: Method
+  source:
+    remote:
+      path: Model/Interfaces/IRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Update
+    path: ../Model/Interfaces/IRepository.cs
+    startLine: 20
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Updates an existing object in the data store.
+  example: []
+  syntax:
+    content: Task<int> Update(TObject obj)
+    parameters:
+    - id: obj
+      type: '{TObject}'
+      description: The object to update.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: A task that represents the asynchronous operation. The task result contains the number of records affected.
+    content.vb: Function Update(obj As TObject) As Task(Of Integer)
+  overload: Model.Interfaces.IRepository`1.Update*
+  nameWithType.vb: IRepository(Of TObject).Update(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Update(TObject)
+- uid: Model.Interfaces.IRepository`1.Delete(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Delete(`0)
+  id: Delete(`0)
+  parent: Model.Interfaces.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Delete(TObject)
+  nameWithType: IRepository<TObject>.Delete(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Delete(TObject)
+  type: Method
+  source:
+    remote:
+      path: Model/Interfaces/IRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Delete
+    path: ../Model/Interfaces/IRepository.cs
+    startLine: 27
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Deletes an object from the data store.
+  example: []
+  syntax:
+    content: Task<int> Delete(TObject obj)
+    parameters:
+    - id: obj
+      type: '{TObject}'
+      description: The object to delete.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: A task that represents the asynchronous operation. The task result contains the number of records affected.
+    content.vb: Function Delete(obj As TObject) As Task(Of Integer)
+  overload: Model.Interfaces.IRepository`1.Delete*
+  nameWithType.vb: IRepository(Of TObject).Delete(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Delete(TObject)
+- uid: Model.Interfaces.IRepository`1.GetById(System.Int32)
+  commentId: M:Model.Interfaces.IRepository`1.GetById(System.Int32)
+  id: GetById(System.Int32)
+  parent: Model.Interfaces.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GetById(int)
+  nameWithType: IRepository<TObject>.GetById(int)
+  fullName: Model.Interfaces.IRepository<TObject>.GetById(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Interfaces/IRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetById
+    path: ../Model/Interfaces/IRepository.cs
+    startLine: 34
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Retrieves an object by its unique identifier.
+  example: []
+  syntax:
+    content: Task<TObject?> GetById(int id)
+    parameters:
+    - id: id
+      type: System.Int32
+      description: The identifier of the object to retrieve.
+    return:
+      type: System.Threading.Tasks.Task{{TObject}}
+      description: A task that represents the asynchronous operation. The task result contains the object if found; otherwise, null.
+    content.vb: Function GetById(id As Integer) As Task(Of TObject)
+  overload: Model.Interfaces.IRepository`1.GetById*
+  nameWithType.vb: IRepository(Of TObject).GetById(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetById(Integer)
+  name.vb: GetById(Integer)
+- uid: Model.Interfaces.IRepository`1.GetAll
+  commentId: M:Model.Interfaces.IRepository`1.GetAll
+  id: GetAll
+  parent: Model.Interfaces.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GetAll()
+  nameWithType: IRepository<TObject>.GetAll()
+  fullName: Model.Interfaces.IRepository<TObject>.GetAll()
+  type: Method
+  source:
+    remote:
+      path: Model/Interfaces/IRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetAll
+    path: ../Model/Interfaces/IRepository.cs
+    startLine: 40
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Retrieves all objects from the data store.
+  example: []
+  syntax:
+    content: Task<IEnumerable<TObject>> GetAll()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{TObject}}}
+      description: A task that represents the asynchronous operation. The task result contains a collection of all objects.
+    content.vb: Function GetAll() As Task(Of IEnumerable(Of TObject))
+  overload: Model.Interfaces.IRepository`1.GetAll*
+  nameWithType.vb: IRepository(Of TObject).GetAll()
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetAll()
+- uid: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  commentId: M:Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  id: CheckExist(System.Int32)
+  parent: Model.Interfaces.IRepository`1
+  langs:
+  - csharp
+  - vb
+  name: CheckExist(int)
+  nameWithType: IRepository<TObject>.CheckExist(int)
+  fullName: Model.Interfaces.IRepository<TObject>.CheckExist(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Interfaces/IRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: CheckExist
+    path: ../Model/Interfaces/IRepository.cs
+    startLine: 47
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Checks whether an object with the specified ID exists in the data store.
+  example: []
+  syntax:
+    content: Task<bool> CheckExist(int id)
+    parameters:
+    - id: id
+      type: System.Int32
+      description: The identifier of the object to check for existence.
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+      description: A task that represents the asynchronous operation. The task result is true if the object exists; otherwise, false.
+    content.vb: Function CheckExist(id As Integer) As Task(Of Boolean)
+  overload: Model.Interfaces.IRepository`1.CheckExist*
+  nameWithType.vb: IRepository(Of TObject).CheckExist(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+references:
+- uid: Model.Interfaces
+  commentId: N:Model.Interfaces
+  href: Model.html
+  name: Model.Interfaces
+  nameWithType: Model.Interfaces
+  fullName: Model.Interfaces
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+- uid: Model.Interfaces.IRepository`1.Add*
+  commentId: Overload:Model.Interfaces.IRepository`1.Add
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  name: Add
+  nameWithType: IRepository<TObject>.Add
+  fullName: Model.Interfaces.IRepository<TObject>.Add
+  nameWithType.vb: IRepository(Of TObject).Add
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Add
+- uid: '{TObject}'
+  commentId: '!:TObject'
+  definition: TObject
+  name: TObject
+  nameWithType: TObject
+  fullName: TObject
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: TObject
+  name: TObject
+  nameWithType: TObject
+  fullName: TObject
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Model.Interfaces.IRepository`1.Update*
+  commentId: Overload:Model.Interfaces.IRepository`1.Update
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  name: Update
+  nameWithType: IRepository<TObject>.Update
+  fullName: Model.Interfaces.IRepository<TObject>.Update
+  nameWithType.vb: IRepository(Of TObject).Update
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Update
+- uid: Model.Interfaces.IRepository`1.Delete*
+  commentId: Overload:Model.Interfaces.IRepository`1.Delete
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  name: Delete
+  nameWithType: IRepository<TObject>.Delete
+  fullName: Model.Interfaces.IRepository<TObject>.Delete
+  nameWithType.vb: IRepository(Of TObject).Delete
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Delete
+- uid: Model.Interfaces.IRepository`1.GetById*
+  commentId: Overload:Model.Interfaces.IRepository`1.GetById
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  name: GetById
+  nameWithType: IRepository<TObject>.GetById
+  fullName: Model.Interfaces.IRepository<TObject>.GetById
+  nameWithType.vb: IRepository(Of TObject).GetById
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetById
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.Tasks.Task{{TObject}}
+  commentId: T:System.Threading.Tasks.Task{`0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TObject>
+  nameWithType: Task<TObject>
+  fullName: System.Threading.Tasks.Task<TObject>
+  nameWithType.vb: Task(Of TObject)
+  fullName.vb: System.Threading.Tasks.Task(Of TObject)
+  name.vb: Task(Of TObject)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Model.Interfaces.IRepository`1.GetAll*
+  commentId: Overload:Model.Interfaces.IRepository`1.GetAll
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  name: GetAll
+  nameWithType: IRepository<TObject>.GetAll
+  fullName: Model.Interfaces.IRepository<TObject>.GetAll
+  nameWithType.vb: IRepository(Of TObject).GetAll
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetAll
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{TObject}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{`0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IEnumerable<TObject>>
+  nameWithType: Task<IEnumerable<TObject>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<TObject>>
+  nameWithType.vb: Task(Of IEnumerable(Of TObject))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of TObject))
+  name.vb: Task(Of IEnumerable(Of TObject))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: TObject
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+  - name: )
+- uid: Model.Interfaces.IRepository`1.CheckExist*
+  commentId: Overload:Model.Interfaces.IRepository`1.CheckExist
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  name: CheckExist
+  nameWithType: IRepository<TObject>.CheckExist
+  fullName: Model.Interfaces.IRepository<TObject>.CheckExist
+  nameWithType.vb: IRepository(Of TObject).CheckExist
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).CheckExist
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+shouldSkipMarkup: true

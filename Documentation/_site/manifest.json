@@ -1,0 +1,928 @@
+{
+  "source_base_path": "D:/GitHub_Repos/Personal-Budgeting/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Controller.Validators.BudgetInputValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Controller.Validators.BudgetInputValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Controller.Validators.BudgetInputValidator",
+      "Summary": "Validator class for validating `Budget` objects based on different rules for adding, updating, and deleting."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Controller.Validators.ExpenseInputValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Controller.Validators.ExpenseInputValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Controller.Validators.ExpenseInputValidator",
+      "Summary": "Validator class for validating inputs related to expense management.\nThis class uses FluentValidation to define validation rules for various expense operations such as add, update, delete, and setting reminders."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Controller.Validators.IncomeValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Controller.Validators.IncomeValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Controller.Validators.IncomeValidator",
+      "Summary": "Validates Income entities for various operations like Add, Update, Delete, and Search."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Controller.Validators.UserInputValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Controller.Validators.UserInputValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Controller.Validators.UserInputValidator",
+      "Summary": "Validator class for validating user input data for various user-related operations such as registration, login, and profile editing.\nUses FluentValidation to define validation rules for different user actions."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Controller.Validators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Controller.Validators.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Controller.Validators",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.ApplicationDbContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.ApplicationDbContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.ApplicationDbContext",
+      "Summary": "Represents the database context for the Personal Budgeting application."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.DbContextFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.DbContextFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.DbContextFactory",
+      "Summary": "Factory Pattern to Create ApplicationDbContext Variable"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Entities.Budget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Entities.Budget.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Entities.Budget",
+      "Summary": "Represents a budget entity in the system.\nit's being used by the entityFramework to represent the budgets records"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Entities.Expense.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Entities.Expense.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Entities.Expense",
+      "Summary": "Represents an expense entity in the system.\nIt's being used by EntityFramework to represent the expenses records."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Entities.Income.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Entities.Income.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Entities.Income",
+      "Summary": "Represents an income entity in the system.\nIt's being used by EntityFramework to represent the income records."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Entities.User.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Entities.User.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Entities.User",
+      "Summary": "Represents a user entity in the system.\nIt's being used by EntityFramework to represent the user records."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Entities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Entities.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Entities",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Handlers.BudgetHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Handlers.BudgetHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Handlers.BudgetHandler",
+      "Summary": "Handler class responsible for managing budget-related operations such as adding, deleting, updating, and retrieving budgets."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Handlers.ExpenseHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Handlers.ExpenseHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Handlers.ExpenseHandler",
+      "Summary": "Handler class responsible for managing expense-related operations such as adding, deleting, updating, searching, and setting reminders for expenses."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Handlers.IncomeHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Handlers.IncomeHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Handlers.IncomeHandler",
+      "Summary": "Handler class responsible for managing income-related operations such as adding, deleting, updating, and searching incomes."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Handlers.UserHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Handlers.UserHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Handlers.UserHandler",
+      "Summary": "Handler class responsible for managing user-related operations such as registration, login,\npassword change, and retrieving user details."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Handlers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Handlers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Handlers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Interfaces.IBudgetRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Interfaces.IBudgetRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Interfaces.IBudgetRepository",
+      "Summary": "Provides data access methods specific to budgets, extending the generic repository for <xref href=\"Model.Entities.Budget\" data-throw-if-not-resolved=\"false\"></xref>."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Interfaces.IExpenseRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Interfaces.IExpenseRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Interfaces.IExpenseRepository",
+      "Summary": "Provides data access methods specific to expenses, extending the generic repository for <xref href=\"Model.Entities.Expense\" data-throw-if-not-resolved=\"false\"></xref>."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Interfaces.IIncomeRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Interfaces.IIncomeRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Interfaces.IIncomeRepository",
+      "Summary": "Provides data access methods specific to incomes, extending the generic repository for <xref href=\"Model.Entities.Income\" data-throw-if-not-resolved=\"false\"></xref>."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Interfaces.IPasswordHasher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Interfaces.IPasswordHasher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Interfaces.IPasswordHasher",
+      "Summary": "Defines methods for hashing and verifying passwords."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Interfaces.IRepository-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Interfaces.IRepository-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Interfaces.IRepository<TObject>",
+      "Summary": "Defines a generic repository interface that provides basic Create, Read, Update, and Delete (CRUD) operations."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Interfaces.IUserRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Interfaces.IUserRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Interfaces.IUserRepository",
+      "Summary": "Provides data access methods specific to user-related operations, extending the generic repository for <xref href=\"Model.Entities.User\" data-throw-if-not-resolved=\"false\"></xref>."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Interfaces.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Interfaces",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Repositories.BudgetRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Repositories.BudgetRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Repositories.BudgetRepository",
+      "Summary": "Repository class responsible for performing CRUD operations on <xref href=\"Model.Entities.Budget\" data-throw-if-not-resolved=\"false\"></xref> entities.\nInherits from <xref href=\"Model.Repositories.GenericRepository%601\" data-throw-if-not-resolved=\"false\"></xref> and implements <xref href=\"Model.Interfaces.IBudgetRepository\" data-throw-if-not-resolved=\"false\"></xref>."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Repositories.ExpenseRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Repositories.ExpenseRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Repositories.ExpenseRepository",
+      "Summary": "Repository class responsible for performing CRUD operations on <xref href=\"Model.Entities.Expense\" data-throw-if-not-resolved=\"false\"></xref> entities.\nInherits from <xref href=\"Model.Repositories.GenericRepository%601\" data-throw-if-not-resolved=\"false\"></xref> and implements <xref href=\"Model.Interfaces.IExpenseRepository\" data-throw-if-not-resolved=\"false\"></xref>."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Repositories.GenericRepository-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Repositories.GenericRepository-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Repositories.GenericRepository<TObject>",
+      "Summary": "A generic repository that provides CRUD operations for entities of type <code class=\"typeparamref\">TObject</code>.\nImplements <xref href=\"Model.Interfaces.IRepository%601\" data-throw-if-not-resolved=\"false\"></xref> for all entities of type <code class=\"typeparamref\">TObject</code>."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Repositories.IncomeRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Repositories.IncomeRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Repositories.IncomeRepository",
+      "Summary": "Repository class responsible for performing CRUD operations on <xref href=\"Model.Entities.Income\" data-throw-if-not-resolved=\"false\"></xref> entities.\nInherits from <xref href=\"Model.Repositories.GenericRepository%601\" data-throw-if-not-resolved=\"false\"></xref> and implements <xref href=\"Model.Interfaces.IIncomeRepository\" data-throw-if-not-resolved=\"false\"></xref>."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Repositories.UserRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Repositories.UserRepository.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Repositories.UserRepository",
+      "Summary": "Repository for handling <xref href=\"Model.Entities.User\" data-throw-if-not-resolved=\"false\"></xref> entities, implementing <xref href=\"Model.Interfaces.IUserRepository\" data-throw-if-not-resolved=\"false\"></xref>.\nProvides data access methods for retrieving, adding, updating, and deleting users, as well as related data such as incomes, expenses, and budgets."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Repositories.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Repositories.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Repositories",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Utilities.ServicesContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Utilities.ServicesContainer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Utilities.ServicesContainer",
+      "Summary": "Provides a centralized service locator pattern implementation for dependency management."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Utilities.Sha512PasswordHasher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Utilities.Sha512PasswordHasher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Utilities.Sha512PasswordHasher",
+      "Summary": "Implements a password hashing and verification mechanism using PBKDF2 and SHA-512.\nThis provides a secure way to store and verify passwords."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.Utilities.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model.Utilities",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Model.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Model",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.App.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.App.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.App",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.ViewLocator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.ViewLocator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.ViewLocator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.ViewModels.MainWindowViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.ViewModels.MainWindowViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.ViewModels.MainWindowViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.ViewModels.ReminderViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.ViewModels.ReminderViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.ViewModels.ReminderViewModel",
+      "Summary": "A base class for objects of which the properties must be observable."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.ViewModels.ViewModelBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.ViewModels.ViewModelBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.ViewModels.ViewModelBase",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.ViewModels.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.ViewModels.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.ViewModels",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.MainWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.MainWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.MainWindow",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.BudgetPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.BudgetPage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages.BudgetPage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.ExpensesPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.ExpensesPage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages.ExpensesPage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.HomePage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.HomePage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages.HomePage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.IncomePage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.IncomePage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages.IncomePage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.LoginPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.LoginPage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages.LoginPage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.ProfilePage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.ProfilePage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages.ProfilePage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.RemindersPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.RemindersPage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages.RemindersPage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.SettingsPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.SettingsPage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages.SettingsPage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.Pages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.Pages.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views.Pages",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.Views.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.Views.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting.Views",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/PersonalBudgeting.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/PersonalBudgeting.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "PersonalBudgeting",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/View.IView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/View.IView.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "View.IView",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/View.Views.BudgetView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/View.Views.BudgetView.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "View.Views.BudgetView",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/View.Views.DashBoard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/View.Views.DashBoard.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "View.Views.DashBoard",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/View.Views.EditDetailsView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/View.Views.EditDetailsView.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "View.Views.EditDetailsView",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/View.Views.ExpenseView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/View.Views.ExpenseView.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "View.Views.ExpenseView",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/View.Views.IncomeView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/View.Views.IncomeView.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "View.Views.IncomeView",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/View.Views.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/View.Views.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "View.Views",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/View.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/View.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "View",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

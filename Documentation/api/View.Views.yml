@@ -1,0 +1,52 @@
+### YamlMime:ManagedReference
+items:
+- uid: View.Views
+  commentId: N:View.Views
+  id: View.Views
+  children:
+  - View.Views.BudgetView
+  - View.Views.DashBoard
+  - View.Views.EditDetailsView
+  - View.Views.ExpenseView
+  - View.Views.IncomeView
+  langs:
+  - csharp
+  - vb
+  name: View.Views
+  nameWithType: View.Views
+  fullName: View.Views
+  type: Namespace
+  assemblies:
+  - View
+references:
+- uid: View.Views.BudgetView
+  commentId: T:View.Views.BudgetView
+  href: View.Views.BudgetView.html
+  name: BudgetView
+  nameWithType: BudgetView
+  fullName: View.Views.BudgetView
+- uid: View.Views.DashBoard
+  commentId: T:View.Views.DashBoard
+  href: View.Views.DashBoard.html
+  name: DashBoard
+  nameWithType: DashBoard
+  fullName: View.Views.DashBoard
+- uid: View.Views.EditDetailsView
+  commentId: T:View.Views.EditDetailsView
+  href: View.Views.EditDetailsView.html
+  name: EditDetailsView
+  nameWithType: EditDetailsView
+  fullName: View.Views.EditDetailsView
+- uid: View.Views.ExpenseView
+  commentId: T:View.Views.ExpenseView
+  href: View.Views.ExpenseView.html
+  name: ExpenseView
+  nameWithType: ExpenseView
+  fullName: View.Views.ExpenseView
+- uid: View.Views.IncomeView
+  commentId: T:View.Views.IncomeView
+  href: View.Views.IncomeView.html
+  name: IncomeView
+  nameWithType: IncomeView
+  fullName: View.Views.IncomeView
+shouldSkipMarkup: true

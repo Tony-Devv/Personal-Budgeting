@@ -1,0 +1,61 @@
+### YamlMime:ManagedReference
+items:
+- uid: PersonalBudgeting.ViewModels
+  commentId: N:PersonalBudgeting.ViewModels
+  id: PersonalBudgeting.ViewModels
+  children:
+  - PersonalBudgeting.ViewModels.MainWindowViewModel
+  - PersonalBudgeting.ViewModels.ReminderViewModel
+  - PersonalBudgeting.ViewModels.ViewModelBase
+  langs:
+  - csharp
+  - vb
+  name: PersonalBudgeting.ViewModels
+  nameWithType: PersonalBudgeting.ViewModels
+  fullName: PersonalBudgeting.ViewModels
+  type: Namespace
+  assemblies:
+  - PersonalBudgeting
+references:
+- uid: PersonalBudgeting.ViewModels.MainWindowViewModel
+  commentId: T:PersonalBudgeting.ViewModels.MainWindowViewModel
+  href: PersonalBudgeting.ViewModels.MainWindowViewModel.html
+  name: MainWindowViewModel
+  nameWithType: MainWindowViewModel
+  fullName: PersonalBudgeting.ViewModels.MainWindowViewModel
+- uid: PersonalBudgeting.ViewModels.ReminderViewModel
+  commentId: T:PersonalBudgeting.ViewModels.ReminderViewModel
+  href: PersonalBudgeting.ViewModels.ReminderViewModel.html
+  name: ReminderViewModel
+  nameWithType: ReminderViewModel
+  fullName: PersonalBudgeting.ViewModels.ReminderViewModel
+- uid: PersonalBudgeting.ViewModels.ViewModelBase
+  commentId: T:PersonalBudgeting.ViewModels.ViewModelBase
+  parent: PersonalBudgeting.ViewModels
+  href: PersonalBudgeting.ViewModels.ViewModelBase.html
+  name: ViewModelBase
+  nameWithType: ViewModelBase
+  fullName: PersonalBudgeting.ViewModels.ViewModelBase
+- uid: PersonalBudgeting.ViewModels
+  commentId: N:PersonalBudgeting.ViewModels
+  href: PersonalBudgeting.html
+  name: PersonalBudgeting.ViewModels
+  nameWithType: PersonalBudgeting.ViewModels
+  fullName: PersonalBudgeting.ViewModels
+  spec.csharp:
+  - uid: PersonalBudgeting
+    name: PersonalBudgeting
+    href: PersonalBudgeting.html
+  - name: .
+  - uid: PersonalBudgeting.ViewModels
+    name: ViewModels
+    href: PersonalBudgeting.ViewModels.html
+  spec.vb:
+  - uid: PersonalBudgeting
+    name: PersonalBudgeting
+    href: PersonalBudgeting.html
+  - name: .
+  - uid: PersonalBudgeting.ViewModels
+    name: ViewModels
+    href: PersonalBudgeting.ViewModels.html
+shouldSkipMarkup: true

@@ -1,0 +1,196 @@
+### YamlMime:TableOfContent
+items:
+- uid: Controller.Validators
+  name: Controller.Validators
+  type: Namespace
+  items:
+  - uid: Controller.Validators.BudgetInputValidator
+    name: BudgetInputValidator
+    type: Class
+  - uid: Controller.Validators.ExpenseInputValidator
+    name: ExpenseInputValidator
+    type: Class
+  - uid: Controller.Validators.IncomeValidator
+    name: IncomeValidator
+    type: Class
+  - uid: Controller.Validators.UserInputValidator
+    name: UserInputValidator
+    type: Class
+- uid: Model
+  name: Model
+  type: Namespace
+  items:
+  - uid: Model.ApplicationDbContext
+    name: ApplicationDbContext
+    type: Class
+  - uid: Model.DbContextFactory
+    name: DbContextFactory
+    type: Class
+- uid: Model.Entities
+  name: Model.Entities
+  type: Namespace
+  items:
+  - uid: Model.Entities.Budget
+    name: Budget
+    type: Class
+  - uid: Model.Entities.Expense
+    name: Expense
+    type: Class
+  - uid: Model.Entities.Income
+    name: Income
+    type: Class
+  - uid: Model.Entities.User
+    name: User
+    type: Class
+- uid: Model.Handlers
+  name: Model.Handlers
+  type: Namespace
+  items:
+  - uid: Model.Handlers.BudgetHandler
+    name: BudgetHandler
+    type: Class
+  - uid: Model.Handlers.ExpenseHandler
+    name: ExpenseHandler
+    type: Class
+  - uid: Model.Handlers.IncomeHandler
+    name: IncomeHandler
+    type: Class
+  - uid: Model.Handlers.UserHandler
+    name: UserHandler
+    type: Class
+- uid: Model.Interfaces
+  name: Model.Interfaces
+  type: Namespace
+  items:
+  - uid: Model.Interfaces.IBudgetRepository
+    name: IBudgetRepository
+    type: Interface
+  - uid: Model.Interfaces.IExpenseRepository
+    name: IExpenseRepository
+    type: Interface
+  - uid: Model.Interfaces.IIncomeRepository
+    name: IIncomeRepository
+    type: Interface
+  - uid: Model.Interfaces.IPasswordHasher
+    name: IPasswordHasher
+    type: Interface
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository<TObject>
+    type: Interface
+  - uid: Model.Interfaces.IUserRepository
+    name: IUserRepository
+    type: Interface
+- uid: Model.Repositories
+  name: Model.Repositories
+  type: Namespace
+  items:
+  - uid: Model.Repositories.BudgetRepository
+    name: BudgetRepository
+    type: Class
+  - uid: Model.Repositories.ExpenseRepository
+    name: ExpenseRepository
+    type: Class
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository<TObject>
+    type: Class
+  - uid: Model.Repositories.IncomeRepository
+    name: IncomeRepository
+    type: Class
+  - uid: Model.Repositories.UserRepository
+    name: UserRepository
+    type: Class
+- uid: Model.Utilities
+  name: Model.Utilities
+  type: Namespace
+  items:
+  - uid: Model.Utilities.ServicesContainer
+    name: ServicesContainer
+    type: Class
+  - uid: Model.Utilities.Sha512PasswordHasher
+    name: Sha512PasswordHasher
+    type: Class
+- uid: PersonalBudgeting
+  name: PersonalBudgeting
+  type: Namespace
+  items:
+  - uid: PersonalBudgeting.App
+    name: App
+    type: Class
+  - uid: PersonalBudgeting.ViewLocator
+    name: ViewLocator
+    type: Class
+- uid: PersonalBudgeting.ViewModels
+  name: PersonalBudgeting.ViewModels
+  type: Namespace
+  items:
+  - uid: PersonalBudgeting.ViewModels.MainWindowViewModel
+    name: MainWindowViewModel
+    type: Class
+  - uid: PersonalBudgeting.ViewModels.ReminderViewModel
+    name: ReminderViewModel
+    type: Class
+  - uid: PersonalBudgeting.ViewModels.ViewModelBase
+    name: ViewModelBase
+    type: Class
+- uid: PersonalBudgeting.Views
+  name: PersonalBudgeting.Views
+  type: Namespace
+  items:
+  - uid: PersonalBudgeting.Views.MainWindow
+    name: MainWindow
+    type: Class
+- uid: PersonalBudgeting.Views.Pages
+  name: PersonalBudgeting.Views.Pages
+  type: Namespace
+  items:
+  - uid: PersonalBudgeting.Views.Pages.BudgetPage
+    name: BudgetPage
+    type: Class
+  - uid: PersonalBudgeting.Views.Pages.ExpensesPage
+    name: ExpensesPage
+    type: Class
+  - uid: PersonalBudgeting.Views.Pages.HomePage
+    name: HomePage
+    type: Class
+  - uid: PersonalBudgeting.Views.Pages.IncomePage
+    name: IncomePage
+    type: Class
+  - uid: PersonalBudgeting.Views.Pages.LoginPage
+    name: LoginPage
+    type: Class
+  - uid: PersonalBudgeting.Views.Pages.ProfilePage
+    name: ProfilePage
+    type: Class
+  - uid: PersonalBudgeting.Views.Pages.RemindersPage
+    name: RemindersPage
+    type: Class
+  - uid: PersonalBudgeting.Views.Pages.SettingsPage
+    name: SettingsPage
+    type: Class
+- uid: View
+  name: View
+  type: Namespace
+  items:
+  - uid: View.IView
+    name: IView
+    type: Interface
+- uid: View.Views
+  name: View.Views
+  type: Namespace
+  items:
+  - uid: View.Views.BudgetView
+    name: BudgetView
+    type: Class
+  - uid: View.Views.DashBoard
+    name: DashBoard
+    type: Class
+  - uid: View.Views.EditDetailsView
+    name: EditDetailsView
+    type: Class
+  - uid: View.Views.ExpenseView
+    name: ExpenseView
+    type: Class
+  - uid: View.Views.IncomeView
+    name: IncomeView
+    type: Class
+memberLayout: SamePage

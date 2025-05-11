@@ -4,8 +4,13 @@ using Model.Interfaces;
 
 namespace Model.Repositories;
 
+/// <summary>
+/// Repository class responsible for performing CRUD operations on <see cref="Expense"/> entities.
+/// Inherits from <see cref="GenericRepository{Expense}"/> and implements <see cref="IExpenseRepository"/>.
+/// </summary>
 public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
 {
+    /// <inheritdoc cref="IExpenseRepository"/>
     public async Task<bool> SetReminderTime(Expense expense, DateTime time)
     {
         await using var _dbContext = _dbContextFactory.CreateDbContext();
@@ -28,6 +33,7 @@ public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
         return false;
     }
 
+    /// <inheritdoc cref="IExpenseRepository"/>
     public async Task<Expense?> GetExpenseByName(int userId, string expenseName)
     {
         await using var _dbContext = _dbContextFactory.CreateDbContext();
@@ -35,7 +41,8 @@ public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
             .Where(e => e.UserId == userId && e.ExpenseName == expenseName)
             .FirstOrDefaultAsync();
     }
-
+    
+    /// <inheritdoc cref="IExpenseRepository"/>
     public async Task<List<Expense>> GetAllThatHasReminder(int userId)
     {
         await using var _dbContext = _dbContextFactory.CreateDbContext();
