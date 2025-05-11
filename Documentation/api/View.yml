@@ -1,0 +1,31 @@
+### YamlMime:ManagedReference
+items:
+- uid: View
+  commentId: N:View
+  id: View
+  children:
+  - View.IView
+  langs:
+  - csharp
+  - vb
+  name: View
+  nameWithType: View
+  fullName: View
+  type: Namespace
+  assemblies:
+  - View
+references:
+- uid: View.IView
+  commentId: T:View.IView
+  parent: View
+  href: View.IView.html
+  name: IView
+  nameWithType: IView
+  fullName: View.IView
+- uid: View
+  commentId: N:View
+  href: View.html
+  name: View
+  nameWithType: View
+  fullName: View
+shouldSkipMarkup: true

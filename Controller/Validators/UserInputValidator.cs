@@ -1,98 +1,109 @@
 using FluentValidation;
 using Model.Entities;
 
-namespace Controller.Validators;
-
-public class UserInputValidator : AbstractValidator<User>
+namespace Controller.Validators
 {
-    public UserInputValidator()
+    /// <summary>
+    /// Validator class for validating user input data for various user-related operations such as registration, login, and profile editing.
+    /// Uses FluentValidation to define validation rules for different user actions.
+    /// </summary>
+    public class UserInputValidator : AbstractValidator<User>
     {
-        RuleSet(UserController.UserValidationsRules.Register.ToString(), () =>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserInputValidator"/> class.
+        /// Defines validation rules for various user actions such as registration, login, profile editing, password change, and data retrieval.
+        /// </summary>
+        public UserInputValidator()
         {
-            RuleFor(u => u.Id).Empty();
-
-            RuleFor(u => u.UserName).NotEmpty().WithMessage("UserName can't Be Empty")
-                .MinimumLength(4).WithMessage("UserName have to be at least 4")
-                .MaximumLength(100).WithMessage("UserName Maximum can be 100 character");
-
-            RuleFor(u => u.Email).NotEmpty().WithMessage("Email Can't Be Empty")
-                .Matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$").WithMessage("This is not a valid Email")
-                .MaximumLength(100).WithMessage("Maximum Length is 100");
-
-            RuleFor(u => u.PhoneNumber).NotEmpty().WithMessage("Phone Number can't be Empty")
-                .Matches("^01[0125]\\d{8}$").WithMessage("Not a valid Egypt PhoneNumber, try again");
-
-            RuleFor(u => u.Password).NotEmpty().WithMessage("Password Can't Be Empty")
-                .MinimumLength(6).WithMessage("Minimum Password Length is 6")
-                .MaximumLength(255).WithMessage("Maximum Password Length is 255");
-        });
-        
-        
-        
-        
-        RuleSet(UserController.UserValidationsRules.Login.ToString(), () =>
-        {
-            RuleFor(u => u.Id).Empty().WithMessage("Don't Include Id in login");
-            
-            RuleFor(u => u.Email).NotEmpty().WithMessage("Email Can't Be Empty")
-                .Matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$").WithMessage("This is not a valid Email")
-                .MaximumLength(100).WithMessage("Maximum Length is 100");
-            
-            /*
-            RuleFor(u => u.Password).NotEmpty().WithMessage("Password Can't Be Empty")
-                .MinimumLength(6).WithMessage("Minimum Password Length is 6")
-                .MaximumLength(255).WithMessage("Maximum Password Length is 255");
-        */
-        });
-        
-        
-        RuleSet(UserController.UserValidationsRules.Edit.ToString(), () =>
-        {
-            RuleFor(u => u.Id).NotEmpty().WithMessage("Id Can't Be Empty if your trying to Edit");
-            
-            RuleFor(u => u.UserName).NotEmpty().WithMessage("UserName can't Be Empty")
-                .MinimumLength(4).WithMessage("UserName have to be at least 4")
-                .MaximumLength(100).WithMessage("UserName Maximum can be 100 character");
-
-            RuleFor(u => u.Email).NotEmpty().WithMessage("Email Can't Be Empty")
-                .EmailAddress().WithMessage("This is not a valid Email")
-                .MaximumLength(100).WithMessage("Maximum Length is 100");
-
-            RuleFor(u => u.PhoneNumber).NotEmpty().WithMessage("Phone Number can't be Empty")
-                .Matches("^01[0125]\\d{8}$").WithMessage("Not a valid Egypt PhoneNumber, try again");
-
-            RuleFor(u => u.Password).Empty()
-                .WithMessage("Don't Include Password in the input if your editing details only");
-        });
-
-
-        RuleSet(UserController.UserValidationsRules.ChangePassword.ToString(),
-            () =>
+            // Validation rules for user registration
+            RuleSet(UserController.UserValidationsRules.Register.ToString(), () =>
             {
-                RuleFor(u => u.Id).NotEmpty().WithMessage("Id Can't Be Empty When Changing Password");
+                RuleFor(u => u.Id).Empty().WithMessage("Id should be empty during registration.");
 
-                RuleFor(u => u.Password).NotEmpty().WithMessage("Old Password Must be Entered").MinimumLength(6)
-                    .WithMessage("Minimum Length is 6 characters for password");
+                RuleFor(u => u.UserName).NotEmpty().WithMessage("UserName can't be empty")
+                    .MinimumLength(4).WithMessage("UserName must be at least 4 characters")
+                    .MaximumLength(100).WithMessage("UserName cannot exceed 100 characters");
+
+                RuleFor(u => u.Email).NotEmpty().WithMessage("Email can't be empty")
+                    .Matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$").WithMessage("Invalid email format")
+                    .MaximumLength(100).WithMessage("Email cannot exceed 100 characters");
+
+                RuleFor(u => u.PhoneNumber).NotEmpty().WithMessage("Phone number can't be empty")
+                    .Matches("^01[0125]\\d{8}$").WithMessage("Invalid phone number format (Egypt only)");
+
+                RuleFor(u => u.Password).NotEmpty().WithMessage("Password can't be empty")
+                    .MinimumLength(6).WithMessage("Password must be at least 6 characters long")
+                    .MaximumLength(255).WithMessage("Password cannot exceed 255 characters");
             });
 
-        RuleSet(
-            UserController.UserValidationsRules.GetUserData.ToString(),
-            () =>
+            // Validation rules for user login
+            RuleSet(UserController.UserValidationsRules.Login.ToString(), () =>
             {
-                RuleFor(u => u.Id).NotEmpty().WithMessage("Can't Leave Id Empty if Accessing Data");
-            }
-            );
-    }
-    
-    public (bool Success,List<string> errors) ValidateSingleString_ForPassword(string input)
-    {
-        var errors = new List<string>();
-        var stringValidator = new InlineValidator<string>();
-        stringValidator.RuleFor(x => x).NotEmpty().WithMessage("New Password Can't Be Empty");
-        stringValidator.RuleFor(x => x).MinimumLength(4).WithMessage("Password Length must be more than 6 characters");
+                RuleFor(u => u.Id).Empty().WithMessage("Don't include Id during login");
 
-        var validationResult = stringValidator.Validate(input);
-        errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
-        return (validationResult.IsValid,errors);
+                RuleFor(u => u.Email).NotEmpty().WithMessage("Email can't be empty")
+                    .Matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$").WithMessage("Invalid email format")
+                    .MaximumLength(100).WithMessage("Email cannot exceed 100 characters");
+
+                // Password validation omitted for login (can be handled separately in another rule set)
+            });
+
+            // Validation rules for editing user details
+            RuleSet(UserController.UserValidationsRules.Edit.ToString(), () =>
+            {
+                RuleFor(u => u.Id).NotEmpty().WithMessage("Id can't be empty when editing details");
+
+                RuleFor(u => u.UserName).NotEmpty().WithMessage("UserName can't be empty")
+                    .MinimumLength(4).WithMessage("UserName must be at least 4 characters")
+                    .MaximumLength(100).WithMessage("UserName cannot exceed 100 characters");
+
+                RuleFor(u => u.Email).NotEmpty().WithMessage("Email can't be empty")
+                    .EmailAddress().WithMessage("Invalid email format")
+                    .MaximumLength(100).WithMessage("Email cannot exceed 100 characters");
+
+                RuleFor(u => u.PhoneNumber).NotEmpty().WithMessage("Phone number can't be empty")
+                    .Matches("^01[0125]\\d{8}$").WithMessage("Invalid phone number format (Egypt only)");
+
+                RuleFor(u => u.Password).Empty().WithMessage("Do not include password if you're editing other details");
+            });
+
+            // Validation rules for changing password
+            RuleSet(UserController.UserValidationsRules.ChangePassword.ToString(), () =>
+            {
+                RuleFor(u => u.Id).NotEmpty().WithMessage("Id can't be empty when changing password");
+
+                RuleFor(u => u.Password).NotEmpty().WithMessage("Old password must be entered")
+                    .MinimumLength(6).WithMessage("Password must be at least 6 characters long");
+            });
+
+            // Validation rules for retrieving user data
+            RuleSet(UserController.UserValidationsRules.GetUserData.ToString(), () =>
+            {
+                RuleFor(u => u.Id).NotEmpty().WithMessage("Id can't be empty when accessing user data");
+            });
+        }
+
+        /// <summary>
+        /// Validates a single string (e.g., a password) for certain conditions.
+        /// </summary>
+        /// <param name="input">The string input to validate.</param>
+        /// <returns>
+        /// A tuple containing a boolean indicating whether the validation was successful, 
+        /// and a list of error messages if validation failed.
+        /// </returns>
+        public (bool Success, List<string> Errors) ValidateSingleString_ForPassword(string input)
+        {
+            var errors = new List<string>();
+            var stringValidator = new InlineValidator<string>();
+
+            // Password validation rules
+            stringValidator.RuleFor(x => x).NotEmpty().WithMessage("New password can't be empty");
+            stringValidator.RuleFor(x => x).MinimumLength(4).WithMessage("Password length must be at least 4 characters");
+
+            var validationResult = stringValidator.Validate(input);
+            errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+
+            return (validationResult.IsValid, errors);
+        }
     }
 }

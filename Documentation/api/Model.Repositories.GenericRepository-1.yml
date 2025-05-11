@@ -1,0 +1,1353 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Repositories.GenericRepository`1
+  commentId: T:Model.Repositories.GenericRepository`1
+  id: GenericRepository`1
+  parent: Model.Repositories
+  children:
+  - Model.Repositories.GenericRepository`1.#ctor
+  - Model.Repositories.GenericRepository`1.Add(`0)
+  - Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  - Model.Repositories.GenericRepository`1.Delete(`0)
+  - Model.Repositories.GenericRepository`1.GetAll
+  - Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  - Model.Repositories.GenericRepository`1.Update(`0)
+  - Model.Repositories.GenericRepository`1._dbContextFactory
+  langs:
+  - csharp
+  - vb
+  name: GenericRepository<TObject>
+  nameWithType: GenericRepository<TObject>
+  fullName: Model.Repositories.GenericRepository<TObject>
+  type: Class
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GenericRepository
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 11
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: >-
+    A generic repository that provides CRUD operations for entities of type <code class="typeparamref">TObject</code>.
+
+    Implements <xref href="Model.Interfaces.IRepository%601" data-throw-if-not-resolved="false"></xref> for all entities of type <code class="typeparamref">TObject</code>.
+  example: []
+  syntax:
+    content: 'public class GenericRepository<TObject> : IRepository<TObject> where TObject : class'
+    typeParameters:
+    - id: TObject
+      description: The type of the entity to be handled by the repository. Must be a class.
+    content.vb: Public Class GenericRepository(Of TObject As Class) Implements IRepository(Of TObject)
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Model.Repositories.BudgetRepository
+  - Model.Repositories.ExpenseRepository
+  - Model.Repositories.IncomeRepository
+  - Model.Repositories.UserRepository
+  implements:
+  - Model.Interfaces.IRepository{{TObject}}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  nameWithType.vb: GenericRepository(Of TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject)
+  name.vb: GenericRepository(Of TObject)
+- uid: Model.Repositories.GenericRepository`1._dbContextFactory
+  commentId: F:Model.Repositories.GenericRepository`1._dbContextFactory
+  id: _dbContextFactory
+  parent: Model.Repositories.GenericRepository`1
+  langs:
+  - csharp
+  - vb
+  name: _dbContextFactory
+  nameWithType: GenericRepository<TObject>._dbContextFactory
+  fullName: Model.Repositories.GenericRepository<TObject>._dbContextFactory
+  type: Field
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: _dbContextFactory
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 16
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Factory used to create <xref href="Microsoft.EntityFrameworkCore.DbContext" data-throw-if-not-resolved="false"></xref> instances for database operations.
+  example: []
+  syntax:
+    content: protected readonly DbContextFactory _dbContextFactory
+    return:
+      type: Model.DbContextFactory
+    content.vb: Protected ReadOnly _dbContextFactory As DbContextFactory
+  nameWithType.vb: GenericRepository(Of TObject)._dbContextFactory
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject)._dbContextFactory
+- uid: Model.Repositories.GenericRepository`1.#ctor
+  commentId: M:Model.Repositories.GenericRepository`1.#ctor
+  id: '#ctor'
+  parent: Model.Repositories.GenericRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GenericRepository()
+  nameWithType: GenericRepository<TObject>.GenericRepository()
+  fullName: Model.Repositories.GenericRepository<TObject>.GenericRepository()
+  type: Constructor
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: .ctor
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 21
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Initializes a new instance of the <xref href="Model.Repositories.GenericRepository%601" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public GenericRepository()
+    content.vb: Public Sub New()
+  overload: Model.Repositories.GenericRepository`1.#ctor*
+  nameWithType.vb: GenericRepository(Of TObject).New()
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).New()
+  name.vb: New()
+- uid: Model.Repositories.GenericRepository`1.Add(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Add(`0)
+  id: Add(`0)
+  parent: Model.Repositories.GenericRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Add(TObject)
+  nameWithType: GenericRepository<TObject>.Add(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Add(TObject)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Add
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 27
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Adds a new object to the underlying data store.
+  example: []
+  syntax:
+    content: public Task<int> Add(TObject obj)
+    parameters:
+    - id: obj
+      type: '{TObject}'
+      description: The object to add.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: A task that represents the asynchronous operation. The task result contains the number of records affected.
+    content.vb: Public Function Add(obj As TObject) As Task(Of Integer)
+  overload: Model.Repositories.GenericRepository`1.Add*
+  implements:
+  - Model.Interfaces.IRepository{{TObject}}.Add({TObject})
+  nameWithType.vb: GenericRepository(Of TObject).Add(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Add(TObject)
+- uid: Model.Repositories.GenericRepository`1.Update(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Update(`0)
+  id: Update(`0)
+  parent: Model.Repositories.GenericRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Update(TObject)
+  nameWithType: GenericRepository<TObject>.Update(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Update(TObject)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Update
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 35
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Updates an existing object in the data store.
+  example: []
+  syntax:
+    content: public Task<int> Update(TObject obj)
+    parameters:
+    - id: obj
+      type: '{TObject}'
+      description: The object to update.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: A task that represents the asynchronous operation. The task result contains the number of records affected.
+    content.vb: Public Function Update(obj As TObject) As Task(Of Integer)
+  overload: Model.Repositories.GenericRepository`1.Update*
+  implements:
+  - Model.Interfaces.IRepository{{TObject}}.Update({TObject})
+  nameWithType.vb: GenericRepository(Of TObject).Update(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Update(TObject)
+- uid: Model.Repositories.GenericRepository`1.Delete(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Delete(`0)
+  id: Delete(`0)
+  parent: Model.Repositories.GenericRepository`1
+  langs:
+  - csharp
+  - vb
+  name: Delete(TObject)
+  nameWithType: GenericRepository<TObject>.Delete(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Delete(TObject)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Delete
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 61
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Deletes an object from the data store.
+  example: []
+  syntax:
+    content: public Task<int> Delete(TObject obj)
+    parameters:
+    - id: obj
+      type: '{TObject}'
+      description: The object to delete.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: A task that represents the asynchronous operation. The task result contains the number of records affected.
+    content.vb: Public Function Delete(obj As TObject) As Task(Of Integer)
+  overload: Model.Repositories.GenericRepository`1.Delete*
+  implements:
+  - Model.Interfaces.IRepository{{TObject}}.Delete({TObject})
+  nameWithType.vb: GenericRepository(Of TObject).Delete(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Delete(TObject)
+- uid: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  id: GetById(System.Int32)
+  parent: Model.Repositories.GenericRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GetById(int)
+  nameWithType: GenericRepository<TObject>.GetById(int)
+  fullName: Model.Repositories.GenericRepository<TObject>.GetById(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetById
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 69
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Retrieves an object by its unique identifier.
+  example: []
+  syntax:
+    content: public Task<TObject?> GetById(int id)
+    parameters:
+    - id: id
+      type: System.Int32
+      description: The identifier of the object to retrieve.
+    return:
+      type: System.Threading.Tasks.Task{{TObject}}
+      description: A task that represents the asynchronous operation. The task result contains the object if found; otherwise, null.
+    content.vb: Public Function GetById(id As Integer) As Task(Of TObject)
+  overload: Model.Repositories.GenericRepository`1.GetById*
+  implements:
+  - Model.Interfaces.IRepository{{TObject}}.GetById(System.Int32)
+  nameWithType.vb: GenericRepository(Of TObject).GetById(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).GetById(Integer)
+  name.vb: GetById(Integer)
+- uid: Model.Repositories.GenericRepository`1.GetAll
+  commentId: M:Model.Repositories.GenericRepository`1.GetAll
+  id: GetAll
+  parent: Model.Repositories.GenericRepository`1
+  langs:
+  - csharp
+  - vb
+  name: GetAll()
+  nameWithType: GenericRepository<TObject>.GetAll()
+  fullName: Model.Repositories.GenericRepository<TObject>.GetAll()
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetAll
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 77
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Retrieves all objects from the data store.
+  example: []
+  syntax:
+    content: public Task<IEnumerable<TObject>>? GetAll()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{TObject}}}
+      description: A task that represents the asynchronous operation. The task result contains a collection of all objects.
+    content.vb: Public Function GetAll() As Task(Of IEnumerable(Of TObject))
+  overload: Model.Repositories.GenericRepository`1.GetAll*
+  implements:
+  - Model.Interfaces.IRepository{{TObject}}.GetAll
+  nameWithType.vb: GenericRepository(Of TObject).GetAll()
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).GetAll()
+- uid: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  id: CheckExist(System.Int32)
+  parent: Model.Repositories.GenericRepository`1
+  langs:
+  - csharp
+  - vb
+  name: CheckExist(int)
+  nameWithType: GenericRepository<TObject>.CheckExist(int)
+  fullName: Model.Repositories.GenericRepository<TObject>.CheckExist(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/GenericRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: CheckExist
+    path: ../Model/Repositories/GenericRepository.cs
+    startLine: 84
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Checks whether an object with the specified ID exists in the data store.
+  example: []
+  syntax:
+    content: public Task<bool> CheckExist(int id)
+    parameters:
+    - id: id
+      type: System.Int32
+      description: The identifier of the object to check for existence.
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+      description: A task that represents the asynchronous operation. The task result is true if the object exists; otherwise, false.
+    content.vb: Public Function CheckExist(id As Integer) As Task(Of Boolean)
+  overload: Model.Repositories.GenericRepository`1.CheckExist*
+  implements:
+  - Model.Interfaces.IRepository{{TObject}}.CheckExist(System.Int32)
+  nameWithType.vb: GenericRepository(Of TObject).CheckExist(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+references:
+- uid: Model.Interfaces.IRepository`1
+  commentId: T:Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<TObject>
+  nameWithType: IRepository<TObject>
+  fullName: Model.Interfaces.IRepository<TObject>
+  nameWithType.vb: IRepository(Of TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject)
+  name.vb: IRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Repositories
+  commentId: N:Model.Repositories
+  href: Model.html
+  name: Model.Repositories
+  nameWithType: Model.Repositories
+  fullName: Model.Repositories
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Repositories
+    name: Repositories
+    href: Model.Repositories.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Repositories
+    name: Repositories
+    href: Model.Repositories.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Model.Interfaces.IRepository{{TObject}}
+  commentId: T:Model.Interfaces.IRepository{`0}
+  parent: Model.Interfaces
+  definition: Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<TObject>
+  nameWithType: IRepository<TObject>
+  fullName: Model.Interfaces.IRepository<TObject>
+  nameWithType.vb: IRepository(Of TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject)
+  name.vb: IRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Model.Interfaces
+  commentId: N:Model.Interfaces
+  href: Model.html
+  name: Model.Interfaces
+  nameWithType: Model.Interfaces
+  fullName: Model.Interfaces
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+- uid: Microsoft.EntityFrameworkCore.DbContext
+  commentId: T:Microsoft.EntityFrameworkCore.DbContext
+  parent: Microsoft.EntityFrameworkCore
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext
+  name: DbContext
+  nameWithType: DbContext
+  fullName: Microsoft.EntityFrameworkCore.DbContext
+- uid: Model.DbContextFactory
+  commentId: T:Model.DbContextFactory
+  parent: Model
+  href: Model.DbContextFactory.html
+  name: DbContextFactory
+  nameWithType: DbContextFactory
+  fullName: Model.DbContextFactory
+- uid: Microsoft.EntityFrameworkCore
+  commentId: N:Microsoft.EntityFrameworkCore
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.EntityFrameworkCore
+  nameWithType: Microsoft.EntityFrameworkCore
+  fullName: Microsoft.EntityFrameworkCore
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.EntityFrameworkCore
+    name: EntityFrameworkCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.EntityFrameworkCore
+    name: EntityFrameworkCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore
+- uid: Model
+  commentId: N:Model
+  href: Model.html
+  name: Model
+  nameWithType: Model
+  fullName: Model
+- uid: Model.Repositories.GenericRepository`1
+  commentId: T:Model.Repositories.GenericRepository`1
+  href: Model.Repositories.GenericRepository-1.html
+  name: GenericRepository<TObject>
+  nameWithType: GenericRepository<TObject>
+  fullName: Model.Repositories.GenericRepository<TObject>
+  nameWithType.vb: GenericRepository(Of TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject)
+  name.vb: GenericRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.#ctor*
+  commentId: Overload:Model.Repositories.GenericRepository`1.#ctor
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1__ctor
+  name: GenericRepository
+  nameWithType: GenericRepository<TObject>.GenericRepository
+  fullName: Model.Repositories.GenericRepository<TObject>.GenericRepository
+  nameWithType.vb: GenericRepository(Of TObject).New
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).New
+  name.vb: New
+- uid: Model.Repositories.GenericRepository`1.Add*
+  commentId: Overload:Model.Repositories.GenericRepository`1.Add
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  name: Add
+  nameWithType: GenericRepository<TObject>.Add
+  fullName: Model.Repositories.GenericRepository<TObject>.Add
+  nameWithType.vb: GenericRepository(Of TObject).Add
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Add
+- uid: Model.Interfaces.IRepository{{TObject}}.Add({TObject})
+  commentId: M:Model.Interfaces.IRepository{`0}.Add(`0)
+  parent: Model.Interfaces.IRepository{{TObject}}
+  definition: Model.Interfaces.IRepository`1.Add(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  name: Add(TObject)
+  nameWithType: IRepository<TObject>.Add(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Add(TObject)
+  nameWithType.vb: IRepository(Of TObject).Add(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Add(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{`0}.Add(`0)
+    name: Add
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{`0}.Add(`0)
+    name: Add
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: '{TObject}'
+  commentId: '!:TObject'
+  definition: TObject
+  name: TObject
+  nameWithType: TObject
+  fullName: TObject
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Interfaces.IRepository`1.Add(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Add(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  name: Add(TObject)
+  nameWithType: IRepository<TObject>.Add(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Add(TObject)
+  nameWithType.vb: IRepository(Of TObject).Add(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Add(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.Add(`0)
+    name: Add
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.Add(`0)
+    name: Add
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: TObject
+  name: TObject
+  nameWithType: TObject
+  fullName: TObject
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Model.Repositories.GenericRepository`1.Update*
+  commentId: Overload:Model.Repositories.GenericRepository`1.Update
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  name: Update
+  nameWithType: GenericRepository<TObject>.Update
+  fullName: Model.Repositories.GenericRepository<TObject>.Update
+  nameWithType.vb: GenericRepository(Of TObject).Update
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Update
+- uid: Model.Interfaces.IRepository{{TObject}}.Update({TObject})
+  commentId: M:Model.Interfaces.IRepository{`0}.Update(`0)
+  parent: Model.Interfaces.IRepository{{TObject}}
+  definition: Model.Interfaces.IRepository`1.Update(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  name: Update(TObject)
+  nameWithType: IRepository<TObject>.Update(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Update(TObject)
+  nameWithType.vb: IRepository(Of TObject).Update(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Update(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{`0}.Update(`0)
+    name: Update
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{`0}.Update(`0)
+    name: Update
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IRepository`1.Update(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Update(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  name: Update(TObject)
+  nameWithType: IRepository<TObject>.Update(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Update(TObject)
+  nameWithType.vb: IRepository(Of TObject).Update(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Update(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.Update(`0)
+    name: Update
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.Update(`0)
+    name: Update
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.Delete*
+  commentId: Overload:Model.Repositories.GenericRepository`1.Delete
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  name: Delete
+  nameWithType: GenericRepository<TObject>.Delete
+  fullName: Model.Repositories.GenericRepository<TObject>.Delete
+  nameWithType.vb: GenericRepository(Of TObject).Delete
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Delete
+- uid: Model.Interfaces.IRepository{{TObject}}.Delete({TObject})
+  commentId: M:Model.Interfaces.IRepository{`0}.Delete(`0)
+  parent: Model.Interfaces.IRepository{{TObject}}
+  definition: Model.Interfaces.IRepository`1.Delete(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  name: Delete(TObject)
+  nameWithType: IRepository<TObject>.Delete(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Delete(TObject)
+  nameWithType.vb: IRepository(Of TObject).Delete(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Delete(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{`0}.Delete(`0)
+    name: Delete
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{`0}.Delete(`0)
+    name: Delete
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IRepository`1.Delete(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Delete(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  name: Delete(TObject)
+  nameWithType: IRepository<TObject>.Delete(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Delete(TObject)
+  nameWithType.vb: IRepository(Of TObject).Delete(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Delete(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.Delete(`0)
+    name: Delete
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.Delete(`0)
+    name: Delete
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.GetById*
+  commentId: Overload:Model.Repositories.GenericRepository`1.GetById
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  name: GetById
+  nameWithType: GenericRepository<TObject>.GetById
+  fullName: Model.Repositories.GenericRepository<TObject>.GetById
+  nameWithType.vb: GenericRepository(Of TObject).GetById
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).GetById
+- uid: Model.Interfaces.IRepository{{TObject}}.GetById(System.Int32)
+  commentId: M:Model.Interfaces.IRepository{`0}.GetById(System.Int32)
+  parent: Model.Interfaces.IRepository{{TObject}}
+  definition: Model.Interfaces.IRepository`1.GetById(System.Int32)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: IRepository<TObject>.GetById(int)
+  fullName: Model.Interfaces.IRepository<TObject>.GetById(int)
+  nameWithType.vb: IRepository(Of TObject).GetById(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{`0}.GetById(System.Int32)
+    name: GetById
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{`0}.GetById(System.Int32)
+    name: GetById
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Threading.Tasks.Task{{TObject}}
+  commentId: T:System.Threading.Tasks.Task{`0}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TObject>
+  nameWithType: Task<TObject>
+  fullName: System.Threading.Tasks.Task<TObject>
+  nameWithType.vb: Task(Of TObject)
+  fullName.vb: System.Threading.Tasks.Task(Of TObject)
+  name.vb: Task(Of TObject)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IRepository`1.GetById(System.Int32)
+  commentId: M:Model.Interfaces.IRepository`1.GetById(System.Int32)
+  isExternal: true
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: IRepository<TObject>.GetById(int)
+  fullName: Model.Interfaces.IRepository<TObject>.GetById(int)
+  nameWithType.vb: IRepository(Of TObject).GetById(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.GetById(System.Int32)
+    name: GetById
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.GetById(System.Int32)
+    name: GetById
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.GetAll*
+  commentId: Overload:Model.Repositories.GenericRepository`1.GetAll
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  name: GetAll
+  nameWithType: GenericRepository<TObject>.GetAll
+  fullName: Model.Repositories.GenericRepository<TObject>.GetAll
+  nameWithType.vb: GenericRepository(Of TObject).GetAll
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).GetAll
+- uid: Model.Interfaces.IRepository{{TObject}}.GetAll
+  commentId: M:Model.Interfaces.IRepository{`0}.GetAll
+  parent: Model.Interfaces.IRepository{{TObject}}
+  definition: Model.Interfaces.IRepository`1.GetAll
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  name: GetAll()
+  nameWithType: IRepository<TObject>.GetAll()
+  fullName: Model.Interfaces.IRepository<TObject>.GetAll()
+  nameWithType.vb: IRepository(Of TObject).GetAll()
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetAll()
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{`0}.GetAll
+    name: GetAll
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{`0}.GetAll
+    name: GetAll
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{{TObject}}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{`0}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<IEnumerable<TObject>>
+  nameWithType: Task<IEnumerable<TObject>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<TObject>>
+  nameWithType.vb: Task(Of IEnumerable(Of TObject))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.IEnumerable(Of TObject))
+  name.vb: Task(Of IEnumerable(Of TObject))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: TObject
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+  - name: )
+- uid: Model.Interfaces.IRepository`1.GetAll
+  commentId: M:Model.Interfaces.IRepository`1.GetAll
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  name: GetAll()
+  nameWithType: IRepository<TObject>.GetAll()
+  fullName: Model.Interfaces.IRepository<TObject>.GetAll()
+  nameWithType.vb: IRepository(Of TObject).GetAll()
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetAll()
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.GetAll
+    name: GetAll
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.GetAll
+    name: GetAll
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.CheckExist*
+  commentId: Overload:Model.Repositories.GenericRepository`1.CheckExist
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  name: CheckExist
+  nameWithType: GenericRepository<TObject>.CheckExist
+  fullName: Model.Repositories.GenericRepository<TObject>.CheckExist
+  nameWithType.vb: GenericRepository(Of TObject).CheckExist
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).CheckExist
+- uid: Model.Interfaces.IRepository{{TObject}}.CheckExist(System.Int32)
+  commentId: M:Model.Interfaces.IRepository{`0}.CheckExist(System.Int32)
+  parent: Model.Interfaces.IRepository{{TObject}}
+  definition: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  name: CheckExist(int)
+  nameWithType: IRepository<TObject>.CheckExist(int)
+  fullName: Model.Interfaces.IRepository<TObject>.CheckExist(int)
+  nameWithType.vb: IRepository(Of TObject).CheckExist(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{`0}.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{`0}.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  commentId: M:Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  isExternal: true
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  name: CheckExist(int)
+  nameWithType: IRepository<TObject>.CheckExist(int)
+  fullName: Model.Interfaces.IRepository<TObject>.CheckExist(int)
+  nameWithType.vb: IRepository(Of TObject).CheckExist(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+shouldSkipMarkup: true

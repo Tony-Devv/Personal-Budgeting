@@ -1,0 +1,73 @@
+### YamlMime:ManagedReference
+items:
+- uid: PersonalBudgeting.Views.Pages
+  commentId: N:PersonalBudgeting.Views.Pages
+  id: PersonalBudgeting.Views.Pages
+  children:
+  - PersonalBudgeting.Views.Pages.BudgetPage
+  - PersonalBudgeting.Views.Pages.ExpensesPage
+  - PersonalBudgeting.Views.Pages.HomePage
+  - PersonalBudgeting.Views.Pages.IncomePage
+  - PersonalBudgeting.Views.Pages.LoginPage
+  - PersonalBudgeting.Views.Pages.ProfilePage
+  - PersonalBudgeting.Views.Pages.RemindersPage
+  - PersonalBudgeting.Views.Pages.SettingsPage
+  langs:
+  - csharp
+  - vb
+  name: PersonalBudgeting.Views.Pages
+  nameWithType: PersonalBudgeting.Views.Pages
+  fullName: PersonalBudgeting.Views.Pages
+  type: Namespace
+  assemblies:
+  - PersonalBudgeting
+references:
+- uid: PersonalBudgeting.Views.Pages.BudgetPage
+  commentId: T:PersonalBudgeting.Views.Pages.BudgetPage
+  href: PersonalBudgeting.Views.Pages.BudgetPage.html
+  name: BudgetPage
+  nameWithType: BudgetPage
+  fullName: PersonalBudgeting.Views.Pages.BudgetPage
+- uid: PersonalBudgeting.Views.Pages.ExpensesPage
+  commentId: T:PersonalBudgeting.Views.Pages.ExpensesPage
+  href: PersonalBudgeting.Views.Pages.ExpensesPage.html
+  name: ExpensesPage
+  nameWithType: ExpensesPage
+  fullName: PersonalBudgeting.Views.Pages.ExpensesPage
+- uid: PersonalBudgeting.Views.Pages.HomePage
+  commentId: T:PersonalBudgeting.Views.Pages.HomePage
+  href: PersonalBudgeting.Views.Pages.HomePage.html
+  name: HomePage
+  nameWithType: HomePage
+  fullName: PersonalBudgeting.Views.Pages.HomePage
+- uid: PersonalBudgeting.Views.Pages.IncomePage
+  commentId: T:PersonalBudgeting.Views.Pages.IncomePage
+  href: PersonalBudgeting.Views.Pages.IncomePage.html
+  name: IncomePage
+  nameWithType: IncomePage
+  fullName: PersonalBudgeting.Views.Pages.IncomePage
+- uid: PersonalBudgeting.Views.Pages.LoginPage
+  commentId: T:PersonalBudgeting.Views.Pages.LoginPage
+  href: PersonalBudgeting.Views.Pages.LoginPage.html
+  name: LoginPage
+  nameWithType: LoginPage
+  fullName: PersonalBudgeting.Views.Pages.LoginPage
+- uid: PersonalBudgeting.Views.Pages.ProfilePage
+  commentId: T:PersonalBudgeting.Views.Pages.ProfilePage
+  href: PersonalBudgeting.Views.Pages.ProfilePage.html
+  name: ProfilePage
+  nameWithType: ProfilePage
+  fullName: PersonalBudgeting.Views.Pages.ProfilePage
+- uid: PersonalBudgeting.Views.Pages.RemindersPage
+  commentId: T:PersonalBudgeting.Views.Pages.RemindersPage
+  href: PersonalBudgeting.Views.Pages.RemindersPage.html
+  name: RemindersPage
+  nameWithType: RemindersPage
+  fullName: PersonalBudgeting.Views.Pages.RemindersPage
+- uid: PersonalBudgeting.Views.Pages.SettingsPage
+  commentId: T:PersonalBudgeting.Views.Pages.SettingsPage
+  href: PersonalBudgeting.Views.Pages.SettingsPage.html
+  name: SettingsPage
+  nameWithType: SettingsPage
+  fullName: PersonalBudgeting.Views.Pages.SettingsPage
+shouldSkipMarkup: true

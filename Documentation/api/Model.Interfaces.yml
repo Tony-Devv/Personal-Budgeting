@@ -1,0 +1,105 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Interfaces
+  commentId: N:Model.Interfaces
+  id: Model.Interfaces
+  children:
+  - Model.Interfaces.IBudgetRepository
+  - Model.Interfaces.IExpenseRepository
+  - Model.Interfaces.IIncomeRepository
+  - Model.Interfaces.IPasswordHasher
+  - Model.Interfaces.IRepository`1
+  - Model.Interfaces.IUserRepository
+  langs:
+  - csharp
+  - vb
+  name: Model.Interfaces
+  nameWithType: Model.Interfaces
+  fullName: Model.Interfaces
+  type: Namespace
+  assemblies:
+  - Model
+references:
+- uid: Model.Interfaces.IBudgetRepository
+  commentId: T:Model.Interfaces.IBudgetRepository
+  parent: Model.Interfaces
+  href: Model.Interfaces.IBudgetRepository.html
+  name: IBudgetRepository
+  nameWithType: IBudgetRepository
+  fullName: Model.Interfaces.IBudgetRepository
+- uid: Model.Interfaces.IExpenseRepository
+  commentId: T:Model.Interfaces.IExpenseRepository
+  parent: Model.Interfaces
+  href: Model.Interfaces.IExpenseRepository.html
+  name: IExpenseRepository
+  nameWithType: IExpenseRepository
+  fullName: Model.Interfaces.IExpenseRepository
+- uid: Model.Interfaces.IIncomeRepository
+  commentId: T:Model.Interfaces.IIncomeRepository
+  parent: Model.Interfaces
+  href: Model.Interfaces.IIncomeRepository.html
+  name: IIncomeRepository
+  nameWithType: IIncomeRepository
+  fullName: Model.Interfaces.IIncomeRepository
+- uid: Model.Interfaces.IPasswordHasher
+  commentId: T:Model.Interfaces.IPasswordHasher
+  parent: Model.Interfaces
+  href: Model.Interfaces.IPasswordHasher.html
+  name: IPasswordHasher
+  nameWithType: IPasswordHasher
+  fullName: Model.Interfaces.IPasswordHasher
+- uid: Model.Interfaces.IRepository`1
+  commentId: T:Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<TObject>
+  nameWithType: IRepository<TObject>
+  fullName: Model.Interfaces.IRepository<TObject>
+  nameWithType.vb: IRepository(Of TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject)
+  name.vb: IRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IUserRepository
+  commentId: T:Model.Interfaces.IUserRepository
+  parent: Model.Interfaces
+  href: Model.Interfaces.IUserRepository.html
+  name: IUserRepository
+  nameWithType: IUserRepository
+  fullName: Model.Interfaces.IUserRepository
+- uid: Model.Interfaces
+  commentId: N:Model.Interfaces
+  href: Model.html
+  name: Model.Interfaces
+  nameWithType: Model.Interfaces
+  fullName: Model.Interfaces
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+shouldSkipMarkup: true

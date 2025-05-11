@@ -1,0 +1,905 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Entities.Expense
+  commentId: T:Model.Entities.Expense
+  id: Expense
+  parent: Model.Entities
+  children:
+  - Model.Entities.Expense.Budget
+  - Model.Entities.Expense.BudgetId
+  - Model.Entities.Expense.DateCycle
+  - Model.Entities.Expense.ExpenseName
+  - Model.Entities.Expense.Id
+  - Model.Entities.Expense.ReminderTime
+  - Model.Entities.Expense.RequiredAmount
+  - Model.Entities.Expense.SpentAmount
+  - Model.Entities.Expense.ToString
+  - Model.Entities.Expense.User
+  - Model.Entities.Expense.UserId
+  langs:
+  - csharp
+  - vb
+  name: Expense
+  nameWithType: Expense
+  fullName: Model.Entities.Expense
+  type: Class
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Expense
+    path: ../Model/Entities/Expense.cs
+    startLine: 17
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: >-
+    Represents an expense entity in the system.
+
+    It's being used by EntityFramework to represent the expenses records.
+  remarks: >-
+    This class maps to the "Expense" table in the database and maintains
+
+    relationships with both User and Budget entities through foreign keys.
+  example: []
+  syntax:
+    content: >-
+      [Table("Expense")]
+
+      public class Expense
+    content.vb: >-
+      <Table("Expense")>
+
+      Public Class Expense
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.Schema.TableAttribute
+    ctor: System.ComponentModel.DataAnnotations.Schema.TableAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: Expense
+- uid: Model.Entities.Expense.Id
+  commentId: P:Model.Entities.Expense.Id
+  id: Id
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: Expense.Id
+  fullName: Model.Entities.Expense.Id
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Id
+    path: ../Model/Entities/Expense.cs
+    startLine: 27
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the unique identifier for the expense.
+  remarks: Can't be 0 or negative if you're performing update, delete, or read operations.
+  example: []
+  syntax:
+    content: >-
+      [Key]
+
+      public int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: An integer that uniquely identifies the expense.
+    content.vb: >-
+      <Key>
+
+      Public Property Id As Integer
+  overload: Model.Entities.Expense.Id*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.KeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.KeyAttribute.#ctor
+    arguments: []
+- uid: Model.Entities.Expense.UserId
+  commentId: P:Model.Entities.Expense.UserId
+  id: UserId
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: Expense.UserId
+  fullName: Model.Entities.Expense.UserId
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: UserId
+    path: ../Model/Entities/Expense.cs
+    startLine: 37
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the identifier of the user who owns this expense.
+  remarks: Can't be 0 or negative if you're performing update, delete, or read operations.
+  example: []
+  syntax:
+    content: public int UserId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The user ID. This field is required and cannot be empty.
+    content.vb: Public Property UserId As Integer
+  overload: Model.Entities.Expense.UserId*
+- uid: Model.Entities.Expense.BudgetId
+  commentId: P:Model.Entities.Expense.BudgetId
+  id: BudgetId
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: BudgetId
+  nameWithType: Expense.BudgetId
+  fullName: Model.Entities.Expense.BudgetId
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: BudgetId
+    path: ../Model/Entities/Expense.cs
+    startLine: 46
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the identifier of the budget associated with this expense.
+  remarks: Can't be 0 or negative if you're performing update, delete, or read operations.
+  example: []
+  syntax:
+    content: public int BudgetId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The budget ID. This field is required and cannot be empty.
+    content.vb: Public Property BudgetId As Integer
+  overload: Model.Entities.Expense.BudgetId*
+- uid: Model.Entities.Expense.ExpenseName
+  commentId: P:Model.Entities.Expense.ExpenseName
+  id: ExpenseName
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: ExpenseName
+  nameWithType: Expense.ExpenseName
+  fullName: Model.Entities.Expense.ExpenseName
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: ExpenseName
+    path: ../Model/Entities/Expense.cs
+    startLine: 55
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the name of the expense.
+  remarks: Maximum length is 100 chars, more than this will make an overflow.
+  example: []
+  syntax:
+    content: public string ExpenseName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: The expense name.
+    content.vb: Public Property ExpenseName As String
+  overload: Model.Entities.Expense.ExpenseName*
+- uid: Model.Entities.Expense.RequiredAmount
+  commentId: P:Model.Entities.Expense.RequiredAmount
+  id: RequiredAmount
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: RequiredAmount
+  nameWithType: Expense.RequiredAmount
+  fullName: Model.Entities.Expense.RequiredAmount
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: RequiredAmount
+    path: ../Model/Entities/Expense.cs
+    startLine: 64
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the amount required for this expense.
+  remarks: Maximum digits allowed is 6.
+  example: []
+  syntax:
+    content: public decimal RequiredAmount { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+      description: The required amount for this expense.
+    content.vb: Public Property RequiredAmount As Decimal
+  overload: Model.Entities.Expense.RequiredAmount*
+- uid: Model.Entities.Expense.DateCycle
+  commentId: P:Model.Entities.Expense.DateCycle
+  id: DateCycle
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: DateCycle
+  nameWithType: Expense.DateCycle
+  fullName: Model.Entities.Expense.DateCycle
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: DateCycle
+    path: ../Model/Entities/Expense.cs
+    startLine: 70
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the date cycle for this expense.
+  example: []
+  syntax:
+    content: public DateTime DateCycle { get; set; }
+    parameters: []
+    return:
+      type: System.DateTime
+      description: The date cycle when this expense occurs.
+    content.vb: Public Property DateCycle As Date
+  overload: Model.Entities.Expense.DateCycle*
+- uid: Model.Entities.Expense.SpentAmount
+  commentId: P:Model.Entities.Expense.SpentAmount
+  id: SpentAmount
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: SpentAmount
+  nameWithType: Expense.SpentAmount
+  fullName: Model.Entities.Expense.SpentAmount
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: SpentAmount
+    path: ../Model/Entities/Expense.cs
+    startLine: 79
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the amount that has been spent for this expense.
+  remarks: Maximum digits allowed is 6.
+  example: []
+  syntax:
+    content: public decimal SpentAmount { get; set; }
+    parameters: []
+    return:
+      type: System.Decimal
+      description: The amount that has been spent.
+    content.vb: Public Property SpentAmount As Decimal
+  overload: Model.Entities.Expense.SpentAmount*
+- uid: Model.Entities.Expense.ReminderTime
+  commentId: P:Model.Entities.Expense.ReminderTime
+  id: ReminderTime
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: ReminderTime
+  nameWithType: Expense.ReminderTime
+  fullName: Model.Entities.Expense.ReminderTime
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: ReminderTime
+    path: ../Model/Entities/Expense.cs
+    startLine: 85
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the reminder time for this expense.
+  example: []
+  syntax:
+    content: public DateTime? ReminderTime { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.DateTime}
+      description: The reminder time. Can be null if no reminder is set.
+    content.vb: Public Property ReminderTime As Date?
+  overload: Model.Entities.Expense.ReminderTime*
+- uid: Model.Entities.Expense.User
+  commentId: P:Model.Entities.Expense.User
+  id: User
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: Expense.User
+  fullName: Model.Entities.Expense.User
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: User
+    path: ../Model/Entities/Expense.cs
+    startLine: 95
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the associated user entity.
+  remarks: >-
+    Navigation property that acts as many-to-one relationship in the database,
+
+    facilitates the operations, not loaded for all times.
+  example: []
+  syntax:
+    content: >-
+      [ForeignKey("UserId")]
+
+      public User User { get; set; }
+    parameters: []
+    return:
+      type: Model.Entities.User
+      description: The user who owns this expense.
+    content.vb: >-
+      <ForeignKey("UserId")>
+
+      Public Property User As User
+  overload: Model.Entities.Expense.User*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: UserId
+- uid: Model.Entities.Expense.Budget
+  commentId: P:Model.Entities.Expense.Budget
+  id: Budget
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: Budget
+  nameWithType: Expense.Budget
+  fullName: Model.Entities.Expense.Budget
+  type: Property
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Budget
+    path: ../Model/Entities/Expense.cs
+    startLine: 106
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Gets or sets the associated budget entity.
+  remarks: >-
+    Navigation property that acts as many-to-one relationship in the database,
+
+    facilitates the operations, not loaded for all times.
+  example: []
+  syntax:
+    content: >-
+      [ForeignKey("BudgetId")]
+
+      public Budget Budget { get; set; }
+    parameters: []
+    return:
+      type: Model.Entities.Budget
+      description: The budget associated with this expense.
+    content.vb: >-
+      <ForeignKey("BudgetId")>
+
+      Public Property Budget As Budget
+  overload: Model.Entities.Expense.Budget*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: BudgetId
+- uid: Model.Entities.Expense.ToString
+  commentId: M:Model.Entities.Expense.ToString
+  id: ToString
+  parent: Model.Entities.Expense
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Expense.ToString()
+  fullName: Model.Entities.Expense.ToString()
+  type: Method
+  source:
+    remote:
+      path: Model/Entities/Expense.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: ToString
+    path: ../Model/Entities/Expense.cs
+    startLine: 113
+  assemblies:
+  - Model
+  namespace: Model.Entities
+  summary: Returns a string representation of the Expense object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string containing the Expense's properties and their values.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: Model.Entities.Expense.ToString*
+references:
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Model.Entities.Expense.Id*
+  commentId: Overload:Model.Entities.Expense.Id
+  href: Model.Entities.Expense.html#Model_Entities_Expense_Id
+  name: Id
+  nameWithType: Expense.Id
+  fullName: Model.Entities.Expense.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Model.Entities.Expense.UserId*
+  commentId: Overload:Model.Entities.Expense.UserId
+  href: Model.Entities.Expense.html#Model_Entities_Expense_UserId
+  name: UserId
+  nameWithType: Expense.UserId
+  fullName: Model.Entities.Expense.UserId
+- uid: Model.Entities.Expense.BudgetId*
+  commentId: Overload:Model.Entities.Expense.BudgetId
+  href: Model.Entities.Expense.html#Model_Entities_Expense_BudgetId
+  name: BudgetId
+  nameWithType: Expense.BudgetId
+  fullName: Model.Entities.Expense.BudgetId
+- uid: Model.Entities.Expense.ExpenseName*
+  commentId: Overload:Model.Entities.Expense.ExpenseName
+  href: Model.Entities.Expense.html#Model_Entities_Expense_ExpenseName
+  name: ExpenseName
+  nameWithType: Expense.ExpenseName
+  fullName: Model.Entities.Expense.ExpenseName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Model.Entities.Expense.RequiredAmount*
+  commentId: Overload:Model.Entities.Expense.RequiredAmount
+  href: Model.Entities.Expense.html#Model_Entities_Expense_RequiredAmount
+  name: RequiredAmount
+  nameWithType: Expense.RequiredAmount
+  fullName: Model.Entities.Expense.RequiredAmount
+- uid: System.Decimal
+  commentId: T:System.Decimal
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.decimal
+  name: decimal
+  nameWithType: decimal
+  fullName: decimal
+  nameWithType.vb: Decimal
+  fullName.vb: Decimal
+  name.vb: Decimal
+- uid: Model.Entities.Expense.DateCycle*
+  commentId: Overload:Model.Entities.Expense.DateCycle
+  href: Model.Entities.Expense.html#Model_Entities_Expense_DateCycle
+  name: DateCycle
+  nameWithType: Expense.DateCycle
+  fullName: Model.Entities.Expense.DateCycle
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: Model.Entities.Expense.SpentAmount*
+  commentId: Overload:Model.Entities.Expense.SpentAmount
+  href: Model.Entities.Expense.html#Model_Entities_Expense_SpentAmount
+  name: SpentAmount
+  nameWithType: Expense.SpentAmount
+  fullName: Model.Entities.Expense.SpentAmount
+- uid: Model.Entities.Expense.ReminderTime*
+  commentId: Overload:Model.Entities.Expense.ReminderTime
+  href: Model.Entities.Expense.html#Model_Entities_Expense_ReminderTime
+  name: ReminderTime
+  nameWithType: Expense.ReminderTime
+  fullName: Model.Entities.Expense.ReminderTime
+- uid: System.Nullable{System.DateTime}
+  commentId: T:System.Nullable{System.DateTime}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime?
+  nameWithType: DateTime?
+  fullName: System.DateTime?
+  nameWithType.vb: Date?
+  fullName.vb: Date?
+  name.vb: Date?
+  spec.csharp:
+  - uid: System.DateTime
+    name: DateTime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+  spec.vb:
+  - uid: System.DateTime
+    name: Date
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetime
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Model.Entities.Expense.User*
+  commentId: Overload:Model.Entities.Expense.User
+  href: Model.Entities.Expense.html#Model_Entities_Expense_User
+  name: User
+  nameWithType: Expense.User
+  fullName: Model.Entities.Expense.User
+- uid: Model.Entities.User
+  commentId: T:Model.Entities.User
+  parent: Model.Entities
+  href: Model.Entities.User.html
+  name: User
+  nameWithType: User
+  fullName: Model.Entities.User
+- uid: Model.Entities.Expense.Budget*
+  commentId: Overload:Model.Entities.Expense.Budget
+  href: Model.Entities.Expense.html#Model_Entities_Expense_Budget
+  name: Budget
+  nameWithType: Expense.Budget
+  fullName: Model.Entities.Expense.Budget
+- uid: Model.Entities.Budget
+  commentId: T:Model.Entities.Budget
+  parent: Model.Entities
+  href: Model.Entities.Budget.html
+  name: Budget
+  nameWithType: Budget
+  fullName: Model.Entities.Budget
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Model.Entities.Expense.ToString*
+  commentId: Overload:Model.Entities.Expense.ToString
+  href: Model.Entities.Expense.html#Model_Entities_Expense_ToString
+  name: ToString
+  nameWithType: Expense.ToString
+  fullName: Model.Entities.Expense.ToString
+shouldSkipMarkup: true

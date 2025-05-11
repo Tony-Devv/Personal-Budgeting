@@ -1,0 +1,71 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  id: Model.Entities
+  children:
+  - Model.Entities.Budget
+  - Model.Entities.Expense
+  - Model.Entities.Income
+  - Model.Entities.User
+  langs:
+  - csharp
+  - vb
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  type: Namespace
+  assemblies:
+  - Model
+references:
+- uid: Model.Entities.Budget
+  commentId: T:Model.Entities.Budget
+  parent: Model.Entities
+  href: Model.Entities.Budget.html
+  name: Budget
+  nameWithType: Budget
+  fullName: Model.Entities.Budget
+- uid: Model.Entities.Expense
+  commentId: T:Model.Entities.Expense
+  parent: Model.Entities
+  href: Model.Entities.Expense.html
+  name: Expense
+  nameWithType: Expense
+  fullName: Model.Entities.Expense
+- uid: Model.Entities.Income
+  commentId: T:Model.Entities.Income
+  parent: Model.Entities
+  href: Model.Entities.Income.html
+  name: Income
+  nameWithType: Income
+  fullName: Model.Entities.Income
+- uid: Model.Entities.User
+  commentId: T:Model.Entities.User
+  parent: Model.Entities
+  href: Model.Entities.User.html
+  name: User
+  nameWithType: User
+  fullName: Model.Entities.User
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+shouldSkipMarkup: true

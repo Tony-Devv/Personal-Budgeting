@@ -1,0 +1,31 @@
+### YamlMime:ManagedReference
+items:
+- uid: PersonalBudgeting
+  commentId: N:PersonalBudgeting
+  id: PersonalBudgeting
+  children:
+  - PersonalBudgeting.App
+  - PersonalBudgeting.ViewLocator
+  langs:
+  - csharp
+  - vb
+  name: PersonalBudgeting
+  nameWithType: PersonalBudgeting
+  fullName: PersonalBudgeting
+  type: Namespace
+  assemblies:
+  - PersonalBudgeting
+references:
+- uid: PersonalBudgeting.App
+  commentId: T:PersonalBudgeting.App
+  href: PersonalBudgeting.App.html
+  name: App
+  nameWithType: App
+  fullName: PersonalBudgeting.App
+- uid: PersonalBudgeting.ViewLocator
+  commentId: T:PersonalBudgeting.ViewLocator
+  href: PersonalBudgeting.ViewLocator.html
+  name: ViewLocator
+  nameWithType: ViewLocator
+  fullName: PersonalBudgeting.ViewLocator
+shouldSkipMarkup: true
