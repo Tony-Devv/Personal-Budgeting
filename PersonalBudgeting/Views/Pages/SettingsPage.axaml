@@ -7,6 +7,7 @@
              x:Class="PersonalBudgeting.Views.Pages.SettingsPage">
 
     <ScrollViewer>
+<<<<<<< Updated upstream
         <StackPanel Spacing="20" Margin="20">
             <TextBlock Text="Settings" Classes="h1"/>
 
@@ -27,10 +28,77 @@
             </Border>
 
             <!-- Currency Settings -->
+=======
+        <StackPanel Margin="20" Spacing="20">
+            <!-- Header -->
+            <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+                <TextBlock Grid.Column="0" 
+                           Text="Settings" 
+                           FontSize="28" 
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"/>
+                
+                         
+            </Grid>
+            
+            <!-- User Profile Section -->
+            <Border Classes="card">
+                <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*" Margin="15">
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Text="User Profile"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,15"/>
+                    
+                    <!-- Profile Picture -->
+                    <Border Grid.Row="1" Grid.Column="0"
+                            Width="100" 
+                            Height="100" 
+                            CornerRadius="50"
+                            Background="#333"
+                            Margin="0,0,20,0">
+                        <TextBlock Name="UserInitials"
+                                   Text="JP"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="32"
+                                   FontWeight="SemiBold"/>
+                    </Border>
+                    
+                    <!-- Profile Info -->
+                    <StackPanel Grid.Row="1" Grid.Column="1" Spacing="15">
+                        <StackPanel Spacing="5">
+                            <TextBlock Text="Name" FontSize="12" Opacity="0.7"/>
+                            <TextBox Name="NameTextBox" Watermark="Your Name"/>
+                        </StackPanel>
+                        
+                        <StackPanel Spacing="5">
+                            <TextBlock Text="Email" FontSize="12" Opacity="0.7"/>
+                            <TextBox Name="EmailTextBox" Watermark="Your Email"/>
+                        </StackPanel>
+                        
+                        <StackPanel Spacing="5">
+                            <TextBlock Text="Phone Number" FontSize="12" Opacity="0.7"/>
+                            <TextBox Name="PhoneTextBox" Watermark="Your Phone Number"/>
+                        </StackPanel>
+                        
+                        
+                        <Button Content="Save Profile" 
+                                Classes="accent"
+                                Name="SaveSettingsButton"
+                                HorizontalAlignment="Left"
+                                Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
+            <!-- About Section -->
+>>>>>>> Stashed changes
             <Border Classes="card">
                 <StackPanel>
                     <TextBlock Text="Currency" Classes="h2"/>
                     
+<<<<<<< Updated upstream
                     <StackPanel Spacing="10">
                         <Grid ColumnDefinitions="*,Auto">
                             <TextBlock Text="Default Currency" VerticalAlignment="Center"/>
@@ -41,6 +109,16 @@
                             </ComboBox>
                         </Grid>
                     </StackPanel>
+=======
+                    <TextBlock Text="Personal Budget Manager" FontWeight="SemiBold"/>
+                    <TextBlock Text="Version 1.0.0" Opacity="0.7"/>
+                    <TextBlock Text="© 2023 All rights reserved" Opacity="0.7" Margin="0,10,0,10"/>
+                    
+                    <TextBlock Text="Development Team" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                    <TextBlock Text="Anton Zakaria (antonzakaria43@gmail.com)" TextWrapping="Wrap"/>
+                    <TextBlock Text="Mohamed Adel Kamal (raynowing007@gmail.com)" TextWrapping="Wrap"/>
+                    <TextBlock Text="Mark Amir Samir (markamir140@gmail.com)" TextWrapping="Wrap"/>
+>>>>>>> Stashed changes
                 </StackPanel>
             </Border>
 
@@ -102,6 +180,7 @@
                     <Button Content="Check for Updates" Classes="accent"/>
                 </StackPanel>
             </Border>
+            
         </StackPanel>
     </ScrollViewer>
 </UserControl>

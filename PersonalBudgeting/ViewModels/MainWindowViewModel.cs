@@ -1,4 +1,4 @@
-﻿namespace PersonalBudgeting.ViewModels;
+namespace PersonalBudgeting.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

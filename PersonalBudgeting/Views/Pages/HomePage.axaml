@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+<<<<<<< Updated upstream
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              x:Class="PersonalBudgeting.Views.Pages.HomePage">
 
@@ -68,6 +69,379 @@
                                  Grid.Row="2" HorizontalAlignment="Center"/>
                     </Grid>
                 </StackPanel>
+=======
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:PersonalBudgeting.ViewModels"
+             xmlns:converters="clr-namespace:PersonalBudgeting.Converters"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="650"
+             x:DataType="vm:HomeViewModel"
+             x:Class="PersonalBudgeting.Views.Pages.HomePage"
+             Background="{StaticResource ContentBrush}"> <!-- Match MainWindow content area -->
+    
+    <UserControl.Styles>
+        <!-- Percentage text styles -->
+        <Style Selector="TextBlock.success">
+            <Setter Property="Foreground" Value="{StaticResource SuccessBrush}"/>
+        </Style>
+        
+        <Style Selector="TextBlock.warning">
+            <Setter Property="Foreground" Value="{StaticResource WarningBrush}"/>
+        </Style>
+        
+        <Style Selector="TextBlock.danger">
+            <Setter Property="Foreground" Value="{StaticResource DangerBrush}"/>
+        </Style>
+        
+        <!-- Progress bar styles -->
+        <Style Selector="ProgressBar.success">
+            <Setter Property="Foreground" Value="{StaticResource SuccessBrush}"/>
+        </Style>
+        
+        <Style Selector="ProgressBar.warning">
+            <Setter Property="Foreground" Value="{StaticResource WarningBrush}"/>
+        </Style>
+        
+        <Style Selector="ProgressBar.danger">
+            <Setter Property="Foreground" Value="{StaticResource DangerBrush}"/>
+        </Style>
+        
+        <!-- Summary card style -->
+        <Style Selector="Border.summaryCard">
+            <Setter Property="BorderBrush" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16"/>
+            <!-- Remove Background to inherit from parent -->
+        </Style>
+        
+        <!-- Card style -->
+        <Style Selector="Border.card">
+            <Setter Property="BorderBrush" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16"/>
+            <!-- Remove Background to inherit from parent -->
+        </Style>
+    </UserControl.Styles>
+    
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:IntGreaterThanConverter x:Key="IntGreaterThanConverter"/>
+        <converters:ColorClassConverter x:Key="ColorClassConverter"/>
+    </UserControl.Resources>
+    
+    <ScrollViewer>
+        <StackPanel Spacing="24">
+            <!-- Welcome Section -->
+            <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+                <StackPanel Grid.Column="0" Spacing="8">
+                <TextBlock x:Name="WelcomeMessage" 
+                               Text="Welcome back" 
+                               Classes="h3"/>
+                    
+                    <TextBlock Text="Here's your financial overview for this month" 
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               FontSize="14"/>
+                </StackPanel>
+                
+                <!-- Period Selector -->
+                <Border Grid.Column="1" 
+                        Background="Transparent" 
+                        BorderBrush="#333333" 
+                        BorderThickness="1" 
+                        CornerRadius="8" 
+                        Padding="12,8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="{Binding CurrentMonth}"
+                                   x:Name="PeriodText"
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Medium"/>
+                        <Button Classes="icon" Width="24" Height="24" Padding="4"
+                                x:Name="PeriodSelectorButton">
+                            <Path Data="M7 10l5 5 5-5z" 
+                                  Fill="{StaticResource TextSecondaryBrush}" 
+                                  Stretch="Uniform"/>
+                        </Button>
+            </StackPanel>
+                </Border>
+            </Grid>
+            
+            <!-- Summary Cards -->
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto" Margin="0,0,0,10">
+                <!-- Total Balance Card -->
+                <Border Grid.Column="0" Classes="summaryCard" Margin="0,0,12,0">
+                    <Grid RowDefinitions="Auto,*,Auto">
+                        <!-- Card Header -->
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8">
+                            <Border Width="32" Height="32" 
+                                    Background="Transparent" 
+                                    BorderBrush="#333333"
+                                    BorderThickness="1"
+                                    CornerRadius="8">
+                                <Path Data="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" 
+                                      Fill="{StaticResource PrimaryAccentBrush}" 
+                                      Width="20" 
+                                      Height="20"
+                                      Stretch="Uniform"/>
+                            </Border>
+                            <TextBlock Text="Total Balance" 
+                                       VerticalAlignment="Center" 
+                                       Foreground="{StaticResource TextSecondaryBrush}"/>
+                        </StackPanel>
+                        
+                        <!-- Card Value -->
+                        <TextBlock Grid.Row="1" 
+                                   x:Name="TotalBalanceText" 
+                                   Text="{Binding TotalBalance, StringFormat=${0:N2}}" 
+                                   Classes="stat" 
+                                   VerticalAlignment="Center" 
+                                   Margin="0,10,0,0"/>
+                        
+                        <!-- Card Footer -->
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8">
+                            <Border Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" CornerRadius="4" Padding="6,2">
+                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                    <Path Data="M7 14l5-5 5 5z" 
+                                          Fill="{StaticResource SuccessBrush}" 
+                                          Width="14" 
+                                          Height="14"/>
+                                    <TextBlock x:Name="BalancePercentText"
+                                               Text="{Binding BalancePercentChange, StringFormat=\{0:0.0\}%}" 
+                                               FontSize="12" 
+                                               FontWeight="SemiBold" 
+                                               Foreground="{StaticResource SuccessBrush}"/>
+                                </StackPanel>
+                            </Border>
+                            <TextBlock Text="vs. last month" 
+                                       FontSize="12" 
+                                       Foreground="{StaticResource TextSecondaryBrush}" 
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                
+                <!-- Total Income Card -->
+                <Border Grid.Column="1" Classes="summaryCard" Margin="6,0,6,0">
+                    <Grid RowDefinitions="Auto,*,Auto">
+                        <!-- Card Header -->
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8">
+                            <Border Width="32" Height="32" 
+                                    Background="Transparent" 
+                                    BorderBrush="#333333"
+                                    BorderThickness="1"
+                                    CornerRadius="8">
+                                <Path Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" 
+                                      Fill="{StaticResource SuccessBrush}" 
+                                      Width="20" 
+                                      Height="20"
+                                      Stretch="Uniform"/>
+                            </Border>
+                            <TextBlock Text="Total Income" 
+                                       VerticalAlignment="Center" 
+                                       Foreground="{StaticResource TextSecondaryBrush}"/>
+                        </StackPanel>
+                        
+                        <!-- Card Value -->
+                        <TextBlock Grid.Row="1" 
+                                   x:Name="TotalIncomeText" 
+                                   Text="{Binding TotalIncome, StringFormat=${0:N2}}" 
+                                   Classes="stat" 
+                                   Foreground="{StaticResource SuccessBrush}" 
+                                   VerticalAlignment="Center" 
+                                   Margin="0,10,0,0"/>
+                        
+                        <!-- Card Footer -->
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8">
+                            <Border Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" CornerRadius="4" Padding="6,2">
+                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                    <Path Data="M7 14l5-5 5 5z" 
+                                          Fill="{StaticResource SuccessBrush}" 
+                                          Width="14" 
+                                          Height="14"/>
+                                    <TextBlock x:Name="IncomePercentText"
+                                               Text="{Binding IncomePercentChange, StringFormat=\{0:0.0\}%}" 
+                                               FontSize="12" 
+                                               FontWeight="SemiBold" 
+                                               Foreground="{StaticResource SuccessBrush}"/>
+                                </StackPanel>
+                            </Border>
+                            <TextBlock Text="vs. last month" 
+                                       FontSize="12" 
+                                       Foreground="{StaticResource TextSecondaryBrush}" 
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                
+                <!-- Total Expenses Card -->
+                <Border Grid.Column="2" Classes="summaryCard" Margin="12,0,0,0">
+                    <Grid RowDefinitions="Auto,*,Auto">
+                        <!-- Card Header -->
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8">
+                            <Border Width="32" Height="32" 
+                                    Background="Transparent" 
+                                    BorderBrush="#333333"
+                                    BorderThickness="1"
+                                    CornerRadius="8">
+                                <Path Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z" 
+                                      Fill="{StaticResource DangerBrush}" 
+                                      Width="20" 
+                                      Height="20"
+                                      Stretch="Uniform"/>
+                            </Border>
+                            <TextBlock Text="Total Expenses" 
+                                       VerticalAlignment="Center" 
+                                       Foreground="{StaticResource TextSecondaryBrush}"/>
+                        </StackPanel>
+                        
+                        <!-- Card Value -->
+                        <TextBlock Grid.Row="1" 
+                                   x:Name="TotalExpensesText" 
+                                   Text="{Binding TotalExpenses, StringFormat=${0:N2}}" 
+                                   Classes="stat" 
+                                   Foreground="{StaticResource DangerBrush}" 
+                                   VerticalAlignment="Center" 
+                                   Margin="0,10,0,0"/>
+                        
+                        <!-- Card Footer -->
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8">
+                            <Border Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" CornerRadius="4" Padding="6,2">
+                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                    <Path Data="M7 10l5 5 5-5z" 
+                                          Fill="{StaticResource DangerBrush}" 
+                                          Width="14" 
+                                          Height="14"/>
+                                    <TextBlock x:Name="ExpensesPercentText"
+                                               Text="{Binding ExpensesPercentChange, StringFormat=\{0:0.0\}%}" 
+                                               FontSize="12" 
+                                               FontWeight="SemiBold" 
+                                               Foreground="{StaticResource DangerBrush}"/>
+                                </StackPanel>
+                            </Border>
+                            <TextBlock Text="vs. last month" 
+                                       FontSize="12" 
+                                       Foreground="{StaticResource TextSecondaryBrush}" 
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            
+            <!-- Charts Section -->
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto" Margin="0,10,0,10">
+                <!-- Income/Expense Trend -->
+                <Border Grid.Column="0" Classes="card">
+                    <Grid RowDefinitions="Auto,*">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Monthly Cash Flow" FontWeight="SemiBold" FontSize="16"/>
+                            <TextBlock Text="Income vs. Expenses" Foreground="{StaticResource TextSecondaryBrush}" FontSize="13"/>
+                        </StackPanel>
+                        
+                        <!-- Placeholder for the actual chart -->
+                        <Border Grid.Row="1" Height="320" Margin="0,16,0,0">
+                            <!-- This would be replaced with a real chart control -->
+                            <Canvas>
+                                <!-- Chart background lines -->
+                                <Line StartPoint="0,30" EndPoint="800,30" Stroke="{StaticResource ContentBrush}" StrokeThickness="1"/>
+                                <Line StartPoint="0,100" EndPoint="800,100" Stroke="{StaticResource ContentBrush}" StrokeThickness="1"/>
+                                <Line StartPoint="0,170" EndPoint="800,170" Stroke="{StaticResource ContentBrush}" StrokeThickness="1"/>
+                                <Line StartPoint="0,240" EndPoint="800,240" Stroke="{StaticResource ContentBrush}" StrokeThickness="1"/>
+                                <Line StartPoint="0,320" EndPoint="800,320" Stroke="{StaticResource ContentBrush}" StrokeThickness="1"/>
+                                
+                                <!-- Income line -->
+                                <Polyline Points="40,260 110,210 180,230 250,170 320,130 390,150 460,110 530,70 600,100" 
+                                          Stroke="{StaticResource SuccessBrush}" 
+                                          StrokeThickness="3"
+                                          StrokeLineCap="Round"/>
+                                
+                                <!-- Expense line -->
+                                <Polyline Points="40,220 110,250 180,210 250,230 320,220 390,260 460,210 530,170 600,220" 
+                                          Stroke="{StaticResource DangerBrush}" 
+                                          StrokeThickness="3"
+                                          StrokeLineCap="Round"/>
+                                
+                                <!-- Legend -->
+                                <StackPanel Canvas.Left="40" Canvas.Top="20" Orientation="Horizontal" Spacing="20">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Ellipse Width="10" Height="10" Fill="{StaticResource SuccessBrush}"/>
+                                        <TextBlock Text="Income" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Ellipse Width="10" Height="10" Fill="{StaticResource DangerBrush}"/>
+                                        <TextBlock Text="Expenses" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                
+                                <!-- Month labels -->
+                                <TextBlock Canvas.Left="40" Canvas.Top="330" Text="Jan" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                <TextBlock Canvas.Left="110" Canvas.Top="330" Text="Feb" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                <TextBlock Canvas.Left="180" Canvas.Top="330" Text="Mar" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                <TextBlock Canvas.Left="250" Canvas.Top="330" Text="Apr" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                <TextBlock Canvas.Left="320" Canvas.Top="330" Text="May" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                <TextBlock Canvas.Left="390" Canvas.Top="330" Text="Jun" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                <TextBlock Canvas.Left="460" Canvas.Top="330" Text="Jul" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                <TextBlock Canvas.Left="530" Canvas.Top="330" Text="Aug" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                <TextBlock Canvas.Left="600" Canvas.Top="330" Text="Sep" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"/>
+                            </Canvas>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+            
+            <!-- Quick Actions -->
+            <Border Classes="card" Margin="0,10,0,0">
+                <Grid RowDefinitions="Auto,*">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Quick Actions" FontWeight="SemiBold" FontSize="16"/>
+                        <TextBlock Text="Manage your finances" Foreground="{StaticResource TextSecondaryBrush}" FontSize="13"/>
+                    </StackPanel>
+                    
+                    <Grid Grid.Row="1" ColumnDefinitions="*,*,*" Margin="0,20,0,0">
+                        <!-- Add Income -->
+                        <Button Grid.Column="0" Classes="ghost" Click="OnIncomeNavigationClick" HorizontalAlignment="Center">
+                            <StackPanel Spacing="12">
+                                <Border Width="48" Height="48" Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" CornerRadius="12">
+                                    <Path Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" 
+                                          Fill="{StaticResource SuccessBrush}" 
+                                          Width="24" 
+                                          Height="24"
+                                          Stretch="Uniform"/>
+                                </Border>
+                                <TextBlock Text="Add Income" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                        <!-- Add Expense -->
+                        <Button Grid.Column="1" Classes="ghost" Click="OnExpensesNavigationClick" HorizontalAlignment="Center">
+                            <StackPanel Spacing="12">
+                                <Border Width="48" Height="48" Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" CornerRadius="12">
+                                    <Path Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z" 
+                                          Fill="{StaticResource DangerBrush}" 
+                                          Width="24" 
+                                          Height="24"
+                                          Stretch="Uniform"/>
+                                </Border>
+                                <TextBlock Text="Add Expense" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                        <!-- Create Budget -->
+                        <Button Grid.Column="2" Classes="ghost" Click="OnBudgetNavigationClick" HorizontalAlignment="Center">
+                            <StackPanel Spacing="12">
+                                <Border Width="48" Height="48" Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" CornerRadius="12">
+                                    <Path Data="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" 
+                                          Fill="{StaticResource InfoBrush}" 
+                                          Width="24" 
+                                          Height="24"
+                                          Stretch="Uniform"/>
+                                </Border>
+                                <TextBlock Text="Create Budget" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+                </Grid>
+>>>>>>> Stashed changes
             </Border>
         </StackPanel>
     </ScrollViewer>

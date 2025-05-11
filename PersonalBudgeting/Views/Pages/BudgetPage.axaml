@@ -42,6 +42,7 @@
                         <Button Grid.Column="1" Content="Add Category" 
                                Classes="accent"/>
                     </Grid>
+<<<<<<< Updated upstream
 
                     <DataGrid AutoGenerateColumns="False" IsReadOnly="True" 
                              Height="300">
@@ -85,3 +86,97 @@
         </StackPanel>
     </ScrollViewer>
 </UserControl>
+=======
+                </Border>
+                
+                <!-- Budget Categories -->
+                <Border Classes="card">
+                    <Grid RowDefinitions="Auto,Auto,*">
+                        <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,15">
+                            <TextBlock Text="Budget Categories" FontWeight="Bold"/>
+                            
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                                <TextBox x:Name="SearchBox" 
+                                    Watermark="Search categories..." 
+                                    Width="200"
+                                    TextChanged="OnSearchTextChanged"/>
+                                        
+                                <ComboBox x:Name="StatusFilterComboBox"
+                                        Width="130"
+                                        SelectedIndex="0"
+                                        SelectionChanged="OnStatusFilterChanged">
+                                    <ComboBoxItem Content="All Status"/>
+                                    <ComboBoxItem Content="On Track"/>
+                                    <ComboBoxItem Content="Warning"/>
+                                    <ComboBoxItem Content="Over Budget"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Budget Categories Header -->
+                        <Grid Grid.Row="1" ColumnDefinitions="2*,1*,1*,1*,1*,1*,1*" Margin="0,0,0,0">
+                            <Border Grid.ColumnSpan="7" Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" Height="40">
+                                <Grid ColumnDefinitions="2*,1*,1*,1*,1*,1*,1*">
+                                    <TextBlock Text="Category" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Budget" Grid.Column="1" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Spent" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Remaining" Grid.Column="3" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Progress" Grid.Column="4" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Status" Grid.Column="5" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Actions" Grid.Column="6" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        
+                        <!-- Budget Items Panel -->
+                        <ScrollViewer Grid.Row="2" Margin="0,0,0,0" MaxHeight="300" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <StackPanel x:Name="BudgetItemsPanel" Spacing="0">
+                                <!-- Budget items will be added programmatically -->
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+                
+                <!-- Back Button -->
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Add Budget Popup -->
+        <Border x:Name="AddBudgetPopup" Classes="popup">
+            <Border>
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <TextBlock x:Name="AddBudgetTitle" 
+                            Text="Add New Budget Category"
+                            Classes="popupTitle"
+                            Grid.Row="0"/>
+                    
+                    <StackPanel Grid.Row="1" Spacing="10">
+                        <TextBlock Text="Budget Category Name" Classes="formLabel"/>
+                        <TextBox x:Name="BudgetNameInput" 
+                                Watermark="Enter budget category name (e.g., Food, Transportation)"/>
+                        
+                        <TextBlock Text="Budget Amount" Classes="formLabel"/>
+                        <TextBox x:Name="BudgetAmountInput" 
+                                Watermark="Enter budget amount"/>
+                        
+                        <TextBlock x:Name="AddBudgetErrorText"
+                                Classes="errorText"
+                                IsVisible="False"/>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="2" 
+                            Classes="formActions">
+                        <Button Content="Cancel" 
+                            Classes="secondary" 
+                            Click="OnCancelAddBudgetClick"/>
+                        <Button x:Name="SaveBudgetButton" 
+                            Content="Save" 
+                            Classes="primary"
+                            Click="OnSaveBudgetClick"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Border>
+    </Panel>
+</UserControl>
+>>>>>>> Stashed changes

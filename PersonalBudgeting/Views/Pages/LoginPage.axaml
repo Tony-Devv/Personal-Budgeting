@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              x:Class="PersonalBudgeting.Views.Pages.LoginPage">
+<<<<<<< Updated upstream
 
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
@@ -59,3 +60,150 @@
         </Border>
     </Panel>
 </UserControl>
+=======
+    
+    <Grid Background="{StaticResource ContentBrush}">
+        <!-- Back Arrow -->
+        <Button x:Name="BackButton"
+                Click="OnBackClick"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="20,20,0,0"
+                Background="Transparent"
+                BorderThickness="0">
+            <PathIcon Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
+        </Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- App Header -->
+        <StackPanel Grid.Row="0" Margin="0,40,0,0" HorizontalAlignment="Center">
+            <TextBlock Text="Personal Budget Manager" 
+                       FontSize="32" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="Manage your finances with ease" 
+                       FontSize="16" 
+                       Opacity="0.7" 
+                       Margin="0,10,0,0" 
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+        
+        <!-- Login Form -->
+        <Grid Grid.Row="1" x:Name="LoginForm" IsVisible="True" 
+              Width="400" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border Background="{StaticResource ContentBrush}" 
+                    CornerRadius="8" 
+                    BoxShadow="0 4 20 0 #40000000" 
+                    Padding="30">
+                <StackPanel Spacing="20">
+                    <TextBlock Text="Login to Your Account" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,0,0,10"/>
+                    
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Email"/>
+                        <TextBox x:Name="UsernameInput" Watermark="Enter your email address"/>
+                    </StackPanel>
+                    
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Password"/>
+                        <TextBox x:Name="PasswordInput" PasswordChar="•" Watermark="Enter password"/>
+                    </StackPanel>
+                    
+                    <TextBlock x:Name="LoginErrorText" 
+                               Text="Error message" 
+                               Foreground="#E57373" 
+                               IsVisible="False" 
+                               TextWrapping="Wrap"/>
+                    
+                    <Button Content="Login" 
+                            Click="OnLoginClick" 
+                            HorizontalAlignment="Stretch" 
+                            HorizontalContentAlignment="Center"
+                            Height="40" 
+                            Background="#4CAF50" 
+                            Foreground="White"/>
+                    
+                    <StackPanel Orientation="Horizontal" 
+                                Spacing="5" 
+                                HorizontalAlignment="Center" 
+                                Margin="0,10,0,0">
+                        <TextBlock Text="Don't have an account?"/>
+                        <TextBlock Text="Register" 
+                                   Foreground="#2196F3" 
+                                   Cursor="Hand" 
+                                   PointerPressed="OnRegisterLinkClick"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+        
+        <!-- Registration Form -->
+        <Grid Grid.Row="1" x:Name="RegisterForm" IsVisible="False" 
+              Width="450" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border Background="{StaticResource ContentBrush}" 
+                    CornerRadius="8" 
+                    BoxShadow="0 4 20 0 #40000000" 
+                    Padding="30">
+                <StackPanel Spacing="15">
+                    <TextBlock Text="Create Your Account" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,0,0,10"/>
+                    
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Full Name"/>
+                        <TextBox x:Name="NameInput" Watermark="Enter your full name"/>
+                    </StackPanel>
+                    
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Email"/>
+                        <TextBox x:Name="EmailInput" Watermark="Enter your email"/>
+                    </StackPanel>
+                    
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Phone"/>
+                        <TextBox x:Name="PhoneInput" Watermark="Enter your phone number"/>
+                    </StackPanel>
+                    
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Password"/>
+                        <TextBox x:Name="RegPasswordInput" PasswordChar="•" Watermark="Enter password"/>
+                    </StackPanel>
+                    
+                    <TextBlock x:Name="RegisterErrorText" 
+                               Text="Error message" 
+                               Foreground="#E57373" 
+                               IsVisible="False" 
+                               TextWrapping="Wrap"/>
+                    
+                    <Button Content="Register" 
+                            Click="OnRegisterClick" 
+                            HorizontalAlignment="Stretch" 
+                            HorizontalContentAlignment="Center"
+                            Height="40" 
+                            Background="#4CAF50" 
+                            Foreground="White"/>
+                    
+                    <StackPanel Orientation="Horizontal" 
+                                Spacing="5" 
+                                HorizontalAlignment="Center" 
+                                Margin="0,10,0,0">
+                        <TextBlock Text="Already have an account?"/>
+                        <TextBlock Text="Login" 
+                                   Foreground="#2196F3" 
+                                   Cursor="Hand" 
+                                   PointerPressed="OnLoginLinkClick"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
+>>>>>>> Stashed changes

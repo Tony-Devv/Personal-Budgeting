@@ -18,6 +18,9 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        // Initialize the application theme
+        ThemeManager.ResetToDefault();
+        
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
@@ -31,6 +34,7 @@ public partial class App : Application
 
         base.OnFrameworkInitializationCompleted();
     }
+<<<<<<< Updated upstream
 
     private void DisableAvaloniaDataAnnotationValidation()
     {
@@ -45,3 +49,6 @@ public partial class App : Application
         }
     }
 }
+=======
+}
+>>>>>>> Stashed changes
