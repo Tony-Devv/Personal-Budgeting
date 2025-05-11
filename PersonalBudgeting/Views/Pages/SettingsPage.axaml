@@ -15,8 +15,6 @@
                            FontSize="28" 
                            FontWeight="SemiBold"
                            VerticalAlignment="Center"/>
-                
-                         
             </Grid>
             
             <!-- User Profile Section -->
@@ -60,6 +58,11 @@
                             <TextBox Name="PhoneTextBox" Watermark="Your Phone Number"/>
                         </StackPanel>
                         
+                        <TextBlock Name="ProfileErrorText" 
+                                   Foreground="#F64E60" 
+                                   IsVisible="False" 
+                                   TextWrapping="Wrap"
+                                   Margin="0,5,0,0"/>
                         
                         <Button Content="Save Profile" 
                                 Classes="accent"
@@ -68,6 +71,38 @@
                                 Margin="0,10,0,0"/>
                     </StackPanel>
                 </Grid>
+            </Border>
+            
+            <!-- Password Change Section -->
+            <Border Classes="card">
+                <StackPanel Margin="15" Spacing="15">
+                    <TextBlock Text="Change Password"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,5"/>
+                    
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="Old Password" FontSize="12" Opacity="0.7"/>
+                        <TextBox Name="OldPasswordTextBox" PasswordChar="•" Watermark="Enter current password"/>
+                    </StackPanel>
+                    
+                    <StackPanel Spacing="5">
+                        <TextBlock Text="New Password" FontSize="12" Opacity="0.7"/>
+                        <TextBox Name="NewPasswordTextBox" PasswordChar="•" Watermark="Enter new password"/>
+                    </StackPanel>
+                    
+                    <TextBlock Name="PasswordErrorText" 
+                               Foreground="#F64E60" 
+                               IsVisible="False" 
+                               TextWrapping="Wrap"
+                               Margin="0,5,0,0"/>
+                    
+                    <Button Content="Change Password" 
+                            Classes="accent"
+                            Name="ChangePasswordButton"
+                            HorizontalAlignment="Left"
+                            Margin="0,10,0,0"/>
+                </StackPanel>
             </Border>
             
             <!-- About Section -->

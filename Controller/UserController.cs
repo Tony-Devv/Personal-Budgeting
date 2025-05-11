@@ -75,7 +75,7 @@ public class UserController
 
         var newPasswordValidationResult = _userInputValidator.ValidateSingleString_ForPassword(newPassword);
         
-        if (!validationResult.IsValid || newPasswordValidationResult.Success)
+        if (!validationResult.IsValid || !newPasswordValidationResult.Success)
         {
             var model_errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
             

@@ -24,22 +24,16 @@ public partial class SettingsPage : UserControl
 {
     private readonly UserController _userController;
     private readonly User _currentUser;
-    private readonly TextBox? _nameInput;
-    private readonly TextBox? _emailInput;
-    private readonly TextBlock? _errorText;
-    private readonly TextBlock? _successText;
     
     // Control references
     private TextBlock? _userInitials;
     private TextBox? _userNameTextBox;
     private TextBox? _userEmailTextBox;
     private TextBox? _userPhoneTextBox;
-    private ComboBox? _currencyComboBox;
-    private ComboBox? _themeComboBox;
-    private ComboBox? _accentColorComboBox;
-    private CheckBox? _budgetAlertsCheckBox;
-    private CheckBox? _paymentRemindersCheckBox;
-    private CheckBox? _monthlySummaryCheckBox;
+    private TextBlock? _profileErrorText;
+    private TextBlock? _passwordErrorText;
+    private TextBox? _oldPasswordTextBox;
+    private TextBox? _newPasswordTextBox;
 
     public SettingsPage(UserController userController, User? currentUser)
     {
@@ -48,27 +42,8 @@ public partial class SettingsPage : UserControl
         _userController = userController;
         _currentUser = currentUser ?? new User { Id = 0, UserName = "Guest", Email = "guest@example.com" };
         
-        // Get control references
-        _nameInput = this.FindControl<TextBox>("NameInput");
-        _emailInput = this.FindControl<TextBox>("EmailInput");
-        _errorText = this.FindControl<TextBlock>("ErrorText");
-        _successText = this.FindControl<TextBlock>("SuccessText");
-        
-        // Set initial values
-        if (_nameInput != null)
-            _nameInput.Text = _currentUser.UserName;
-            
-        if (_emailInput != null)
-            _emailInput.Text = _currentUser.Email;
-            
-        // Hide messages
-        if (_errorText != null)
-            _errorText.IsVisible = false;
-            
-        if (_successText != null)
-            _successText.IsVisible = false;
-        
         LoadUserData();
+        GetControlReferences();
         
         // Attach event handlers
         var logoutButton = this.FindControl<Button>("LogoutButton");
@@ -88,14 +63,6 @@ public partial class SettingsPage : UserControl
         {
             changePasswordButton.Click += OnChangePasswordClick;
         }
-        
-        // Get theme ComboBox and select current theme
-        _themeComboBox = this.FindControl<ComboBox>("ThemeComboBox");
-        if (_themeComboBox != null)
-        {
-            // Default to Dark theme (index 0)
-            _themeComboBox.SelectedIndex = 0;
-        }
     }
     
     private void InitializeComponent()
@@ -109,12 +76,10 @@ public partial class SettingsPage : UserControl
         _userNameTextBox = this.FindControl<TextBox>("NameTextBox");
         _userEmailTextBox = this.FindControl<TextBox>("EmailTextBox");
         _userPhoneTextBox = this.FindControl<TextBox>("PhoneTextBox");
-        _currencyComboBox = this.FindControl<ComboBox>("CurrencyComboBox");
-        _themeComboBox = this.FindControl<ComboBox>("ThemeComboBox");
-        _accentColorComboBox = this.FindControl<ComboBox>("AccentColorComboBox");
-        _budgetAlertsCheckBox = this.FindControl<CheckBox>("BudgetAlertsCheckBox");
-        _paymentRemindersCheckBox = this.FindControl<CheckBox>("PaymentRemindersCheckBox");
-        _monthlySummaryCheckBox = this.FindControl<CheckBox>("MonthlySummaryCheckBox");
+        _profileErrorText = this.FindControl<TextBlock>("ProfileErrorText");
+        _passwordErrorText = this.FindControl<TextBlock>("PasswordErrorText");
+        _oldPasswordTextBox = this.FindControl<TextBox>("OldPasswordTextBox");
+        _newPasswordTextBox = this.FindControl<TextBox>("NewPasswordTextBox");
     }
     
     private void LoadUserData()
@@ -125,7 +90,6 @@ public partial class SettingsPage : UserControl
         var nameTextBox = this.FindControl<TextBox>("NameTextBox");
         var emailTextBox = this.FindControl<TextBox>("EmailTextBox");
         var phoneTextBox = this.FindControl<TextBox>("PhoneTextBox");
-        var currencyComboBox = this.FindControl<ComboBox>("CurrencyComboBox");
         var userInitials = this.FindControl<TextBlock>("UserInitials");
         
         if (nameTextBox != null)
@@ -136,9 +100,6 @@ public partial class SettingsPage : UserControl
             
         if (phoneTextBox != null)
             phoneTextBox.Text = _currentUser.PhoneNumber;
-            
-        if (currencyComboBox != null)
-            currencyComboBox.SelectedIndex = 0; // Default to first currency
         
         if (userInitials != null && !string.IsNullOrEmpty(_currentUser.UserName))
         {
@@ -162,13 +123,13 @@ public partial class SettingsPage : UserControl
     {
         try
         {
-            // Get control references if null
+            // Ensure we have the control references
             GetControlReferences();
             
             // Validate inputs
-            if (_userNameTextBox == null || _userEmailTextBox == null || _userPhoneTextBox == null)
+            if (_userNameTextBox == null || _userEmailTextBox == null || _userPhoneTextBox == null || _profileErrorText == null)
             {
-                ShowError("One or more input controls is null");
+                ShowError("One or more input controls is null", _profileErrorText);
                 return;
             }
             
@@ -179,39 +140,39 @@ public partial class SettingsPage : UserControl
             // Validate required fields
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
             {
-                ShowError("Please enter your name and email");
+                ShowError("Please enter your name and email", _profileErrorText);
                 return;
             }
             
             // Validate username length (max 100 chars)
             if (name.Length > 100)
             {
-                ShowError("Username cannot exceed 100 characters");
+                ShowError("Username cannot exceed 100 characters", _profileErrorText);
                 return;
             }
             
             // Validate email format
             if (!IsValidEmail(email))
             {
-                ShowError("Please enter a valid email address");
+                ShowError("Please enter a valid email address", _profileErrorText);
                 return;
             }
             
             // Validate email length (max 100 chars)
             if (email.Length > 100)
             {
-                ShowError("Email cannot exceed 100 characters");
+                ShowError("Email cannot exceed 100 characters", _profileErrorText);
                 return;
             }
             
             // Validate phone number length (max 15 chars)
             if (phone.Length > 15)
             {
-                ShowError("Phone number cannot exceed 15 characters");
+                ShowError("Phone number cannot exceed 15 characters", _profileErrorText);
                 return;
             }
 
-            // Create updated user object with current values
+            // Create updated user object with current values (keep password unchanged)
             var updatedUser = new User
             {
                 Id = _currentUser.Id,
@@ -221,7 +182,7 @@ public partial class SettingsPage : UserControl
                 Password = _currentUser.Password // Keep the current password
             };
             
-            // Save user data to database using EditUserDetails method
+            // Save user data to database
             var result = await _userController.TryUpdateUser(updatedUser);
             
             if (result.Success && result.UpdatedUser != null)
@@ -232,7 +193,7 @@ public partial class SettingsPage : UserControl
                 _currentUser.PhoneNumber = result.UpdatedUser.PhoneNumber;
                 
                 // Show success message
-                ShowSuccess("Profile updated successfully");
+                ShowSuccess("Profile updated successfully", _profileErrorText);
                 
                 // Update UI with new values (including initials)
                 if (_userInitials != null && !string.IsNullOrEmpty(_currentUser.UserName))
@@ -243,239 +204,177 @@ public partial class SettingsPage : UserControl
             else
             {
                 // Show error messages
-                ShowError(result.errors.Count > 0 ? string.Join("\n", result.errors) : "Failed to update profile");
+                var errorMessage = result.errors != null && result.errors.Count > 0 
+                    ? string.Join("\n", result.errors) 
+                    : "Failed to update profile";
+                ShowError(errorMessage, _profileErrorText);
             }
         }
         catch (Exception ex)
         {
-            ShowError($"Error: {ex.Message}");
+            ShowError($"An error occurred: {ex.Message}", _profileErrorText);
         }
     }
     
-    // Helper method to validate email format
-    private bool IsValidEmail(string email)
-    {
-        if (string.IsNullOrWhiteSpace(email))
-            return false;
-            
-        try
-        {
-            // Simple regex for basic email validation
-            return Regex.IsMatch(email,
-                @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                RegexOptions.IgnoreCase);
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
-    
-    private void SaveUserData(string name, string email)
-    {
-        // This method is now obsolete as we're using TryUpdateUser
-        // Keeping it for backward compatibility
-        _currentUser.UserName = name ?? string.Empty;
-        _currentUser.Email = email ?? string.Empty;
-    }
-    
-    private void ShowError(string message)
-    {
-        if (_errorText != null)
-        {
-            _errorText.Text = message;
-            _errorText.IsVisible = true;
-        }
-        
-        if (_successText != null)
-        {
-            _successText.IsVisible = false;
-        }
-    }
-    
-    private void ShowSuccess(string message)
-    {
-        if (_successText != null)
-        {
-            _successText.Text = message;
-            _successText.IsVisible = true;
-        }
-        
-        if (_errorText != null)
-        {
-            _errorText.IsVisible = false;
-        }
-    }
-    
-    private MainWindow? GetMainWindow()
-    {
-        var topLevel = TopLevel.GetTopLevel(this);
-        return topLevel as MainWindow;
-    }
-    
-    private string GetInitials(string name)
-    {
-        if (string.IsNullOrEmpty(name))
-            return "U";
-            
-        var parts = name.Split(' ');
-        if (parts.Length == 1)
-            return name.Substring(0, Math.Min(2, name.Length)).ToUpper();
-            
-        return (parts[0][0].ToString() + parts[parts.Length - 1][0].ToString()).ToUpper();
-    }
-
-    private int GetCurrencyIndex(string currency)
-    {
-        return currency switch
-        {
-            "USD" => 0,
-            "EUR" => 1,
-            "GBP" => 2,
-            "JPY" => 3,
-            "CAD" => 4,
-            _ => 0,
-        };
-    }
-
-    private string GetCurrencyFromIndex(int index)
-    {
-        return index switch
-        {
-            0 => "USD",
-            1 => "EUR",
-            2 => "GBP",
-            3 => "JPY",
-            4 => "CAD",
-            _ => "USD",
-        };
-    }
-
-    private int GetThemeIndex(string theme)
-    {
-        return theme switch
-        {
-            "Dark" => 0,
-            "Light" => 1,
-            "System" => 2,
-            _ => 0,
-        };
-    }
-
-    private string GetThemeFromIndex(int index)
-    {
-        return index switch
-        {
-            0 => "Dark",
-            1 => "Light",
-            2 => "System",
-            _ => "Dark",
-        };
-    }
-
-    private int GetAccentColorIndex(string accentColor)
-    {
-        return accentColor switch
-        {
-            "Green" => 0,
-            "Blue" => 1,
-            "Purple" => 2,
-            "Orange" => 3,
-            _ => 0,
-        };
-    }
-
-    private string GetAccentColorFromIndex(int index)
-    {
-        return index switch
-        {
-            0 => "Green",
-            1 => "Blue",
-            2 => "Purple",
-            3 => "Orange",
-            _ => "Green",
-        };
-    }
-
     private async void OnChangePasswordClick(object? sender, RoutedEventArgs e)
     {
         try
         {
-            var currentPasswordBox = this.FindControl<TextBox>("CurrentPasswordBox");
-            var newPasswordBox = this.FindControl<TextBox>("NewPasswordBox");
-            var confirmPasswordBox = this.FindControl<TextBox>("ConfirmPasswordBox");
+            // Ensure we have the control references
+            GetControlReferences();
             
-            if (currentPasswordBox == null || newPasswordBox == null || confirmPasswordBox == null)
+            if (_oldPasswordTextBox == null || _newPasswordTextBox == null || _passwordErrorText == null)
             {
-                ShowError("Password fields not found");
+                ShowError("One or more password controls is null", _passwordErrorText);
                 return;
             }
             
-            var currentPassword = currentPasswordBox.Text;
-            var newPassword = newPasswordBox.Text;
-            var confirmPassword = confirmPasswordBox.Text;
+            var oldPassword = _oldPasswordTextBox.Text?.Trim() ?? string.Empty;
+            var newPassword = _newPasswordTextBox.Text?.Trim() ?? string.Empty;
             
-            // Validate inputs
-            if (string.IsNullOrWhiteSpace(currentPassword) || 
-                string.IsNullOrWhiteSpace(newPassword) || 
-                string.IsNullOrWhiteSpace(confirmPassword))
+            // Validate fields
+            if (string.IsNullOrWhiteSpace(oldPassword) || string.IsNullOrWhiteSpace(newPassword))
             {
-                ShowError("All password fields are required");
+                ShowError("Please enter both old and new password", _passwordErrorText);
                 return;
             }
             
-            if (newPassword != confirmPassword)
+            // Validate password length
+            if (newPassword.Length < 6)
             {
-                ShowError("New password and confirmation do not match");
+                ShowError("New password must be at least 6 characters", _passwordErrorText);
                 return;
             }
             
-            // Create user object with current email and password for verification
-            var userWithCurrentPassword = new User
+            // Create user object with ID, Email, and old password for verification
+            var userWithOldPassword = new User
             {
                 Id = _currentUser.Id,
-                Email = _currentUser.Email,
-                Password = currentPassword
+                Email = _currentUser.Email, 
+                UserName = _currentUser.UserName,
+                Password = oldPassword       
             };
             
-            // Change password using controller
-            var (success, updatedUser, errors) = await _userController.TryChangeUserPassword(newPassword, userWithCurrentPassword);
             
-            if (success && updatedUser != null)
+            // Call TryChangeUserPassword with newPassword and user with old password
+            var result = await _userController.TryChangeUserPassword(newPassword, userWithOldPassword);
+            
+            if (result.Success && result.UpdatedUser != null)
             {
-                // Update current user reference
-                _currentUser.Password = updatedUser.Password;
+                // Show success message
+                ShowSuccess("Password changed successfully", _passwordErrorText);
                 
                 // Clear password fields
-                currentPasswordBox.Text = string.Empty;
-                newPasswordBox.Text = string.Empty;
-                confirmPasswordBox.Text = string.Empty;
-                
-                // Show success message
-                ShowSuccess("Password changed successfully");
+                _oldPasswordTextBox.Text = string.Empty;
+                _newPasswordTextBox.Text = string.Empty;
             }
             else
             {
-                // Show error messages
-                ShowError(errors.Count > 0 ? string.Join("\n", errors) : "Failed to change password");
+                // Show error messages (likely wrong old password)
+                var errorMessage = result.errors != null && result.errors.Count > 0 
+                    ? string.Join("\n", result.errors) 
+                    : "Failed to change password. Please check your current password.";
+                ShowError(errorMessage, _passwordErrorText);
             }
         }
         catch (Exception ex)
         {
-            ShowError($"Error: {ex.Message}");
+            ShowError($"An error occurred: {ex.Message}", _passwordErrorText);
         }
     }
-
-    // Theme selection event handler
-    public void OnThemeSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    
+    private bool IsValidEmail(string email)
     {
-        if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem selectedItem)
+        try
         {
-            string? themeName = selectedItem.Content?.ToString();
-            if (!string.IsNullOrEmpty(themeName))
+            // Simple email validation using regex
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        }
+        catch
+        {
+            return false;
+        }
+    }
+    
+    // Helper method to show error with specific TextBlock
+    private void ShowError(string message, TextBlock? errorText = null)
+    {
+        if (errorText == null)
+        {
+            // Try to find appropriate error text block based on context
+            if (_profileErrorText != null)
             {
-                ThemeManager.ApplyPresetTheme(themeName);
+                errorText = _profileErrorText;
+            }
+            else if (_passwordErrorText != null)
+            {
+                errorText = _passwordErrorText;
+            }
+            else
+            {
+                // If still null, try to find it directly
+                errorText = this.FindControl<TextBlock>("ProfileErrorText") ?? 
+                            this.FindControl<TextBlock>("PasswordErrorText");
             }
         }
+        
+        if (errorText != null)
+        {
+            errorText.Text = message;
+            errorText.IsVisible = true;
+            errorText.Foreground = new SolidColorBrush(Colors.Red);
+        }
+    }
+    
+    // Helper method to show success with specific TextBlock
+    private void ShowSuccess(string message, TextBlock? errorText = null)
+    {
+        if (errorText == null)
+        {
+            // Try to find appropriate error text block based on context
+            if (_profileErrorText != null)
+            {
+                errorText = _profileErrorText;
+            }
+            else if (_passwordErrorText != null)
+            {
+                errorText = _passwordErrorText;
+            }
+            else
+            {
+                // If still null, try to find it directly
+                errorText = this.FindControl<TextBlock>("ProfileErrorText") ?? 
+                            this.FindControl<TextBlock>("PasswordErrorText");
+            }
+        }
+        
+        if (errorText != null)
+        {
+            errorText.Text = message;
+            errorText.IsVisible = true;
+            errorText.Foreground = new SolidColorBrush(Colors.Green);
+            
+            // Hide after 3 seconds
+            Task.Delay(3000).ContinueWith(_ => 
+            {
+                Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                {
+                    errorText.IsVisible = false;
+                });
+            });
+        }
+    }
+    
+    private string GetInitials(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            return "??";
+            
+        var parts = name.Split(' ');
+        if (parts.Length >= 2)
+        {
+            return (parts[0].FirstOrDefault().ToString() + parts[1].FirstOrDefault().ToString()).ToUpper();
+        }
+        return name.Length >= 2 ? name.Substring(0, 2).ToUpper() : name + "?";
     }
 }

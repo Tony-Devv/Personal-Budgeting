@@ -189,8 +189,8 @@ public partial class BudgetPage : UserControl
                 totalBudgetText.Text = totalBudget.ToString("C");
             }
 
-            // Calculate budget used (total expenses)
-            var totalExpenses = _userExpenses != null ? (double)_userExpenses.Sum(e => e.RequiredAmount) : 0;
+            // Calculate budget used (total expenses spent, not required)
+            var totalExpenses = _userExpenses != null ? (double)_userExpenses.Sum(e => e.SpentAmount) : 0;
             var budgetUsedText = this.Get<TextBlock>("BudgetUsedText");
             if (budgetUsedText != null)
             {
@@ -251,8 +251,8 @@ public partial class BudgetPage : UserControl
             // Calculate total budget
             var totalBudget = _userBudgets != null ? (double)_userBudgets.Sum(b => b.TotalAmountRequired) : 0;
             
-            // Calculate total expenses
-            var totalExpenses = _userExpenses != null ? (double)_userExpenses.Sum(e => e.RequiredAmount) : 0;
+            // Calculate total expenses (spent, not required)
+            var totalExpenses = _userExpenses != null ? (double)_userExpenses.Sum(e => e.SpentAmount) : 0;
             
             // Calculate percentage of budget used
             var budgetUsedPercentage = totalBudget > 0 ? (totalExpenses / totalBudget) * 100 : 0;
@@ -353,7 +353,7 @@ public partial class BudgetPage : UserControl
                 filteredBudgets = filteredBudgets
                     .Where(b => {
                         decimal spent = _userExpenses != null 
-                            ? _userExpenses.Where(e => e.BudgetId == b.Id).Sum(e => e.RequiredAmount) 
+                            ? _userExpenses.Where(e => e.BudgetId == b.Id).Sum(e => e.SpentAmount) 
                             : 0;
                         return GetBudgetStatus((double)spent, (double)b.TotalAmountRequired) == _selectedStatus;
                     })
@@ -373,13 +373,13 @@ public partial class BudgetPage : UserControl
                 decimal spent = _userExpenses != null 
                     ? _userExpenses
                         .Where(e => e.BudgetId == budget.Id)
-                        .Sum(e => e.RequiredAmount)
+                        .Sum(e => e.SpentAmount)
                     : 0;
 
                 // Calculate remaining budget
                 decimal remaining = budget.TotalAmountRequired - spent;
                 
-                // Calculate progress percentage
+                // Calculate progress percentage (based on spent amount, not required amount)
                 double progress = budget.TotalAmountRequired > 0 
                     ? Math.Min(100, (double)(spent / budget.TotalAmountRequired * 100)) 
                     : 0;
