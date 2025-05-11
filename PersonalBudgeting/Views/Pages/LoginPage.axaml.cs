@@ -1,22 +1,62 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using Avalonia.Interactivity;
+using Avalonia.VisualTree;
+using Controller;
+using Model.Entities;
+using PersonalBudgeting.Views.Pages;
+using PersonalBudgeting.Controllers;
+using PersonalBudgeting.Models;
+using User = PersonalBudgeting.Models.User;
 
 namespace PersonalBudgeting.Views.Pages;
 
 public partial class LoginPage : UserControl
 {
+    private readonly UserController _userController;
+    private readonly ContentControl? _contentFrame;
+    private readonly Action<int>? _onLoginSuccess;
+    private readonly TextBlock? _errorText;
+    
+    // UI elements
+    private TextBox? _usernameInput;
+    private TextBox? _passwordInput;
+    private TextBlock? _loginErrorText;
+
     public LoginPage()
     {
         InitializeComponent();
+        _userController = new UserController();
+        _contentFrame = null;
+        _onLoginSuccess = null;
+        _errorText = null;
+        GetControlReferences();
+    }
+
+    public LoginPage(UserController userController, ContentControl contentFrame, Action<int> onLoginSuccess)
+    {
+        InitializeComponent();
+        _userController = userController;
+        _contentFrame = contentFrame;
+        _onLoginSuccess = onLoginSuccess;
+        _errorText = this.FindControl<TextBlock>("LoginErrorText");
+        GetControlReferences();
+    }
+    
+    private void GetControlReferences()
+    {
+        _usernameInput = this.FindControl<TextBox>("UsernameInput");
+        _passwordInput = this.FindControl<TextBox>("PasswordInput");
+        _loginErrorText = this.FindControl<TextBlock>("LoginErrorText");
     }
 
     private void InitializeComponent()
     {
-        AvaloniaXamlLoader.Load(this);
+        Avalonia.Markup.Xaml.AvaloniaXamlLoader.Load(this);
     }
-<<<<<<< Updated upstream
-}
-=======
 
     private async void OnLoginClick(object? sender, RoutedEventArgs e)
     {
@@ -249,4 +289,3 @@ public partial class LoginPage : UserControl
         }
     }
 }
->>>>>>> Stashed changes

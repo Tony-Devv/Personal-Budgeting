@@ -3,32 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="650"
              x:Class="PersonalBudgeting.Views.Pages.SettingsPage">
-
+    
     <ScrollViewer>
-<<<<<<< Updated upstream
-        <StackPanel Spacing="20" Margin="20">
-            <TextBlock Text="Settings" Classes="h1"/>
-
-            <!-- Appearance Settings -->
-            <Border Classes="card">
-                <StackPanel>
-                    <TextBlock Text="Appearance" Classes="h2"/>
-                    
-                    <Grid ColumnDefinitions="*,Auto" Margin="0,10">
-                        <TextBlock Text="Theme" VerticalAlignment="Center"/>
-                        <ComboBox Grid.Column="1" SelectedIndex="0">
-                            <ComboBoxItem>System</ComboBoxItem>
-                            <ComboBoxItem>Light</ComboBoxItem>
-                            <ComboBoxItem>Dark</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <!-- Currency Settings -->
-=======
         <StackPanel Margin="20" Spacing="20">
             <!-- Header -->
             <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,10">
@@ -93,23 +71,13 @@
             </Border>
             
             <!-- About Section -->
->>>>>>> Stashed changes
             <Border Classes="card">
-                <StackPanel>
-                    <TextBlock Text="Currency" Classes="h2"/>
+                <StackPanel Margin="15" Spacing="5">
+                    <TextBlock Text="About"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Margin="0,0,0,10"/>
                     
-<<<<<<< Updated upstream
-                    <StackPanel Spacing="10">
-                        <Grid ColumnDefinitions="*,Auto">
-                            <TextBlock Text="Default Currency" VerticalAlignment="Center"/>
-                            <ComboBox Grid.Column="1" SelectedIndex="0">
-                                <ComboBoxItem>USD ($)</ComboBoxItem>
-                                <ComboBoxItem>EUR (€)</ComboBoxItem>
-                                <ComboBoxItem>GBP (£)</ComboBoxItem>
-                            </ComboBox>
-                        </Grid>
-                    </StackPanel>
-=======
                     <TextBlock Text="Personal Budget Manager" FontWeight="SemiBold"/>
                     <TextBlock Text="Version 1.0.0" Opacity="0.7"/>
                     <TextBlock Text="© 2023 All rights reserved" Opacity="0.7" Margin="0,10,0,10"/>
@@ -118,66 +86,21 @@
                     <TextBlock Text="Anton Zakaria (antonzakaria43@gmail.com)" TextWrapping="Wrap"/>
                     <TextBlock Text="Mohamed Adel Kamal (raynowing007@gmail.com)" TextWrapping="Wrap"/>
                     <TextBlock Text="Mark Amir Samir (markamir140@gmail.com)" TextWrapping="Wrap"/>
->>>>>>> Stashed changes
                 </StackPanel>
             </Border>
-
-            <!-- Notification Settings -->
+            
+            <!-- Logout Button -->
             <Border Classes="card">
-                <StackPanel Spacing="15">
-                    <TextBlock Text="Notifications" Classes="h2"/>
+                <StackPanel Margin="15" Spacing="15">
+                    <TextBlock Text="Account"
+                               FontSize="18"
+                               FontWeight="SemiBold"/>
                     
-                    <Grid RowDefinitions="Auto,Auto,Auto" 
-                          ColumnDefinitions="*,Auto">
-                        <TextBlock Text="Enable Budget Alerts" 
-                                 Grid.Row="0" 
-                                 Grid.Column="0"
-                                 Margin="0,0,0,15"
-                                 VerticalAlignment="Center"/>
-                        <ToggleSwitch Grid.Row="0" 
-                                    Grid.Column="1" 
-                                    IsChecked="True"/>
-                        
-                        <TextBlock Text="Enable Bill Reminders" 
-                                 Grid.Row="1" 
-                                 Grid.Column="0"
-                                 Margin="0,0,0,15"
-                                 VerticalAlignment="Center"/>
-                        <ToggleSwitch Grid.Row="1" 
-                                    Grid.Column="1" 
-                                    IsChecked="True"/>
-                        
-                        <TextBlock Text="Enable Sound Effects" 
-                                 Grid.Row="2" 
-                                 Grid.Column="0"
-                                 VerticalAlignment="Center"/>
-                        <ToggleSwitch Grid.Row="2" 
-                                    Grid.Column="1" 
-                                    IsChecked="False"/>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <!-- Data Management -->
-            <Border Classes="card">
-                <StackPanel Spacing="15">
-                    <TextBlock Text="Data Management" Classes="h2"/>
-                    
-                    <StackPanel Spacing="10">
-                        <Button Classes="accent" Content="Export All Data"/>
-                        <Button Classes="accent" Content="Import Data"/>
-                        <Button Foreground="Red" Content="Clear All Data"/>
-                    </StackPanel>
-                </StackPanel>
-            </Border>
-
-            <!-- About Section -->
-            <Border Classes="card">
-                <StackPanel Spacing="10">
-                    <TextBlock Text="About" Classes="h2"/>
-                    <TextBlock Text="Personal Budget Manager v1.0.0"/>
-                    <TextBlock Text="© 2025 Your Company"/>
-                    <Button Content="Check for Updates" Classes="accent"/>
+                    <Button Name="LogoutButton" Content="Sign Out" 
+                            HorizontalAlignment="Left"
+                            Foreground="White" 
+                            Background="#F64E60" 
+                            Padding="15,10"/>
                 </StackPanel>
             </Border>
             

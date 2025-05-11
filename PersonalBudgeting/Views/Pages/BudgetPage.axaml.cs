@@ -1,10 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Layout;
+using Avalonia.Media;
 using Avalonia.Markup.Xaml;
+using Controller;
+using Model.Entities;
+using PersonalBudgeting.Views.Pages;
 
 namespace PersonalBudgeting.Views.Pages;
 
-<<<<<<< Updated upstream
-=======
 // Extension method for more reliable control lookup
 public static class ControlExtensions
 {
@@ -21,14 +30,46 @@ public static class ControlExtensions
     }
 }
 
->>>>>>> Stashed changes
 public partial class BudgetPage : UserControl
 {
+    private readonly BudgetController? _budgetController;
+    private readonly UserController? _userController;
+    private readonly User? _currentUser;
+    private readonly List<Budget>? _userBudgets;
+    private readonly List<Expense>? _userExpenses;
+    private string _searchText = string.Empty;
+    private string _selectedStatus = "All Status";
+    private StackPanel? _budgetItemsPanel;
+    private TextBox? _searchBox;
+    private Border? _addBudgetPopup;
+    private TextBlock? _addBudgetErrorText;
+    private TextBlock? _addBudgetTitle;
+    private Button? _saveBudgetButton;
+    private TextBox? _budgetNameInput;
+    private TextBox? _budgetAmountInput;
+    private TextBlock? _totalBudgetText;
+    private TextBlock? _remainingBudgetText;
+    private ComboBox? _statusFilterComboBox;
+
+    // ViewModel for budget items in the grid
+    public class BudgetViewModel
+    {
+        public int Id { get; set; }
+        public string Category { get; set; } = string.Empty;
+        public string Budget { get; set; } = string.Empty;
+        public string Spent { get; set; } = string.Empty;
+        public string Remaining { get; set; } = string.Empty;
+        public double Progress { get; set; }
+        public string ProgressText { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string StatusColor { get; set; } = string.Empty;
+        public bool IsWarning { get; set; }
+        public bool IsNegative { get; set; }
+    }
+
     public BudgetPage()
     {
         InitializeComponent();
-<<<<<<< Updated upstream
-=======
 
         // Initialize controllers
         _budgetController = new BudgetController();
@@ -871,16 +912,10 @@ public partial class BudgetPage : UserControl
                 addBudgetErrorText.IsVisible = true;
             }
         }
->>>>>>> Stashed changes
     }
 
     private void InitializeComponent()
     {
-<<<<<<< Updated upstream
-        AvaloniaXamlLoader.Load(this);
-    }
-}
-=======
         try
         {
             // Just load the XAML without trying to find controls here
@@ -946,4 +981,3 @@ public partial class BudgetPage : UserControl
         }
     }
 }
->>>>>>> Stashed changes

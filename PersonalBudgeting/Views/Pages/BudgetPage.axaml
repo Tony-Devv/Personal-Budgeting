@@ -1,92 +1,117 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="PersonalBudgeting.Views.Pages.BudgetPage">
-
-    <ScrollViewer>
-        <StackPanel Margin="20">
-            <TextBlock Text="Budget Planning" Classes="h1"/>
-
-            <!-- Monthly Overview -->
-            <Border Classes="card">
-                <Grid ColumnDefinitions="3*,2*">
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="Monthly Overview" Classes="h2"/>
-                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
-                            <TextBlock Text="Total Budget:" Grid.Row="0" Grid.Column="0"/>
-                            <TextBlock Text="$5,000.00" Grid.Row="0" Grid.Column="1" 
-                                     FontWeight="SemiBold"/>
-                            <TextBlock Text="Spent:" Grid.Row="1" Grid.Column="0"/>
-                            <TextBlock Text="$3,500.00" Grid.Row="1" Grid.Column="1" 
-                                     Foreground="Red"/>
-                            <TextBlock Text="Remaining:" Grid.Row="2" Grid.Column="0"/>
-                            <TextBlock Text="$1,500.00" Grid.Row="2" Grid.Column="1" 
-                                     Foreground="Green"/>
-                        </Grid>
-                    </StackPanel>
-                    
-                    <StackPanel Grid.Column="1" Margin="20,0,0,0">
-                        <TextBlock Text="Progress" Classes="h2"/>
-                        <ProgressBar Value="70" Maximum="100" Height="20" 
-                                   Margin="0,10"/>
-                        <TextBlock Text="70% used" HorizontalAlignment="Center"/>
-                    </StackPanel>
+    
+    <Panel>
+        <ScrollViewer>
+            <StackPanel Spacing="20" Margin="20">
+                <!-- Header & Actions -->
+                <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+                    <TextBlock Text="Budget Management" FontSize="24" FontWeight="Bold"/>
+                    <Button Grid.Column="1" 
+                            Content="+ Create Budget" 
+                            Classes="accent"
+                            Click="OnCreateBudgetClick"/>
                 </Grid>
-            </Border>
-
-            <!-- Category Management -->
-            <Border Classes="card">
-                <StackPanel>
-                    <Grid ColumnDefinitions="*, Auto">
-                        <TextBlock Text="Budget Categories" Classes="h2"/>
-                        <Button Grid.Column="1" Content="Add Category" 
-                               Classes="accent"/>
+                
+                <!-- Budget Summary Cards -->
+                <Grid ColumnDefinitions="*,*,*" Margin="0,10">
+                    <!-- Total Budget Card -->
+                    <Border Grid.Column="0" Classes="card" Margin="0,0,10,0">
+                        <Grid RowDefinitions="Auto,*">
+                            <TextBlock Text="Total Budget" Classes="cardTitle"/>
+                            
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                                <TextBlock x:Name="TotalBudgetText" 
+                                        Text="$0.00" 
+                                        FontSize="20"
+                                        FontWeight="Bold"/>
+                                <TextBlock x:Name="BudgetPeriodText" 
+                                        Text="Overall" 
+                                        Opacity="0.7"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Budget Used Card -->
+                    <Border Grid.Column="1" Classes="card" Margin="5,0,5,0">
+                        <Grid RowDefinitions="Auto,*">
+                            <TextBlock Text="Total Expenses" Classes="cardTitle"/>
+                            
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                                <TextBlock x:Name="BudgetUsedText" 
+                                        Text="$0.00" 
+                                        FontSize="20"
+                                        FontWeight="Bold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Percent of Budget:" />
+                                    <TextBlock x:Name="BudgetUsedPercentageText" 
+                                            Text="0%" 
+                                            Margin="5,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Remaining Budget Card -->
+                    <Border Grid.Column="2" Classes="card" Margin="10,0,0,0">
+                        <Grid RowDefinitions="Auto,*">
+                            <TextBlock Text="Remaining Budget" Classes="cardTitle"/>
+                            
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                                <TextBlock x:Name="RemainingBudgetText" 
+                                        Text="$0.00" 
+                                        FontSize="20"
+                                        FontWeight="Bold"/>
+                                <TextBlock x:Name="DaysRemainingText" 
+                                        Text="Budget Available" 
+                                        Opacity="0.7"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+                
+                <!-- Budget Overview Chart -->
+                <Border Classes="card">
+                    <Grid RowDefinitions="Auto,*">
+                        <TextBlock Text="Budget Overview" FontWeight="Bold" Margin="0,0,0,10"/>
+                        
+                        <!-- Budget Progress Bar -->
+                        <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto" Margin="0,10">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock Text="Overall Budget Progress" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" x:Name="OverallProgressText" Text="0%" HorizontalAlignment="Right"/>
+                            </Grid>
+                            
+                            <ProgressBar Grid.Row="1" 
+                                    x:Name="OverallProgressBar" 
+                                    Minimum="0" 
+                                    Maximum="100" 
+                                    Value="0" 
+                                    Height="12"
+                                    Margin="0,10"/>
+                            
+                            <Grid Grid.Row="2" ColumnDefinitions="*,*,*" Margin="0,5,0,0">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Budget" FontSize="12" Opacity="0.7"/>
+                                    <TextBlock x:Name="ChartBudgetText" Text="$0.00" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                    <TextBlock Text="Spent" FontSize="12" Opacity="0.7"/>
+                                    <TextBlock x:Name="ChartSpentText" Text="$0.00" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                    <TextBlock Text="Remaining" FontSize="12" Opacity="0.7"/>
+                                    <TextBlock x:Name="ChartRemainingText" Text="$0.00" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
                     </Grid>
-<<<<<<< Updated upstream
-
-                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" 
-                             Height="300">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Category" Width="*"/>
-                            <DataGridTextColumn Header="Allocated" Width="120"/>
-                            <DataGridTextColumn Header="Spent" Width="120"/>
-                            <DataGridTextColumn Header="Remaining" Width="120"/>
-                            <DataGridTemplateColumn Header="Progress" Width="200">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <ProgressBar Value="65" Maximum="100" 
-                                                   Height="20" Margin="5"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Actions" Width="100">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Edit"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            </Border>
-
-            <!-- Analytics -->
-            <Border Classes="card">
-                <StackPanel>
-                    <TextBlock Text="Spending Analytics" Classes="h2"/>
-                    <ComboBox SelectedIndex="0" Margin="0,10">
-                        <ComboBoxItem>Last 30 Days</ComboBoxItem>
-                        <ComboBoxItem>Last 3 Months</ComboBoxItem>
-                        <ComboBoxItem>Last 6 Months</ComboBoxItem>
-                        <ComboBoxItem>This Year</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
-</UserControl>
-=======
                 </Border>
                 
                 <!-- Budget Categories -->
@@ -179,4 +204,3 @@
         </Border>
     </Panel>
 </UserControl>
->>>>>>> Stashed changes

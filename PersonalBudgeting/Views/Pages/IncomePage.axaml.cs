@@ -1,22 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
+using Controller;
+using Model.Entities;
+using PersonalBudgeting.Views.Pages;
 
 namespace PersonalBudgeting.Views.Pages;
 
 public partial class IncomePage : UserControl
 {
+    private readonly IncomeController _incomeController;
+    private readonly UserController _userController;
+    private readonly User _currentUser;
+    private List<Income> _userIncomes;
+
+    private TextBlock? _welcomeMessage;
+    private TextBlock? _totalIncomeText;
+    private TextBlock? _avgIncomeText;
+    private TextBlock? _incomeSourcesText;
+    private TextBox? _searchBox;
+    private ComboBox? _categoryFilter;
+    private Panel? _incomeListPanel;
+
     public IncomePage()
     {
         InitializeComponent();
+        
+        // Initialize controllers
+        _incomeController = new IncomeController();
+        _userController = new UserController();
+        
+        // In a real app, this would be from authentication
+        _currentUser = new User { Id = 1, UserName = "testuser" };
+        _userIncomes = new List<Income>
+        {
+            new Income { Id = 1, UserId = 1, IncomeSourceName = "Salary", Amount = 3000, IncomeDate = DateTime.Now.AddDays(-5) },
+            new Income { Id = 2, UserId = 1, IncomeSourceName = "Freelance", Amount = 500, IncomeDate = DateTime.Now.AddDays(-10) },
+            new Income { Id = 3, UserId = 1, IncomeSourceName = "Investments", Amount = 200, IncomeDate = DateTime.Now.AddDays(-15) }
+        };
+        
+        // Get control references
+        GetControlReferences();
+        
+        // Set up event handlers
+        if (_searchBox != null)
+            _searchBox.TextChanged += OnSearchTextChanged;
+            
+        if (_categoryFilter != null)
+            _categoryFilter.SelectionChanged += OnCategoryFilterChanged;
+            
+        // Load the data
+        LoadData();
+    }
+
+    public IncomePage(IncomeController incomeController, UserController userController, User user, List<Income> userIncomes)
+    {
+        InitializeComponent();
+        
+        _incomeController = incomeController;
+        _userController = userController;
+        _currentUser = user;
+        _userIncomes = userIncomes;
+        
+        // Get control references
+        GetControlReferences();
+        
+        // Set up event handlers
+        if (_searchBox != null)
+            _searchBox.TextChanged += OnSearchTextChanged;
+            
+        if (_categoryFilter != null)
+            _categoryFilter.SelectionChanged += OnCategoryFilterChanged;
+            
+        // Load the data
+        LoadData();
     }
 
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
     }
-<<<<<<< Updated upstream
-}
-=======
 
     private void GetControlReferences()
     {
@@ -549,4 +619,3 @@ public class IncomeViewModel
     public string Category { get; set; } = string.Empty;
     public string Amount { get; set; } = string.Empty;
 }
->>>>>>> Stashed changes

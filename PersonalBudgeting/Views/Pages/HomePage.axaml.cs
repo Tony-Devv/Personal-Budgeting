@@ -1,23 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-<<<<<<< Updated upstream
-=======
 using Controller;
 using Model.Entities;
 using PersonalBudgeting.ViewModels;
->>>>>>> Stashed changes
 
 namespace PersonalBudgeting.Views.Pages;
 
 public partial class HomePage : UserControl
 {
-<<<<<<< Updated upstream
-    public HomePage()
-    {
-        InitializeComponent();
-    }
-
-=======
     private readonly UserController _userController;
     private readonly User? _currentUser;
     private List<Income>? _userIncomes;
@@ -176,7 +172,6 @@ public partial class HomePage : UserControl
         }
     }
     
->>>>>>> Stashed changes
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);

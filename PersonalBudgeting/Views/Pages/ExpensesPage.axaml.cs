@@ -1,17 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Layout;
+using Avalonia.Media;
 using Avalonia.Markup.Xaml;
+using Controller;
+using Model.Entities;
 
 namespace PersonalBudgeting.Views.Pages;
 
 public partial class ExpensesPage : UserControl
 {
+    private ExpenseController? _expenseController;
+    private UserController? _userController;
+    private User? _currentUser;
+    private List<Expense>? _userExpenses;
+    private StackPanel? _expenseListPanel;
+    private TextBox? _searchBox;
+    private Border? _addExpensePopup;
+    private TextBlock? _addExpenseErrorText;
+    private TextBlock? _addExpenseTitle;
+    private Button? _saveExpenseButton;
+    private TextBox? _expenseNameInput;
+    private ComboBox? _expenseCategoryComboBox;
+    private TextBox? _requiredAmountInput;
+    private TextBox? _expenseAmountInput;
+    private DatePicker? _expenseDatePicker;
+    private DatePicker? _reminderDatePicker;
+    private TextBlock? _welcomeMessage;
+    private TextBlock? _totalExpenseText;
+    private TextBlock? _avgExpenseText;
+    private TextBlock? _expenseCategoriesText;
+    
+    private bool _isEditing = false;
+    private string _searchText = string.Empty;
+    private const int DEFAULT_BUDGET_ID = 1;
+    
     public ExpensesPage()
     {
         InitializeComponent();
+        GetControlReferences();
     }
 
-<<<<<<< Updated upstream
-=======
     public ExpensesPage(
         ExpenseController expenseController,
         UserController userController,
@@ -878,9 +912,9 @@ public partial class ExpensesPage : UserControl
         }
     }
     
->>>>>>> Stashed changes
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
     }
 }
+

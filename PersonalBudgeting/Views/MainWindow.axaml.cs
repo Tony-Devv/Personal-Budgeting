@@ -1,14 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
-using FluentAvalonia.UI.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
+using Avalonia.Media;
+using Controller;
+using Model.Entities;
 using PersonalBudgeting.Views.Pages;
+using Avalonia.VisualTree;
 
 namespace PersonalBudgeting.Views;
 
 public partial class MainWindow : Window
 {
-<<<<<<< Updated upstream
-    private readonly Frame _contentFrame;
-=======
     // Controllers
     private readonly UserController _userController;
     private readonly IncomeController _incomeController;
@@ -24,20 +30,17 @@ public partial class MainWindow : Window
     private readonly TextBlock? _userNameText;
     private readonly TextBlock? _userEmailText;
     private string _currentEditField = string.Empty;
->>>>>>> Stashed changes
 
     public MainWindow()
     {
         InitializeComponent();
         
-        _contentFrame = this.FindControl<Frame>("ContentFrame");
-        var navView = this.FindControl<NavigationView>("NavView");
+        // Initialize controllers
+        _incomeController = new IncomeController();
+        _expenseController = new ExpenseController();
+        _budgetController = new BudgetController();
+        _userController = new UserController();
         
-<<<<<<< Updated upstream
-        if (navView != null)
-        {
-            navView.SelectionChanged += NavView_SelectionChanged;
-=======
         // Remove the test user initialization - we'll get real users from the database
         _currentUser = null;
         
@@ -59,15 +62,11 @@ public partial class MainWindow : Window
         if (_userEmailText != null)
         {
             _userEmailText.Text = "Please login";
->>>>>>> Stashed changes
         }
-
-        // Navigate to home page by default
-        if (_contentFrame != null)
+        
+        // Set user initials
+        if (_userInitials != null)
         {
-<<<<<<< Updated upstream
-            _contentFrame.Navigate(typeof(HomePage));
-=======
             _userInitials.Text = "?";
         }
         
@@ -109,17 +108,14 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             ShowWelcomePage();
->>>>>>> Stashed changes
         }
     }
-
-    private void NavView_SelectionChanged(object? sender, NavigationViewSelectionChangedEventArgs e)
+    
+    // Method to load user data from the database
+    private async Task LoadUserData()
     {
-        if (e.SelectedItem is NavigationViewItem item && _contentFrame != null)
+        try
         {
-<<<<<<< Updated upstream
-            switch (item.Tag?.ToString()?.ToLower())
-=======
             // Get the user by ID
             var user = new User { Id = _currentUserId };
             var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(user);
@@ -209,27 +205,27 @@ public partial class MainWindow : Window
             
             // Navigate based on page name
             switch (pageName?.ToLower())
->>>>>>> Stashed changes
             {
                 case "home":
-                    _contentFrame.Navigate(typeof(HomePage));
+                    _pageContent.Content = new HomePage(
+                        _userController,
+                        _currentUser,
+                        _pageContent
+                    );
                     break;
-                case "profile":
-                    _contentFrame.Navigate(typeof(ProfilePage));
-                    break;
+                    
                 case "income":
-                    _contentFrame.Navigate(typeof(IncomePage));
+                    var (incomesSuccess, userIncomes, incomeErrors) = await _userController.TryGetUserIncomes(_currentUser);
+                    _pageContent.Content = new IncomePage(_incomeController, _userController, _currentUser, 
+                        incomesSuccess ? userIncomes : new List<Income>());
                     break;
+                    
                 case "expenses":
-                    _contentFrame.Navigate(typeof(ExpensesPage));
+                    var (expensesSuccess, userExpenses, expenseErrors) = await _userController.TryGetUserExpenses(_currentUser);
+                    _pageContent.Content = new ExpensesPage(_expenseController, _userController, _currentUser);
                     break;
+                    
                 case "budget":
-<<<<<<< Updated upstream
-                    _contentFrame.Navigate(typeof(BudgetPage));
-                    break;
-                case "reminders":
-                    _contentFrame.Navigate(typeof(RemindersPage));
-=======
                     var (budgetsSuccess, userBudgets, budgetErrors) = await _userController.TryGetUserBudgets(_currentUser);
                     var (expSuccess, expensesForBudget, expErrors) = await _userController.TryGetUserExpenses(_currentUser);
                     
@@ -248,15 +244,18 @@ public partial class MainWindow : Window
                         // Fallback to home page if budget page fails to load
                         LoadHomePage();
                     }
->>>>>>> Stashed changes
                     break;
+                    
                 case "settings":
-                    _contentFrame.Navigate(typeof(SettingsPage));
+                    _pageContent.Content = new SettingsPage(_userController, _currentUser);
+                    break;
+                    
+                case "welcome":
+                default:
+                    ShowWelcomePage();
                     break;
             }
         }
-<<<<<<< Updated upstream
-=======
         catch (Exception ex)
         {
         }
@@ -526,6 +525,5 @@ public partial class MainWindow : Window
         
         // Update the user profile display on window opening
         UpdateUserProfileDisplay();
->>>>>>> Stashed changes
     }
 }

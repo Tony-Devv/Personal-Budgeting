@@ -1,120 +1,9 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="PersonalBudgeting.Views.Pages.ExpensesPage">
-<<<<<<< Updated upstream
-
-    <ScrollViewer>
-        <StackPanel Margin="20">
-            <TextBlock Text="Expense Tracking" Classes="h1" />
-
-            <!-- Quick Add Expense -->
-            <Border Classes="card">
-                <StackPanel>
-                    <TextBlock Text="Add New Expense" Classes="h2" />
-                    <Grid ColumnDefinitions="2*,*,*,Auto" Margin="0,0,0,10">
-                        <TextBox Grid.Column="0" 
-                                Watermark="Description"
-                                Margin="0,0,10,0" />
-                        <NumericUpDown Grid.Column="1"
-                                     Watermark="Amount"
-                                     FormatString="C2"
-                                     Margin="0,0,10,0" />
-                        <ComboBox Grid.Column="2"
-                                 SelectedIndex="0"
-                                 Margin="0,0,10,0">
-                            <ComboBoxItem>Food</ComboBoxItem>
-                            <ComboBoxItem>Transportation</ComboBoxItem>
-                            <ComboBoxItem>Utilities</ComboBoxItem>
-                            <ComboBoxItem>Shopping</ComboBoxItem>
-                            <ComboBoxItem>Other</ComboBoxItem>
-                        </ComboBox>
-                        <Button Grid.Column="3"
-                                Content="Add"
-                                Classes="accent" />
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-            <!-- Expense List -->
-            <Border Classes="card">
-                <StackPanel>
-                    <Grid ColumnDefinitions="*, Auto, Auto">
-                        <TextBlock Text="Recent Expenses" Classes="h2" />
-                        <ComboBox Grid.Column="1"
-                                 SelectedIndex="0"
-                                 MinWidth="150"
-                                 Margin="0,0,10,0">
-                            <ComboBoxItem>This Month</ComboBoxItem>
-                            <ComboBoxItem>Last Month</ComboBoxItem>
-                            <ComboBoxItem>Last 3 Months</ComboBoxItem>
-                        </ComboBox>
-                        <Button Grid.Column="2"
-                                Content="Export"
-                                Classes="accent" />
-                    </Grid>
-
-                    <DataGrid AutoGenerateColumns="False"
-                             IsReadOnly="True"
-                             Height="300"
-                             Margin="0,10,0,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Date" Width="120" />
-                            <DataGridTextColumn Header="Description" Width="*" />
-                            <DataGridTextColumn Header="Category" Width="150" />
-                            <DataGridTextColumn Header="Amount" Width="120" />
-                            <DataGridTemplateColumn Header="Actions" Width="120">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Spacing="5">
-                                            <Button Content="Edit" />
-                                            <Button Content="Delete" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            </Border>
-
-            <!-- Expense Summary -->
-            <Grid ColumnDefinitions="*,*,*" Margin="0">
-                <Border Classes="card" Margin="0,0,10,0">
-                    <StackPanel>
-                        <TextBlock Text="Monthly Total" Classes="h2" />
-                        <TextBlock Text="$2,850.00"
-                                 FontSize="24"
-                                 Foreground="Red" />
-                        <TextBlock Text="15% more than last month"
-                                 Opacity="0.7" />
-                    </StackPanel>
-                </Border>
-
-                <Border Classes="card" Grid.Column="1" Margin="10,0">
-                    <StackPanel>
-                        <TextBlock Text="Largest Category" Classes="h2" />
-                        <TextBlock Text="Food"
-                                 FontSize="20" />
-                        <TextBlock Text="$850.00 (30%)"
-                                 Opacity="0.7" />
-                    </StackPanel>
-                </Border>
-
-                <Border Classes="card" Grid.Column="2" Margin="10,0,0,0">
-                    <StackPanel>
-                        <TextBlock Text="Daily Average" Classes="h2" />
-                        <TextBlock Text="$95.00"
-                                 FontSize="24" />
-                        <TextBlock Text="30 transactions"
-                                 Opacity="0.7" />
-                    </StackPanel>
-                </Border>
-            </Grid>
-        </StackPanel>
-    </ScrollViewer>
-</UserControl>
-=======
     
     <Panel>
         <!-- Main Content -->
@@ -255,4 +144,3 @@
     <UserControl.Styles>
     </UserControl.Styles>
 </UserControl>
->>>>>>> Stashed changes

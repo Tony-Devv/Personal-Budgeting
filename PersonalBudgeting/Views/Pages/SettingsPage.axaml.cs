@@ -1,13 +1,9 @@
-<<<<<<< Updated upstream
-=======
 using System;
 using System.Threading.Tasks;
 using Avalonia;
->>>>>>> Stashed changes
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-<<<<<<< Updated upstream
-=======
 using Controller;
 using Model.Entities;
 using System.Text.RegularExpressions;
@@ -21,17 +17,33 @@ using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Styling;
 using System.Collections.Generic;
->>>>>>> Stashed changes
 
 namespace PersonalBudgeting.Views.Pages;
 
 public partial class SettingsPage : UserControl
 {
-    public SettingsPage()
+    private readonly UserController _userController;
+    private readonly User _currentUser;
+    private readonly TextBox? _nameInput;
+    private readonly TextBox? _emailInput;
+    private readonly TextBlock? _errorText;
+    private readonly TextBlock? _successText;
+    
+    // Control references
+    private TextBlock? _userInitials;
+    private TextBox? _userNameTextBox;
+    private TextBox? _userEmailTextBox;
+    private TextBox? _userPhoneTextBox;
+    private ComboBox? _currencyComboBox;
+    private ComboBox? _themeComboBox;
+    private ComboBox? _accentColorComboBox;
+    private CheckBox? _budgetAlertsCheckBox;
+    private CheckBox? _paymentRemindersCheckBox;
+    private CheckBox? _monthlySummaryCheckBox;
+
+    public SettingsPage(UserController userController, User? currentUser)
     {
         InitializeComponent();
-<<<<<<< Updated upstream
-=======
         
         _userController = userController;
         _currentUser = currentUser ?? new User { Id = 0, UserName = "Guest", Email = "guest@example.com" };
@@ -84,16 +96,12 @@ public partial class SettingsPage : UserControl
             // Default to Dark theme (index 0)
             _themeComboBox.SelectedIndex = 0;
         }
->>>>>>> Stashed changes
     }
-
+    
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
     }
-<<<<<<< Updated upstream
-}
-=======
     
     private void GetControlReferences()
     {
@@ -471,4 +479,3 @@ public partial class SettingsPage : UserControl
         }
     }
 }
->>>>>>> Stashed changes

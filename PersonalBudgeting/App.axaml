@@ -2,18 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:PersonalBudgeting"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
-             xmlns:styling="using:FluentAvalonia.Styling"
+             xmlns:sty="using:FluentAvalonia.Styling"
              x:Class="PersonalBudgeting.App"
              RequestedThemeVariant="Dark">
 
-    <Application.DataTemplates>
-        <local:ViewLocator/>
-    </Application.DataTemplates>
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://PersonalBudgeting/Styles/Colors.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 
     <Application.Styles>
-<<<<<<< Updated upstream
-        <styling:FluentAvaloniaTheme PreferSystemTheme="False" />
-=======
         <sty:FluentAvaloniaTheme PreferSystemTheme="False" />
         <StyleInclude Source="avares://PersonalBudgeting/GlobalStyles.axaml"/>
         <FluentTheme />
@@ -233,22 +234,6 @@
         <Style Selector="Border.popup > Border > StackPanel">
             <Setter Property="Spacing" Value="10"/>
         </Style>
->>>>>>> Stashed changes
     </Application.Styles>
 
-    <Application.Resources>
-        <Color x:Key="SystemAccentColor">#007BFF</Color>
-        <Color x:Key="SystemAccentColorDark1">#0056b3</Color>
-        <Color x:Key="SystemAccentColorDark2">#003d80</Color>
-        <Color x:Key="SystemAccentColorDark3">#00264d</Color>
-        <Color x:Key="SystemAccentColorLight1">#3395ff</Color>
-        <Color x:Key="SystemAccentColorLight2">#66afff</Color>
-        <Color x:Key="SystemAccentColorLight3">#99c9ff</Color>
-        
-        <!-- Dark theme colors -->
-        <Color x:Key="ApplicationBackgroundColor">#1A2526</Color>
-        <Color x:Key="CardBackgroundColor">#22303D</Color>
-        <Color x:Key="TextPrimaryColor">#FFFFFF</Color>
-        <Color x:Key="TextSecondaryColor">#B0B0B0</Color>
-    </Application.Resources>
 </Application>
