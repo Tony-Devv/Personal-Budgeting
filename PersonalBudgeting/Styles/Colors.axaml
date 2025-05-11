@@ -1,17 +1,90 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <!-- Dark theme colors matching the design -->
-    <Color x:Key="PrimaryBackground">#1C1E26</Color>
-    <Color x:Key="SecondaryBackground">#262A34</Color>
-    <Color x:Key="AccentColor">#2CD3C0</Color>
-    <Color x:Key="CardBackground">#1F2128</Color>
-    <Color x:Key="TextPrimaryColor">#FFFFFF</Color>
-    <Color x:Key="TextSecondaryColor">#9BA1A6</Color>
+    <!-- Base Colors -->
+    <!-- Main Theme Colors -->
+    <Color x:Key="NavigationColor">#3C3F41</Color>
+    <Color x:Key="ContentColor">#2E2E2E</Color>
     
-    <!-- Brushes -->
-    <SolidColorBrush x:Key="PrimaryBackgroundBrush" Color="{StaticResource PrimaryBackground}"/>
-    <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="{StaticResource SecondaryBackground}"/>
-    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
-    <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackground}"/>
+    <SolidColorBrush x:Key="NavigationBrush" Color="{StaticResource NavigationColor}"/>
+    <SolidColorBrush x:Key="ContentBrush" Color="{StaticResource ContentColor}"/>
+    
+    <!-- Original Colors -->
+    <Color x:Key="DarkestBackgroundColor">#080E14</Color>
+    <Color x:Key="DarkBackgroundColor">#111827</Color>
+    <Color x:Key="CardBackgroundColor">#1A2232</Color>
+    <Color x:Key="CardHoverColor">#20293D</Color>
+    <Color x:Key="SidebarColor">#0D1320</Color>
+    
+    <!-- Accent Colors -->
+    <Color x:Key="PrimaryAccentColor">#00E8C6</Color>
+    <Color x:Key="PrimaryAccentHoverColor">#00F0D0</Color>
+    <Color x:Key="SecondaryAccentColor">#7B61FF</Color>
+    <Color x:Key="TertiaryAccentColor">#FF5677</Color>
+    
+    <!-- Status Colors -->
+    <Color x:Key="SuccessColor">#00E8A2</Color>
+    <Color x:Key="WarningColor">#FFB545</Color>
+    <Color x:Key="DangerColor">#FF5677</Color>
+    <Color x:Key="InfoColor">#00B8D9</Color>
+    
+    <!-- Text Colors -->
+    <Color x:Key="PrimaryTextColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryTextColor">#94A3B8</Color>
+    <Color x:Key="MutedTextColor">#64748B</Color>
+    
+    <!-- Border Colors -->
+    <Color x:Key="BorderColor">#1E293B</Color>
+    <Color x:Key="DividerColor">#273142</Color>
+    
+    <!-- SolidColorBrush resources -->
+    <SolidColorBrush x:Key="DarkestBackgroundBrush" Color="{StaticResource DarkestBackgroundColor}"/>
+    <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{StaticResource DarkBackgroundColor}"/>
+    <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackgroundColor}"/>
+    <SolidColorBrush x:Key="CardHoverBrush" Color="{StaticResource CardHoverColor}"/>
+    <SolidColorBrush x:Key="SidebarBrush" Color="{StaticResource SidebarColor}"/>
+    
+    <SolidColorBrush x:Key="PrimaryAccentBrush" Color="{StaticResource PrimaryAccentColor}"/>
+    <SolidColorBrush x:Key="PrimaryAccentHoverBrush" Color="{StaticResource PrimaryAccentHoverColor}"/>
+    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource SecondaryAccentColor}"/>
+    <SolidColorBrush x:Key="TertiaryAccentBrush" Color="{StaticResource TertiaryAccentColor}"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource PrimaryAccentColor}"/>
+    
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource DangerColor}"/>
+    <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource InfoColor}"/>
+    
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource PrimaryTextColor}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource SecondaryTextColor}"/>
+    <SolidColorBrush x:Key="TextMutedBrush" Color="{StaticResource MutedTextColor}"/>
+    
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+    <SolidColorBrush x:Key="DividerBrush" Color="{StaticResource DividerColor}"/>
+    
+    <!-- Gradient Brushes -->
+    <LinearGradientBrush x:Key="CardGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#1A2232" Offset="0"/>
+        <GradientStop Color="#202B3D" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="PrimaryGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#00E8C6" Offset="0"/>
+        <GradientStop Color="#00C3FF" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="SidebarGradientBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#0D1320" Offset="0"/>
+        <GradientStop Color="#111827" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="BackgroundGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#0A101C" Offset="0"/>
+        <GradientStop Color="#111827" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <!-- Shadow Resources -->
+    <BoxShadows x:Key="CardShadow">0 4 20 0 #15000000</BoxShadows>
+    <BoxShadows x:Key="ElevatedCardShadow">0 10 30 0 #20000000</BoxShadows>
+    <BoxShadows x:Key="TooltipShadow">0 4 12 0 #40000000</BoxShadows>
 </ResourceDictionary>

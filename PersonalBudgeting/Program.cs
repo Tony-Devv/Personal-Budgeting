@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Avalonia;
 
 namespace PersonalBudgeting
@@ -17,7 +17,6 @@ namespace PersonalBudgeting
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Application crashed: {ex}");
             }
         }
 

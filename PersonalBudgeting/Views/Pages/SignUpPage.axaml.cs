@@ -58,7 +58,6 @@ public partial class SignUpPage : UserControl
         if (_usernameInput == null || _emailInput == null || _passwordInput == null || 
             _phoneInput == null || _registerErrorText == null || _userController == null)
         {
-            Console.WriteLine("Error: UI controls are not properly initialized");
             return;
         }
         
@@ -122,7 +121,6 @@ public partial class SignUpPage : UserControl
         catch (Exception ex)
         {
             // Log and show error
-            Console.WriteLine($"Error during registration: {ex.Message}");
             _registerErrorText.Text = "An error occurred during registration";
             _registerErrorText.Foreground = new SolidColorBrush(Colors.Red);
             _registerErrorText.IsVisible = true;

@@ -25,7 +25,6 @@ public static class ControlExtensions
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error finding control {name}: {ex.Message}");
             return null;
         }
     }
@@ -119,8 +118,6 @@ public partial class BudgetPage : UserControl
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error during UI initialization: {ex.Message}");
-                Console.WriteLine($"Stack trace: {ex.StackTrace}");
             }
         });
     }
@@ -170,8 +167,6 @@ public partial class BudgetPage : UserControl
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading budget data: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
         }
     }
 
@@ -236,12 +231,9 @@ public partial class BudgetPage : UserControl
                 }
             }
             
-            Console.WriteLine("Summary cards updated successfully");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error updating summary cards: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
         }
     }
 
@@ -312,12 +304,10 @@ public partial class BudgetPage : UserControl
                 chartRemainingText.Text = remainingBudget.ToString("C");
             }
             
-            Console.WriteLine("Budget overview updated successfully");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Error updating budget overview: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            // Error handling
         }
     }
 
@@ -332,95 +322,111 @@ public partial class BudgetPage : UserControl
                 return;
             }
 
-            // Get the StackPanel that will hold the budget items
-            var budgetItemsPanel = this.Get<StackPanel>("BudgetItemsPanel");
-            if (budgetItemsPanel == null)
+            // Get the budget items panel
+            if (_budgetItemsPanel == null)
             {
-                Console.WriteLine("Could not find BudgetItemsPanel");
+                _budgetItemsPanel = this.Get<StackPanel>("BudgetItemsPanel");
+                if (_budgetItemsPanel == null)
+                {
+                    return;
+                }
+            }
+
+            // Clear existing items
+            _budgetItemsPanel.Children.Clear();
+
+            // If no budgets, exit
+            if (_userBudgets == null || !_userBudgets.Any())
+            {
                 return;
             }
-            
-            // Clear existing items
-            budgetItemsPanel.Children.Clear();
 
-            // Get total expenses by category (using double for calculations)
-            var expensesByCategory = _userExpenses != null 
-                ? _userExpenses.GroupBy(e => e.ExpenseName)
-                             .ToDictionary(
-                                 g => g.Key, 
-                                 g => (double)g.Sum(e => e.RequiredAmount)
-                             )
-                : new Dictionary<string, double>();
+            // Filter budgets by search text and status
+            var filteredBudgets = _userBudgets
+                .Where(b => string.IsNullOrEmpty(_searchText) || 
+                            b.BudgetName.Contains(_searchText, StringComparison.OrdinalIgnoreCase))
+                .ToList();
 
-            // Process budget items
-            var budgetItems = _userBudgets != null 
-                ? _userBudgets.Select(b => 
-                    {
-                        // Convert to double to avoid decimal/double conversion issues
-                        double budgetAmount = (double)b.TotalAmountRequired;
-                        double spentAmount = expensesByCategory.GetValueOrDefault(b.BudgetName, 0);
-                        double remainingAmount = budgetAmount - spentAmount;
-                        double progress = budgetAmount > 0 ? (spentAmount / budgetAmount) * 100 : 0;
-                        
-                        return new BudgetViewModel
-                        {
-                            Id = b.Id,
-                            Category = b.BudgetName,
-                            Budget = budgetAmount.ToString("C"),
-                            Spent = spentAmount.ToString("C"),
-                            Remaining = remainingAmount.ToString("C"),
-                            Progress = progress,
-                            ProgressText = $"{progress:F1}%",
-                            Status = GetBudgetStatus(spentAmount, budgetAmount),
-                            StatusColor = GetStatusColor(spentAmount, budgetAmount),
-                            IsWarning = budgetAmount > 0 && spentAmount > budgetAmount * 0.8 && spentAmount <= budgetAmount,
-                            IsNegative = budgetAmount > 0 && spentAmount > budgetAmount
-                        };
-                    })
-                    .Where(b => string.IsNullOrEmpty(_searchText) || 
-                               b.Category.Contains(_searchText, StringComparison.OrdinalIgnoreCase))
-                    .Where(b => _selectedStatus == "All Status" || 
-                               (_selectedStatus == "On Track" && !b.IsWarning && !b.IsNegative) ||
-                               (_selectedStatus == "Warning" && b.IsWarning) ||
-                               (_selectedStatus == "Over Budget" && b.IsNegative))
-                    .OrderByDescending(b => b.Progress)
-                    .ToList()
-                : new List<BudgetViewModel>();
-
-            Console.WriteLine($"Found {budgetItems.Count} budget items to display");
-
-            // Create UI elements for each budget item
-            foreach (var budgetItem in budgetItems)
+            if (_selectedStatus != "All Status")
             {
-                // Create a grid for the row
-                var rowGrid = new Grid
-                {
-                    ColumnDefinitions = new ColumnDefinitions("*,120,120,120,150,120,100"),
-                    Height = 50
-                };
-                
-                // Add a separator at the bottom of each row
-                var separator = new Separator
-                {
-                    Height = 1,
-                    Margin = new Avalonia.Thickness(0, 49, 0, 0),
-                    Background = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#20FFFFFF"))
-                };
-                rowGrid.Children.Add(separator);
-                
-                // Create and add each column
-                AddColumnToGrid(rowGrid, budgetItem);
-                
-                // Add the row to the panel
-                budgetItemsPanel.Children.Add(rowGrid);
+                // For each budget, calculate spent amount first, then filter by status
+                filteredBudgets = filteredBudgets
+                    .Where(b => {
+                        decimal spent = _userExpenses != null 
+                            ? _userExpenses.Where(e => e.BudgetId == b.Id).Sum(e => e.RequiredAmount) 
+                            : 0;
+                        return GetBudgetStatus((double)spent, (double)b.TotalAmountRequired) == _selectedStatus;
+                    })
+                    .ToList();
             }
 
-            Console.WriteLine("Budget grid updated successfully");
+            // Add a row for each budget
+            foreach (var budget in filteredBudgets)
+            {
+                // Skip if no category or blank
+                if (string.IsNullOrWhiteSpace(budget.BudgetName))
+                {
+                    continue;
+                }
+
+                // Get spent amount for this budget
+                decimal spent = _userExpenses != null 
+                    ? _userExpenses
+                        .Where(e => e.BudgetId == budget.Id)
+                        .Sum(e => e.RequiredAmount)
+                    : 0;
+
+                // Calculate remaining budget
+                decimal remaining = budget.TotalAmountRequired - spent;
+                
+                // Calculate progress percentage
+                double progress = budget.TotalAmountRequired > 0 
+                    ? Math.Min(100, (double)(spent / budget.TotalAmountRequired * 100)) 
+                    : 0;
+
+                // Create budget view model
+                var budgetItem = new BudgetViewModel
+                {
+                    Id = budget.Id,
+                    Category = budget.BudgetName,
+                    Budget = budget.TotalAmountRequired.ToString("C"),
+                    Spent = spent.ToString("C"),
+                    Remaining = remaining.ToString("C"),
+                    Progress = progress,
+                    ProgressText = $"{progress:F1}%",
+                    Status = GetBudgetStatus((double)spent, (double)budget.TotalAmountRequired),
+                    StatusColor = GetStatusColor((double)spent, (double)budget.TotalAmountRequired),
+                    IsWarning = progress > 80 && progress <= 100,
+                    IsNegative = progress > 100
+                };
+
+                // Create a border for the entire row
+                var rowBorder = new Border
+                {
+                    BorderBrush = new SolidColorBrush(Color.Parse("#333333")),
+                    BorderThickness = new Thickness(1, 0, 1, 1),
+                    Background = new SolidColorBrush(Color.Parse("#2E2E2E")),
+                    Height = 50
+                };
+
+                // Create a grid for this row with 7 columns
+                var rowGrid = new Grid
+                {
+                    ColumnDefinitions = new ColumnDefinitions("2*,1*,1*,1*,1*,1*,1*")
+                };
+
+                // Add the grid to the border
+                rowBorder.Child = rowGrid;
+
+                // Add column data to the grid
+                AddColumnToGrid(rowGrid, budgetItem);
+
+                // Add the row to the panel
+                _budgetItemsPanel.Children.Add(rowBorder);
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error updating budget grid: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
         }
     }
 
@@ -428,144 +434,143 @@ public partial class BudgetPage : UserControl
     {
         try
         {
-            // Category
+            // Column 0: Category Name
             var categoryText = new TextBlock
             {
                 Text = budgetItem.Category,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                Margin = new Avalonia.Thickness(10, 0, 0, 0)
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(10, 0, 0, 0)
             };
             Grid.SetColumn(categoryText, 0);
             rowGrid.Children.Add(categoryText);
-            
-            // Budget
+
+            // Column 1: Budget Amount
             var budgetText = new TextBlock
             {
                 Text = budgetItem.Budget,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
             };
             Grid.SetColumn(budgetText, 1);
             rowGrid.Children.Add(budgetText);
-            
-            // Spent
+
+            // Column 2: Spent Amount
             var spentText = new TextBlock
             {
                 Text = budgetItem.Spent,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
             };
             Grid.SetColumn(spentText, 2);
             rowGrid.Children.Add(spentText);
-            
-            // Remaining
+
+            // Column 3: Remaining Amount
             var remainingText = new TextBlock
             {
                 Text = budgetItem.Remaining,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Foreground = budgetItem.IsNegative 
+                    ? new SolidColorBrush(Color.Parse("#F44336")) // Red if negative
+                    : new SolidColorBrush(Color.Parse("#FFFFFF")) // White otherwise
             };
             Grid.SetColumn(remainingText, 3);
             rowGrid.Children.Add(remainingText);
-            
-            // Progress
-            var progressGrid = new Grid
+
+            // Column 4: Progress Bar and Percentage
+            var progressPanel = new StackPanel
             {
-                RowDefinitions = new RowDefinitions("Auto,Auto"),
-                Margin = new Avalonia.Thickness(5, 8, 5, 8),
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                Spacing = 5,
+                Margin = new Thickness(10, 0, 10, 0),
+                VerticalAlignment = VerticalAlignment.Center
             };
-            
+
             var progressBar = new ProgressBar
             {
                 Value = budgetItem.Progress,
-                Minimum = 0,
                 Maximum = 100,
-                Height = 8
+                Height = 8,
+                CornerRadius = new CornerRadius(4),
+                Foreground = new SolidColorBrush(Color.Parse(budgetItem.StatusColor))
             };
-            
-            // Add appropriate classes based on status
-            if (budgetItem.IsNegative)
-            {
-                progressBar.Classes.Add("danger");
-            }
-            else if (budgetItem.IsWarning)
-            {
-                progressBar.Classes.Add("warning");
-            }
-            
+
             var progressText = new TextBlock
             {
                 Text = budgetItem.ProgressText,
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,
-                Margin = new Avalonia.Thickness(0, 2, 0, 0),
-                FontSize = 11
+                FontSize = 12,
+                HorizontalAlignment = HorizontalAlignment.Right
             };
-            
-            Grid.SetRow(progressBar, 0);
-            Grid.SetRow(progressText, 1);
-            progressGrid.Children.Add(progressBar);
-            progressGrid.Children.Add(progressText);
-            
-            Grid.SetColumn(progressGrid, 4);
-            rowGrid.Children.Add(progressGrid);
-            
-            // Status
+
+            progressPanel.Children.Add(progressBar);
+            progressPanel.Children.Add(progressText);
+            Grid.SetColumn(progressPanel, 4);
+            rowGrid.Children.Add(progressPanel);
+
+            // Column 5: Status
             var statusBorder = new Border
             {
-                CornerRadius = new Avalonia.CornerRadius(4),
-                Padding = new Avalonia.Thickness(5, 2, 5, 2),
-                Margin = new Avalonia.Thickness(10, 0, 10, 0),
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                Background = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse(budgetItem.StatusColor))
+                Background = new SolidColorBrush(Color.Parse(budgetItem.StatusColor)),
+                CornerRadius = new CornerRadius(4),
+                Padding = new Thickness(8, 4, 8, 4),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
             };
-            
+
             var statusText = new TextBlock
             {
                 Text = budgetItem.Status,
-                Foreground = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Colors.White),
+                Foreground = new SolidColorBrush(Color.Parse("#FFFFFF")),
                 FontSize = 12,
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center
+                FontWeight = FontWeight.SemiBold
             };
-            
+
             statusBorder.Child = statusText;
             Grid.SetColumn(statusBorder, 5);
             rowGrid.Children.Add(statusBorder);
-            
-            // Actions
-            var actionsPanel = new StackPanel
+
+            // Column 6: Action Buttons
+            var actionPanel = new StackPanel
             {
-                Orientation = Avalonia.Layout.Orientation.Horizontal,
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
                 Spacing = 5
             };
-            
+
+            // Edit Button
             var editButton = new Button
             {
                 Content = "Edit",
-                Padding = new Avalonia.Thickness(5),
-                Tag = budgetItem.Id
+                Classes = { "actionButton" },
+                Tag = budgetItem.Id,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                VerticalContentAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
             };
-            
             editButton.Click += OnEditBudgetClick;
-            
+
+            // Delete Button
             var deleteButton = new Button
             {
                 Content = "Delete",
-                Padding = new Avalonia.Thickness(5),
-                Tag = budgetItem.Id
+                Classes = { "actionButton", "deleteButton" },
+                Tag = budgetItem.Id,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                VerticalContentAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
             };
-            
             deleteButton.Click += OnDeleteBudgetClick;
-            
-            actionsPanel.Children.Add(editButton);
-            actionsPanel.Children.Add(deleteButton);
-            
-            Grid.SetColumn(actionsPanel, 6);
-            rowGrid.Children.Add(actionsPanel);
+
+            actionPanel.Children.Add(editButton);
+            actionPanel.Children.Add(deleteButton);
+            Grid.SetColumn(actionPanel, 6);
+            rowGrid.Children.Add(actionPanel);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Error adding columns to grid: {ex.Message}");
+            // Error handling
         }
     }
 
@@ -624,53 +629,99 @@ public partial class BudgetPage : UserControl
     {
         try
         {
-            Console.WriteLine("Create Budget button clicked");
             
             // Show the budget creation popup
-            var addBudgetPopup = this.FindControl<Border>("AddBudgetPopup");
+            var addBudgetPopup = this.Get<Border>("AddBudgetPopup");
+            var addBudgetTitle = this.Get<TextBlock>("AddBudgetTitle");
+            var addBudgetErrorText = this.Get<TextBlock>("AddBudgetErrorText");
+            var budgetNameInput = this.Get<TextBox>("BudgetNameInput");
+            var budgetAmountInput = this.Get<TextBox>("BudgetAmountInput");
+            var saveBudgetButton = this.Get<Button>("SaveBudgetButton");
+            
             if (addBudgetPopup != null)
             {
+                // Update popup title
+                if (addBudgetTitle != null)
+                {
+                    addBudgetTitle.Text = "Add New Budget Category";
+                }
+                
+                // Reset the save button tag (no budget ID for new budgets)
+                if (saveBudgetButton != null)
+                {
+                    saveBudgetButton.Tag = null;
+                }
+                
+                // Clear form fields
+                if (budgetNameInput != null) budgetNameInput.Text = string.Empty;
+                if (budgetAmountInput != null) budgetAmountInput.Text = string.Empty;
+                
+                // Hide error message
+                if (addBudgetErrorText != null)
+                {
+                    addBudgetErrorText.IsVisible = false;
+                }
+                
                 // Ensure the popup is visible
                 addBudgetPopup.IsVisible = true;
-                Console.WriteLine("Budget popup should now be visible");
             }
             else
             {
-                Console.WriteLine("Failed to find AddBudgetPopup control");
-            }
-            
-            // Reset form controls
-            var addBudgetErrorText = this.FindControl<TextBlock>("AddBudgetErrorText");
-            var budgetNameInput = this.FindControl<TextBox>("BudgetNameInput");
-            var budgetAmountInput = this.FindControl<TextBox>("BudgetAmountInput");
-            
-            // Clear form fields
-            if (budgetNameInput != null) budgetNameInput.Text = string.Empty;
-            if (budgetAmountInput != null) budgetAmountInput.Text = string.Empty;
-            
-            // Hide error message
-            if (addBudgetErrorText != null)
-            {
-                addBudgetErrorText.IsVisible = false;
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Error showing budget popup: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            // Error handling
         }
     }
 
     private void OnEditBudgetClick(object? sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.Tag is int budgetId && _userBudgets != null)
+        try
         {
-            var budget = _userBudgets.FirstOrDefault(b => b.Id == budgetId);
-            if (budget != null)
+            if (sender is Button button && button.Tag is int budgetId && _userBudgets != null)
             {
-                // For now, just log the action
-                Console.WriteLine($"Edit budget request: {budget.BudgetName} (${budget.TotalAmountRequired})");
+                var budget = _userBudgets.FirstOrDefault(b => b.Id == budgetId);
+                if (budget != null)
+                {
+                    
+                    // Get references to popup controls
+                    var addBudgetPopup = this.Get<Border>("AddBudgetPopup");
+                    var addBudgetTitle = this.Get<TextBlock>("AddBudgetTitle");
+                    var addBudgetErrorText = this.Get<TextBlock>("AddBudgetErrorText");
+                    var budgetNameInput = this.Get<TextBox>("BudgetNameInput");
+                    var budgetAmountInput = this.Get<TextBox>("BudgetAmountInput");
+                    var saveBudgetButton = this.Get<Button>("SaveBudgetButton");
+                    
+                    if (addBudgetPopup != null && addBudgetTitle != null && 
+                        budgetNameInput != null && budgetAmountInput != null && 
+                        saveBudgetButton != null)
+                    {
+                        // Update popup title
+                        addBudgetTitle.Text = "Edit Budget Category";
+                        
+                        // Set budget data in form fields
+                        budgetNameInput.Text = budget.BudgetName;
+                        budgetAmountInput.Text = budget.TotalAmountRequired.ToString();
+                        
+                        // Store the budget ID in the button's Tag for reference when saving
+                        saveBudgetButton.Tag = budget.Id;
+                        
+                        // Hide any error messages
+                        if (addBudgetErrorText != null)
+                        {
+                            addBudgetErrorText.IsVisible = false;
+                        }
+                        
+                        // Show the popup
+                        addBudgetPopup.IsVisible = true;
+                    }
+                }
             }
+        }
+        catch (Exception)
+        {
+            // Error handling
         }
     }
 
@@ -682,7 +733,6 @@ public partial class BudgetPage : UserControl
             if (budget != null)
             {                
                 // For now, just log the action
-                Console.WriteLine($"Delete budget request: {budget.BudgetName} (${budget.TotalAmountRequired})");
             }
         }
     }
@@ -709,19 +759,18 @@ public partial class BudgetPage : UserControl
     {
         try
         {
-            Console.WriteLine("Save Budget button clicked");
             
             // Get references to popup controls
             var addBudgetPopup = this.Get<Border>("AddBudgetPopup");
             var addBudgetErrorText = this.Get<TextBlock>("AddBudgetErrorText");
             var budgetNameInput = this.Get<TextBox>("BudgetNameInput");
             var budgetAmountInput = this.Get<TextBox>("BudgetAmountInput");
+            var saveBudgetButton = this.Get<Button>("SaveBudgetButton");
             
             // Validate inputs
             if (budgetNameInput == null || budgetAmountInput == null || 
                 addBudgetErrorText == null || _budgetController == null || _currentUser == null)
             {
-                Console.WriteLine("Missing controls or controllers");
                 return;
             }
             
@@ -733,6 +782,14 @@ public partial class BudgetPage : UserControl
             if (string.IsNullOrWhiteSpace(budgetName))
             {
                 addBudgetErrorText.Text = "Budget category name is required";
+                addBudgetErrorText.IsVisible = true;
+                return;
+            }
+            
+            // Validate budget name length (max 100 chars)
+            if (budgetName.Length > 100)
+            {
+                addBudgetErrorText.Text = "Budget name cannot exceed 100 characters";
                 addBudgetErrorText.IsVisible = true;
                 return;
             }
@@ -752,48 +809,100 @@ public partial class BudgetPage : UserControl
                 return;
             }
             
-            // Create budget object - only set required fields
-            var budget = new Budget
+            // Validate amount max 6 digits
+            if (amount.ToString("0").Length > 6)
             {
-                UserId = _currentUser.Id,
-                BudgetName = budgetName,
-                TotalAmountRequired = amount
-            };
+                addBudgetErrorText.Text = "Amount cannot exceed 6 digits";
+                addBudgetErrorText.IsVisible = true;
+                return;
+            }
             
-            // Add budget to database
-            Console.WriteLine($"Creating budget category: {budget.BudgetName} - {budget.TotalAmountRequired:C}");
-            var result = await _budgetController.TryAddBudget(budget);
+            // Check if we're updating an existing budget or creating a new one
+            bool isUpdating = saveBudgetButton?.Tag is int budgetId && budgetId > 0;
             
-            if (result.Success)
+            if (isUpdating && saveBudgetButton?.Tag is int editBudgetId)
             {
-                Console.WriteLine("Budget category created successfully");
-                
-                // Hide the popup
-                if (addBudgetPopup != null)
+                // Update existing budget
+                var existingBudget = new Budget
                 {
-                    addBudgetPopup.IsVisible = false;
-                }
+                    Id = editBudgetId,
+                    UserId = _currentUser.Id,
+                    BudgetName = budgetName,
+                    TotalAmountRequired = amount
+                };
                 
-                // Reload budget data
-                await LoadDataAsync();
+                var result = await _budgetController.TryUpdateBudget(existingBudget);
+                
+                if (result.Success)
+                {
+                    
+                    // Hide the popup
+                    if (addBudgetPopup != null)
+                    {
+                        addBudgetPopup.IsVisible = false;
+                    }
+                    
+                    // Reset the button tag after successful update
+                    if (saveBudgetButton != null)
+                    {
+                        saveBudgetButton.Tag = null;
+                    }
+                    
+                    // Reload budget data
+                    await LoadDataAsync();
+                }
+                else
+                {
+                    // Get error message from the errors list or use a default message
+                    string errorMessage = (result.errors != null && result.errors.Count > 0) 
+                        ? string.Join(", ", result.errors) 
+                        : "Failed to update budget category";
+                        
+                    // Show error message
+                    addBudgetErrorText.Text = errorMessage;
+                    addBudgetErrorText.IsVisible = true;
+                }
             }
             else
             {
-                // Get error message from the errors list or use a default message
-                string errorMessage = (result.errors != null && result.errors.Count > 0) 
-                    ? string.Join(", ", result.errors) 
-                    : "Failed to create budget category";
+                // Create new budget
+                var newBudget = new Budget
+                {
+                    UserId = _currentUser.Id,
+                    BudgetName = budgetName,
+                    TotalAmountRequired = amount
+                };
+                
+                // Add budget to database
+                var result = await _budgetController.TryAddBudget(newBudget);
+                
+                if (result.Success)
+                {
                     
-                // Show error message
-                addBudgetErrorText.Text = errorMessage;
-                addBudgetErrorText.IsVisible = true;
-                Console.WriteLine($"Error creating budget category: {errorMessage}");
+                    // Hide the popup
+                    if (addBudgetPopup != null)
+                    {
+                        addBudgetPopup.IsVisible = false;
+                    }
+                    
+                    // Reload budget data
+                    await LoadDataAsync();
+                }
+                else
+                {
+                    // Get error message from the errors list or use a default message
+                    string errorMessage = (result.errors != null && result.errors.Count > 0) 
+                        ? string.Join(", ", result.errors) 
+                        : "Failed to create budget category";
+                        
+                    // Show error message
+                    addBudgetErrorText.Text = errorMessage;
+                    addBudgetErrorText.IsVisible = true;
+                }
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error saving budget: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
             
             // Show error message in UI
             var addBudgetErrorText = this.Get<TextBlock>("AddBudgetErrorText");
@@ -811,12 +920,10 @@ public partial class BudgetPage : UserControl
         {
             // Just load the XAML without trying to find controls here
             AvaloniaXamlLoader.Load(this);
-            Console.WriteLine("BudgetPage XAML loaded successfully");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error in InitializeComponent: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            Console.WriteLine($"Error loading XAML: {ex.Message}");
         }
     }
 
@@ -824,70 +931,53 @@ public partial class BudgetPage : UserControl
     {
         try
         {
-            Console.WriteLine("Attempting to find and connect controls in BudgetPage");
 
             // Use direct access approach instead of FindControl when possible
             _budgetItemsPanel = this.Get<StackPanel>("BudgetItemsPanel");
-            Console.WriteLine($"_budgetItemsPanel found: {_budgetItemsPanel != null}");
             
             _searchBox = this.Get<TextBox>("SearchBox");
-            Console.WriteLine($"_searchBox found: {_searchBox != null}");
             
             _addBudgetPopup = this.Get<Border>("AddBudgetPopup");
-            Console.WriteLine($"_addBudgetPopup found: {_addBudgetPopup != null}");
             
             _addBudgetErrorText = this.Get<TextBlock>("AddBudgetErrorText");
-            Console.WriteLine($"_addBudgetErrorText found: {_addBudgetErrorText != null}");
             
             _addBudgetTitle = this.Get<TextBlock>("AddBudgetTitle");
-            Console.WriteLine($"_addBudgetTitle found: {_addBudgetTitle != null}");
             
             _saveBudgetButton = this.Get<Button>("SaveBudgetButton");
-            Console.WriteLine($"_saveBudgetButton found: {_saveBudgetButton != null}");
             
             _budgetNameInput = this.Get<TextBox>("BudgetNameInput");
-            Console.WriteLine($"_budgetNameInput found: {_budgetNameInput != null}");
             
             _budgetAmountInput = this.Get<TextBox>("BudgetAmountInput");
-            Console.WriteLine($"_budgetAmountInput found: {_budgetAmountInput != null}");
             
             _totalBudgetText = this.Get<TextBlock>("TotalBudgetText");
-            Console.WriteLine($"_totalBudgetText found: {_totalBudgetText != null}");
             
             _remainingBudgetText = this.Get<TextBlock>("RemainingBudgetText");
-            Console.WriteLine($"_remainingBudgetText found: {_remainingBudgetText != null}");
             
             _statusFilterComboBox = this.Get<ComboBox>("StatusFilterComboBox");
-            Console.WriteLine($"_statusFilterComboBox found: {_statusFilterComboBox != null}");
             
             // Connect event handlers - only connect if control is found
             if (_searchBox != null)
             {
                 _searchBox.TextChanged -= OnSearchTextChanged; // Remove any existing handler first
                 _searchBox.TextChanged += OnSearchTextChanged;
-                Console.WriteLine("Connected _searchBox.TextChanged event handler");
             }
             
             if (_statusFilterComboBox != null)
             {
                 _statusFilterComboBox.SelectionChanged -= OnStatusFilterChanged; // Remove any existing handler first
                 _statusFilterComboBox.SelectionChanged += OnStatusFilterChanged;
-                Console.WriteLine("Connected _statusFilterComboBox.SelectionChanged event handler");
             }
             
             // Ensure the add budget popup is initially hidden
             if (_addBudgetPopup != null)
             {
                 _addBudgetPopup.IsVisible = false;
-                Console.WriteLine("Set _addBudgetPopup.IsVisible = false");
             }
             
-            Console.WriteLine("Successfully completed FindAndConnectControls in BudgetPage");
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error finding and connecting controls: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
         }
     }
 }

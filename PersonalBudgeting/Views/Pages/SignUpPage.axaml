@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="PersonalBudgeting.Views.Pages.SignUpPage">
-    <Grid Background="#151C29">
+    <Grid Background="{StaticResource ContentBrush}">
         <!-- Back Arrow -->
         <Button x:Name="BackButton"
                 Click="OnBackClick"
@@ -16,7 +16,7 @@
             <PathIcon Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
         </Button>
         <Grid Width="400" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Border Background="#1E2A3D" CornerRadius="8" BoxShadow="0 4 20 0 #40000000" Padding="30">
+            <Border Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" CornerRadius="8" BoxShadow="0 4 20 0 #40000000" Padding="30">
                 <StackPanel Spacing="20">
                     <TextBlock Text="Create Your Account" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
                     <StackPanel Spacing="5">
@@ -37,7 +37,16 @@
                     </StackPanel>
                    
                     <TextBlock x:Name="RegisterErrorText" Text="Error message" Foreground="#E57373" IsVisible="False" TextWrapping="Wrap"/>
-                    <Button Content="Register" Click="OnRegisterClick" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Height="40" Background="#4CAF50" Foreground="White"/>
+                    <Button Content="Register" 
+                            Classes="primary" 
+                            Click="OnRegisterClick" 
+                            HorizontalAlignment="Stretch" 
+                            HorizontalContentAlignment="Center" 
+                            Height="40" 
+                            Background="{StaticResource ContentBrush}" 
+                            BorderBrush="{StaticResource SuccessBrush}"
+                            BorderThickness="1"
+                            Foreground="White"/>
                     <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center" Margin="0,0,0,0">
                      
                     </StackPanel>

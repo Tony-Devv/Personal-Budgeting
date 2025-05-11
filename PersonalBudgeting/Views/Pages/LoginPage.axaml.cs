@@ -119,7 +119,6 @@ public partial class LoginPage : UserControl
                 _loginErrorText.IsVisible = true;
             }
             
-            Console.WriteLine($"Login error: {ex.Message}");
         }
     }
 
@@ -139,7 +138,6 @@ public partial class LoginPage : UserControl
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error navigating to register form: {ex.Message}");
         }
     }
 
@@ -159,7 +157,6 @@ public partial class LoginPage : UserControl
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error navigating to login form: {ex.Message}");
         }
     }
 
@@ -227,7 +224,6 @@ public partial class LoginPage : UserControl
             if (result.Success && result.User != null)
             {
                 // Registration successful, proceed to login
-                Console.WriteLine($"User registered successfully: {result.User.UserName} (ID: {result.User.Id})");
                 
                 // Call onLoginSuccess to navigate to main window
                 if (_onLoginSuccess != null)
@@ -240,12 +236,10 @@ public partial class LoginPage : UserControl
                 // Registration failed
                 errorText.Text = result.errorMessages.Count > 0 ? string.Join(", ", result.errorMessages) : "Failed to register user";
                 errorText.IsVisible = true;
-                Console.WriteLine("Registration failed: " + (result.errorMessages.Count > 0 ? string.Join(", ", result.errorMessages) : "Unknown error"));
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error during registration: {ex.Message}");
             var errorText = this.FindControl<TextBlock>("RegisterErrorText");
             if (errorText != null)
             {
@@ -279,7 +273,6 @@ public partial class LoginPage : UserControl
         if (_contentFrame == null || _userController == null) 
         {
             // Log the issue and return early to avoid null reference errors
-            Console.WriteLine("Cannot navigate back: _contentFrame or _userController is null");
             return;
         }
         
@@ -293,7 +286,6 @@ public partial class LoginPage : UserControl
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error creating WelcomePage: {ex.Message}");
         }
     }
 }

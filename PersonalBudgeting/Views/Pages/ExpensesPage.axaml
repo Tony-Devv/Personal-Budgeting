@@ -46,7 +46,7 @@
                                     Width="40" Height="40" 
                                     HorizontalContentAlignment="Center"
                                     VerticalContentAlignment="Center"
-                                    Background="#4CAF50" 
+                                    Background="{StaticResource ContentBrush}" 
                                     Foreground="White"
                                     Click="OnAddExpenseClick"/>
                         </Grid>
@@ -55,13 +55,7 @@
             </Grid>
             
             <!-- Expense History Section -->
-            <Grid Grid.Row="2" Margin="0,20,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
+            <Grid Grid.Row="2" RowDefinitions="Auto,Auto,*" Margin="0,20,0,0">
                 <!-- Expense History header -->
                 <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,15">
                     <TextBlock Grid.Column="0" Text="Expense History" FontSize="20" FontWeight="Bold"/>
@@ -70,94 +64,80 @@
                 </Grid>
                 
                 <!-- Column Headers -->
-                <Grid Grid.Row="1" ColumnDefinitions="2*,1*,1*,1*,1*,1*" Margin="0,0,0,10">
-                    <TextBlock Grid.Column="0" Text="Expense Name" FontWeight="SemiBold"/>
-                    <TextBlock Grid.Column="1" Text="Category" FontWeight="SemiBold"/>
-                    <TextBlock Grid.Column="2" Text="Required" FontWeight="SemiBold"/>
-                    <TextBlock Grid.Column="3" Text="Spent" FontWeight="SemiBold"/>
-                    <TextBlock Grid.Column="4" Text="Date" FontWeight="SemiBold"/>
-                    <TextBlock Grid.Column="5" Text="Actions" FontWeight="SemiBold"/>
+                <Grid Grid.Row="1" ColumnDefinitions="2*,1*,1*,1*,1*,1*" Margin="0,0,0,0">
+                    <Border Grid.ColumnSpan="6" Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" Height="40">
+                        <Grid ColumnDefinitions="2*,1*,1*,1*,1*,1*">
+                            <TextBlock Grid.Column="0" Text="Expense Name" FontWeight="SemiBold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            <TextBlock Grid.Column="1" Text="Category" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="Required" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="3" Text="Spent" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="4" Text="Date" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="5" Text="Actions" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
                 </Grid>
                 
                 <!-- Expense List -->
-                <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="ExpenseListPanel" Spacing="10"/>
+                <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="0,0,0,0">
+                    <StackPanel x:Name="ExpenseListPanel" Spacing="0"/>
                 </ScrollViewer>
             </Grid>
         </Grid>
         
         <!-- Add Expense Popup -->
         <Border x:Name="AddExpensePopup" Classes="popup">
-            <StackPanel Spacing="15">
-                <TextBlock x:Name="AddExpenseTitle" 
-                        Text="Add New Expense"
-                        FontSize="20"
-                        FontWeight="Bold"
-                        HorizontalAlignment="Center"
-                        Margin="0,0,0,10"/>
-                
-                <StackPanel Spacing="5">
-                    <TextBlock Text="Expense Name"/>
-                    <TextBox x:Name="ExpenseNameInput" Watermark="Enter expense name"/>
-                </StackPanel>
-                
-                <StackPanel Spacing="5">
-                    <TextBlock Text="Category"/>
-                    <TextBlock Text="Selecting a category will set the required amount from your budget" 
-                              FontSize="12" Opacity="0.7" Margin="0,0,0,4"/>
-                    <ComboBox x:Name="ExpenseCategoryComboBox"
-                              HorizontalAlignment="Stretch"
-                              SelectedIndex="0">
-                        <ComboBoxItem>Food</ComboBoxItem>
-                        <ComboBoxItem>Rent</ComboBoxItem>
-                        <ComboBoxItem>Utilities</ComboBoxItem>
-                        <ComboBoxItem>Transportation</ComboBoxItem>
-                        <ComboBoxItem>Entertainment</ComboBoxItem>
-                        <ComboBoxItem>Healthcare</ComboBoxItem>
-                        <ComboBoxItem>Education</ComboBoxItem>
-                        <ComboBoxItem>Shopping</ComboBoxItem>
-                        <ComboBoxItem>Personal Care</ComboBoxItem>
-                        <ComboBoxItem>Other</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-                
-                <StackPanel Spacing="5">
-                    <TextBlock Text="Required Amount"/>
-                    <TextBox x:Name="RequiredAmountInput" Watermark="Enter required amount"/>
-                </StackPanel>
-                
-                <StackPanel Spacing="5">
-                    <TextBlock Text="Spent Amount"/>
-                    <TextBox x:Name="ExpenseAmountInput" Watermark="Enter spent amount"/>
-                </StackPanel>
-                
-                <StackPanel Spacing="5">
-                    <TextBlock Text="Date"/>
-                    <DatePicker x:Name="ExpenseDatePicker"/>
-                </StackPanel>
-                
-                <StackPanel Spacing="5">
-                    <TextBlock Text="Reminder Date (Optional)"/>
-                    <DatePicker x:Name="ReminderDatePicker"/>
-                </StackPanel>
-                
-                <StackPanel Orientation="Horizontal" 
-                        HorizontalAlignment="Center" 
-                        Spacing="10"
-                        Margin="0,10,0,0">
-                    <Button Content="Cancel" 
-                        Click="OnCancelAddExpenseClick"/>
-                    <Button x:Name="SaveExpenseButton" 
-                        Content="Save" 
-                        Classes="primary"
-                        Click="OnSaveExpenseClick"/>
-                </StackPanel>
-                
-                <TextBlock x:Name="AddExpenseErrorText"
-                        Foreground="Red"
-                        HorizontalAlignment="Center"
-                        IsVisible="False"/>
-            </StackPanel>
+            <Border>
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <TextBlock x:Name="AddExpenseTitle" 
+                            Text="Add New Expense"
+                            Classes="popupTitle"
+                            Grid.Row="0"/>
+                    
+                    <ScrollViewer Grid.Row="1" MaxHeight="400">
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="Expense Name" Classes="formLabel"/>
+                            <TextBox x:Name="ExpenseNameInput" 
+                                    Watermark="Enter expense name"/>
+                            
+                            <TextBlock Text="Category" Classes="formLabel"/>
+                            <TextBlock Text="Selecting a category will set the required amount from your budget" 
+                                      FontSize="12" Opacity="0.7" Margin="0,0,0,4"/>
+                            <ComboBox x:Name="ExpenseCategoryComboBox"
+                                      HorizontalAlignment="Stretch"
+                                      SelectedIndex="0"/>
+                            
+                            <TextBlock Text="Required Amount" Classes="formLabel"/>
+                            <TextBox x:Name="RequiredAmountInput" 
+                                    Watermark="Enter required amount"/>
+                            
+                            <TextBlock Text="Spent Amount" Classes="formLabel"/>
+                            <TextBox x:Name="ExpenseAmountInput" 
+                                    Watermark="Enter spent amount"/>
+                            
+                            <TextBlock Text="Date" Classes="formLabel"/>
+                            <DatePicker x:Name="ExpenseDatePicker"/>
+                            
+                            <TextBlock Text="Reminder Date (Optional)" Classes="formLabel"/>
+                            <DatePicker x:Name="ReminderDatePicker"/>
+                            
+                            <TextBlock x:Name="AddExpenseErrorText"
+                                    Classes="errorText"
+                                    IsVisible="False"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    
+                    <StackPanel Grid.Row="2" 
+                            Classes="formActions">
+                        <Button Content="Cancel"
+                                Classes="secondary"
+                                Click="OnCancelAddExpenseClick"/>
+                        <Button x:Name="SaveExpenseButton" 
+                                Content="Save" 
+                                Classes="primary"
+                                Click="OnSaveExpenseClick"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
         </Border>
     </Panel>
     

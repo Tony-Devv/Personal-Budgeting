@@ -8,6 +8,7 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Controller;
 using Model.Entities;
+using PersonalBudgeting.ViewModels;
 
 namespace PersonalBudgeting.Views.Pages;
 
@@ -17,15 +18,13 @@ public partial class HomePage : UserControl
     private readonly User? _currentUser;
     private List<Income>? _userIncomes;
     private List<Expense>? _userExpenses;
-    private List<Budget>? _userBudgets;
     private readonly ContentControl? _contentFrame;
+    
+    // View Model
+    public HomeViewModel ViewModel { get; }
     
     // UI Controls
     private TextBlock? _welcomeMessage;
-    private TextBlock? _totalIncomeText;
-    private TextBlock? _totalExpensesText;
-    private TextBlock? _totalBudgetText;
-    private TextBlock? _budgetInfoText;
     
     public HomePage()
     {
@@ -35,11 +34,18 @@ public partial class HomePage : UserControl
         _userController = new UserController();
         _currentUser = new User { Id = 0, UserName = "Demo User" };
         
+        // Initialize ViewModel
+        ViewModel = new HomeViewModel();
+        DataContext = ViewModel;
+        
         // Connect to UI elements
         ConnectToUIElements();
         
-        // Load dummy data for design mode
-        LoadDummyData();
+        // Set welcome message
+        if (_welcomeMessage != null)
+        {
+            _welcomeMessage.Text = "Welcome, Tony";
+        }
     }
     
     public HomePage(
@@ -52,6 +58,10 @@ public partial class HomePage : UserControl
         _userController = userController ?? throw new ArgumentNullException(nameof(userController));
         _currentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser));
         _contentFrame = contentFrame ?? throw new ArgumentNullException(nameof(contentFrame));
+        
+        // Initialize ViewModel
+        ViewModel = new HomeViewModel();
+        DataContext = ViewModel;
         
         // Connect to UI elements
         ConnectToUIElements();
@@ -69,43 +79,9 @@ public partial class HomePage : UserControl
     private void ConnectToUIElements()
     {
         _welcomeMessage = this.FindControl<TextBlock>("WelcomeMessage");
-        _totalIncomeText = this.FindControl<TextBlock>("TotalIncomeText");
-        _totalExpensesText = this.FindControl<TextBlock>("TotalExpensesText");
-        _totalBudgetText = this.FindControl<TextBlock>("TotalBudgetText");
-        _budgetInfoText = this.FindControl<TextBlock>("BudgetInfoText");
     }
     
-    private void LoadDummyData()
-    {
-        // Set welcome message
-        if (_welcomeMessage != null)
-        {
-            _welcomeMessage.Text = "Welcome, Demo User";
-        }
-        
-        // Set dummy values for stats
-        if (_totalIncomeText != null)
-        {
-            _totalIncomeText.Text = "$5,200.00";
-        }
-        
-        if (_totalExpensesText != null)
-        {
-            _totalExpensesText.Text = "$3,450.00";
-        }
-        
-        if (_totalBudgetText != null)
-        {
-            _totalBudgetText.Text = "$1,750.00";
-        }
-        
-        if (_budgetInfoText != null)
-        {
-            _budgetInfoText.Text = "Available Balance";
-        }
-    }
-    
-    private async void LoadDashboardDataAsync()
+    private async Task LoadDashboardDataAsync()
     {
         try
         {
@@ -120,12 +96,9 @@ public partial class HomePage : UserControl
             {
                 _userIncomes = incomesResult.Incomes;
                 
-                // Calculate total income
+                // Calculate total income from actual data
                 var totalIncome = _userIncomes?.Sum(i => i.Amount) ?? 0;
-                if (_totalIncomeText != null)
-                {
-                    _totalIncomeText.Text = totalIncome.ToString("C");
-                }
+                ViewModel.TotalIncome = totalIncome;
             }
             
             // Load expenses
@@ -134,50 +107,40 @@ public partial class HomePage : UserControl
             {
                 _userExpenses = expensesResult.Expenses;
                 
-                // Calculate total expenses
+                // Calculate total expenses from actual data
                 var totalExpenses = _userExpenses?.Sum(e => e.SpentAmount) ?? 0;
-                if (_totalExpensesText != null)
-                {
-                    _totalExpensesText.Text = totalExpenses.ToString("C");
-                }
+                ViewModel.TotalExpenses = totalExpenses;
             }
             
-            // Load budgets
-            var budgetsResult = await _userController.TryGetUserBudgets(_currentUser);
-            if (budgetsResult.Success)
+            // Set welcome message
+            var welcomeMessage = this.Get<TextBlock>("WelcomeMessage");
+            if (welcomeMessage != null && _currentUser != null)
             {
-                _userBudgets = budgetsResult.Budgets;
-                
-                // Calculate total budget and remaining budget
-                var totalBudget = _userBudgets?.Sum(b => b.TotalAmountRequired) ?? 0;
-                var totalExpenses = _userExpenses?.Sum(e => e.SpentAmount) ?? 0;
-                var remainingBudget = totalBudget - totalExpenses;
-                
-                if (_totalBudgetText != null)
-                {
-                    _totalBudgetText.Text = remainingBudget.ToString("C");
-                }
-                
-                if (_budgetInfoText != null)
-                {
-                    if (remainingBudget < 0)
-                    {
-                        _budgetInfoText.Text = "Over Budget";
-                    }
-                    else if (remainingBudget < (totalBudget * 0.2m))
-                    {
-                        _budgetInfoText.Text = "Low Budget";
-                    }
-                    else
-                    {
-                        _budgetInfoText.Text = "Available Balance";
-                    }
-                }
+                welcomeMessage.Text = $"Welcome back, {_currentUser.UserName}";
+            }
+            
+            // Update total amount values in the UI (in case the binding doesn't work)
+            var totalBalanceText = this.Get<TextBlock>("TotalBalanceText");
+            var totalIncomeText = this.Get<TextBlock>("TotalIncomeText");
+            var totalExpensesText = this.Get<TextBlock>("TotalExpensesText");
+            
+            if (totalBalanceText != null)
+            {
+                totalBalanceText.Text = ViewModel.TotalBalance.ToString("C");
+            }
+            
+            if (totalIncomeText != null)
+            {
+                totalIncomeText.Text = ViewModel.TotalIncome.ToString("C");
+            }
+            
+            if (totalExpensesText != null)
+            {
+                totalExpensesText.Text = ViewModel.TotalExpenses.ToString("C");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading dashboard data: {ex.Message}");
         }
     }
     

@@ -70,44 +70,6 @@
                 </Grid>
             </Border>
             
-            <!-- Appearance Settings -->
-            <Border Classes="card">
-                <StackPanel Margin="15" Spacing="15">
-                    <TextBlock Text="Appearance"
-                               FontSize="18"
-                               FontWeight="SemiBold"/>
-                    
-                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" Margin="0,5">
-                        <TextBlock Grid.Row="0" Grid.Column="0" 
-                                   Text="Theme" 
-                                   VerticalAlignment="Center"/>
-                        <ComboBox Grid.Row="0" Grid.Column="1" 
-                                  Name="ThemeComboBox"
-                                  Width="150">
-                            <ComboBoxItem Content="Dark"/>
-                            <ComboBoxItem Content="Light"/>
-                            <ComboBoxItem Content="System Default"/>
-                        </ComboBox>
-                        
-                        <TextBlock Grid.Row="1" Grid.Column="0" 
-                                   Text="Accent Color" 
-                                   VerticalAlignment="Center"
-                                   Margin="0,15,0,0"/>
-                        <ComboBox Grid.Row="1" Grid.Column="1" 
-                                  Name="AccentColorComboBox"
-                                  Width="150"
-                                  Margin="0,15,0,0">
-                            <ComboBoxItem Content="Green"/>
-                            <ComboBoxItem Content="Blue"/>
-                            <ComboBoxItem Content="Purple"/>
-                            <ComboBoxItem Content="Orange"/>
-                        </ComboBox>
-                    </Grid>
-                </StackPanel>
-            </Border>
-            
-            <!-- Notification Settings -->
-            
             <!-- About Section -->
             <Border Classes="card">
                 <StackPanel Margin="15" Spacing="5">
@@ -118,7 +80,12 @@
                     
                     <TextBlock Text="Personal Budget Manager" FontWeight="SemiBold"/>
                     <TextBlock Text="Version 1.0.0" Opacity="0.7"/>
-                    <TextBlock Text="© 2023 All rights reserved" Opacity="0.7" Margin="0,10,0,0"/>
+                    <TextBlock Text="© 2023 All rights reserved" Opacity="0.7" Margin="0,10,0,10"/>
+                    
+                    <TextBlock Text="Development Team" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                    <TextBlock Text="Anton Zakaria (antonzakaria43@gmail.com)" TextWrapping="Wrap"/>
+                    <TextBlock Text="Mohamed Adel Kamal (raynowing007@gmail.com)" TextWrapping="Wrap"/>
+                    <TextBlock Text="Mark Amir Samir (markamir140@gmail.com)" TextWrapping="Wrap"/>
                 </StackPanel>
             </Border>
             
@@ -136,6 +103,7 @@
                             Padding="15,10"/>
                 </StackPanel>
             </Border>
+            
         </StackPanel>
     </ScrollViewer>
 </UserControl>

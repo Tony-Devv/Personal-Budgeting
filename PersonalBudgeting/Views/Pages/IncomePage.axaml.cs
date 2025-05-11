@@ -117,7 +117,6 @@ public partial class IncomePage : UserControl
             // Use the controller method to get total income instead of summing the list
             var (totalSuccess, totalAmount, totalErrors) = await _userController.TryGetTotalUserIncomes(_currentUser.Id);
             
-            Console.WriteLine($"TryGetTotalUserIncomes result: Success={totalSuccess}, Amount={totalAmount}");
             
             // Calculate average income (if we have incomes)
             var avgIncome = _userIncomes.Any() ? _userIncomes.Average(i => i.Amount) : 0;
@@ -137,13 +136,10 @@ public partial class IncomePage : UserControl
                 
             if (!totalSuccess && totalErrors.Count > 0)
             {
-                Console.WriteLine($"Error getting total income: {string.Join(", ", totalErrors)}");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error updating summary cards: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
         }
     }
     
@@ -170,53 +166,59 @@ public partial class IncomePage : UserControl
             // Create UI elements for each income
             foreach (var income in filteredIncomes)
             {
-                // Create a grid for the row with columns
-                var grid = new Grid
-                {
-                    ColumnDefinitions = new ColumnDefinitions("2*,1*,1*,1*"),
-                    Margin = new Avalonia.Thickness(0, 5, 0, 5),
-                    Background = new SolidColorBrush(Color.Parse("#232323"))
-                };
-                
-                // Create a border to wrap the grid (for padding and corner radius)
+                // Create a border for the entire row
                 var rowBorder = new Border
                 {
-                    Padding = new Avalonia.Thickness(10),
-                    CornerRadius = new CornerRadius(5),
-                    Child = grid
+                    BorderBrush = new SolidColorBrush(Color.Parse("#333333")),
+                    BorderThickness = new Thickness(1, 0, 1, 1),
+                    Background = new SolidColorBrush(Color.Parse("#2E2E2E")),
+                    Height = 50
                 };
-                
+
+                // Create a grid for this row with 4 columns
+                var rowGrid = new Grid
+                {
+                    ColumnDefinitions = new ColumnDefinitions("2*,1*,1*,1*")
+                };
+
                 // Income Source column
                 var sourceText = new TextBlock
                 {
                     Text = income.IncomeSourceName,
-                    VerticalAlignment = VerticalAlignment.Center
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Margin = new Thickness(10, 0, 0, 0)
                 };
                 Grid.SetColumn(sourceText, 0);
+                rowGrid.Children.Add(sourceText);
                 
                 // Amount column
                 var amountText = new TextBlock
                 {
                     Text = $"${income.Amount:N2}",
                     Foreground = new SolidColorBrush(Color.Parse("#4CAF50")),
-                    FontWeight = FontWeight.Bold,
-                    VerticalAlignment = VerticalAlignment.Center
+                    FontWeight = FontWeight.SemiBold,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center
                 };
                 Grid.SetColumn(amountText, 1);
+                rowGrid.Children.Add(amountText);
                 
                 // Date column
                 var dateText = new TextBlock
                 {
                     Text = income.IncomeDate.ToString("yyyy-MM-dd"),
-                    VerticalAlignment = VerticalAlignment.Center
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center
                 };
                 Grid.SetColumn(dateText, 2);
+                rowGrid.Children.Add(dateText);
                 
                 // Actions column
-                var buttonPanel = new StackPanel
+                var actionPanel = new StackPanel
                 {
                     Orientation = Orientation.Horizontal,
-                    Spacing = 10,
+                    Spacing = 5,
+                    HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center
                 };
                 
@@ -224,8 +226,10 @@ public partial class IncomePage : UserControl
                 var editButton = new Button
                 {
                     Content = "Edit",
+                    Classes = { "actionButton" },
                     Tag = income.Id,
-                    Padding = new Avalonia.Thickness(8, 3, 8, 3)
+                    HorizontalContentAlignment = HorizontalAlignment.Center,
+                    VerticalContentAlignment = VerticalAlignment.Center
                 };
                 editButton.Click += OnEditIncomeClick;
                 
@@ -233,25 +237,23 @@ public partial class IncomePage : UserControl
                 var deleteButton = new Button
                 {
                     Content = "Delete",
+                    Classes = { "actionButton", "deleteButton" },
                     Tag = income.Id,
-                    Foreground = Brushes.White,
-                    Background = new SolidColorBrush(Color.Parse("#F44336")),
-                    Padding = new Avalonia.Thickness(8, 3, 8, 3)
+                    HorizontalContentAlignment = HorizontalAlignment.Center,
+                    VerticalContentAlignment = VerticalAlignment.Center
                 };
                 deleteButton.Click += OnDeleteIncomeClick;
                 
                 // Add buttons to panel
-                buttonPanel.Children.Add(editButton);
-                buttonPanel.Children.Add(deleteButton);
-                Grid.SetColumn(buttonPanel, 3);
+                actionPanel.Children.Add(editButton);
+                actionPanel.Children.Add(deleteButton);
+                Grid.SetColumn(actionPanel, 3);
+                rowGrid.Children.Add(actionPanel);
+
+                // Add the grid to the border
+                rowBorder.Child = rowGrid;
                 
-                // Add all elements to the grid
-                grid.Children.Add(sourceText);
-                grid.Children.Add(amountText);
-                grid.Children.Add(dateText);
-                grid.Children.Add(buttonPanel);
-                
-                // Add grid to the income list
+                // Add the row to the panel
                 _incomeListPanel.Children.Add(rowBorder);
             }
             
@@ -270,7 +272,6 @@ public partial class IncomePage : UserControl
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error updating income grid: {ex.Message}");
         }
     }
     
@@ -324,51 +325,46 @@ public partial class IncomePage : UserControl
                     // Show the popup
                     popup.IsVisible = true;
                     
-                    Console.WriteLine($"Showing edit form for income with ID: {incomeId}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error preparing income edit: {ex.Message}");
             }
         }
     }
     
     private async void OnDeleteIncomeClick(object? sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.Tag is int incomeId)
+        try
         {
-            try
+            if (sender is Button button && button.Tag is int incomeId)
             {
                 // Find the income to delete
                 var incomeToDelete = _userIncomes.FirstOrDefault(i => i.Id == incomeId);
                 if (incomeToDelete != null)
                 {
                     // Delete income using controller
-                    var (success, errors) = await _incomeController.TryDeleteIncome(incomeToDelete);
+                    var (success, Errors) = await _incomeController.TryDeleteIncome(incomeToDelete);
                     
-        if (success)
-        {
+                    if (success)
+                    {
                         // Remove from the local list
                         _userIncomes.Remove(incomeToDelete);
                         
                         // Update UI
                         UpdateSummaryCards();
                         UpdateIncomeGrid();
-                        
-                        Console.WriteLine($"Deleted income with ID: {incomeId}");
-        }
-        else
-        {
+                    }
+                    else
+                    {
                         // Show error message (in a real app, you'd show a popup)
-                        Console.WriteLine($"Failed to delete income: {string.Join(", ", errors)}");
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error deleting income: {ex.Message}");
-            }
+        }
+        catch (Exception)
+        {
+            // Error handling
         }
     }
     
@@ -409,195 +405,180 @@ public partial class IncomePage : UserControl
                 popup.IsVisible = true;
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Error showing income popup: {ex.Message}");
+            // Error handling
         }
     }
     
     private async void OnSaveIncomeClick(object? sender, RoutedEventArgs e)
     {
-        Console.WriteLine("OnSaveIncomeClick started");
         try
         {
-            // Get input values
+            // Get the popup and input controls
+            var popup = this.FindControl<Border>("AddIncomePopup");
             var sourceInput = this.FindControl<TextBox>("IncomeSourceInput");
             var amountInput = this.FindControl<TextBox>("IncomeAmountInput");
             var datePicker = this.FindControl<DatePicker>("IncomeDatePicker");
-            var errorText = this.FindControl<TextBlock>("AddIncomeErrorText");
-            var popup = this.FindControl<Border>("AddIncomePopup");
             var saveButton = this.FindControl<Button>("SaveIncomeButton");
+            var errorText = this.FindControl<TextBlock>("AddIncomeErrorText");
             
-            Console.WriteLine("Controls retrieved");
-            
-            if (sourceInput == null || amountInput == null || datePicker == null || 
-                errorText == null || popup == null || saveButton == null)
+            // Validate that we have all required controls and data
+            if (popup == null || sourceInput == null || amountInput == null || 
+                datePicker == null || saveButton == null || errorText == null || 
+                _incomeController == null || _currentUser == null)
             {
-                Console.WriteLine("One or more controls is null:");
-                Console.WriteLine($"sourceInput: {sourceInput != null}");
-                Console.WriteLine($"amountInput: {amountInput != null}");
-                Console.WriteLine($"datePicker: {datePicker != null}");
-                Console.WriteLine($"errorText: {errorText != null}");
-                Console.WriteLine($"popup: {popup != null}");
-                Console.WriteLine($"saveButton: {saveButton != null}");
                 return;
             }
             
-            var source = sourceInput.Text?.Trim();
-            var amountText = amountInput.Text?.Trim();
-            var date = datePicker.SelectedDate ?? DateTimeOffset.Now;
-            
-            Console.WriteLine($"Form values: Source='{source}', Amount='{amountText}', Date='{date}'");
-            
-            // Check if we're editing an existing income (Tag will contain the ID)
-            var isEditing = saveButton.Tag is int;
-            var editIncomeId = isEditing && saveButton.Tag != null ? (int)saveButton.Tag : 0;
-            
-            Console.WriteLine($"IsEditing: {isEditing}, EditIncomeId: {editIncomeId}");
-            
-            // Validate source
-            if (string.IsNullOrWhiteSpace(source))
+            // Validate source name (required)
+            string sourceName = sourceInput.Text?.Trim() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(sourceName))
             {
-                errorText.Text = "Income source is required";
+                errorText.Text = "Income source name is required";
                 errorText.IsVisible = true;
-                Console.WriteLine("Validation error: Income source is required");
                 return;
             }
             
-            // Validate amount
-            if (!decimal.TryParse(amountText, out decimal amount) || amount <= 0)
+            // Validate source name length (max 100 chars)
+            if (sourceName.Length > 100)
+            {
+                errorText.Text = "Income source name cannot exceed 100 characters";
+                errorText.IsVisible = true;
+                return;
+            }
+            
+            // Validate amount (required and must be a number)
+            if (string.IsNullOrWhiteSpace(amountInput.Text) || !decimal.TryParse(amountInput.Text, out decimal amount))
             {
                 errorText.Text = "Please enter a valid amount";
                 errorText.IsVisible = true;
-                Console.WriteLine($"Validation error: Invalid amount '{amountText}'");
                 return;
             }
             
-            Console.WriteLine("Validation passed");
-            
-            if (isEditing)
+            // Validate amount is positive
+            if (amount <= 0)
             {
-                // Updating existing income
-                // Find the existing income object
-                var existingIncome = _userIncomes.FirstOrDefault(i => i.Id == editIncomeId);
-                if (existingIncome != null)
+                errorText.Text = "Amount must be greater than zero";
+                errorText.IsVisible = true;
+                return;
+            }
+            
+            // Validate amount max 6 digits
+            if (amount.ToString("0").Length > 6)
+            {
+                errorText.Text = "Amount cannot exceed 6 digits";
+                errorText.IsVisible = true;
+                return;
+            }
+            
+            // Validate date (required)
+            if (datePicker.SelectedDate == null)
+            {
+                errorText.Text = "Please select a date";
+                errorText.IsVisible = true;
+                return;
+            }
+            
+            // Check if editing or adding
+            bool isEditing = saveButton.Tag is int incomeId && incomeId > 0;
+            
+            // Create income object
+            var income = new Income
+            {
+                UserId = _currentUser.Id,
+                IncomeSourceName = sourceName,
+                Amount = amount,
+                IncomeDate = datePicker.SelectedDate.Value.DateTime
+            };
+            
+            if (isEditing && saveButton.Tag is int editId)
+            {
+                // Set ID for update
+                income.Id = editId;
+                
+                var result = await _incomeController.TryUpdateIncome(income);
+                if (result.Success)
                 {
-                    // Create an updated income object with the same ID
-                    var updatedIncome = new Income
-                    {
-                        Id = existingIncome.Id,
-                        UserId = _currentUser.Id,
-                        User = _currentUser,
-                        IncomeSourceName = source,
-                        Amount = amount,
-                        IncomeDate = date.DateTime
-                    };
+                    // Hide popup
+                    popup.IsVisible = false;
                     
-                    Console.WriteLine($"About to update income with ID: {updatedIncome.Id}");
-                    
-                    // Update income using controller
-                    var (success, result, errors) = await _incomeController.TryUpdateIncome(updatedIncome);
-                    
-                    Console.WriteLine($"Update result: Success={success}, Result={(result != null ? "not null" : "null")}, Errors={string.Join(", ", errors)}");
-                    
-                    if (success && result != null)
-                    {
-                        // Update the local list - remove old and add updated
-                        int indexOfOld = _userIncomes.IndexOf(existingIncome);
-                        if (indexOfOld >= 0)
-                        {
-                            _userIncomes[indexOfOld] = result; // Replace instead of remove/add
-                        }
-                        
-                        // Update UI
-                        UpdateIncomeGrid();
-                        UpdateSummaryCards();
-                        
-                        // Reset the save button tag
-                        saveButton.Tag = null;
-                        
-                        // Hide popup
-                        popup.IsVisible = false;
-                        
-                        Console.WriteLine($"Income updated successfully with ID: {result.Id}");
-                    }
-                    else
-                    {
-                        // Show validation errors
-                        errorText.Text = errors.Count > 0 ? errors[0] : "Failed to update income";
-                        errorText.IsVisible = true;
-                        Console.WriteLine($"Failed to update income: {string.Join(", ", errors)}");
-                    }
+                    // Reload income data
+                    await LoadIncomeDataAsync();
                 }
                 else
                 {
-                    Console.WriteLine($"Could not find income with ID {editIncomeId} to update");
+                    string errorMessage = (result.errors != null && result.errors.Count > 0) 
+                        ? string.Join(", ", result.errors) 
+                        : "Failed to update income";
+                        
+                    errorText.Text = errorMessage;
+                    errorText.IsVisible = true;
                 }
             }
             else
             {
-                // Creating new income
-                var income = new Income
+                // Add new income
+                var result = await _incomeController.TryAddIncome(income);
+                if (result.Success)
                 {
-                    UserId = _currentUser.Id,
-                    // Don't set User property - let the repository handle this
-                    IncomeSourceName = source,
-                    Amount = amount,
-                    IncomeDate = date.DateTime
-                };
-                
-                Console.WriteLine($"About to add new income: Source='{income.IncomeSourceName}', Amount={income.Amount}, Date={income.IncomeDate}");
-                
-                // Add income using the controller
-                var (success, incomeId, errors) = await _incomeController.TryAddIncome(income);
-                
-                Console.WriteLine($"Add result: Success={success}, IncomeId={incomeId}, Errors={string.Join(", ", errors)}");
-                
-                if (success)
-                {
-                    // Instead of adding to local list, reload data from the database
-                    var (incomesSuccess, freshIncomes, _) = await _userController.TryGetUserIncomes(_currentUser);
-                    if (incomesSuccess && freshIncomes != null)
-                    {
-                        _userIncomes = freshIncomes;
-                        Console.WriteLine($"Refreshed income list from database. Count: {_userIncomes.Count}");
-                    }
-                    else 
-                    {
-                        // If refresh fails, manually add with ID
-                        income.Id = incomeId;
-                        _userIncomes.Add(income);
-                        Console.WriteLine("Failed to refresh from database, added income to local list");
-                    }
-                    
-                    // Update UI
-                    UpdateIncomeGrid();
-                    UpdateSummaryCards();
-                    
                     // Hide popup
                     popup.IsVisible = false;
                     
-                    Console.WriteLine($"Income added successfully with ID: {incomeId}");
+                    // Reload income data
+                    await LoadIncomeDataAsync();
                 }
                 else
                 {
-                    // Show validation errors
-                    errorText.Text = errors.Count > 0 ? errors[0] : "Failed to add income";
+                    string errorMessage = (result.errors != null && result.errors.Count > 0) 
+                        ? string.Join(", ", result.errors) 
+                        : "Failed to add income";
+                        
+                    errorText.Text = errorMessage;
                     errorText.IsVisible = true;
-                    Console.WriteLine($"Failed to add income: {string.Join(", ", errors)}");
                 }
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error saving income: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            
+            // Show error in UI
             var errorText = this.FindControl<TextBlock>("AddIncomeErrorText");
             if (errorText != null)
             {
-                errorText.Text = $"Error: {ex.Message}";
+                errorText.Text = $"An error occurred: {ex.Message}";
                 errorText.IsVisible = true;
             }
+        }
+    }
+    
+    private async Task LoadIncomeDataAsync()
+    {
+        try
+        {
+            if (_currentUser == null || _incomeController == null || _userController == null)
+            {
+                return;
+            }
+            
+            // Load incomes
+            var result = await _userController.TryGetUserIncomes(_currentUser);
+            
+            if (result.Success)
+            {
+                _userIncomes = result.Incomes ?? new List<Income>();
+                
+                // Update UI
+                UpdateSummaryCards();
+                UpdateIncomeGrid();
+            }
+            else
+            {
+            }
+        }
+        catch (Exception)
+        {
+            // Error handling
         }
     }
     

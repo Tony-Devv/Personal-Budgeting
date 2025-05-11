@@ -125,7 +125,7 @@ public partial class ExpensesPage : UserControl
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading expense data: {ex.Message}");
+            // Error handling
         }
     }
     
@@ -187,15 +187,17 @@ public partial class ExpensesPage : UserControl
             {
                 foreach (var expense in filteredExpenses)
                 {
-                    // Create a border to wrap our row
+                    // Create a border for the entire row
                     var rowBorder = new Border
                     {
-                        Classes = { "card" },
-                        Margin = new Thickness(0, 0, 0, 8)
+                        BorderBrush = new SolidColorBrush(Color.Parse("#333333")),
+                        BorderThickness = new Thickness(1, 0, 1, 1),
+                        Background = new SolidColorBrush(Color.Parse("#2E2E2E")),
+                        Height = 50
                     };
-                    
-                    // Create grid for row content with columns
-                    var grid = new Grid
+
+                    // Create a grid for this row with 6 columns
+                    var rowGrid = new Grid
                     {
                         ColumnDefinitions = new ColumnDefinitions("2*,1*,1*,1*,1*,1*")
                     };
@@ -204,84 +206,94 @@ public partial class ExpensesPage : UserControl
                     var nameText = new TextBlock
                     {
                         Text = expense.ExpenseName,
-                        VerticalAlignment = VerticalAlignment.Center
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(10, 0, 0, 0)
                     };
                     Grid.SetColumn(nameText, 0);
+                    rowGrid.Children.Add(nameText);
                     
                     // Category column
                     var categoryText = new TextBlock
                     {
                         Text = GetCategoryFromExpenseName(expense.ExpenseName),
-                        VerticalAlignment = VerticalAlignment.Center
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center
                     };
                     Grid.SetColumn(categoryText, 1);
+                    rowGrid.Children.Add(categoryText);
                     
                     // Required Amount column
                     var requiredText = new TextBlock
                     {
                         Text = expense.RequiredAmount.ToString("C"),
                         VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
                         Foreground = new SolidColorBrush(Color.Parse("#FF9800"))
                     };
                     Grid.SetColumn(requiredText, 2);
+                    rowGrid.Children.Add(requiredText);
                     
                     // Spent Amount column
                     var amountText = new TextBlock
                     {
                         Text = expense.SpentAmount.ToString("C"),
                         VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
                         Foreground = new SolidColorBrush(Color.Parse("#F44336"))
                     };
                     Grid.SetColumn(amountText, 3);
+                    rowGrid.Children.Add(amountText);
                     
                     // Date column
                     var dateText = new TextBlock
                     {
-                        Text = expense.DateCycle.ToString("MM/dd/yyyy"),
-                        VerticalAlignment = VerticalAlignment.Center
+                        Text = expense.DateCycle.ToString("yyyy-MM-dd"),
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center
                     };
                     Grid.SetColumn(dateText, 4);
+                    rowGrid.Children.Add(dateText);
                     
                     // Actions column
-                    var actionsPanel = new StackPanel
+                    var actionPanel = new StackPanel
                     {
                         Orientation = Orientation.Horizontal,
-                        HorizontalAlignment = HorizontalAlignment.Right,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
                         Spacing = 5
                     };
                     
+                    // Edit button
                     var editButton = new Button
                     {
                         Content = "Edit",
+                        Classes = { "actionButton" },
                         Tag = expense.Id,
-                        Classes = { "actionButton" }
+                        HorizontalContentAlignment = HorizontalAlignment.Center,
+                        VerticalContentAlignment = VerticalAlignment.Center
                     };
                     editButton.Click += OnEditExpenseClick;
                     
+                    // Delete button
                     var deleteButton = new Button
                     {
                         Content = "Delete",
+                        Classes = { "actionButton", "deleteButton" },
                         Tag = expense.Id,
-                        Classes = { "actionButton", "deleteButton" }
+                        HorizontalContentAlignment = HorizontalAlignment.Center,
+                        VerticalContentAlignment = VerticalAlignment.Center
                     };
                     deleteButton.Click += OnDeleteExpenseClick;
                     
-                    actionsPanel.Children.Add(editButton);
-                    actionsPanel.Children.Add(deleteButton);
-                    Grid.SetColumn(actionsPanel, 5);
+                    actionPanel.Children.Add(editButton);
+                    actionPanel.Children.Add(deleteButton);
+                    Grid.SetColumn(actionPanel, 5);
+                    rowGrid.Children.Add(actionPanel);
                     
-                    // Add all elements to the grid
-                    grid.Children.Add(nameText);
-                    grid.Children.Add(categoryText);
-                    grid.Children.Add(requiredText);
-                    grid.Children.Add(amountText);
-                    grid.Children.Add(dateText);
-                    grid.Children.Add(actionsPanel);
+                    // Add the grid to the border
+                    rowBorder.Child = rowGrid;
                     
-                    // Add grid to the border
-                    rowBorder.Child = grid;
-                    
-                    // Add row to the list panel
+                    // Add the row to the panel
                     _expenseListPanel.Children.Add(rowBorder);
                 }
             }
@@ -300,7 +312,7 @@ public partial class ExpensesPage : UserControl
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error updating expense grid: {ex.Message}");
+            // Error handling
         }
     }
     
@@ -340,7 +352,6 @@ public partial class ExpensesPage : UserControl
             if (_reminderDatePicker != null) 
             {
                 _reminderDatePicker.SelectedDate = null;
-                Console.WriteLine("Clearing reminder date");
             }
             
             // Hide error message
@@ -382,6 +393,14 @@ public partial class ExpensesPage : UserControl
                 return;
             }
             
+            // Validate expense name length (max 100 chars)
+            if (_expenseNameInput.Text.Length > 100)
+            {
+                _addExpenseErrorText.Text = "Expense name cannot exceed 100 characters";
+                _addExpenseErrorText.IsVisible = true;
+                return;
+            }
+            
             // Get selected category
             if (_expenseCategoryComboBox.SelectedItem == null)
             {
@@ -402,24 +421,43 @@ public partial class ExpensesPage : UserControl
                 return;
             }
             
+            // Validate required amount
             if (string.IsNullOrWhiteSpace(_requiredAmountInput.Text) || 
                 !decimal.TryParse(_requiredAmountInput.Text, out var requiredAmount) || 
                 requiredAmount <= 0)
             {
-                _addExpenseErrorText.Text = "Please enter a valid required amount";
+                _addExpenseErrorText.Text = "Please enter a valid required amount greater than zero";
                 _addExpenseErrorText.IsVisible = true;
                 return;
             }
             
+            // Validate required amount max 6 digits
+            if (requiredAmount.ToString("0").Length > 6)
+            {
+                _addExpenseErrorText.Text = "Required amount cannot exceed 6 digits";
+                _addExpenseErrorText.IsVisible = true;
+                return;
+            }
+            
+            // Validate spent amount
             if (string.IsNullOrWhiteSpace(_expenseAmountInput.Text) || 
                 !decimal.TryParse(_expenseAmountInput.Text, out var spentAmount) || 
                 spentAmount < 0)
             {
-                _addExpenseErrorText.Text = "Please enter a valid spent amount";
+                _addExpenseErrorText.Text = "Please enter a valid spent amount (must be 0 or greater)";
                 _addExpenseErrorText.IsVisible = true;
                 return;
             }
             
+            // Validate spent amount max 6 digits
+            if (spentAmount.ToString("0").Length > 6)
+            {
+                _addExpenseErrorText.Text = "Spent amount cannot exceed 6 digits";
+                _addExpenseErrorText.IsVisible = true;
+                return;
+            }
+            
+            // Validate date
             if (_expenseDatePicker.SelectedDate == null)
             {
                 _addExpenseErrorText.Text = "Please select a date";
@@ -427,83 +465,61 @@ public partial class ExpensesPage : UserControl
                 return;
             }
             
-            // Process the reminder date - must handle potential null
-            DateTime? reminderTime = null;
-            if (_reminderDatePicker.SelectedDate.HasValue)
+            // Get budget ID for this category (optional, will use default if not found)
+            int budgetId = DEFAULT_BUDGET_ID;
+            try
             {
-                try
+                // First check if we're editing and already have a budgetId
+                if (_isEditing && _saveExpenseButton.Tag != null)
                 {
-                    // Convert to local DateTime (noon of the selected day to avoid timezone issues)
-                    reminderTime = _reminderDatePicker.SelectedDate.Value.Date.AddHours(12);
-                    Console.WriteLine($"Setting reminder time to: {reminderTime}");
-                }
-                catch (Exception ex) 
-                {
-                    Console.WriteLine($"Error processing reminder date: {ex.Message}");
-                    // If there's an error, leave it as null
-                    reminderTime = null;
-                }
-            }
-            else
-            {
-                Console.WriteLine("No reminder date selected");
-            }
-            
-            // Get budget ID from the button classes
-            int budgetId = 1; // Default budget ID
-            if (_saveExpenseButton != null)
-            {
-                var budgetIdClass = _saveExpenseButton.Classes?
-                    .FirstOrDefault(c => c.StartsWith("budgetId-"));
-                
-                if (budgetIdClass != null)
-                {
-                    var budgetIdStr = budgetIdClass.Substring("budgetId-".Length);
-                    if (int.TryParse(budgetIdStr, out var parsedBudgetId))
+                    var expenseId = (int)_saveExpenseButton.Tag;
+                    var existingExpense = _userExpenses?.FirstOrDefault(e => e.Id == expenseId);
+                    if (existingExpense != null)
                     {
-                        budgetId = parsedBudgetId;
-                        Console.WriteLine($"Using budget ID from button class: {budgetId}");
+                        budgetId = existingExpense.BudgetId;
                     }
                 }
                 else
                 {
-                    // If no budget ID in button classes, find it by category
-                    try
+                    // Try to find a matching budget for this category
+                    if (_userController != null)
                     {
-                        // Get all budgets for the user
-                        if (_userController != null && _currentUser != null)
+                        var budgetsResult = await _userController.TryGetUserBudgets(_currentUser);
+                        if (budgetsResult.Success)
                         {
-                            var budgetsResult = await _userController.TryGetUserBudgets(_currentUser);
-                            if (budgetsResult.Success)
+                            var budgets = budgetsResult.Budgets;
+                            if (budgets != null && budgets.Count > 0)
                             {
-                                var budgets = budgetsResult.Budgets;
-                                if (budgets != null && budgets.Count > 0)
+                                // Find the budget for the selected category
+                                var matchingBudget = budgets.FirstOrDefault(b => 
+                                    b.BudgetName.StartsWith(selectedCategory + " - ", StringComparison.OrdinalIgnoreCase) || 
+                                    b.BudgetName.Contains(selectedCategory, StringComparison.OrdinalIgnoreCase));
+                                    
+                                if (matchingBudget != null)
                                 {
-                                    // Find the budget for the selected category
-                                    var matchingBudget = budgets.FirstOrDefault(b => 
-                                        b.BudgetName.StartsWith(selectedCategory + " - ", StringComparison.OrdinalIgnoreCase) || 
-                                        b.BudgetName.Contains(selectedCategory, StringComparison.OrdinalIgnoreCase));
-                                        
-                                    if (matchingBudget != null)
-                                    {
-                                        budgetId = matchingBudget.Id;
-                                        Console.WriteLine($"Found matching budget by category search: {matchingBudget.BudgetName} (ID: {budgetId})");
-                                    }
+                                    budgetId = matchingBudget.Id;
                                 }
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Error finding budget by category: {ex.Message}. Using default budget ID.");
-                    }
                 }
+            }
+            catch (Exception)
+            {
+                // Error handling
             }
             
             // Combine category with expense name
             string expenseName = string.IsNullOrEmpty(_expenseNameInput.Text.Trim()) 
                 ? selectedCategory 
                 : $"{selectedCategory} - {_expenseNameInput.Text.Trim()}";
+            
+            // Parse reminder date if set (optional)
+            DateTime? reminderTime = null;
+            if (_reminderDatePicker.SelectedDate.HasValue)
+            {
+                reminderTime = _reminderDatePicker.SelectedDate.Value.DateTime;
+            }
             
             // Create expense object with all required fields
             var expense = new Expense
@@ -553,9 +569,15 @@ public partial class ExpensesPage : UserControl
                 }
                 else
                 {
-                    _addExpenseErrorText.Text = string.Join(", ", result.Errors);
-                    _addExpenseErrorText.IsVisible = true;
-                    Console.WriteLine($"Failed to update expense: {string.Join(", ", result.Errors)}");
+                    if (_addExpenseErrorText != null)
+                    {
+                        string errorMessage = result.Errors != null && result.Errors.Count > 0
+                            ? string.Join(", ", result.Errors)
+                            : "Failed to update expense";
+                            
+                        _addExpenseErrorText.Text = errorMessage;
+                        _addExpenseErrorText.IsVisible = true;
+                    }
                 }
             }
             else
@@ -565,20 +587,35 @@ public partial class ExpensesPage : UserControl
                 
                 if (result.Success)
                 {
-                    // Reload expenses to get the new ID
-                    LoadExpenseData();
+                    // Add expense to the local list
+                    if (_userExpenses != null)
+                    {
+                        // Set the ID from the result
+                        expense.Id = result.ExpenseId;
+                        _userExpenses.Add(expense);
+                    }
                     
                     // Hide popup
                     if (_addExpensePopup != null)
                     {
                         _addExpensePopup.IsVisible = false;
                     }
+                    
+                    // Update UI
+                    UpdateSummaryCards();
+                    UpdateExpenseGrid();
                 }
                 else
                 {
-                    _addExpenseErrorText.Text = string.Join(", ", result.Errors);
-                    _addExpenseErrorText.IsVisible = true;
-                    Console.WriteLine($"Failed to add expense: {string.Join(", ", result.Errors)}");
+                    if (_addExpenseErrorText != null)
+                    {
+                        string errorMessage = result.Errors != null && result.Errors.Count > 0
+                            ? string.Join(", ", result.Errors)
+                            : "Failed to add expense";
+                            
+                        _addExpenseErrorText.Text = errorMessage;
+                        _addExpenseErrorText.IsVisible = true;
+                    }
                 }
             }
         }
@@ -586,11 +623,9 @@ public partial class ExpensesPage : UserControl
         {
             if (_addExpenseErrorText != null)
             {
-                _addExpenseErrorText.Text = $"Error: {ex.Message}";
+                _addExpenseErrorText.Text = $"An error occurred: {ex.Message}";
                 _addExpenseErrorText.IsVisible = true;
             }
-            Console.WriteLine($"Error saving expense: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
         }
     }
     
@@ -652,18 +687,15 @@ public partial class ExpensesPage : UserControl
             try
             {
                 _reminderDatePicker.SelectedDate = expense.ReminderTime.Value.Date;
-                Console.WriteLine($"Setting reminder date to: {expense.ReminderTime.Value.Date}");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Error setting reminder date: {ex.Message}");
                 _reminderDatePicker.SelectedDate = null;
             }
         }
         else
         {
             _reminderDatePicker.SelectedDate = null;
-            Console.WriteLine("No reminder date to set");
         }
         
         _addExpenseErrorText.IsVisible = false;
@@ -700,7 +732,6 @@ public partial class ExpensesPage : UserControl
         var expense = _userExpenses.FirstOrDefault(i => i.Id == expenseId);
         if (expense == null)
         {
-            Console.WriteLine($"Could not find expense with ID {expenseId}");
             return;
         }
         
@@ -715,10 +746,6 @@ public partial class ExpensesPage : UserControl
             // Update UI
             UpdateSummaryCards();
             UpdateExpenseGrid();
-        }
-        else
-        {
-            Console.WriteLine($"Failed to delete expense: {string.Join(", ", result.Errors)}");
         }
     }
     
@@ -752,8 +779,6 @@ public partial class ExpensesPage : UserControl
             return;
         }
         
-        Console.WriteLine($"Category selected: {selectedCategory}");
-        
         try
         {
             // Get all budgets for the user
@@ -762,11 +787,7 @@ public partial class ExpensesPage : UserControl
             {
                 if (budgetsResult.errors != null)
                 {
-                    Console.WriteLine($"Failed to get budgets: {string.Join(", ", budgetsResult.errors)}");
-                }
-                else
-                {
-                    Console.WriteLine("Failed to get budgets (no error details available)");
+                    // Handle error
                 }
                 return;
             }
@@ -774,7 +795,6 @@ public partial class ExpensesPage : UserControl
             var budgets = budgetsResult.Budgets;
             if (budgets == null || budgets.Count == 0)
             {
-                Console.WriteLine("No budgets found");
                 return;
             }
             
@@ -786,7 +806,6 @@ public partial class ExpensesPage : UserControl
             {
                 // Set the required amount to the budget amount
                 _requiredAmountInput.Text = matchingBudget.TotalAmountRequired.ToString("0.00");
-                Console.WriteLine($"Found matching budget: {matchingBudget.BudgetName} with amount {matchingBudget.TotalAmountRequired:C}");
                 
                 // Store the budget ID for use when saving
                 if (_saveExpenseButton != null)
@@ -803,12 +822,10 @@ public partial class ExpensesPage : UserControl
                     
                     // Add the new budget ID
                     _saveExpenseButton.Classes.Add("budgetId-" + matchingBudget.Id);
-                    Console.WriteLine($"Associated budget ID: {matchingBudget.Id}");
                 }
             }
             else
             {
-                Console.WriteLine($"No matching budget found for category {selectedCategory}");
                 // Clear the required amount or set to default
                 _requiredAmountInput.Text = "";
                 
@@ -826,9 +843,9 @@ public partial class ExpensesPage : UserControl
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Error getting budget amount: {ex.Message}");
+            // Error handling
         }
     }
     
@@ -850,11 +867,7 @@ public partial class ExpensesPage : UserControl
             {
                 if (budgetsResult.errors != null)
                 {
-                    Console.WriteLine($"Failed to get budgets: {string.Join(", ", budgetsResult.errors)}");
-                }
-                else
-                {
-                    Console.WriteLine("Failed to get budgets (no error details available)");
+                    // Handle error
                 }
                 // Add default "Other" category
                 _expenseCategoryComboBox.Items.Add(new ComboBoxItem { Content = "Other" });
@@ -864,7 +877,6 @@ public partial class ExpensesPage : UserControl
             var budgets = budgetsResult.Budgets;
             if (budgets == null || budgets.Count == 0)
             {
-                Console.WriteLine("No budgets found");
                 // Add default "Other" category
                 _expenseCategoryComboBox.Items.Add(new ComboBoxItem { Content = "Other" });
                 return;
@@ -876,7 +888,6 @@ public partial class ExpensesPage : UserControl
                 if (!string.IsNullOrEmpty(budget.BudgetName))
                 {
                     _expenseCategoryComboBox.Items.Add(new ComboBoxItem { Content = budget.BudgetName });
-                    Console.WriteLine($"Added budget category: {budget.BudgetName}");
                 }
             }
             
@@ -888,11 +899,9 @@ public partial class ExpensesPage : UserControl
             
             // Select the first item
             _expenseCategoryComboBox.SelectedIndex = 0;
-            Console.WriteLine($"Loaded {_expenseCategoryComboBox.Items.Count} budget categories");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Error loading budget categories: {ex.Message}");
             // Add default "Other" category
             if (_expenseCategoryComboBox != null)
             {

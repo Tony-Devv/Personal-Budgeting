@@ -28,6 +28,7 @@ public partial class MainWindow : Window
     private readonly ScrollViewer _sidebarMenu;
     private readonly TextBlock? _userInitials;
     private readonly TextBlock? _userNameText;
+    private readonly TextBlock? _userEmailText;
     private string _currentEditField = string.Empty;
 
     public MainWindow()
@@ -49,12 +50,18 @@ public partial class MainWindow : Window
         _sidebarMenu = this.FindControl<ScrollViewer>("SidebarMenu") ?? 
             throw new InvalidOperationException("SidebarMenu not found");
         _userInitials = this.FindControl<TextBlock>("UserInitials");
-        _userNameText = this.FindControl<TextBlock>("UsernameText");
+        _userNameText = this.FindControl<TextBlock>("UserNameText");
+        _userEmailText = this.FindControl<TextBlock>("UserEmailText");
         
         // Set username to indicate login is required
         if (_userNameText != null)
         {
-            _userNameText.Text = "Login First";
+            _userNameText.Text = "Guest User";
+        }
+        
+        if (_userEmailText != null)
+        {
+            _userEmailText.Text = "Please login";
         }
         
         // Set user initials
@@ -90,11 +97,9 @@ public partial class MainWindow : Window
                 _currentUser.Email = userDetails.Email;
                 _currentUser.PhoneNumber = userDetails.PhoneNumber;
                 
-                Console.WriteLine($"Logged in as user: {_currentUser.UserName} (ID: {_currentUserId})");
             }
             else
             {
-                Console.WriteLine($"Logged in with minimal user info (ID: {_currentUserId})");
             }
             
             // Always proceed to load the home page for valid users
@@ -102,7 +107,6 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error in OnLoginSuccess: {ex.Message}");
             ShowWelcomePage();
         }
     }
@@ -126,6 +130,8 @@ public partial class MainWindow : Window
                     _userInitials.Text = GetInitials(_currentUser.UserName);
                 if (_userNameText != null)
                     _userNameText.Text = _currentUser.UserName;
+                if (_userEmailText != null)
+                    _userEmailText.Text = _currentUser.Email ?? "No email";
                 
                 // Show the navigation menu
                 _sidebarMenu.IsVisible = true;
@@ -138,7 +144,6 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading user data: {ex.Message}");
             ShowWelcomePage();
         }
     }
@@ -176,7 +181,6 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading HomePage: {ex.Message}");
         }
     }
     
@@ -227,19 +231,15 @@ public partial class MainWindow : Window
                     
                     try
                     {
-                        Console.WriteLine("Creating BudgetPage...");
                         var budgetPage = new BudgetPage(
                             _budgetController,
                             _userController,
                             _currentUser);
                         
-                        Console.WriteLine("BudgetPage created successfully, setting as content");
                         _pageContent.Content = budgetPage;
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error creating BudgetPage: {ex.Message}");
-                        Console.WriteLine($"Stack trace: {ex.StackTrace}");
                         
                         // Fallback to home page if budget page fails to load
                         LoadHomePage();
@@ -258,7 +258,6 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error navigating to {pageName}: {ex.Message}");
         }
     }
     
@@ -307,19 +306,20 @@ public partial class MainWindow : Window
         ShowWelcomePage();
     }
     
-    // Add method to update user profile display
+    // Method to update the user profile display
     private void UpdateUserProfileDisplay()
     {
-        if (_currentUser == null) return;
-
-        // Note: We removed the user profile card as requested,
-        // so we only need to update the title on pages
-        
-        var currentPageTitle = this.FindControl<TextBlock>("CurrentPageTitle");
-        if (currentPageTitle != null)
+        if (_currentUser != null)
         {
-            // Update the page title if needed
-            // This keeps the title updated based on navigation
+            if (_userNameText != null)
+            {
+                _userNameText.Text = _currentUser.UserName ?? "User";
+            }
+            
+            if (_userEmailText != null)
+            {
+                _userEmailText.Text = _currentUser.Email ?? "No email";
+            }
         }
     }
     

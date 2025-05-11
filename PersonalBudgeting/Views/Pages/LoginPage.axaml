@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="PersonalBudgeting.Views.Pages.LoginPage">
     
-    <Grid Background="#151C29">
+    <Grid Background="{StaticResource ContentBrush}">
         <!-- Back Arrow -->
         <Button x:Name="BackButton"
                 Click="OnBackClick"
@@ -37,7 +37,7 @@
         <!-- Login Form -->
         <Grid Grid.Row="1" x:Name="LoginForm" IsVisible="True" 
               Width="400" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Border Background="#1E2A3D" 
+            <Border Background="{StaticResource ContentBrush}" 
                     CornerRadius="8" 
                     BoxShadow="0 4 20 0 #40000000" 
                     Padding="30">
@@ -89,7 +89,7 @@
         <!-- Registration Form -->
         <Grid Grid.Row="1" x:Name="RegisterForm" IsVisible="False" 
               Width="450" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Border Background="#1E2A3D" 
+            <Border Background="{StaticResource ContentBrush}" 
                     CornerRadius="8" 
                     BoxShadow="0 4 20 0 #40000000" 
                     Padding="30">

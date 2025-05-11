@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
@@ -7,6 +8,15 @@ using Controller;
 using Model.Entities;
 using System.Text.RegularExpressions;
 using PersonalBudgeting.Views;
+using Avalonia.Media;
+using Avalonia.Platform.Storage;
+using System.Linq;
+using static Avalonia.Application;
+using System.Reflection;
+using Avalonia.Input;
+using Avalonia.Layout;
+using Avalonia.Styling;
+using System.Collections.Generic;
 
 namespace PersonalBudgeting.Views.Pages;
 
@@ -78,6 +88,14 @@ public partial class SettingsPage : UserControl
         {
             changePasswordButton.Click += OnChangePasswordClick;
         }
+        
+        // Get theme ComboBox and select current theme
+        _themeComboBox = this.FindControl<ComboBox>("ThemeComboBox");
+        if (_themeComboBox != null)
+        {
+            // Default to Dark theme (index 0)
+            _themeComboBox.SelectedIndex = 0;
+        }
     }
     
     private void InitializeComponent()
@@ -88,9 +106,9 @@ public partial class SettingsPage : UserControl
     private void GetControlReferences()
     {
         _userInitials = this.FindControl<TextBlock>("UserInitials");
-        _userNameTextBox = this.FindControl<TextBox>("UserNameTextBox");
-        _userEmailTextBox = this.FindControl<TextBox>("UserEmailTextBox");
-        _userPhoneTextBox = this.FindControl<TextBox>("UserPhoneTextBox");
+        _userNameTextBox = this.FindControl<TextBox>("NameTextBox");
+        _userEmailTextBox = this.FindControl<TextBox>("EmailTextBox");
+        _userPhoneTextBox = this.FindControl<TextBox>("PhoneTextBox");
         _currencyComboBox = this.FindControl<ComboBox>("CurrencyComboBox");
         _themeComboBox = this.FindControl<ComboBox>("ThemeComboBox");
         _accentColorComboBox = this.FindControl<ComboBox>("AccentColorComboBox");
@@ -144,18 +162,52 @@ public partial class SettingsPage : UserControl
     {
         try
         {
-            // Validate inputs
-            if (_nameInput == null || _emailInput == null)
-                return;
-                
-            var name = _nameInput.Text;
-            var email = _emailInput.Text;
-            var phoneTextBox = this.FindControl<TextBox>("PhoneTextBox");
-            var phone = phoneTextBox?.Text ?? _currentUser.PhoneNumber;
+            // Get control references if null
+            GetControlReferences();
             
+            // Validate inputs
+            if (_userNameTextBox == null || _userEmailTextBox == null || _userPhoneTextBox == null)
+            {
+                ShowError("One or more input controls is null");
+                return;
+            }
+            
+            var name = _userNameTextBox.Text?.Trim() ?? string.Empty;
+            var email = _userEmailTextBox.Text?.Trim() ?? string.Empty;
+            var phone = _userPhoneTextBox.Text?.Trim() ?? string.Empty;
+            
+            // Validate required fields
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
             {
                 ShowError("Please enter your name and email");
+                return;
+            }
+            
+            // Validate username length (max 100 chars)
+            if (name.Length > 100)
+            {
+                ShowError("Username cannot exceed 100 characters");
+                return;
+            }
+            
+            // Validate email format
+            if (!IsValidEmail(email))
+            {
+                ShowError("Please enter a valid email address");
+                return;
+            }
+            
+            // Validate email length (max 100 chars)
+            if (email.Length > 100)
+            {
+                ShowError("Email cannot exceed 100 characters");
+                return;
+            }
+            
+            // Validate phone number length (max 15 chars)
+            if (phone.Length > 15)
+            {
+                ShowError("Phone number cannot exceed 15 characters");
                 return;
             }
 
@@ -169,31 +221,53 @@ public partial class SettingsPage : UserControl
                 Password = _currentUser.Password // Keep the current password
             };
             
-            // Save user data to database
-            var (success, user, errors) = await _userController.TryUpdateUser(updatedUser);
+            // Save user data to database using EditUserDetails method
+            var result = await _userController.TryUpdateUser(updatedUser);
             
-            if (success && user != null)
+            if (result.Success && result.UpdatedUser != null)
             {
                 // Update current user reference with the updated values
-                _currentUser.UserName = user.UserName;
-                _currentUser.Email = user.Email;
-                _currentUser.PhoneNumber = user.PhoneNumber;
+                _currentUser.UserName = result.UpdatedUser.UserName;
+                _currentUser.Email = result.UpdatedUser.Email;
+                _currentUser.PhoneNumber = result.UpdatedUser.PhoneNumber;
                 
                 // Show success message
                 ShowSuccess("Profile updated successfully");
                 
-                // Update UI with new values
-                LoadUserData();
+                // Update UI with new values (including initials)
+                if (_userInitials != null && !string.IsNullOrEmpty(_currentUser.UserName))
+                {
+                    _userInitials.Text = GetInitials(_currentUser.UserName);
+                }
             }
             else
             {
                 // Show error messages
-                ShowError(errors.Count > 0 ? string.Join("\n", errors) : "Failed to update profile");
+                ShowError(result.errors.Count > 0 ? string.Join("\n", result.errors) : "Failed to update profile");
             }
         }
         catch (Exception ex)
         {
             ShowError($"Error: {ex.Message}");
+        }
+    }
+    
+    // Helper method to validate email format
+    private bool IsValidEmail(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            return false;
+            
+        try
+        {
+            // Simple regex for basic email validation
+            return Regex.IsMatch(email,
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                RegexOptions.IgnoreCase);
+        }
+        catch (Exception)
+        {
+            return false;
         }
     }
     
@@ -389,6 +463,19 @@ public partial class SettingsPage : UserControl
         catch (Exception ex)
         {
             ShowError($"Error: {ex.Message}");
+        }
+    }
+
+    // Theme selection event handler
+    public void OnThemeSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem selectedItem)
+        {
+            string? themeName = selectedItem.Content?.ToString();
+            if (!string.IsNullOrEmpty(themeName))
+            {
+                ThemeManager.ApplyPresetTheme(themeName);
+            }
         }
     }
 }
