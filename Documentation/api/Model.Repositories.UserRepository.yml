@@ -1,0 +1,1838 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Repositories.UserRepository
+  commentId: T:Model.Repositories.UserRepository
+  id: UserRepository
+  parent: Model.Repositories
+  children:
+  - Model.Repositories.UserRepository.CheckUserExistsByEmail(System.String)
+  - Model.Repositories.UserRepository.GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+  - Model.Repositories.UserRepository.GetTotalUserExpenses(System.Int32)
+  - Model.Repositories.UserRepository.GetTotalUserIncomes(System.Int32)
+  - Model.Repositories.UserRepository.GetUserBudgets(Model.Entities.User)
+  - Model.Repositories.UserRepository.GetUserById(System.Int32)
+  - Model.Repositories.UserRepository.GetUserExpenses(Model.Entities.User)
+  - Model.Repositories.UserRepository.GetUserIncomes(Model.Entities.User)
+  - Model.Repositories.UserRepository.RetrieveUserByEmail(System.String)
+  langs:
+  - csharp
+  - vb
+  name: UserRepository
+  nameWithType: UserRepository
+  fullName: Model.Repositories.UserRepository
+  type: Class
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: UserRepository
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 11
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: >-
+    Repository for handling <xref href="Model.Entities.User" data-throw-if-not-resolved="false"></xref> entities, implementing <xref href="Model.Interfaces.IUserRepository" data-throw-if-not-resolved="false"></xref>.
+
+    Provides data access methods for retrieving, adding, updating, and deleting users, as well as related data such as incomes, expenses, and budgets.
+  example: []
+  syntax:
+    content: 'public class UserRepository : GenericRepository<User>, IUserRepository, IRepository<User>'
+    content.vb: Public Class UserRepository Inherits GenericRepository(Of User) Implements IUserRepository, IRepository(Of User)
+  inheritance:
+  - System.Object
+  - Model.Repositories.GenericRepository{Model.Entities.User}
+  implements:
+  - Model.Interfaces.IUserRepository
+  - Model.Interfaces.IRepository{Model.Entities.User}
+  inheritedMembers:
+  - Model.Repositories.GenericRepository{Model.Entities.User}._dbContextFactory
+  - Model.Repositories.GenericRepository{Model.Entities.User}.Add(Model.Entities.User)
+  - Model.Repositories.GenericRepository{Model.Entities.User}.Update(Model.Entities.User)
+  - Model.Repositories.GenericRepository{Model.Entities.User}.Delete(Model.Entities.User)
+  - Model.Repositories.GenericRepository{Model.Entities.User}.GetById(System.Int32)
+  - Model.Repositories.GenericRepository{Model.Entities.User}.GetAll
+  - Model.Repositories.GenericRepository{Model.Entities.User}.CheckExist(System.Int32)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Model.Repositories.UserRepository.RetrieveUserByEmail(System.String)
+  commentId: M:Model.Repositories.UserRepository.RetrieveUserByEmail(System.String)
+  id: RetrieveUserByEmail(System.String)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: RetrieveUserByEmail(string)
+  nameWithType: UserRepository.RetrieveUserByEmail(string)
+  fullName: Model.Repositories.UserRepository.RetrieveUserByEmail(string)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: RetrieveUserByEmail
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 14
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Retrieves a user entity by their email address.
+  example: []
+  syntax:
+    content: public Task<User?> RetrieveUserByEmail(string email)
+    parameters:
+    - id: email
+      type: System.String
+      description: The email address of the user.
+    return:
+      type: System.Threading.Tasks.Task{Model.Entities.User}
+      description: A task that returns the <xref href="Model.Entities.User" data-throw-if-not-resolved="false"></xref> if found; otherwise, null.
+    content.vb: Public Function RetrieveUserByEmail(email As String) As Task(Of User)
+  overload: Model.Repositories.UserRepository.RetrieveUserByEmail*
+  implements:
+  - Model.Interfaces.IUserRepository.RetrieveUserByEmail(System.String)
+  nameWithType.vb: UserRepository.RetrieveUserByEmail(String)
+  fullName.vb: Model.Repositories.UserRepository.RetrieveUserByEmail(String)
+  name.vb: RetrieveUserByEmail(String)
+- uid: Model.Repositories.UserRepository.GetUserById(System.Int32)
+  commentId: M:Model.Repositories.UserRepository.GetUserById(System.Int32)
+  id: GetUserById(System.Int32)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: GetUserById(int)
+  nameWithType: UserRepository.GetUserById(int)
+  fullName: Model.Repositories.UserRepository.GetUserById(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetUserById
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 21
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Retrieves a user by their unique identifier.
+  example: []
+  syntax:
+    content: public Task<User?> GetUserById(int id)
+    parameters:
+    - id: id
+      type: System.Int32
+      description: The ID of the user.
+    return:
+      type: System.Threading.Tasks.Task{Model.Entities.User}
+      description: A task that returns the <xref href="Model.Entities.User" data-throw-if-not-resolved="false"></xref> if found; otherwise, null.
+    content.vb: Public Function GetUserById(id As Integer) As Task(Of User)
+  overload: Model.Repositories.UserRepository.GetUserById*
+  implements:
+  - Model.Interfaces.IUserRepository.GetUserById(System.Int32)
+  nameWithType.vb: UserRepository.GetUserById(Integer)
+  fullName.vb: Model.Repositories.UserRepository.GetUserById(Integer)
+  name.vb: GetUserById(Integer)
+- uid: Model.Repositories.UserRepository.CheckUserExistsByEmail(System.String)
+  commentId: M:Model.Repositories.UserRepository.CheckUserExistsByEmail(System.String)
+  id: CheckUserExistsByEmail(System.String)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: CheckUserExistsByEmail(string)
+  nameWithType: UserRepository.CheckUserExistsByEmail(string)
+  fullName: Model.Repositories.UserRepository.CheckUserExistsByEmail(string)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: CheckUserExistsByEmail
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 28
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Checks whether a user exists with the specified email address.
+  example: []
+  syntax:
+    content: public Task<bool> CheckUserExistsByEmail(string email)
+    parameters:
+    - id: email
+      type: System.String
+      description: The email address to check.
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+      description: A task that returns true if the user exists; otherwise, false.
+    content.vb: Public Function CheckUserExistsByEmail(email As String) As Task(Of Boolean)
+  overload: Model.Repositories.UserRepository.CheckUserExistsByEmail*
+  implements:
+  - Model.Interfaces.IUserRepository.CheckUserExistsByEmail(System.String)
+  nameWithType.vb: UserRepository.CheckUserExistsByEmail(String)
+  fullName.vb: Model.Repositories.UserRepository.CheckUserExistsByEmail(String)
+  name.vb: CheckUserExistsByEmail(String)
+- uid: Model.Repositories.UserRepository.GetUserIncomes(Model.Entities.User)
+  commentId: M:Model.Repositories.UserRepository.GetUserIncomes(Model.Entities.User)
+  id: GetUserIncomes(Model.Entities.User)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: GetUserIncomes(User)
+  nameWithType: UserRepository.GetUserIncomes(User)
+  fullName: Model.Repositories.UserRepository.GetUserIncomes(Model.Entities.User)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetUserIncomes
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 35
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Retrieves the list of incomes associated with a given user.
+  example: []
+  syntax:
+    content: public Task<ICollection<Income>> GetUserIncomes(User user)
+    parameters:
+    - id: user
+      type: Model.Entities.User
+      description: The user whose incomes to retrieve.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Income}}
+      description: A task that returns a collection of the user's incomes.
+    content.vb: Public Function GetUserIncomes(user As User) As Task(Of ICollection(Of Income))
+  overload: Model.Repositories.UserRepository.GetUserIncomes*
+  implements:
+  - Model.Interfaces.IUserRepository.GetUserIncomes(Model.Entities.User)
+- uid: Model.Repositories.UserRepository.GetUserBudgets(Model.Entities.User)
+  commentId: M:Model.Repositories.UserRepository.GetUserBudgets(Model.Entities.User)
+  id: GetUserBudgets(Model.Entities.User)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: GetUserBudgets(User)
+  nameWithType: UserRepository.GetUserBudgets(User)
+  fullName: Model.Repositories.UserRepository.GetUserBudgets(Model.Entities.User)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetUserBudgets
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 45
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Retrieves the list of budgets associated with a given user.
+  example: []
+  syntax:
+    content: public Task<ICollection<Budget>> GetUserBudgets(User user)
+    parameters:
+    - id: user
+      type: Model.Entities.User
+      description: The user whose budgets to retrieve.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Budget}}
+      description: A task that returns a collection of the user's budgets.
+    content.vb: Public Function GetUserBudgets(user As User) As Task(Of ICollection(Of Budget))
+  overload: Model.Repositories.UserRepository.GetUserBudgets*
+  implements:
+  - Model.Interfaces.IUserRepository.GetUserBudgets(Model.Entities.User)
+- uid: Model.Repositories.UserRepository.GetUserExpenses(Model.Entities.User)
+  commentId: M:Model.Repositories.UserRepository.GetUserExpenses(Model.Entities.User)
+  id: GetUserExpenses(Model.Entities.User)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: GetUserExpenses(User)
+  nameWithType: UserRepository.GetUserExpenses(User)
+  fullName: Model.Repositories.UserRepository.GetUserExpenses(Model.Entities.User)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetUserExpenses
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 56
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Retrieves the list of expenses associated with a given user.
+  example: []
+  syntax:
+    content: public Task<ICollection<Expense>> GetUserExpenses(User user)
+    parameters:
+    - id: user
+      type: Model.Entities.User
+      description: The user whose expenses to retrieve.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Expense}}
+      description: A task that returns a collection of the user's expenses.
+    content.vb: Public Function GetUserExpenses(user As User) As Task(Of ICollection(Of Expense))
+  overload: Model.Repositories.UserRepository.GetUserExpenses*
+  implements:
+  - Model.Interfaces.IUserRepository.GetUserExpenses(Model.Entities.User)
+- uid: Model.Repositories.UserRepository.GetTotalUserIncomes(System.Int32)
+  commentId: M:Model.Repositories.UserRepository.GetTotalUserIncomes(System.Int32)
+  id: GetTotalUserIncomes(System.Int32)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: GetTotalUserIncomes(int)
+  nameWithType: UserRepository.GetTotalUserIncomes(int)
+  fullName: Model.Repositories.UserRepository.GetTotalUserIncomes(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetTotalUserIncomes
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 69
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Calculates the total income amount for the specified user.
+  example: []
+  syntax:
+    content: public Task<decimal> GetTotalUserIncomes(int userId)
+    parameters:
+    - id: userId
+      type: System.Int32
+      description: The ID of the user.
+    return:
+      type: System.Threading.Tasks.Task{System.Decimal}
+      description: A task that returns the total income amount.
+    content.vb: Public Function GetTotalUserIncomes(userId As Integer) As Task(Of Decimal)
+  overload: Model.Repositories.UserRepository.GetTotalUserIncomes*
+  implements:
+  - Model.Interfaces.IUserRepository.GetTotalUserIncomes(System.Int32)
+  nameWithType.vb: UserRepository.GetTotalUserIncomes(Integer)
+  fullName.vb: Model.Repositories.UserRepository.GetTotalUserIncomes(Integer)
+  name.vb: GetTotalUserIncomes(Integer)
+- uid: Model.Repositories.UserRepository.GetTotalUserExpenses(System.Int32)
+  commentId: M:Model.Repositories.UserRepository.GetTotalUserExpenses(System.Int32)
+  id: GetTotalUserExpenses(System.Int32)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: GetTotalUserExpenses(int)
+  nameWithType: UserRepository.GetTotalUserExpenses(int)
+  fullName: Model.Repositories.UserRepository.GetTotalUserExpenses(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetTotalUserExpenses
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 79
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Calculates the total expenses amount for the specified user.
+  example: []
+  syntax:
+    content: public Task<decimal> GetTotalUserExpenses(int userId)
+    parameters:
+    - id: userId
+      type: System.Int32
+      description: The ID of the user.
+    return:
+      type: System.Threading.Tasks.Task{System.Decimal}
+      description: A task that returns the total expense amount.
+    content.vb: Public Function GetTotalUserExpenses(userId As Integer) As Task(Of Decimal)
+  overload: Model.Repositories.UserRepository.GetTotalUserExpenses*
+  implements:
+  - Model.Interfaces.IUserRepository.GetTotalUserExpenses(System.Int32)
+  nameWithType.vb: UserRepository.GetTotalUserExpenses(Integer)
+  fullName.vb: Model.Repositories.UserRepository.GetTotalUserExpenses(Integer)
+  name.vb: GetTotalUserExpenses(Integer)
+- uid: Model.Repositories.UserRepository.GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+  commentId: M:Model.Repositories.UserRepository.GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+  id: GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+  parent: Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: GetTotalBudgetSpentAmount(int, int)
+  nameWithType: UserRepository.GetTotalBudgetSpentAmount(int, int)
+  fullName: Model.Repositories.UserRepository.GetTotalBudgetSpentAmount(int, int)
+  type: Method
+  source:
+    remote:
+      path: Model/Repositories/UserRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetTotalBudgetSpentAmount
+    path: ../Model/Repositories/UserRepository.cs
+    startLine: 89
+  assemblies:
+  - Model
+  namespace: Model.Repositories
+  summary: Retrieves the total spent amount from a specific budget for a user.
+  example: []
+  syntax:
+    content: public Task<decimal> GetTotalBudgetSpentAmount(int userId, int budgetId)
+    parameters:
+    - id: userId
+      type: System.Int32
+      description: The ID of the user.
+    - id: budgetId
+      type: System.Int32
+      description: The ID of the budget.
+    return:
+      type: System.Threading.Tasks.Task{System.Decimal}
+      description: A task that returns the total spent amount from the specified budget.
+    content.vb: Public Function GetTotalBudgetSpentAmount(userId As Integer, budgetId As Integer) As Task(Of Decimal)
+  overload: Model.Repositories.UserRepository.GetTotalBudgetSpentAmount*
+  implements:
+  - Model.Interfaces.IUserRepository.GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+  nameWithType.vb: UserRepository.GetTotalBudgetSpentAmount(Integer, Integer)
+  fullName.vb: Model.Repositories.UserRepository.GetTotalBudgetSpentAmount(Integer, Integer)
+  name.vb: GetTotalBudgetSpentAmount(Integer, Integer)
+references:
+- uid: Model.Entities.User
+  commentId: T:Model.Entities.User
+  parent: Model.Entities
+  href: Model.Entities.User.html
+  name: User
+  nameWithType: User
+  fullName: Model.Entities.User
+- uid: Model.Interfaces.IUserRepository
+  commentId: T:Model.Interfaces.IUserRepository
+  parent: Model.Interfaces
+  href: Model.Interfaces.IUserRepository.html
+  name: IUserRepository
+  nameWithType: IUserRepository
+  fullName: Model.Interfaces.IUserRepository
+- uid: Model.Repositories
+  commentId: N:Model.Repositories
+  href: Model.html
+  name: Model.Repositories
+  nameWithType: Model.Repositories
+  fullName: Model.Repositories
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Repositories
+    name: Repositories
+    href: Model.Repositories.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Repositories
+    name: Repositories
+    href: Model.Repositories.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Model.Repositories.GenericRepository{Model.Entities.User}
+  commentId: T:Model.Repositories.GenericRepository{Model.Entities.User}
+  parent: Model.Repositories
+  definition: Model.Repositories.GenericRepository`1
+  href: Model.Repositories.GenericRepository-1.html
+  name: GenericRepository<User>
+  nameWithType: GenericRepository<User>
+  fullName: Model.Repositories.GenericRepository<Model.Entities.User>
+  nameWithType.vb: GenericRepository(Of User)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.User)
+  name.vb: GenericRepository(Of User)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: <
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: '>'
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: Model.Interfaces.IRepository{Model.Entities.User}
+  commentId: T:Model.Interfaces.IRepository{Model.Entities.User}
+  parent: Model.Interfaces
+  definition: Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<User>
+  nameWithType: IRepository<User>
+  fullName: Model.Interfaces.IRepository<Model.Entities.User>
+  nameWithType.vb: IRepository(Of User)
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.User)
+  name.vb: IRepository(Of User)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.User}._dbContextFactory
+  commentId: F:Model.Repositories.GenericRepository{Model.Entities.User}._dbContextFactory
+  parent: Model.Repositories.GenericRepository{Model.Entities.User}
+  definition: Model.Repositories.GenericRepository`1._dbContextFactory
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1__dbContextFactory
+  name: _dbContextFactory
+  nameWithType: GenericRepository<User>._dbContextFactory
+  fullName: Model.Repositories.GenericRepository<Model.Entities.User>._dbContextFactory
+  nameWithType.vb: GenericRepository(Of User)._dbContextFactory
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.User)._dbContextFactory
+- uid: Model.Repositories.GenericRepository{Model.Entities.User}.Add(Model.Entities.User)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.User}.Add(Model.Entities.User)
+  parent: Model.Repositories.GenericRepository{Model.Entities.User}
+  definition: Model.Repositories.GenericRepository`1.Add(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  name: Add(User)
+  nameWithType: GenericRepository<User>.Add(User)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.User>.Add(Model.Entities.User)
+  nameWithType.vb: GenericRepository(Of User).Add(User)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.User).Add(Model.Entities.User)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.Add(Model.Entities.User)
+    name: Add
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.Add(Model.Entities.User)
+    name: Add
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.User}.Update(Model.Entities.User)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.User}.Update(Model.Entities.User)
+  parent: Model.Repositories.GenericRepository{Model.Entities.User}
+  definition: Model.Repositories.GenericRepository`1.Update(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  name: Update(User)
+  nameWithType: GenericRepository<User>.Update(User)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.User>.Update(Model.Entities.User)
+  nameWithType.vb: GenericRepository(Of User).Update(User)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.User).Update(Model.Entities.User)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.Update(Model.Entities.User)
+    name: Update
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.Update(Model.Entities.User)
+    name: Update
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.User}.Delete(Model.Entities.User)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.User}.Delete(Model.Entities.User)
+  parent: Model.Repositories.GenericRepository{Model.Entities.User}
+  definition: Model.Repositories.GenericRepository`1.Delete(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  name: Delete(User)
+  nameWithType: GenericRepository<User>.Delete(User)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.User>.Delete(Model.Entities.User)
+  nameWithType.vb: GenericRepository(Of User).Delete(User)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.User).Delete(Model.Entities.User)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.Delete(Model.Entities.User)
+    name: Delete
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.Delete(Model.Entities.User)
+    name: Delete
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.User}.GetById(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.User}.GetById(System.Int32)
+  parent: Model.Repositories.GenericRepository{Model.Entities.User}
+  definition: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: GenericRepository<User>.GetById(int)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.User>.GetById(int)
+  nameWithType.vb: GenericRepository(Of User).GetById(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.User).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.GetById(System.Int32)
+    name: GetById
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.GetById(System.Int32)
+    name: GetById
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.User}.GetAll
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.User}.GetAll
+  parent: Model.Repositories.GenericRepository{Model.Entities.User}
+  definition: Model.Repositories.GenericRepository`1.GetAll
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  name: GetAll()
+  nameWithType: GenericRepository<User>.GetAll()
+  fullName: Model.Repositories.GenericRepository<Model.Entities.User>.GetAll()
+  nameWithType.vb: GenericRepository(Of User).GetAll()
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.User).GetAll()
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.GetAll
+    name: GetAll
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.GetAll
+    name: GetAll
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: Model.Repositories.GenericRepository{Model.Entities.User}.CheckExist(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository{Model.Entities.User}.CheckExist(System.Int32)
+  parent: Model.Repositories.GenericRepository{Model.Entities.User}
+  definition: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  name: CheckExist(int)
+  nameWithType: GenericRepository<User>.CheckExist(int)
+  fullName: Model.Repositories.GenericRepository<Model.Entities.User>.CheckExist(int)
+  nameWithType.vb: GenericRepository(Of User).CheckExist(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of Model.Entities.User).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository{Model.Entities.User}.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+- uid: Model.Interfaces
+  commentId: N:Model.Interfaces
+  href: Model.html
+  name: Model.Interfaces
+  nameWithType: Model.Interfaces
+  fullName: Model.Interfaces
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Model.Repositories.GenericRepository`1
+  commentId: T:Model.Repositories.GenericRepository`1
+  href: Model.Repositories.GenericRepository-1.html
+  name: GenericRepository<TObject>
+  nameWithType: GenericRepository<TObject>
+  fullName: Model.Repositories.GenericRepository<TObject>
+  nameWithType.vb: GenericRepository(Of TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject)
+  name.vb: GenericRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IRepository`1
+  commentId: T:Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<TObject>
+  nameWithType: IRepository<TObject>
+  fullName: Model.Interfaces.IRepository<TObject>
+  nameWithType.vb: IRepository(Of TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject)
+  name.vb: IRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1._dbContextFactory
+  commentId: F:Model.Repositories.GenericRepository`1._dbContextFactory
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1__dbContextFactory
+  name: _dbContextFactory
+  nameWithType: GenericRepository<TObject>._dbContextFactory
+  fullName: Model.Repositories.GenericRepository<TObject>._dbContextFactory
+  nameWithType.vb: GenericRepository(Of TObject)._dbContextFactory
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject)._dbContextFactory
+- uid: Model.Repositories.GenericRepository`1.Add(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Add(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  name: Add(TObject)
+  nameWithType: GenericRepository<TObject>.Add(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Add(TObject)
+  nameWithType.vb: GenericRepository(Of TObject).Add(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Add(TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.Add(`0)
+    name: Add
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.Add(`0)
+    name: Add
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.Update(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Update(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  name: Update(TObject)
+  nameWithType: GenericRepository<TObject>.Update(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Update(TObject)
+  nameWithType.vb: GenericRepository(Of TObject).Update(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Update(TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.Update(`0)
+    name: Update
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.Update(`0)
+    name: Update
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.Delete(`0)
+  commentId: M:Model.Repositories.GenericRepository`1.Delete(`0)
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  name: Delete(TObject)
+  nameWithType: GenericRepository<TObject>.Delete(TObject)
+  fullName: Model.Repositories.GenericRepository<TObject>.Delete(TObject)
+  nameWithType.vb: GenericRepository(Of TObject).Delete(TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).Delete(TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.Delete(`0)
+    name: Delete
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.Delete(`0)
+    name: Delete
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository`1.GetById(System.Int32)
+  isExternal: true
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: GenericRepository<TObject>.GetById(int)
+  fullName: Model.Repositories.GenericRepository<TObject>.GetById(int)
+  nameWithType.vb: GenericRepository(Of TObject).GetById(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+    name: GetById
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.GetById(System.Int32)
+    name: GetById
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.GetAll
+  commentId: M:Model.Repositories.GenericRepository`1.GetAll
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  name: GetAll()
+  nameWithType: GenericRepository<TObject>.GetAll()
+  fullName: Model.Repositories.GenericRepository<TObject>.GetAll()
+  nameWithType.vb: GenericRepository(Of TObject).GetAll()
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).GetAll()
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.GetAll
+    name: GetAll
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.GetAll
+    name: GetAll
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  commentId: M:Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+  isExternal: true
+  href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  name: CheckExist(int)
+  nameWithType: GenericRepository<TObject>.CheckExist(int)
+  fullName: Model.Repositories.GenericRepository<TObject>.CheckExist(int)
+  nameWithType.vb: GenericRepository(Of TObject).CheckExist(Integer)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Repositories.GenericRepository-1.html#Model_Repositories_GenericRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Repositories.UserRepository.RetrieveUserByEmail*
+  commentId: Overload:Model.Repositories.UserRepository.RetrieveUserByEmail
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_RetrieveUserByEmail_System_String_
+  name: RetrieveUserByEmail
+  nameWithType: UserRepository.RetrieveUserByEmail
+  fullName: Model.Repositories.UserRepository.RetrieveUserByEmail
+- uid: Model.Interfaces.IUserRepository.RetrieveUserByEmail(System.String)
+  commentId: M:Model.Interfaces.IUserRepository.RetrieveUserByEmail(System.String)
+  parent: Model.Interfaces.IUserRepository
+  isExternal: true
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_RetrieveUserByEmail_System_String_
+  name: RetrieveUserByEmail(string)
+  nameWithType: IUserRepository.RetrieveUserByEmail(string)
+  fullName: Model.Interfaces.IUserRepository.RetrieveUserByEmail(string)
+  nameWithType.vb: IUserRepository.RetrieveUserByEmail(String)
+  fullName.vb: Model.Interfaces.IUserRepository.RetrieveUserByEmail(String)
+  name.vb: RetrieveUserByEmail(String)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.RetrieveUserByEmail(System.String)
+    name: RetrieveUserByEmail
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_RetrieveUserByEmail_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.RetrieveUserByEmail(System.String)
+    name: RetrieveUserByEmail
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_RetrieveUserByEmail_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task{Model.Entities.User}
+  commentId: T:System.Threading.Tasks.Task{Model.Entities.User}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<User>
+  nameWithType: Task<User>
+  fullName: System.Threading.Tasks.Task<Model.Entities.User>
+  nameWithType.vb: Task(Of User)
+  fullName.vb: System.Threading.Tasks.Task(Of Model.Entities.User)
+  name.vb: Task(Of User)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Model.Repositories.UserRepository.GetUserById*
+  commentId: Overload:Model.Repositories.UserRepository.GetUserById
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_GetUserById_System_Int32_
+  name: GetUserById
+  nameWithType: UserRepository.GetUserById
+  fullName: Model.Repositories.UserRepository.GetUserById
+- uid: Model.Interfaces.IUserRepository.GetUserById(System.Int32)
+  commentId: M:Model.Interfaces.IUserRepository.GetUserById(System.Int32)
+  parent: Model.Interfaces.IUserRepository
+  isExternal: true
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserById_System_Int32_
+  name: GetUserById(int)
+  nameWithType: IUserRepository.GetUserById(int)
+  fullName: Model.Interfaces.IUserRepository.GetUserById(int)
+  nameWithType.vb: IUserRepository.GetUserById(Integer)
+  fullName.vb: Model.Interfaces.IUserRepository.GetUserById(Integer)
+  name.vb: GetUserById(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.GetUserById(System.Int32)
+    name: GetUserById
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.GetUserById(System.Int32)
+    name: GetUserById
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Model.Repositories.UserRepository.CheckUserExistsByEmail*
+  commentId: Overload:Model.Repositories.UserRepository.CheckUserExistsByEmail
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_CheckUserExistsByEmail_System_String_
+  name: CheckUserExistsByEmail
+  nameWithType: UserRepository.CheckUserExistsByEmail
+  fullName: Model.Repositories.UserRepository.CheckUserExistsByEmail
+- uid: Model.Interfaces.IUserRepository.CheckUserExistsByEmail(System.String)
+  commentId: M:Model.Interfaces.IUserRepository.CheckUserExistsByEmail(System.String)
+  parent: Model.Interfaces.IUserRepository
+  isExternal: true
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_CheckUserExistsByEmail_System_String_
+  name: CheckUserExistsByEmail(string)
+  nameWithType: IUserRepository.CheckUserExistsByEmail(string)
+  fullName: Model.Interfaces.IUserRepository.CheckUserExistsByEmail(string)
+  nameWithType.vb: IUserRepository.CheckUserExistsByEmail(String)
+  fullName.vb: Model.Interfaces.IUserRepository.CheckUserExistsByEmail(String)
+  name.vb: CheckUserExistsByEmail(String)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.CheckUserExistsByEmail(System.String)
+    name: CheckUserExistsByEmail
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_CheckUserExistsByEmail_System_String_
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.CheckUserExistsByEmail(System.String)
+    name: CheckUserExistsByEmail
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_CheckUserExistsByEmail_System_String_
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: Model.Repositories.UserRepository.GetUserIncomes*
+  commentId: Overload:Model.Repositories.UserRepository.GetUserIncomes
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_GetUserIncomes_Model_Entities_User_
+  name: GetUserIncomes
+  nameWithType: UserRepository.GetUserIncomes
+  fullName: Model.Repositories.UserRepository.GetUserIncomes
+- uid: Model.Interfaces.IUserRepository.GetUserIncomes(Model.Entities.User)
+  commentId: M:Model.Interfaces.IUserRepository.GetUserIncomes(Model.Entities.User)
+  parent: Model.Interfaces.IUserRepository
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserIncomes_Model_Entities_User_
+  name: GetUserIncomes(User)
+  nameWithType: IUserRepository.GetUserIncomes(User)
+  fullName: Model.Interfaces.IUserRepository.GetUserIncomes(Model.Entities.User)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.GetUserIncomes(Model.Entities.User)
+    name: GetUserIncomes
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserIncomes_Model_Entities_User_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.GetUserIncomes(Model.Entities.User)
+    name: GetUserIncomes
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserIncomes_Model_Entities_User_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Income}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Income}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ICollection<Income>>
+  nameWithType: Task<ICollection<Income>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Model.Entities.Income>>
+  nameWithType.vb: Task(Of ICollection(Of Income))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.ICollection(Of Model.Entities.Income))
+  name.vb: Task(Of ICollection(Of Income))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+  - name: )
+- uid: Model.Repositories.UserRepository.GetUserBudgets*
+  commentId: Overload:Model.Repositories.UserRepository.GetUserBudgets
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_GetUserBudgets_Model_Entities_User_
+  name: GetUserBudgets
+  nameWithType: UserRepository.GetUserBudgets
+  fullName: Model.Repositories.UserRepository.GetUserBudgets
+- uid: Model.Interfaces.IUserRepository.GetUserBudgets(Model.Entities.User)
+  commentId: M:Model.Interfaces.IUserRepository.GetUserBudgets(Model.Entities.User)
+  parent: Model.Interfaces.IUserRepository
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserBudgets_Model_Entities_User_
+  name: GetUserBudgets(User)
+  nameWithType: IUserRepository.GetUserBudgets(User)
+  fullName: Model.Interfaces.IUserRepository.GetUserBudgets(Model.Entities.User)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.GetUserBudgets(Model.Entities.User)
+    name: GetUserBudgets
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserBudgets_Model_Entities_User_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.GetUserBudgets(Model.Entities.User)
+    name: GetUserBudgets
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserBudgets_Model_Entities_User_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Budget}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Budget}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ICollection<Budget>>
+  nameWithType: Task<ICollection<Budget>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Model.Entities.Budget>>
+  nameWithType.vb: Task(Of ICollection(Of Budget))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.ICollection(Of Model.Entities.Budget))
+  name.vb: Task(Of ICollection(Of Budget))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: Model.Entities.Budget
+    name: Budget
+    href: Model.Entities.Budget.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Budget
+    name: Budget
+    href: Model.Entities.Budget.html
+  - name: )
+  - name: )
+- uid: Model.Repositories.UserRepository.GetUserExpenses*
+  commentId: Overload:Model.Repositories.UserRepository.GetUserExpenses
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_GetUserExpenses_Model_Entities_User_
+  name: GetUserExpenses
+  nameWithType: UserRepository.GetUserExpenses
+  fullName: Model.Repositories.UserRepository.GetUserExpenses
+- uid: Model.Interfaces.IUserRepository.GetUserExpenses(Model.Entities.User)
+  commentId: M:Model.Interfaces.IUserRepository.GetUserExpenses(Model.Entities.User)
+  parent: Model.Interfaces.IUserRepository
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserExpenses_Model_Entities_User_
+  name: GetUserExpenses(User)
+  nameWithType: IUserRepository.GetUserExpenses(User)
+  fullName: Model.Interfaces.IUserRepository.GetUserExpenses(Model.Entities.User)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.GetUserExpenses(Model.Entities.User)
+    name: GetUserExpenses
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserExpenses_Model_Entities_User_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.GetUserExpenses(Model.Entities.User)
+    name: GetUserExpenses
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetUserExpenses_Model_Entities_User_
+  - name: (
+  - uid: Model.Entities.User
+    name: User
+    href: Model.Entities.User.html
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Expense}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.ICollection{Model.Entities.Expense}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<ICollection<Expense>>
+  nameWithType: Task<ICollection<Expense>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Model.Entities.Expense>>
+  nameWithType.vb: Task(Of ICollection(Of Expense))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.ICollection(Of Model.Entities.Expense))
+  name.vb: Task(Of ICollection(Of Expense))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+  - name: )
+- uid: Model.Repositories.UserRepository.GetTotalUserIncomes*
+  commentId: Overload:Model.Repositories.UserRepository.GetTotalUserIncomes
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_GetTotalUserIncomes_System_Int32_
+  name: GetTotalUserIncomes
+  nameWithType: UserRepository.GetTotalUserIncomes
+  fullName: Model.Repositories.UserRepository.GetTotalUserIncomes
+- uid: Model.Interfaces.IUserRepository.GetTotalUserIncomes(System.Int32)
+  commentId: M:Model.Interfaces.IUserRepository.GetTotalUserIncomes(System.Int32)
+  parent: Model.Interfaces.IUserRepository
+  isExternal: true
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalUserIncomes_System_Int32_
+  name: GetTotalUserIncomes(int)
+  nameWithType: IUserRepository.GetTotalUserIncomes(int)
+  fullName: Model.Interfaces.IUserRepository.GetTotalUserIncomes(int)
+  nameWithType.vb: IUserRepository.GetTotalUserIncomes(Integer)
+  fullName.vb: Model.Interfaces.IUserRepository.GetTotalUserIncomes(Integer)
+  name.vb: GetTotalUserIncomes(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.GetTotalUserIncomes(System.Int32)
+    name: GetTotalUserIncomes
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalUserIncomes_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.GetTotalUserIncomes(System.Int32)
+    name: GetTotalUserIncomes
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalUserIncomes_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Threading.Tasks.Task{System.Decimal}
+  commentId: T:System.Threading.Tasks.Task{System.Decimal}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<decimal>
+  nameWithType: Task<decimal>
+  fullName: System.Threading.Tasks.Task<decimal>
+  nameWithType.vb: Task(Of Decimal)
+  fullName.vb: System.Threading.Tasks.Task(Of Decimal)
+  name.vb: Task(Of Decimal)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Decimal
+    name: decimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.decimal
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Decimal
+    name: Decimal
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.decimal
+  - name: )
+- uid: Model.Repositories.UserRepository.GetTotalUserExpenses*
+  commentId: Overload:Model.Repositories.UserRepository.GetTotalUserExpenses
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_GetTotalUserExpenses_System_Int32_
+  name: GetTotalUserExpenses
+  nameWithType: UserRepository.GetTotalUserExpenses
+  fullName: Model.Repositories.UserRepository.GetTotalUserExpenses
+- uid: Model.Interfaces.IUserRepository.GetTotalUserExpenses(System.Int32)
+  commentId: M:Model.Interfaces.IUserRepository.GetTotalUserExpenses(System.Int32)
+  parent: Model.Interfaces.IUserRepository
+  isExternal: true
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalUserExpenses_System_Int32_
+  name: GetTotalUserExpenses(int)
+  nameWithType: IUserRepository.GetTotalUserExpenses(int)
+  fullName: Model.Interfaces.IUserRepository.GetTotalUserExpenses(int)
+  nameWithType.vb: IUserRepository.GetTotalUserExpenses(Integer)
+  fullName.vb: Model.Interfaces.IUserRepository.GetTotalUserExpenses(Integer)
+  name.vb: GetTotalUserExpenses(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.GetTotalUserExpenses(System.Int32)
+    name: GetTotalUserExpenses
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalUserExpenses_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.GetTotalUserExpenses(System.Int32)
+    name: GetTotalUserExpenses
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalUserExpenses_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Repositories.UserRepository.GetTotalBudgetSpentAmount*
+  commentId: Overload:Model.Repositories.UserRepository.GetTotalBudgetSpentAmount
+  href: Model.Repositories.UserRepository.html#Model_Repositories_UserRepository_GetTotalBudgetSpentAmount_System_Int32_System_Int32_
+  name: GetTotalBudgetSpentAmount
+  nameWithType: UserRepository.GetTotalBudgetSpentAmount
+  fullName: Model.Repositories.UserRepository.GetTotalBudgetSpentAmount
+- uid: Model.Interfaces.IUserRepository.GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+  commentId: M:Model.Interfaces.IUserRepository.GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+  parent: Model.Interfaces.IUserRepository
+  isExternal: true
+  href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalBudgetSpentAmount_System_Int32_System_Int32_
+  name: GetTotalBudgetSpentAmount(int, int)
+  nameWithType: IUserRepository.GetTotalBudgetSpentAmount(int, int)
+  fullName: Model.Interfaces.IUserRepository.GetTotalBudgetSpentAmount(int, int)
+  nameWithType.vb: IUserRepository.GetTotalBudgetSpentAmount(Integer, Integer)
+  fullName.vb: Model.Interfaces.IUserRepository.GetTotalBudgetSpentAmount(Integer, Integer)
+  name.vb: GetTotalBudgetSpentAmount(Integer, Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IUserRepository.GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+    name: GetTotalBudgetSpentAmount
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalBudgetSpentAmount_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IUserRepository.GetTotalBudgetSpentAmount(System.Int32,System.Int32)
+    name: GetTotalBudgetSpentAmount
+    href: Model.Interfaces.IUserRepository.html#Model_Interfaces_IUserRepository_GetTotalBudgetSpentAmount_System_Int32_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+shouldSkipMarkup: true

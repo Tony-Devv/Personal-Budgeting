@@ -1,0 +1,39 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model
+  commentId: N:Model
+  id: Model
+  children:
+  - Model.ApplicationDbContext
+  - Model.DbContextFactory
+  langs:
+  - csharp
+  - vb
+  name: Model
+  nameWithType: Model
+  fullName: Model
+  type: Namespace
+  assemblies:
+  - Model
+references:
+- uid: Model.ApplicationDbContext
+  commentId: T:Model.ApplicationDbContext
+  parent: Model
+  href: Model.ApplicationDbContext.html
+  name: ApplicationDbContext
+  nameWithType: ApplicationDbContext
+  fullName: Model.ApplicationDbContext
+- uid: Model.DbContextFactory
+  commentId: T:Model.DbContextFactory
+  parent: Model
+  href: Model.DbContextFactory.html
+  name: DbContextFactory
+  nameWithType: DbContextFactory
+  fullName: Model.DbContextFactory
+- uid: Model
+  commentId: N:Model
+  href: Model.html
+  name: Model
+  nameWithType: Model
+  fullName: Model
+shouldSkipMarkup: true

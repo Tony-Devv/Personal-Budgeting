@@ -1,0 +1,24 @@
+### YamlMime:ManagedReference
+items:
+- uid: PersonalBudgeting.Views
+  commentId: N:PersonalBudgeting.Views
+  id: PersonalBudgeting.Views
+  children:
+  - PersonalBudgeting.Views.MainWindow
+  langs:
+  - csharp
+  - vb
+  name: PersonalBudgeting.Views
+  nameWithType: PersonalBudgeting.Views
+  fullName: PersonalBudgeting.Views
+  type: Namespace
+  assemblies:
+  - PersonalBudgeting
+references:
+- uid: PersonalBudgeting.Views.MainWindow
+  commentId: T:PersonalBudgeting.Views.MainWindow
+  href: PersonalBudgeting.Views.MainWindow.html
+  name: MainWindow
+  nameWithType: MainWindow
+  fullName: PersonalBudgeting.Views.MainWindow
+shouldSkipMarkup: true

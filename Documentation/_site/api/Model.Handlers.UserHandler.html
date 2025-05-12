@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class UserHandler | PersonalBudgeting_BackendDocs </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class UserHandler | PersonalBudgeting_BackendDocs ">
+      
+      <meta name="description" content="Handler class responsible for managing user-related operations such as registration, login, password change, and retrieving user details.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Tony-Devv/Personal-Budgeting/new/ConsoleApplication/apiSpec/new?filename=Model_Handlers_UserHandler.md&amp;value=---%0Auid%3A%20Model.Handlers.UserHandler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="PersonalBudgeting_BackendDocs">
+            PersonalBudgeting_BackendDocs
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Model.Handlers.UserHandler">
+
+
+
+  <h1 id="Model_Handlers_UserHandler" data-uid="Model.Handlers.UserHandler" class="text-break">
+Class UserHandler  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Model.html">Model</a>.<a class="xref" href="Model.Handlers.html">Handlers</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Model.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary">Handler class responsible for managing user-related operations such as registration, login,
+password change, and retrieving user details.</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class UserHandler</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">UserHandler</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Model_Handlers_UserHandler__ctor_" data-uid="Model.Handlers.UserHandler.#ctor*"></a>
+
+  <h3 id="Model_Handlers_UserHandler__ctor" data-uid="Model.Handlers.UserHandler.#ctor">
+  UserHandler()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Initializes a new instance of the <a class="xref" href="Model.Handlers.UserHandler.html">UserHandler</a> class.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UserHandler()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Model_Handlers_UserHandler_ChangeUserPassword_" data-uid="Model.Handlers.UserHandler.ChangeUserPassword*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_ChangeUserPassword_System_String_Model_Entities_User_" data-uid="Model.Handlers.UserHandler.ChangeUserPassword(System.String,Model.Entities.User)">
+  ChangeUserPassword(string, User)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Changes the password for a user after verifying the current password.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;User?&gt; ChangeUserPassword(string newPassword, User user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>newPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd>The new password to set.</dd>
+    <dt><code>user</code> <a class="xref" href="Model.Entities.User.html">User</a></dt>
+    <dd>The user whose password is to be changed.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Model.Entities.User.html">User</a>&gt;</dt>
+    <dd>A Task&lt;User?&gt; representing the asynchronous operation. The task result is the <a class="xref" href="Model.Entities.User.html">User</a> 
+if the password change is successful, or <code>null</code> if the old password is incorrect or the user does not exist.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_EditUserDetails_" data-uid="Model.Handlers.UserHandler.EditUserDetails*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_EditUserDetails_Model_Entities_User_" data-uid="Model.Handlers.UserHandler.EditUserDetails(Model.Entities.User)">
+  EditUserDetails(User)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Edits the details of an existing user.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;User?&gt; EditUserDetails(User user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="Model.Entities.User.html">User</a></dt>
+    <dd>The user whose details need to be updated.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Model.Entities.User.html">User</a>&gt;</dt>
+    <dd>A Task&lt;User?&gt; representing the asynchronous operation. The task result is the updated <a class="xref" href="Model.Entities.User.html">User</a>, 
+or <code>null</code> if the user does not exist.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_GetTotalAmountSpentOnBudget_" data-uid="Model.Handlers.UserHandler.GetTotalAmountSpentOnBudget*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_GetTotalAmountSpentOnBudget_System_Int32_System_Int32_" data-uid="Model.Handlers.UserHandler.GetTotalAmountSpentOnBudget(System.Int32,System.Int32)">
+  GetTotalAmountSpentOnBudget(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Retrieves the total amount spent on a specific budget by a user.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;decimal&gt; GetTotalAmountSpentOnBudget(int id, int budgetId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd>The user ID.</dd>
+    <dt><code>budgetId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd>The ID of the budget.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.decimal">decimal</a>&gt;</dt>
+    <dd>A Task&lt;decimal&gt; representing the asynchronous operation. The task result is the total amount spent 
+on the budget, or <code>-1</code> if the user does not exist.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_GetTotalUserIncomes_" data-uid="Model.Handlers.UserHandler.GetTotalUserIncomes*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_GetTotalUserIncomes_System_Int32_" data-uid="Model.Handlers.UserHandler.GetTotalUserIncomes(System.Int32)">
+  GetTotalUserIncomes(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Retrieves the total income for a user.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;decimal&gt; GetTotalUserIncomes(int id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd>The user ID.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.decimal">decimal</a>&gt;</dt>
+    <dd>A Task&lt;decimal&gt; representing the asynchronous operation. The task result is the total income 
+for the user, or <code>-1</code> if the user does not exist.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_GetTotalUserSpentExpenses_" data-uid="Model.Handlers.UserHandler.GetTotalUserSpentExpenses*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_GetTotalUserSpentExpenses_System_Int32_" data-uid="Model.Handlers.UserHandler.GetTotalUserSpentExpenses(System.Int32)">
+  GetTotalUserSpentExpenses(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Retrieves the total expenses for a user.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;decimal&gt; GetTotalUserSpentExpenses(int id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd>The user ID.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.decimal">decimal</a>&gt;</dt>
+    <dd>A Task&lt;decimal&gt; representing the asynchronous operation. The task result is the total expenses 
+for the user, or <code>-1</code> if the user does not exist.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_GetUserBudgets_" data-uid="Model.Handlers.UserHandler.GetUserBudgets*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_GetUserBudgets_Model_Entities_User_" data-uid="Model.Handlers.UserHandler.GetUserBudgets(Model.Entities.User)">
+  GetUserBudgets(User)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L221"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Retrieves all budgets for a user.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;Budget&gt;&gt; GetUserBudgets(User user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="Model.Entities.User.html">User</a></dt>
+    <dd>The user whose budgets are to be retrieved.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Model.Entities.Budget.html">Budget</a>&gt;&gt;</dt>
+    <dd>A Task&lt;List&lt;Budget&gt;&gt; representing the asynchronous operation. The task result is a list of <a class="xref" href="Model.Entities.Budget.html">Budget</a> 
+if the user exists, or an empty list if the user does not have any budgets.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_GetUserByEmail_" data-uid="Model.Handlers.UserHandler.GetUserByEmail*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_GetUserByEmail_System_String_" data-uid="Model.Handlers.UserHandler.GetUserByEmail(System.String)">
+  GetUserByEmail(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Retrieves a user by their email.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;User?&gt; GetUserByEmail(string email)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>email</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd>The email of the user to retrieve.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Model.Entities.User.html">User</a>&gt;</dt>
+    <dd>A Task&lt;User?&gt; representing the asynchronous operation. The task result is the <a class="xref" href="Model.Entities.User.html">User</a> 
+if found, or <code>null</code> if the user does not exist.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_GetUserById_" data-uid="Model.Handlers.UserHandler.GetUserById*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_GetUserById_System_Int32_" data-uid="Model.Handlers.UserHandler.GetUserById(System.Int32)">
+  GetUserById(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Retrieves a user by their ID.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;User?&gt; GetUserById(int id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd>The ID of the user to retrieve.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Model.Entities.User.html">User</a>&gt;</dt>
+    <dd>A Task&lt;User?&gt; representing the asynchronous operation. The task result is the <a class="xref" href="Model.Entities.User.html">User</a> 
+if found, or <code>null</code> if the user does not exist.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_GetUserExpenses_" data-uid="Model.Handlers.UserHandler.GetUserExpenses*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_GetUserExpenses_Model_Entities_User_" data-uid="Model.Handlers.UserHandler.GetUserExpenses(Model.Entities.User)">
+  GetUserExpenses(User)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Retrieves all expenses for a user.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;Expense&gt;&gt; GetUserExpenses(User user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="Model.Entities.User.html">User</a></dt>
+    <dd>The user whose expenses are to be retrieved.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Model.Entities.Expense.html">Expense</a>&gt;&gt;</dt>
+    <dd>A Task&lt;List&lt;Expense&gt;&gt; representing the asynchronous operation. The task result is a list of <a class="xref" href="Model.Entities.Expense.html">Expense</a> 
+if the user exists, or an empty list if the user does not have any expenses.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_GetUserIncomes_" data-uid="Model.Handlers.UserHandler.GetUserIncomes*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_GetUserIncomes_Model_Entities_User_" data-uid="Model.Handlers.UserHandler.GetUserIncomes(Model.Entities.User)">
+  GetUserIncomes(User)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Retrieves all incomes for a user.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;Income&gt;&gt; GetUserIncomes(User user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="Model.Entities.User.html">User</a></dt>
+    <dd>The user whose incomes are to be retrieved.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Model.Entities.Income.html">Income</a>&gt;&gt;</dt>
+    <dd>A Task&lt;List&lt;Income&gt;&gt; representing the asynchronous operation. The task result is a list of <a class="xref" href="Model.Entities.Income.html">Income</a> 
+if the user exists, or an empty list if the user does not have any incomes.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_LoginUser_" data-uid="Model.Handlers.UserHandler.LoginUser*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_LoginUser_Model_Entities_User_" data-uid="Model.Handlers.UserHandler.LoginUser(Model.Entities.User)">
+  LoginUser(User)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Logs in a user by verifying the email and password, returning the corresponding user if credentials are valid.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;User?&gt; LoginUser(User user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="Model.Entities.User.html">User</a></dt>
+    <dd>The user attempting to log in.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Model.Entities.User.html">User</a>&gt;</dt>
+    <dd>A Task&lt;User?&gt; representing the asynchronous operation. The task result is the <a class="xref" href="Model.Entities.User.html">User</a> 
+if the login is successful, or <code>null</code> if the credentials are invalid.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Model_Handlers_UserHandler_RegisterNewUser_" data-uid="Model.Handlers.UserHandler.RegisterNewUser*"></a>
+
+  <h3 id="Model_Handlers_UserHandler_RegisterNewUser_Model_Entities_User_" data-uid="Model.Handlers.UserHandler.RegisterNewUser(Model.Entities.User)">
+  RegisterNewUser(User)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary">Registers a new user by checking if the user already exists, hashing the password, and saving the user to the repository.</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;User?&gt; RegisterNewUser(User user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="Model.Entities.User.html">User</a></dt>
+    <dd>The user to be registered.</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Model.Entities.User.html">User</a>&gt;</dt>
+    <dd>A Task&lt;User?&gt; representing the asynchronous operation. The task result is the created <a class="xref" href="Model.Entities.User.html">User</a> 
+if the registration is successful, or <code>null</code> if the user already exists.</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Tony-Devv/Personal-Budgeting/blob/ConsoleApplication/Model/Handlers/UserHandler.cs/#L11" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

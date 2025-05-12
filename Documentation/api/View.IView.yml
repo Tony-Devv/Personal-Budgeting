@@ -1,0 +1,183 @@
+### YamlMime:ManagedReference
+items:
+- uid: View.IView
+  commentId: T:View.IView
+  id: IView
+  parent: View
+  children:
+  - View.IView.Initialize(Model.Entities.User)
+  - View.IView.Show
+  langs:
+  - csharp
+  - vb
+  name: IView
+  nameWithType: IView
+  fullName: View.IView
+  type: Interface
+  source:
+    remote:
+      path: View/IView.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: IView
+    path: ../View/IView.cs
+    startLine: 4
+  assemblies:
+  - View
+  namespace: View
+  syntax:
+    content: public interface IView
+    content.vb: Public Interface IView
+- uid: View.IView.Show
+  commentId: M:View.IView.Show
+  id: Show
+  parent: View.IView
+  langs:
+  - csharp
+  - vb
+  name: Show()
+  nameWithType: IView.Show()
+  fullName: View.IView.Show()
+  type: Method
+  source:
+    remote:
+      path: View/IView.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Show
+    path: ../View/IView.cs
+    startLine: 6
+  assemblies:
+  - View
+  namespace: View
+  syntax:
+    content: Task Show()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function Show() As Task
+  overload: View.IView.Show*
+- uid: View.IView.Initialize(Model.Entities.User)
+  commentId: M:View.IView.Initialize(Model.Entities.User)
+  id: Initialize(Model.Entities.User)
+  parent: View.IView
+  langs:
+  - csharp
+  - vb
+  name: Initialize(User)
+  nameWithType: IView.Initialize(User)
+  fullName: View.IView.Initialize(Model.Entities.User)
+  type: Method
+  source:
+    remote:
+      path: View/IView.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: Initialize
+    path: ../View/IView.cs
+    startLine: 8
+  assemblies:
+  - View
+  namespace: View
+  syntax:
+    content: Task Initialize(User obj)
+    parameters:
+    - id: obj
+      type: Model.Entities.User
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function Initialize(obj As User) As Task
+  overload: View.IView.Initialize*
+references:
+- uid: View
+  commentId: N:View
+  href: View.html
+  name: View
+  nameWithType: View
+  fullName: View
+- uid: View.IView.Show*
+  commentId: Overload:View.IView.Show
+  href: View.IView.html#View_IView_Show
+  name: Show
+  nameWithType: IView.Show
+  fullName: View.IView.Show
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: View.IView.Initialize*
+  commentId: Overload:View.IView.Initialize
+  href: View.IView.html#View_IView_Initialize_Model_Entities_User_
+  name: Initialize
+  nameWithType: IView.Initialize
+  fullName: View.IView.Initialize
+- uid: Model.Entities.User
+  commentId: T:Model.Entities.User
+  parent: Model.Entities
+  href: Model.Entities.User.html
+  name: User
+  nameWithType: User
+  fullName: Model.Entities.User
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+shouldSkipMarkup: true

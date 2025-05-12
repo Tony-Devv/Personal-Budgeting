@@ -1,0 +1,71 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Repositories
+  commentId: N:Model.Repositories
+  id: Model.Repositories
+  children:
+  - Model.Repositories.BudgetRepository
+  - Model.Repositories.ExpenseRepository
+  - Model.Repositories.GenericRepository`1
+  - Model.Repositories.IncomeRepository
+  - Model.Repositories.UserRepository
+  langs:
+  - csharp
+  - vb
+  name: Model.Repositories
+  nameWithType: Model.Repositories
+  fullName: Model.Repositories
+  type: Namespace
+  assemblies:
+  - Model
+references:
+- uid: Model.Repositories.BudgetRepository
+  commentId: T:Model.Repositories.BudgetRepository
+  href: Model.Repositories.BudgetRepository.html
+  name: BudgetRepository
+  nameWithType: BudgetRepository
+  fullName: Model.Repositories.BudgetRepository
+- uid: Model.Repositories.ExpenseRepository
+  commentId: T:Model.Repositories.ExpenseRepository
+  href: Model.Repositories.ExpenseRepository.html
+  name: ExpenseRepository
+  nameWithType: ExpenseRepository
+  fullName: Model.Repositories.ExpenseRepository
+- uid: Model.Repositories.GenericRepository`1
+  commentId: T:Model.Repositories.GenericRepository`1
+  href: Model.Repositories.GenericRepository-1.html
+  name: GenericRepository<TObject>
+  nameWithType: GenericRepository<TObject>
+  fullName: Model.Repositories.GenericRepository<TObject>
+  nameWithType.vb: GenericRepository(Of TObject)
+  fullName.vb: Model.Repositories.GenericRepository(Of TObject)
+  name.vb: GenericRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Repositories.GenericRepository`1
+    name: GenericRepository
+    href: Model.Repositories.GenericRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Repositories.IncomeRepository
+  commentId: T:Model.Repositories.IncomeRepository
+  href: Model.Repositories.IncomeRepository.html
+  name: IncomeRepository
+  nameWithType: IncomeRepository
+  fullName: Model.Repositories.IncomeRepository
+- uid: Model.Repositories.UserRepository
+  commentId: T:Model.Repositories.UserRepository
+  href: Model.Repositories.UserRepository.html
+  name: UserRepository
+  nameWithType: UserRepository
+  fullName: Model.Repositories.UserRepository
+shouldSkipMarkup: true

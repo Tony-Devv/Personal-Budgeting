@@ -1,0 +1,45 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Handlers
+  commentId: N:Model.Handlers
+  id: Model.Handlers
+  children:
+  - Model.Handlers.BudgetHandler
+  - Model.Handlers.ExpenseHandler
+  - Model.Handlers.IncomeHandler
+  - Model.Handlers.UserHandler
+  langs:
+  - csharp
+  - vb
+  name: Model.Handlers
+  nameWithType: Model.Handlers
+  fullName: Model.Handlers
+  type: Namespace
+  assemblies:
+  - Model
+references:
+- uid: Model.Handlers.BudgetHandler
+  commentId: T:Model.Handlers.BudgetHandler
+  href: Model.Handlers.BudgetHandler.html
+  name: BudgetHandler
+  nameWithType: BudgetHandler
+  fullName: Model.Handlers.BudgetHandler
+- uid: Model.Handlers.ExpenseHandler
+  commentId: T:Model.Handlers.ExpenseHandler
+  href: Model.Handlers.ExpenseHandler.html
+  name: ExpenseHandler
+  nameWithType: ExpenseHandler
+  fullName: Model.Handlers.ExpenseHandler
+- uid: Model.Handlers.IncomeHandler
+  commentId: T:Model.Handlers.IncomeHandler
+  href: Model.Handlers.IncomeHandler.html
+  name: IncomeHandler
+  nameWithType: IncomeHandler
+  fullName: Model.Handlers.IncomeHandler
+- uid: Model.Handlers.UserHandler
+  commentId: T:Model.Handlers.UserHandler
+  href: Model.Handlers.UserHandler.html
+  name: UserHandler
+  nameWithType: UserHandler
+  fullName: Model.Handlers.UserHandler
+shouldSkipMarkup: true

@@ -1,0 +1,907 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Handlers.ExpenseHandler
+  commentId: T:Model.Handlers.ExpenseHandler
+  id: ExpenseHandler
+  parent: Model.Handlers
+  children:
+  - Model.Handlers.ExpenseHandler.#ctor
+  - Model.Handlers.ExpenseHandler.AddNewExpense(Model.Entities.Expense)
+  - Model.Handlers.ExpenseHandler.DeleteExpense(Model.Entities.Expense)
+  - Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders(System.Int32)
+  - Model.Handlers.ExpenseHandler.SearchExpenseByName(System.Int32,System.String)
+  - Model.Handlers.ExpenseHandler.SetExpenseWithReminder(Model.Entities.Expense,System.DateTime)
+  - Model.Handlers.ExpenseHandler.UpdateExpense(Model.Entities.Expense)
+  langs:
+  - csharp
+  - vb
+  name: ExpenseHandler
+  nameWithType: ExpenseHandler
+  fullName: Model.Handlers.ExpenseHandler
+  type: Class
+  source:
+    remote:
+      path: Model/Handlers/ExpenseHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: ExpenseHandler
+    path: ../Model/Handlers/ExpenseHandler.cs
+    startLine: 9
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Handler class responsible for managing expense-related operations such as adding, deleting, updating, searching, and setting reminders for expenses.
+  example: []
+  syntax:
+    content: public class ExpenseHandler
+    content.vb: Public Class ExpenseHandler
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Model.Handlers.ExpenseHandler.#ctor
+  commentId: M:Model.Handlers.ExpenseHandler.#ctor
+  id: '#ctor'
+  parent: Model.Handlers.ExpenseHandler
+  langs:
+  - csharp
+  - vb
+  name: ExpenseHandler()
+  nameWithType: ExpenseHandler.ExpenseHandler()
+  fullName: Model.Handlers.ExpenseHandler.ExpenseHandler()
+  type: Constructor
+  source:
+    remote:
+      path: Model/Handlers/ExpenseHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: .ctor
+    path: ../Model/Handlers/ExpenseHandler.cs
+    startLine: 16
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Initializes a new instance of the <xref href="Model.Handlers.ExpenseHandler" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public ExpenseHandler()
+    content.vb: Public Sub New()
+  overload: Model.Handlers.ExpenseHandler.#ctor*
+  nameWithType.vb: ExpenseHandler.New()
+  fullName.vb: Model.Handlers.ExpenseHandler.New()
+  name.vb: New()
+- uid: Model.Handlers.ExpenseHandler.AddNewExpense(Model.Entities.Expense)
+  commentId: M:Model.Handlers.ExpenseHandler.AddNewExpense(Model.Entities.Expense)
+  id: AddNewExpense(Model.Entities.Expense)
+  parent: Model.Handlers.ExpenseHandler
+  langs:
+  - csharp
+  - vb
+  name: AddNewExpense(Expense)
+  nameWithType: ExpenseHandler.AddNewExpense(Expense)
+  fullName: Model.Handlers.ExpenseHandler.AddNewExpense(Model.Entities.Expense)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/ExpenseHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: AddNewExpense
+    path: ../Model/Handlers/ExpenseHandler.cs
+    startLine: 28
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Adds a new expense record to the repository.
+  example: []
+  syntax:
+    content: public Task<int> AddNewExpense(Expense expense)
+    parameters:
+    - id: expense
+      type: Model.Entities.Expense
+      description: The expense to be added.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: A Task&lt;int&gt; representing the asynchronous operation. The task result is the ID of the added expense.
+    content.vb: Public Function AddNewExpense(expense As Expense) As Task(Of Integer)
+  overload: Model.Handlers.ExpenseHandler.AddNewExpense*
+- uid: Model.Handlers.ExpenseHandler.DeleteExpense(Model.Entities.Expense)
+  commentId: M:Model.Handlers.ExpenseHandler.DeleteExpense(Model.Entities.Expense)
+  id: DeleteExpense(Model.Entities.Expense)
+  parent: Model.Handlers.ExpenseHandler
+  langs:
+  - csharp
+  - vb
+  name: DeleteExpense(Expense)
+  nameWithType: ExpenseHandler.DeleteExpense(Expense)
+  fullName: Model.Handlers.ExpenseHandler.DeleteExpense(Model.Entities.Expense)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/ExpenseHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: DeleteExpense
+    path: ../Model/Handlers/ExpenseHandler.cs
+    startLine: 50
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Deletes an expense record from the repository.
+  example: []
+  syntax:
+    content: public Task<int> DeleteExpense(Expense expense)
+    parameters:
+    - id: expense
+      type: Model.Entities.Expense
+      description: The expense to be deleted.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: >-
+        A Task&lt;int&gt; representing the asynchronous operation. The task result is the ID of the deleted expense,
+
+        or <code>-1</code> if the expense does not exist.
+    content.vb: Public Function DeleteExpense(expense As Expense) As Task(Of Integer)
+  overload: Model.Handlers.ExpenseHandler.DeleteExpense*
+- uid: Model.Handlers.ExpenseHandler.SearchExpenseByName(System.Int32,System.String)
+  commentId: M:Model.Handlers.ExpenseHandler.SearchExpenseByName(System.Int32,System.String)
+  id: SearchExpenseByName(System.Int32,System.String)
+  parent: Model.Handlers.ExpenseHandler
+  langs:
+  - csharp
+  - vb
+  name: SearchExpenseByName(int, string)
+  nameWithType: ExpenseHandler.SearchExpenseByName(int, string)
+  fullName: Model.Handlers.ExpenseHandler.SearchExpenseByName(int, string)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/ExpenseHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: SearchExpenseByName
+    path: ../Model/Handlers/ExpenseHandler.cs
+    startLine: 75
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Searches for an expense record by its name.
+  example: []
+  syntax:
+    content: public Task<Expense?> SearchExpenseByName(int userId, string expenseName)
+    parameters:
+    - id: userId
+      type: System.Int32
+      description: The user ID whose expense is being searched.
+    - id: expenseName
+      type: System.String
+      description: The name of the expense to search for.
+    return:
+      type: System.Threading.Tasks.Task{Model.Entities.Expense}
+      description: >-
+        A Task&lt;Expense?&gt; representing the asynchronous operation. The task result is the expense found, or <code>null</code> 
+
+        if no expense with the specified name exists.
+    content.vb: Public Function SearchExpenseByName(userId As Integer, expenseName As String) As Task(Of Expense)
+  overload: Model.Handlers.ExpenseHandler.SearchExpenseByName*
+  nameWithType.vb: ExpenseHandler.SearchExpenseByName(Integer, String)
+  fullName.vb: Model.Handlers.ExpenseHandler.SearchExpenseByName(Integer, String)
+  name.vb: SearchExpenseByName(Integer, String)
+- uid: Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders(System.Int32)
+  commentId: M:Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders(System.Int32)
+  id: GetExpensesThatHasReminders(System.Int32)
+  parent: Model.Handlers.ExpenseHandler
+  langs:
+  - csharp
+  - vb
+  name: GetExpensesThatHasReminders(int)
+  nameWithType: ExpenseHandler.GetExpensesThatHasReminders(int)
+  fullName: Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders(int)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/ExpenseHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetExpensesThatHasReminders
+    path: ../Model/Handlers/ExpenseHandler.cs
+    startLine: 96
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Retrieves all expenses that have reminders set.
+  example: []
+  syntax:
+    content: public Task<List<Expense>> GetExpensesThatHasReminders(int userId)
+    parameters:
+    - id: userId
+      type: System.Int32
+      description: The user ID whose expenses with reminders are being retrieved.
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{Model.Entities.Expense}}
+      description: >-
+        A Task&lt;List&lt;Expense&gt;&gt; representing the asynchronous operation. The task result is a list of expenses that have reminders set,
+
+        or an empty list if no such expenses exist.
+    content.vb: Public Function GetExpensesThatHasReminders(userId As Integer) As Task(Of List(Of Expense))
+  overload: Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders*
+  nameWithType.vb: ExpenseHandler.GetExpensesThatHasReminders(Integer)
+  fullName.vb: Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders(Integer)
+  name.vb: GetExpensesThatHasReminders(Integer)
+- uid: Model.Handlers.ExpenseHandler.UpdateExpense(Model.Entities.Expense)
+  commentId: M:Model.Handlers.ExpenseHandler.UpdateExpense(Model.Entities.Expense)
+  id: UpdateExpense(Model.Entities.Expense)
+  parent: Model.Handlers.ExpenseHandler
+  langs:
+  - csharp
+  - vb
+  name: UpdateExpense(Expense)
+  nameWithType: ExpenseHandler.UpdateExpense(Expense)
+  fullName: Model.Handlers.ExpenseHandler.UpdateExpense(Model.Entities.Expense)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/ExpenseHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: UpdateExpense
+    path: ../Model/Handlers/ExpenseHandler.cs
+    startLine: 117
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Updates an existing expense record with new values.
+  example: []
+  syntax:
+    content: public Task<Expense?> UpdateExpense(Expense newValues)
+    parameters:
+    - id: newValues
+      type: Model.Entities.Expense
+      description: The new values for the expense.
+    return:
+      type: System.Threading.Tasks.Task{Model.Entities.Expense}
+      description: >-
+        A Task&lt;Expense?&gt; representing the asynchronous operation. The task result is the updated expense, 
+
+        or <code>null</code> if the expense could not be found or updated.
+    content.vb: Public Function UpdateExpense(newValues As Expense) As Task(Of Expense)
+  overload: Model.Handlers.ExpenseHandler.UpdateExpense*
+- uid: Model.Handlers.ExpenseHandler.SetExpenseWithReminder(Model.Entities.Expense,System.DateTime)
+  commentId: M:Model.Handlers.ExpenseHandler.SetExpenseWithReminder(Model.Entities.Expense,System.DateTime)
+  id: SetExpenseWithReminder(Model.Entities.Expense,System.DateTime)
+  parent: Model.Handlers.ExpenseHandler
+  langs:
+  - csharp
+  - vb
+  name: SetExpenseWithReminder(Expense, DateTime)
+  nameWithType: ExpenseHandler.SetExpenseWithReminder(Expense, DateTime)
+  fullName: Model.Handlers.ExpenseHandler.SetExpenseWithReminder(Model.Entities.Expense, System.DateTime)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/ExpenseHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: SetExpenseWithReminder
+    path: ../Model/Handlers/ExpenseHandler.cs
+    startLine: 150
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Sets a reminder for a specific expense.
+  example: []
+  syntax:
+    content: public Task<bool> SetExpenseWithReminder(Expense expense, DateTime time)
+    parameters:
+    - id: expense
+      type: Model.Entities.Expense
+      description: The expense for which the reminder is being set.
+    - id: time
+      type: System.DateTime
+      description: The time when the reminder should be triggered.
+    return:
+      type: System.Threading.Tasks.Task{System.Boolean}
+      description: >-
+        A Task&lt;bool&gt; representing the asynchronous operation. The task result is <code>true</code> if the reminder was successfully set,
+
+        or <code>false</code> if there was an error.
+    content.vb: Public Function SetExpenseWithReminder(expense As Expense, time As Date) As Task(Of Boolean)
+  overload: Model.Handlers.ExpenseHandler.SetExpenseWithReminder*
+  nameWithType.vb: ExpenseHandler.SetExpenseWithReminder(Expense, Date)
+  fullName.vb: Model.Handlers.ExpenseHandler.SetExpenseWithReminder(Model.Entities.Expense, Date)
+  name.vb: SetExpenseWithReminder(Expense, Date)
+references:
+- uid: Model.Handlers
+  commentId: N:Model.Handlers
+  href: Model.html
+  name: Model.Handlers
+  nameWithType: Model.Handlers
+  fullName: Model.Handlers
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Handlers
+    name: Handlers
+    href: Model.Handlers.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Handlers
+    name: Handlers
+    href: Model.Handlers.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Model.Handlers.ExpenseHandler
+  commentId: T:Model.Handlers.ExpenseHandler
+  href: Model.Handlers.ExpenseHandler.html
+  name: ExpenseHandler
+  nameWithType: ExpenseHandler
+  fullName: Model.Handlers.ExpenseHandler
+- uid: Model.Handlers.ExpenseHandler.#ctor*
+  commentId: Overload:Model.Handlers.ExpenseHandler.#ctor
+  href: Model.Handlers.ExpenseHandler.html#Model_Handlers_ExpenseHandler__ctor
+  name: ExpenseHandler
+  nameWithType: ExpenseHandler.ExpenseHandler
+  fullName: Model.Handlers.ExpenseHandler.ExpenseHandler
+  nameWithType.vb: ExpenseHandler.New
+  fullName.vb: Model.Handlers.ExpenseHandler.New
+  name.vb: New
+- uid: Model.Handlers.ExpenseHandler.AddNewExpense*
+  commentId: Overload:Model.Handlers.ExpenseHandler.AddNewExpense
+  href: Model.Handlers.ExpenseHandler.html#Model_Handlers_ExpenseHandler_AddNewExpense_Model_Entities_Expense_
+  name: AddNewExpense
+  nameWithType: ExpenseHandler.AddNewExpense
+  fullName: Model.Handlers.ExpenseHandler.AddNewExpense
+- uid: Model.Entities.Expense
+  commentId: T:Model.Entities.Expense
+  parent: Model.Entities
+  href: Model.Entities.Expense.html
+  name: Expense
+  nameWithType: Expense
+  fullName: Model.Entities.Expense
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Model.Handlers.ExpenseHandler.DeleteExpense*
+  commentId: Overload:Model.Handlers.ExpenseHandler.DeleteExpense
+  href: Model.Handlers.ExpenseHandler.html#Model_Handlers_ExpenseHandler_DeleteExpense_Model_Entities_Expense_
+  name: DeleteExpense
+  nameWithType: ExpenseHandler.DeleteExpense
+  fullName: Model.Handlers.ExpenseHandler.DeleteExpense
+- uid: Model.Handlers.ExpenseHandler.SearchExpenseByName*
+  commentId: Overload:Model.Handlers.ExpenseHandler.SearchExpenseByName
+  href: Model.Handlers.ExpenseHandler.html#Model_Handlers_ExpenseHandler_SearchExpenseByName_System_Int32_System_String_
+  name: SearchExpenseByName
+  nameWithType: ExpenseHandler.SearchExpenseByName
+  fullName: Model.Handlers.ExpenseHandler.SearchExpenseByName
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task{Model.Entities.Expense}
+  commentId: T:System.Threading.Tasks.Task{Model.Entities.Expense}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Expense>
+  nameWithType: Task<Expense>
+  fullName: System.Threading.Tasks.Task<Model.Entities.Expense>
+  nameWithType.vb: Task(Of Expense)
+  fullName.vb: System.Threading.Tasks.Task(Of Model.Entities.Expense)
+  name.vb: Task(Of Expense)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+- uid: Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders*
+  commentId: Overload:Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders
+  href: Model.Handlers.ExpenseHandler.html#Model_Handlers_ExpenseHandler_GetExpensesThatHasReminders_System_Int32_
+  name: GetExpensesThatHasReminders
+  nameWithType: ExpenseHandler.GetExpensesThatHasReminders
+  fullName: Model.Handlers.ExpenseHandler.GetExpensesThatHasReminders
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{Model.Entities.Expense}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{Model.Entities.Expense}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<Expense>>
+  nameWithType: Task<List<Expense>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<Model.Entities.Expense>>
+  nameWithType.vb: Task(Of List(Of Expense))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of Model.Entities.Expense))
+  name.vb: Task(Of List(Of Expense))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Expense
+    name: Expense
+    href: Model.Entities.Expense.html
+  - name: )
+  - name: )
+- uid: Model.Handlers.ExpenseHandler.UpdateExpense*
+  commentId: Overload:Model.Handlers.ExpenseHandler.UpdateExpense
+  href: Model.Handlers.ExpenseHandler.html#Model_Handlers_ExpenseHandler_UpdateExpense_Model_Entities_Expense_
+  name: UpdateExpense
+  nameWithType: ExpenseHandler.UpdateExpense
+  fullName: Model.Handlers.ExpenseHandler.UpdateExpense
+- uid: Model.Handlers.ExpenseHandler.SetExpenseWithReminder*
+  commentId: Overload:Model.Handlers.ExpenseHandler.SetExpenseWithReminder
+  href: Model.Handlers.ExpenseHandler.html#Model_Handlers_ExpenseHandler_SetExpenseWithReminder_Model_Entities_Expense_System_DateTime_
+  name: SetExpenseWithReminder
+  nameWithType: ExpenseHandler.SetExpenseWithReminder
+  fullName: Model.Handlers.ExpenseHandler.SetExpenseWithReminder
+- uid: System.DateTime
+  commentId: T:System.DateTime
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetime
+  name: DateTime
+  nameWithType: DateTime
+  fullName: System.DateTime
+  nameWithType.vb: Date
+  fullName.vb: Date
+  name.vb: Date
+- uid: System.Threading.Tasks.Task{System.Boolean}
+  commentId: T:System.Threading.Tasks.Task{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<bool>
+  nameWithType: Task<bool>
+  fullName: System.Threading.Tasks.Task<bool>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: System.Threading.Tasks.Task(Of Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+shouldSkipMarkup: true

@@ -1,0 +1,715 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Handlers.IncomeHandler
+  commentId: T:Model.Handlers.IncomeHandler
+  id: IncomeHandler
+  parent: Model.Handlers
+  children:
+  - Model.Handlers.IncomeHandler.#ctor
+  - Model.Handlers.IncomeHandler.AddNewIncome(Model.Entities.Income)
+  - Model.Handlers.IncomeHandler.DeleteIncome(Model.Entities.Income)
+  - Model.Handlers.IncomeHandler.SearchIncomeBySourceName(System.Int32,System.String)
+  - Model.Handlers.IncomeHandler.UpdateIncome(Model.Entities.Income)
+  langs:
+  - csharp
+  - vb
+  name: IncomeHandler
+  nameWithType: IncomeHandler
+  fullName: Model.Handlers.IncomeHandler
+  type: Class
+  source:
+    remote:
+      path: Model/Handlers/IncomeHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: IncomeHandler
+    path: ../Model/Handlers/IncomeHandler.cs
+    startLine: 9
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Handler class responsible for managing income-related operations such as adding, deleting, updating, and searching incomes.
+  example: []
+  syntax:
+    content: public class IncomeHandler
+    content.vb: Public Class IncomeHandler
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Model.Handlers.IncomeHandler.#ctor
+  commentId: M:Model.Handlers.IncomeHandler.#ctor
+  id: '#ctor'
+  parent: Model.Handlers.IncomeHandler
+  langs:
+  - csharp
+  - vb
+  name: IncomeHandler()
+  nameWithType: IncomeHandler.IncomeHandler()
+  fullName: Model.Handlers.IncomeHandler.IncomeHandler()
+  type: Constructor
+  source:
+    remote:
+      path: Model/Handlers/IncomeHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: .ctor
+    path: ../Model/Handlers/IncomeHandler.cs
+    startLine: 16
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Initializes a new instance of the <xref href="Model.Handlers.IncomeHandler" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public IncomeHandler()
+    content.vb: Public Sub New()
+  overload: Model.Handlers.IncomeHandler.#ctor*
+  nameWithType.vb: IncomeHandler.New()
+  fullName.vb: Model.Handlers.IncomeHandler.New()
+  name.vb: New()
+- uid: Model.Handlers.IncomeHandler.AddNewIncome(Model.Entities.Income)
+  commentId: M:Model.Handlers.IncomeHandler.AddNewIncome(Model.Entities.Income)
+  id: AddNewIncome(Model.Entities.Income)
+  parent: Model.Handlers.IncomeHandler
+  langs:
+  - csharp
+  - vb
+  name: AddNewIncome(Income)
+  nameWithType: IncomeHandler.AddNewIncome(Income)
+  fullName: Model.Handlers.IncomeHandler.AddNewIncome(Model.Entities.Income)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/IncomeHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: AddNewIncome
+    path: ../Model/Handlers/IncomeHandler.cs
+    startLine: 28
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Adds a new income record to the repository.
+  example: []
+  syntax:
+    content: public Task<int> AddNewIncome(Income income)
+    parameters:
+    - id: income
+      type: Model.Entities.Income
+      description: The income to be added.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: A Task&lt;int&gt; representing the asynchronous operation. The task result is the ID of the added income.
+    content.vb: Public Function AddNewIncome(income As Income) As Task(Of Integer)
+  overload: Model.Handlers.IncomeHandler.AddNewIncome*
+- uid: Model.Handlers.IncomeHandler.DeleteIncome(Model.Entities.Income)
+  commentId: M:Model.Handlers.IncomeHandler.DeleteIncome(Model.Entities.Income)
+  id: DeleteIncome(Model.Entities.Income)
+  parent: Model.Handlers.IncomeHandler
+  langs:
+  - csharp
+  - vb
+  name: DeleteIncome(Income)
+  nameWithType: IncomeHandler.DeleteIncome(Income)
+  fullName: Model.Handlers.IncomeHandler.DeleteIncome(Model.Entities.Income)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/IncomeHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: DeleteIncome
+    path: ../Model/Handlers/IncomeHandler.cs
+    startLine: 50
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Deletes an income record from the repository.
+  example: []
+  syntax:
+    content: public Task<int> DeleteIncome(Income income)
+    parameters:
+    - id: income
+      type: Model.Entities.Income
+      description: The income to be deleted.
+    return:
+      type: System.Threading.Tasks.Task{System.Int32}
+      description: >-
+        A Task&lt;int&gt; representing the asynchronous operation. The task result is the ID of the deleted income,
+
+        or <code>-1</code> if the income does not exist.
+    content.vb: Public Function DeleteIncome(income As Income) As Task(Of Integer)
+  overload: Model.Handlers.IncomeHandler.DeleteIncome*
+- uid: Model.Handlers.IncomeHandler.SearchIncomeBySourceName(System.Int32,System.String)
+  commentId: M:Model.Handlers.IncomeHandler.SearchIncomeBySourceName(System.Int32,System.String)
+  id: SearchIncomeBySourceName(System.Int32,System.String)
+  parent: Model.Handlers.IncomeHandler
+  langs:
+  - csharp
+  - vb
+  name: SearchIncomeBySourceName(int, string)
+  nameWithType: IncomeHandler.SearchIncomeBySourceName(int, string)
+  fullName: Model.Handlers.IncomeHandler.SearchIncomeBySourceName(int, string)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/IncomeHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: SearchIncomeBySourceName
+    path: ../Model/Handlers/IncomeHandler.cs
+    startLine: 75
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Searches for an income record by its source name.
+  example: []
+  syntax:
+    content: public Task<Income?> SearchIncomeBySourceName(int userId, string incomeSource)
+    parameters:
+    - id: userId
+      type: System.Int32
+      description: The user ID whose income is being searched.
+    - id: incomeSource
+      type: System.String
+      description: The source name of the income to search for.
+    return:
+      type: System.Threading.Tasks.Task{Model.Entities.Income}
+      description: >-
+        A Task&lt;Income?&gt; representing the asynchronous operation. The task result is the income found, or <code>null</code> 
+
+        if no income with the specified source name exists.
+    content.vb: Public Function SearchIncomeBySourceName(userId As Integer, incomeSource As String) As Task(Of Income)
+  overload: Model.Handlers.IncomeHandler.SearchIncomeBySourceName*
+  nameWithType.vb: IncomeHandler.SearchIncomeBySourceName(Integer, String)
+  fullName.vb: Model.Handlers.IncomeHandler.SearchIncomeBySourceName(Integer, String)
+  name.vb: SearchIncomeBySourceName(Integer, String)
+- uid: Model.Handlers.IncomeHandler.UpdateIncome(Model.Entities.Income)
+  commentId: M:Model.Handlers.IncomeHandler.UpdateIncome(Model.Entities.Income)
+  id: UpdateIncome(Model.Entities.Income)
+  parent: Model.Handlers.IncomeHandler
+  langs:
+  - csharp
+  - vb
+  name: UpdateIncome(Income)
+  nameWithType: IncomeHandler.UpdateIncome(Income)
+  fullName: Model.Handlers.IncomeHandler.UpdateIncome(Model.Entities.Income)
+  type: Method
+  source:
+    remote:
+      path: Model/Handlers/IncomeHandler.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: UpdateIncome
+    path: ../Model/Handlers/IncomeHandler.cs
+    startLine: 96
+  assemblies:
+  - Model
+  namespace: Model.Handlers
+  summary: Updates an existing income record with new values.
+  example: []
+  syntax:
+    content: public Task<Income?> UpdateIncome(Income newValues)
+    parameters:
+    - id: newValues
+      type: Model.Entities.Income
+      description: The new values for the income.
+    return:
+      type: System.Threading.Tasks.Task{Model.Entities.Income}
+      description: >-
+        A Task&lt;Income?&gt; representing the asynchronous operation. The task result is the updated income, 
+
+        or <code>null</code> if the income could not be found or updated.
+    content.vb: Public Function UpdateIncome(newValues As Income) As Task(Of Income)
+  overload: Model.Handlers.IncomeHandler.UpdateIncome*
+references:
+- uid: Model.Handlers
+  commentId: N:Model.Handlers
+  href: Model.html
+  name: Model.Handlers
+  nameWithType: Model.Handlers
+  fullName: Model.Handlers
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Handlers
+    name: Handlers
+    href: Model.Handlers.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Handlers
+    name: Handlers
+    href: Model.Handlers.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Model.Handlers.IncomeHandler
+  commentId: T:Model.Handlers.IncomeHandler
+  href: Model.Handlers.IncomeHandler.html
+  name: IncomeHandler
+  nameWithType: IncomeHandler
+  fullName: Model.Handlers.IncomeHandler
+- uid: Model.Handlers.IncomeHandler.#ctor*
+  commentId: Overload:Model.Handlers.IncomeHandler.#ctor
+  href: Model.Handlers.IncomeHandler.html#Model_Handlers_IncomeHandler__ctor
+  name: IncomeHandler
+  nameWithType: IncomeHandler.IncomeHandler
+  fullName: Model.Handlers.IncomeHandler.IncomeHandler
+  nameWithType.vb: IncomeHandler.New
+  fullName.vb: Model.Handlers.IncomeHandler.New
+  name.vb: New
+- uid: Model.Handlers.IncomeHandler.AddNewIncome*
+  commentId: Overload:Model.Handlers.IncomeHandler.AddNewIncome
+  href: Model.Handlers.IncomeHandler.html#Model_Handlers_IncomeHandler_AddNewIncome_Model_Entities_Income_
+  name: AddNewIncome
+  nameWithType: IncomeHandler.AddNewIncome
+  fullName: Model.Handlers.IncomeHandler.AddNewIncome
+- uid: Model.Entities.Income
+  commentId: T:Model.Entities.Income
+  parent: Model.Entities
+  href: Model.Entities.Income.html
+  name: Income
+  nameWithType: Income
+  fullName: Model.Entities.Income
+- uid: System.Threading.Tasks.Task{System.Int32}
+  commentId: T:System.Threading.Tasks.Task{System.Int32}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<int>
+  nameWithType: Task<int>
+  fullName: System.Threading.Tasks.Task<int>
+  nameWithType.vb: Task(Of Integer)
+  fullName.vb: System.Threading.Tasks.Task(Of Integer)
+  name.vb: Task(Of Integer)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Model.Handlers.IncomeHandler.DeleteIncome*
+  commentId: Overload:Model.Handlers.IncomeHandler.DeleteIncome
+  href: Model.Handlers.IncomeHandler.html#Model_Handlers_IncomeHandler_DeleteIncome_Model_Entities_Income_
+  name: DeleteIncome
+  nameWithType: IncomeHandler.DeleteIncome
+  fullName: Model.Handlers.IncomeHandler.DeleteIncome
+- uid: Model.Handlers.IncomeHandler.SearchIncomeBySourceName*
+  commentId: Overload:Model.Handlers.IncomeHandler.SearchIncomeBySourceName
+  href: Model.Handlers.IncomeHandler.html#Model_Handlers_IncomeHandler_SearchIncomeBySourceName_System_Int32_System_String_
+  name: SearchIncomeBySourceName
+  nameWithType: IncomeHandler.SearchIncomeBySourceName
+  fullName: Model.Handlers.IncomeHandler.SearchIncomeBySourceName
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task{Model.Entities.Income}
+  commentId: T:System.Threading.Tasks.Task{Model.Entities.Income}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Income>
+  nameWithType: Task<Income>
+  fullName: System.Threading.Tasks.Task<Model.Entities.Income>
+  nameWithType.vb: Task(Of Income)
+  fullName.vb: System.Threading.Tasks.Task(Of Model.Entities.Income)
+  name.vb: Task(Of Income)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+- uid: Model.Handlers.IncomeHandler.UpdateIncome*
+  commentId: Overload:Model.Handlers.IncomeHandler.UpdateIncome
+  href: Model.Handlers.IncomeHandler.html#Model_Handlers_IncomeHandler_UpdateIncome_Model_Entities_Income_
+  name: UpdateIncome
+  nameWithType: IncomeHandler.UpdateIncome
+  fullName: Model.Handlers.IncomeHandler.UpdateIncome
+shouldSkipMarkup: true

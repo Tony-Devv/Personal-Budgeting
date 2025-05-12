@@ -1,0 +1,635 @@
+### YamlMime:ManagedReference
+items:
+- uid: Model.Interfaces.IIncomeRepository
+  commentId: T:Model.Interfaces.IIncomeRepository
+  id: IIncomeRepository
+  parent: Model.Interfaces
+  children:
+  - Model.Interfaces.IIncomeRepository.GetIncomeBySourceName(System.Int32,System.String)
+  langs:
+  - csharp
+  - vb
+  name: IIncomeRepository
+  nameWithType: IIncomeRepository
+  fullName: Model.Interfaces.IIncomeRepository
+  type: Interface
+  source:
+    remote:
+      path: Model/Interfaces/IIncomeRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: IIncomeRepository
+    path: ../Model/Interfaces/IIncomeRepository.cs
+    startLine: 7
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Provides data access methods specific to incomes, extending the generic repository for <xref href="Model.Entities.Income" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: 'public interface IIncomeRepository : IRepository<Income>'
+    content.vb: Public Interface IIncomeRepository Inherits IRepository(Of Income)
+  inheritedMembers:
+  - Model.Interfaces.IRepository{Model.Entities.Income}.Add(Model.Entities.Income)
+  - Model.Interfaces.IRepository{Model.Entities.Income}.Update(Model.Entities.Income)
+  - Model.Interfaces.IRepository{Model.Entities.Income}.Delete(Model.Entities.Income)
+  - Model.Interfaces.IRepository{Model.Entities.Income}.GetById(System.Int32)
+  - Model.Interfaces.IRepository{Model.Entities.Income}.GetAll
+  - Model.Interfaces.IRepository{Model.Entities.Income}.CheckExist(System.Int32)
+- uid: Model.Interfaces.IIncomeRepository.GetIncomeBySourceName(System.Int32,System.String)
+  commentId: M:Model.Interfaces.IIncomeRepository.GetIncomeBySourceName(System.Int32,System.String)
+  id: GetIncomeBySourceName(System.Int32,System.String)
+  parent: Model.Interfaces.IIncomeRepository
+  langs:
+  - csharp
+  - vb
+  name: GetIncomeBySourceName(int, string)
+  nameWithType: IIncomeRepository.GetIncomeBySourceName(int, string)
+  fullName: Model.Interfaces.IIncomeRepository.GetIncomeBySourceName(int, string)
+  type: Method
+  source:
+    remote:
+      path: Model/Interfaces/IIncomeRepository.cs
+      branch: ConsoleApplication
+      repo: https://github.com/Tony-Devv/Personal-Budgeting.git
+    id: GetIncomeBySourceName
+    path: ../Model/Interfaces/IIncomeRepository.cs
+    startLine: 15
+  assemblies:
+  - Model
+  namespace: Model.Interfaces
+  summary: Retrieves an income by its source name for a specific user.
+  example: []
+  syntax:
+    content: Task<Income?> GetIncomeBySourceName(int userId, string sourceName)
+    parameters:
+    - id: userId
+      type: System.Int32
+      description: The ID of the user who owns the income.
+    - id: sourceName
+      type: System.String
+      description: The name of the income source to retrieve.
+    return:
+      type: System.Threading.Tasks.Task{Model.Entities.Income}
+      description: A task that returns the <xref href="Model.Entities.Income" data-throw-if-not-resolved="false"></xref> if found; otherwise, null.
+    content.vb: Function GetIncomeBySourceName(userId As Integer, sourceName As String) As Task(Of Income)
+  overload: Model.Interfaces.IIncomeRepository.GetIncomeBySourceName*
+  nameWithType.vb: IIncomeRepository.GetIncomeBySourceName(Integer, String)
+  fullName.vb: Model.Interfaces.IIncomeRepository.GetIncomeBySourceName(Integer, String)
+  name.vb: GetIncomeBySourceName(Integer, String)
+references:
+- uid: Model.Entities.Income
+  commentId: T:Model.Entities.Income
+  parent: Model.Entities
+  href: Model.Entities.Income.html
+  name: Income
+  nameWithType: Income
+  fullName: Model.Entities.Income
+- uid: Model.Interfaces
+  commentId: N:Model.Interfaces
+  href: Model.html
+  name: Model.Interfaces
+  nameWithType: Model.Interfaces
+  fullName: Model.Interfaces
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Interfaces
+    name: Interfaces
+    href: Model.Interfaces.html
+- uid: Model.Interfaces.IRepository{Model.Entities.Income}.Add(Model.Entities.Income)
+  commentId: M:Model.Interfaces.IRepository{Model.Entities.Income}.Add(Model.Entities.Income)
+  parent: Model.Interfaces.IRepository{Model.Entities.Income}
+  definition: Model.Interfaces.IRepository`1.Add(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  name: Add(Income)
+  nameWithType: IRepository<Income>.Add(Income)
+  fullName: Model.Interfaces.IRepository<Model.Entities.Income>.Add(Model.Entities.Income)
+  nameWithType.vb: IRepository(Of Income).Add(Income)
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.Income).Add(Model.Entities.Income)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.Add(Model.Entities.Income)
+    name: Add
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  - name: (
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.Add(Model.Entities.Income)
+    name: Add
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  - name: (
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+- uid: Model.Interfaces.IRepository{Model.Entities.Income}.Update(Model.Entities.Income)
+  commentId: M:Model.Interfaces.IRepository{Model.Entities.Income}.Update(Model.Entities.Income)
+  parent: Model.Interfaces.IRepository{Model.Entities.Income}
+  definition: Model.Interfaces.IRepository`1.Update(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  name: Update(Income)
+  nameWithType: IRepository<Income>.Update(Income)
+  fullName: Model.Interfaces.IRepository<Model.Entities.Income>.Update(Model.Entities.Income)
+  nameWithType.vb: IRepository(Of Income).Update(Income)
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.Income).Update(Model.Entities.Income)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.Update(Model.Entities.Income)
+    name: Update
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  - name: (
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.Update(Model.Entities.Income)
+    name: Update
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  - name: (
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+- uid: Model.Interfaces.IRepository{Model.Entities.Income}.Delete(Model.Entities.Income)
+  commentId: M:Model.Interfaces.IRepository{Model.Entities.Income}.Delete(Model.Entities.Income)
+  parent: Model.Interfaces.IRepository{Model.Entities.Income}
+  definition: Model.Interfaces.IRepository`1.Delete(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  name: Delete(Income)
+  nameWithType: IRepository<Income>.Delete(Income)
+  fullName: Model.Interfaces.IRepository<Model.Entities.Income>.Delete(Model.Entities.Income)
+  nameWithType.vb: IRepository(Of Income).Delete(Income)
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.Income).Delete(Model.Entities.Income)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.Delete(Model.Entities.Income)
+    name: Delete
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  - name: (
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.Delete(Model.Entities.Income)
+    name: Delete
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  - name: (
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+- uid: Model.Interfaces.IRepository{Model.Entities.Income}.GetById(System.Int32)
+  commentId: M:Model.Interfaces.IRepository{Model.Entities.Income}.GetById(System.Int32)
+  parent: Model.Interfaces.IRepository{Model.Entities.Income}
+  definition: Model.Interfaces.IRepository`1.GetById(System.Int32)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: IRepository<Income>.GetById(int)
+  fullName: Model.Interfaces.IRepository<Model.Entities.Income>.GetById(int)
+  nameWithType.vb: IRepository(Of Income).GetById(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.Income).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.GetById(System.Int32)
+    name: GetById
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.GetById(System.Int32)
+    name: GetById
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Interfaces.IRepository{Model.Entities.Income}.GetAll
+  commentId: M:Model.Interfaces.IRepository{Model.Entities.Income}.GetAll
+  parent: Model.Interfaces.IRepository{Model.Entities.Income}
+  definition: Model.Interfaces.IRepository`1.GetAll
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  name: GetAll()
+  nameWithType: IRepository<Income>.GetAll()
+  fullName: Model.Interfaces.IRepository<Model.Entities.Income>.GetAll()
+  nameWithType.vb: IRepository(Of Income).GetAll()
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.Income).GetAll()
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.GetAll
+    name: GetAll
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.GetAll
+    name: GetAll
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: Model.Interfaces.IRepository{Model.Entities.Income}.CheckExist(System.Int32)
+  commentId: M:Model.Interfaces.IRepository{Model.Entities.Income}.CheckExist(System.Int32)
+  parent: Model.Interfaces.IRepository{Model.Entities.Income}
+  definition: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  name: CheckExist(int)
+  nameWithType: IRepository<Income>.CheckExist(int)
+  fullName: Model.Interfaces.IRepository<Model.Entities.Income>.CheckExist(int)
+  nameWithType.vb: IRepository(Of Income).CheckExist(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.Income).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository{Model.Entities.Income}.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Entities
+  commentId: N:Model.Entities
+  href: Model.html
+  name: Model.Entities
+  nameWithType: Model.Entities
+  fullName: Model.Entities
+  spec.csharp:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+  spec.vb:
+  - uid: Model
+    name: Model
+    href: Model.html
+  - name: .
+  - uid: Model.Entities
+    name: Entities
+    href: Model.Entities.html
+- uid: Model.Interfaces.IRepository`1.Add(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Add(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  name: Add(TObject)
+  nameWithType: IRepository<TObject>.Add(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Add(TObject)
+  nameWithType.vb: IRepository(Of TObject).Add(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Add(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.Add(`0)
+    name: Add
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.Add(`0)
+    name: Add
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Add__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IRepository{Model.Entities.Income}
+  commentId: T:Model.Interfaces.IRepository{Model.Entities.Income}
+  parent: Model.Interfaces
+  definition: Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<Income>
+  nameWithType: IRepository<Income>
+  fullName: Model.Interfaces.IRepository<Model.Entities.Income>
+  nameWithType.vb: IRepository(Of Income)
+  fullName.vb: Model.Interfaces.IRepository(Of Model.Entities.Income)
+  name.vb: IRepository(Of Income)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+- uid: Model.Interfaces.IRepository`1.Update(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Update(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  name: Update(TObject)
+  nameWithType: IRepository<TObject>.Update(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Update(TObject)
+  nameWithType.vb: IRepository(Of TObject).Update(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Update(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.Update(`0)
+    name: Update
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.Update(`0)
+    name: Update
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Update__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IRepository`1.Delete(`0)
+  commentId: M:Model.Interfaces.IRepository`1.Delete(`0)
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  name: Delete(TObject)
+  nameWithType: IRepository<TObject>.Delete(TObject)
+  fullName: Model.Interfaces.IRepository<TObject>.Delete(TObject)
+  nameWithType.vb: IRepository(Of TObject).Delete(TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).Delete(TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.Delete(`0)
+    name: Delete
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.Delete(`0)
+    name: Delete
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_Delete__0_
+  - name: (
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IRepository`1.GetById(System.Int32)
+  commentId: M:Model.Interfaces.IRepository`1.GetById(System.Int32)
+  isExternal: true
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  name: GetById(int)
+  nameWithType: IRepository<TObject>.GetById(int)
+  fullName: Model.Interfaces.IRepository<TObject>.GetById(int)
+  nameWithType.vb: IRepository(Of TObject).GetById(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetById(Integer)
+  name.vb: GetById(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.GetById(System.Int32)
+    name: GetById
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.GetById(System.Int32)
+    name: GetById
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetById_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Interfaces.IRepository`1.GetAll
+  commentId: M:Model.Interfaces.IRepository`1.GetAll
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  name: GetAll()
+  nameWithType: IRepository<TObject>.GetAll()
+  fullName: Model.Interfaces.IRepository<TObject>.GetAll()
+  nameWithType.vb: IRepository(Of TObject).GetAll()
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).GetAll()
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.GetAll
+    name: GetAll
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.GetAll
+    name: GetAll
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_GetAll
+  - name: (
+  - name: )
+- uid: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  commentId: M:Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+  isExternal: true
+  href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  name: CheckExist(int)
+  nameWithType: IRepository<TObject>.CheckExist(int)
+  fullName: Model.Interfaces.IRepository<TObject>.CheckExist(int)
+  nameWithType.vb: IRepository(Of TObject).CheckExist(Integer)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject).CheckExist(Integer)
+  name.vb: CheckExist(Integer)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1.CheckExist(System.Int32)
+    name: CheckExist
+    href: Model.Interfaces.IRepository-1.html#Model_Interfaces_IRepository_1_CheckExist_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: Model.Interfaces.IRepository`1
+  commentId: T:Model.Interfaces.IRepository`1
+  href: Model.Interfaces.IRepository-1.html
+  name: IRepository<TObject>
+  nameWithType: IRepository<TObject>
+  fullName: Model.Interfaces.IRepository<TObject>
+  nameWithType.vb: IRepository(Of TObject)
+  fullName.vb: Model.Interfaces.IRepository(Of TObject)
+  name.vb: IRepository(Of TObject)
+  spec.csharp:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: <
+  - name: TObject
+  - name: '>'
+  spec.vb:
+  - uid: Model.Interfaces.IRepository`1
+    name: IRepository
+    href: Model.Interfaces.IRepository-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TObject
+  - name: )
+- uid: Model.Interfaces.IIncomeRepository.GetIncomeBySourceName*
+  commentId: Overload:Model.Interfaces.IIncomeRepository.GetIncomeBySourceName
+  href: Model.Interfaces.IIncomeRepository.html#Model_Interfaces_IIncomeRepository_GetIncomeBySourceName_System_Int32_System_String_
+  name: GetIncomeBySourceName
+  nameWithType: IIncomeRepository.GetIncomeBySourceName
+  fullName: Model.Interfaces.IIncomeRepository.GetIncomeBySourceName
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Threading.Tasks.Task{Model.Entities.Income}
+  commentId: T:System.Threading.Tasks.Task{Model.Entities.Income}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<Income>
+  nameWithType: Task<Income>
+  fullName: System.Threading.Tasks.Task<Model.Entities.Income>
+  nameWithType.vb: Task(Of Income)
+  fullName.vb: System.Threading.Tasks.Task(Of Model.Entities.Income)
+  name.vb: Task(Of Income)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Model.Entities.Income
+    name: Income
+    href: Model.Entities.Income.html
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+shouldSkipMarkup: true

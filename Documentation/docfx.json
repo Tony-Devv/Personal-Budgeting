@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "D:/GitHub_Repos/Personal-Budgeting/",
+          "files": [
+            "**/*.csproj"
+          ]
+        }
+      ],
+      "dest": "api",
+      "shouldSkipMarkup": true,
+      "properties": {
+        "TargetFramework": "net9.0"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "PersonalBudgeting_BackendDocs",
+      "_appTitle": "PersonalBudgeting_BackendDocs",
+      "_enableSearch": true,
+      "pdf": true
+    },
+    "xref": "api/*.yml"
+  }
+}
