@@ -566,6 +566,11 @@ public partial class ExpensesPage : UserControl
                     // Update UI
                     UpdateSummaryCards();
                     UpdateExpenseGrid();
+
+                    if (expense.ReminderTime != null)
+                    {
+                        await ReminderService.SendExpenseReminderAsync(_currentUser, expense);
+                    }
                 }
                 else
                 {
@@ -604,6 +609,11 @@ public partial class ExpensesPage : UserControl
                     // Update UI
                     UpdateSummaryCards();
                     UpdateExpenseGrid();
+
+                    if (expense.ReminderTime != null)
+                    {
+                        await ReminderService.SendExpenseReminderAsync(_currentUser, expense);
+                    }
                 }
                 else
                 {

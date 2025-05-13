@@ -59,6 +59,8 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:IntGreaterThanConverter x:Key="IntGreaterThanConverter"/>
         <converters:ColorClassConverter x:Key="ColorClassConverter"/>
+        <converters:BalanceValueConverter x:Key="BalanceValueConverter"/>
+        <converters:BalanceColorConverter x:Key="BalanceColorConverter"/>
     </UserControl.Resources>
     
     <ScrollViewer>
@@ -123,8 +125,9 @@
                         <!-- Card Value -->
                         <TextBlock Grid.Row="1" 
                                    x:Name="TotalBalanceText" 
-                                   Text="{Binding TotalBalance, StringFormat=${0:N2}}" 
+                                   Text="{Binding TotalBalance, Converter={StaticResource BalanceValueConverter}}" 
                                    Classes="stat" 
+                                   Foreground="{Binding TotalBalance, Converter={StaticResource BalanceColorConverter}}" 
                                    VerticalAlignment="Center" 
                                    Margin="0,10,0,0"/>
                         

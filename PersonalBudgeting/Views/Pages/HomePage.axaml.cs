@@ -120,14 +120,8 @@ public partial class HomePage : UserControl
             }
             
             // Update total amount values in the UI (in case the binding doesn't work)
-            var totalBalanceText = this.Get<TextBlock>("TotalBalanceText");
             var totalIncomeText = this.Get<TextBlock>("TotalIncomeText");
             var totalExpensesText = this.Get<TextBlock>("TotalExpensesText");
-            
-            if (totalBalanceText != null)
-            {
-                totalBalanceText.Text = ViewModel.TotalBalance.ToString("C");
-            }
             
             if (totalIncomeText != null)
             {

@@ -5,6 +5,10 @@ using FluentValidation.Internal;
 using Model.Entities;
 using Model.Handlers;
 using Model.Utilities;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.Json;
 
 /// <summary>
 /// The UserController class handles various user-related operations, such as registration, login, updating user details, 
@@ -253,5 +257,56 @@ public class UserController
             new RulesetValidatorSelector(new[] { validationsRules.ToString() }));
 
         return context;
+    }
+}
+
+public class ReminderService
+{
+    private const string ApiKey = "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";
+    private const string FromEmail = "AntonDataStructure@gmail.com";
+
+    public static async Task SendExpenseReminderAsync(User user, Expense expense)
+    {
+        if (user == null || expense == null || string.IsNullOrWhiteSpace(user.Email) || expense.ReminderTime == null)
+        {
+            Console.WriteLine("ReminderService: Missing user, expense, email, or reminder date.");
+            return;
+        }
+
+        var payload = new
+        {
+            personalizations = new[]
+            {
+                new { to = new[] { new { email = user.Email } } }
+            },
+            from = new { email = FromEmail },
+            subject = "Expense Reminder",
+            content = new[]
+            {
+                new
+                {
+                    type = "text/plain",
+                    value = $"Hello {user.UserName},\n\n" +
+                            $"This is a reminder for your expense \"{expense.ExpenseName}\".\n" +
+                            $"Required Amount: {expense.RequiredAmount:C}\n" +
+                            $"Spent Amount: {expense.SpentAmount:C}\n" +
+                            $"Reminder Date: {expense.ReminderTime:yyyy-MM-dd}\n\n" +
+                            "Best Regards,\nPersonal Budgeting Team"
+                }
+            }
+        };
+
+        string jsonPayload = JsonSerializer.Serialize(payload);
+
+        Console.WriteLine("ReminderService: JSON Payload: " + jsonPayload);
+
+        using var client = new HttpClient();
+        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
+        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+        var response = await client.PostAsync("https://api.sendgrid.com/v3/mail/send", content);
+
+        Console.WriteLine("ReminderService: Response status: " + response.StatusCode);
+        string responseBody = await response.Content.ReadAsStringAsync();
+        Console.WriteLine("ReminderService: Response body: " + responseBody);
     }
 }

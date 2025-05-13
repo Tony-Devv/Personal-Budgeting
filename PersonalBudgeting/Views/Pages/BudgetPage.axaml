@@ -91,8 +91,9 @@
                                     Minimum="0" 
                                     Maximum="100" 
                                     Value="0" 
-                                    Height="12"
-                                    Margin="0,10"/>
+                                    Height="10"
+                                    Margin="10,5,10,5"
+                                    VerticalAlignment="Center"/>
                             
                             <Grid Grid.Row="2" ColumnDefinitions="*,*,*" Margin="0,5,0,0">
                                 <StackPanel Grid.Column="0">
@@ -139,16 +140,16 @@
                         </Grid>
                         
                         <!-- Budget Categories Header -->
-                        <Grid Grid.Row="1" ColumnDefinitions="2*,1*,1*,1*,1*,1*,1*" Margin="0,0,0,0">
+                        <Grid Grid.Row="1" ColumnDefinitions="1.3*,1.2*,1.2*,1.2*,2.2*,1*,1.4*" Margin="0,0,0,0">
                             <Border Grid.ColumnSpan="7" Background="{StaticResource ContentBrush}" BorderBrush="#333333" BorderThickness="1" Height="40">
-                                <Grid ColumnDefinitions="2*,1*,1*,1*,1*,1*,1*">
+                                <Grid ColumnDefinitions="1.3*,1.2*,1.2*,1.2*,2.2*,1*,1.4*">
                                     <TextBlock Text="Category" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Budget" Grid.Column="1" VerticalAlignment="Center" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Spent" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Remaining" Grid.Column="3" VerticalAlignment="Center" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Progress" Grid.Column="4" VerticalAlignment="Center" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Status" Grid.Column="5" VerticalAlignment="Center" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Actions" Grid.Column="6" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Budget" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Spent" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Remaining" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Progress" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Status" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Actions" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="SemiBold"/>
                                 </Grid>
                             </Border>
                         </Grid>
@@ -161,8 +162,7 @@
                         </ScrollViewer>
                     </Grid>
                 </Border>
-                
-                <!-- Back Button -->
+            
             </StackPanel>
         </ScrollViewer>
         

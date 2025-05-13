@@ -406,13 +406,14 @@ public partial class BudgetPage : UserControl
                     BorderBrush = new SolidColorBrush(Color.Parse("#333333")),
                     BorderThickness = new Thickness(1, 0, 1, 1),
                     Background = new SolidColorBrush(Color.Parse("#2E2E2E")),
-                    Height = 50
+                    Height = 45,  // Reduced height
+                    Padding = new Thickness(0, 3, 0, 3)  // Reduced padding
                 };
 
                 // Create a grid for this row with 7 columns
                 var rowGrid = new Grid
                 {
-                    ColumnDefinitions = new ColumnDefinitions("2*,1*,1*,1*,1*,1*,1*")
+                    ColumnDefinitions = new ColumnDefinitions("1.3*,1.2*,1.2*,1.2*,2.2*,1*,1.4*")
                 };
 
                 // Add the grid to the border
@@ -480,25 +481,32 @@ public partial class BudgetPage : UserControl
             // Column 4: Progress Bar and Percentage
             var progressPanel = new StackPanel
             {
-                Spacing = 5,
-                Margin = new Thickness(10, 0, 10, 0),
-                VerticalAlignment = VerticalAlignment.Center
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Spacing = 8 
             };
 
             var progressBar = new ProgressBar
             {
-                Value = budgetItem.Progress,
+                Minimum = 0,
                 Maximum = 100,
-                Height = 8,
-                CornerRadius = new CornerRadius(4),
-                Foreground = new SolidColorBrush(Color.Parse(budgetItem.StatusColor))
+                Value = budgetItem.Progress,
+                Height = 6,  // Slightly taller height
+                Width = 60,  // Reduced width to 60 (about 70% of previous 80)
+                Margin = new Thickness(0, 0, 8, 0),
+                VerticalAlignment = VerticalAlignment.Center
             };
+
+            // Set the color based on status
+            progressBar.Foreground = new SolidColorBrush(Color.Parse(budgetItem.StatusColor));
 
             var progressText = new TextBlock
             {
                 Text = budgetItem.ProgressText,
-                FontSize = 12,
-                HorizontalAlignment = HorizontalAlignment.Right
+                VerticalAlignment = VerticalAlignment.Center,
+                FontSize = 10,  // Smaller font size
+                FontWeight = FontWeight.Normal  // Normal weight instead of medium
             };
 
             progressPanel.Children.Add(progressBar);
@@ -534,7 +542,7 @@ public partial class BudgetPage : UserControl
                 Orientation = Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Spacing = 5
+                Spacing = 8  // Increased spacing between buttons
             };
 
             // Edit Button
