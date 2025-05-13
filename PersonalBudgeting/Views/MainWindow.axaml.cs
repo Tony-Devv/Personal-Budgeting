@@ -506,8 +506,6 @@ public partial class MainWindow : Window
             return;
         }
         
-        // In a real app, we would verify current password and update password
-        // For now, just hide the popup
         popup.IsVisible = false;
     }
     
