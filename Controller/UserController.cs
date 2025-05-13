@@ -262,51 +262,156 @@ public class UserController
 
 public class ReminderService
 {
-    private const string ApiKey = "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";
-    private const string FromEmail = "AntonDataStructure@gmail.com";
+    private const string ApiKey = "USE YOUR OWN SEND GRID API";
+    private const string FromEmail = "USE YOUR VERIFIED SEND GRID ACCOUNT";
+    private const string SenderName = "Personal Budget Team";
 
-    public static async Task SendExpenseReminderAsync(User user, Expense expense)
+    public static async Task<bool> SendExpenseReminderAsync(User user, Expense expense)
     {
-        if (user == null || expense == null || string.IsNullOrWhiteSpace(user.Email) || expense.ReminderTime == null)
+        try
         {
-            Console.WriteLine("ReminderService: Missing user, expense, email, or reminder date.");
-            return;
-        }
-
-        var payload = new
-        {
-            personalizations = new[]
+            // Validate inputs before proceeding
+            if (string.IsNullOrEmpty(user.Email))
             {
-                new { to = new[] { new { email = user.Email } } }
-            },
-            from = new { email = FromEmail },
-            subject = "Expense Reminder",
-            content = new[]
+                return false;
+            }
+            
+            // Calculate reminder details
+            decimal remainingAmount = expense.RequiredAmount - expense.SpentAmount;
+            string remainingClass = remainingAmount <= 0 ? "budget-success" : "budget-warning";
+            
+            // Calculate progress percentage (avoid division by zero)
+            int progressPercentage = expense.RequiredAmount > 0 
+                ? (int)Math.Min(100, (expense.SpentAmount / expense.RequiredAmount) * 100) 
+                : 0;
+            
+            // Extract category if available
+            string expenseName = expense.ExpenseName;
+            if (expense.ExpenseName.Contains(" - "))
             {
-                new
+                string[] parts = expense.ExpenseName.Split(new string[] { " - " }, StringSplitOptions.None);
+                if (parts.Length >= 2)
                 {
-                    type = "text/plain",
-                    value = $"Hello {user.UserName},\n\n" +
-                            $"This is a reminder for your expense \"{expense.ExpenseName}\".\n" +
-                            $"Required Amount: {expense.RequiredAmount:C}\n" +
-                            $"Spent Amount: {expense.SpentAmount:C}\n" +
-                            $"Reminder Date: {expense.ReminderTime:yyyy-MM-dd}\n\n" +
-                            "Best Regards,\nPersonal Budgeting Team"
+                    // Use the part after the hyphen
+                    expenseName = parts[1].Trim();
                 }
             }
-        };
+            
+            // Create HTML message using the template
+            string message = $@"<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=""utf-8"">
+  <meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+  <title>Personal Budget Manager Notification</title>
+  <style>
+    body {{ font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333333; background-color: #f5f5f5; margin: 0; padding: 0; }}
+    .container {{ max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }}
+    .header {{ background-color: #4B6EAF; padding: 24px; text-align: center; color: #ffffff; }}
+    .emoji-logo {{ font-size: 48px; margin: 0 auto 12px; }}
+    .header h1 {{ margin: 0; font-size: 24px; font-weight: 600; }}
+    .content {{ padding: 32px 24px; }}
+    .content-title {{ font-size: 20px; font-weight: 600; margin-top: 0; margin-bottom: 20px; color: #4B6EAF; }}
+    .budget-card {{ border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 24px; background-color: #fafafa; }}
+    .budget-card-title {{ font-size: 18px; font-weight: 500; margin-top: 0; margin-bottom: 16px; color: #333333; }}
+    .budget-info {{ display: flex; justify-content: space-between; margin-bottom: 16px; }}
+    .budget-label {{ color: #666666; font-size: 14px; }}
+    .budget-value {{ font-weight: 600; font-size: 16px; }}
+    .budget-danger {{ color: #E74C3C; }}
+    .budget-success {{ color: #2ECC71; }}
+    .budget-warning {{ color: #F39C12; }}
+    .progress-bar-container {{ height: 8px; background-color: #e0e0e0; border-radius: 4px; overflow: hidden; margin-bottom: 16px; }}
+    .progress-bar {{ height: 100%; background-color: #4B6EAF; border-radius: 4px; }}
+    .btn {{ display: inline-block; background-color: #4B6EAF; color: #ffffff !important; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 500; text-align: center; }}
+    .btn-center {{ display: block; margin: 0 auto; max-width: 200px; }}
+    .footer {{ background-color: #f5f5f5; padding: 20px; text-align: center; font-size: 12px; color: #666666; border-top: 1px solid #e0e0e0; }}
+    .footer p {{ margin: 5px 0; }}
+    .footer-link {{ color: #4B6EAF; text-decoration: none; }}
+  </style>
+</head>
+<body>
+  <div class=""container"">
+    <div class=""header"">
+      <div class=""emoji-logo"">💰</div>
+      <h1>Personal Budget Manager</h1>
+    </div>
+    <div class=""content"">
+      <h2 class=""content-title"">Expense Reminder</h2>
+      <p>Hello {user.UserName},</p>
+      <p>This is a reminder about an upcoming expense in your budget.</p>
+      <div class=""budget-card"">
+        <h3 class=""budget-card-title"">{expense.ExpenseName}</h3>
+        <div class=""budget-info"">
+          <span class=""budget-label"">Required Amount:</span>
+          <span class=""budget-value"">${expense.RequiredAmount:0.00}</span>
+        </div>
+        <div class=""budget-info"">
+          <span class=""budget-label"">Spent Amount:</span>
+          <span class=""budget-value"">${expense.SpentAmount:0.00}</span>
+        </div>
+        <div class=""budget-info"">
+          <span class=""budget-label"">Remaining:</span>
+          <span class=""budget-value {remainingClass}"">${remainingAmount:0.00}</span>
+        </div>
+        <div class=""progress-bar-container"">
+          <div class=""progress-bar"" style=""width: {progressPercentage}%""></div>
+        </div>
+        <div class=""budget-info"">
+          <span class=""budget-label"">Progress:</span>
+          <span class=""budget-value"">{progressPercentage}%</span>
+        </div>
+        <div class=""budget-info"">
+          <span class=""budget-label"">Due date:</span>
+          <span class=""budget-value"">{expense.ReminderTime:yyyy-MM-dd}</span>
+        </div>
+      </div>
+      <p>Stay on top of your finances and manage your expenses efficiently.</p>
+      <a href=""https://github.com/Tony-Devv/Personal-Budgeting"" class=""btn btn-center"" style=""color: #ffffff !important;"">View Project on GitHub</a>
+    </div>
+    <div class=""footer"">
+      <p>{SenderName}</p>
+      <p>© 2025 Personal Budget Manager</p>
+      <p><small>To manage reminder settings, please visit the expense page and edit your reminder.</small></p>
+      <p><a href=""https://github.com/Tony-Devv/Personal-Budgeting"" target=""_blank"" class=""footer-link"">View on GitHub</a></p>
+    </div>
+  </div>
+</body>
+</html>";
+            
+            var payload = new
+            {
+                personalizations = new[]
+                {
+                    new { to = new[] { new { email = user.Email } } }
+                },
+                from = new { email = FromEmail, name = SenderName },
+                subject = $"Expense Reminder: {expense.ExpenseName}",
+                content = new[]
+                {
+                    new
+                    {
+                        type = "text/html",
+                        value = message
+                    }
+                }
+            };
 
-        string jsonPayload = JsonSerializer.Serialize(payload);
-
-        Console.WriteLine("ReminderService: JSON Payload: " + jsonPayload);
-
-        using var client = new HttpClient();
-        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
-        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-        var response = await client.PostAsync("https://api.sendgrid.com/v3/mail/send", content);
-
-        Console.WriteLine("ReminderService: Response status: " + response.StatusCode);
-        string responseBody = await response.Content.ReadAsStringAsync();
-        Console.WriteLine("ReminderService: Response body: " + responseBody);
+            string jsonPayload = JsonSerializer.Serialize(payload);
+            
+            // Send the email using SendGrid API
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+            client.Timeout = TimeSpan.FromSeconds(30);
+            
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("https://api.sendgrid.com/v3/mail/send", content);
+            
+            return response.IsSuccessStatusCode;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 }
