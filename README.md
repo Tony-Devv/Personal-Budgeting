@@ -1,8 +1,6 @@
-![{34B359AD-0B12-4D8A-AB3C-E050DED198B5}](https://github.com/user-attachments/assets/e947eb69-b1ab-4885-bfc3-3a0cbd0a903b)# Personal Budget Manager
 
 A modern, user-friendly desktop application for managing personal finances, built with Avalonia UI and C#.
 
-![{34B359AD-0B12-4D8A-AB3C-E050DED198B5}](https://github.com/user-attachments/assets/469faf4a-72f1-48ae-b638-d618ca6e09e6)
 
 
 ## Features
@@ -15,13 +13,24 @@ A modern, user-friendly desktop application for managing personal finances, buil
 - **Modern UI**: Clean, responsive interface with dark theme support
 
 ## Screenshots
+### Welcome Page 
+![{0B223D11-52CB-4D85-A836-0FD8724F32F5}](https://github.com/user-attachments/assets/8aa963e7-4c6c-4e8c-b6b7-60b29003b0e3)
+
+
+### Login Page
+![{1E71EDA7-001E-4EA2-B836-44B3B8069E5A}](https://github.com/user-attachments/assets/7629e725-3ac8-48b2-bdb6-a5e30347dd54)
+
+
+### Sign Up Page 
+![{8469D2D8-7AC6-4ED5-8BFF-A473F94E6395}](https://github.com/user-attachments/assets/470d1c85-a501-4a9f-bde3-3f4382dc0df2)
+
 
 ### Dashboard / Home Page
 ![{34B359AD-0B12-4D8A-AB3C-E050DED198B5}](https://github.com/user-attachments/assets/fdbce362-185c-42e2-bba4-7a4ff6350342)
 
 
 ### Income Management
-![{68B6ADF6-9F35-4D0F-910C-3338EF93EF44}](https://github.com/user-attachments/assets/2d511d7b-388a-499a-bc59-a781c5ed449a)
+![{2EAE93D3-881C-4E49-B443-8E6EDEA641E4}](https://github.com/user-attachments/assets/75d82eeb-02c0-470b-86f6-e18c834a296a)
 
 
 ### Expense Tracking
